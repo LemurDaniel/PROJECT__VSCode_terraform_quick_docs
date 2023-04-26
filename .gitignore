@@ -1,0 +1,5 @@
+node_modules
+.portable
+cache
+temp
+hidden
