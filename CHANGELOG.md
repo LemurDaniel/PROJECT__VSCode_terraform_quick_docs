@@ -6,6 +6,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [0.0.1]
 
-- Initial release
+- Initial release with basic functionality
 
-Basic Functionality: open Terraform Docs on Hover
+
+## [0.0.2]
+
+- Update Changelog and Readme to released

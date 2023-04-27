@@ -4,6 +4,12 @@ on:
   push:
     branches:
      - master
+    paths:
+    - "server/**"
+    - "client/**"
+    - "README.md"
+    - "CHANGELOG.md"
+    - "package.json"
     
 env:
   PUBLISHER: LemurDaniel
