@@ -2,12 +2,13 @@
 
 Quickly open the Documentation for a Terraform Resource by hovering over it.
 
+[Marketplace](https://marketplace.visualstudio.com/items?itemName=LemurDaniel.terraform-quick-docs)
 
 # Usage
 
-### `Just hover over a Terraform 'Data' or 'Resource' Name`
+#### - `Just hover over a Terraform 'Data' or 'Resource' Name`
 
-### `Only verified Terraform Providers are supported!`
+#### - `Only verified Terraform Providers are supported!`
 
 ---
 
