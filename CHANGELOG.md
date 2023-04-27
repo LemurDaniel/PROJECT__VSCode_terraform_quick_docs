@@ -7,3 +7,5 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## [Unreleased]
 
 - Initial release
+
+Basic Functionality: open Terraform Docs on Hover

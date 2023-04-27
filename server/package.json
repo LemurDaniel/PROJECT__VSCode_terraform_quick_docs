@@ -1,8 +1,8 @@
 {
     "name": "terraform-quick-docs-server",
-    "description": "VSCode part of a language server",
-    "author": "o.O",
-    "license": "MIT",
+    "description": "VSCode",
+    "author": "LemurDaniel",
+    "license": "GPL-3.0",
     "version": "0.0.1",
     "publisher": "vscode",
     "repository": {
