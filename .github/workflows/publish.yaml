@@ -7,7 +7,6 @@ on:
     
 env:
   PUBLISHER: LemurDaniel
-  TARGET: ./package
   PAT: ${{ secrets.PUBLISH_PAT }}
 
 jobs:
@@ -27,11 +26,8 @@ jobs:
       - run: npm install 
 
       - run: npm install -g @vscode/vsce
-
-      - name: Package extension
-        run: vsce package --out ${{ env.TARGET }}
          
       - name: Publish extension
-        run: vsce publish --pat ${{ env.PAT }} --target ${{ env.TARGET }}
+        run: vsce publish --pat ${{ env.PAT }}
           
     
