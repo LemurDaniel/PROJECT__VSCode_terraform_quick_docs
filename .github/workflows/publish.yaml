@@ -24,7 +24,7 @@ jobs:
         with:
           node-version: '16.x'
   
-      - run: npm install @vscode/vsce
+      - run: npm install -g @vscode/vsce
 
       - name: Package extension
         run: vsce package --out ${{ env.TARGET }}
