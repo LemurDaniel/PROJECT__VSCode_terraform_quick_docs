@@ -32,6 +32,6 @@ jobs:
         run: vsce package --out ${{ env.TARGET }}
          
       - name: Publish extension
-        run: vsce --pat ${{ env.PAT }} --target ${{ env.TARGET }}
+        run: vsce publish --pat ${{ env.PAT }} --target ${{ env.TARGET }}
           
     
