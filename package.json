@@ -3,6 +3,7 @@
   "displayName": "Terraform Quick Docs",
   "description": "Access Terraform Docs by hovering over Resources.",
   "author": "LemurDaniel",
+  "publisher": "LemurDaniel",
   "license": "GPL-3.0",
   "repository": {
     "type": "git",
