@@ -6,6 +6,8 @@ const {
     TextDocuments,
     ProposedFeatures,
     TextDocumentSyncKind,
+    Position,
+    Range,
 } = require('vscode-languageserver/node')
 
 const {
@@ -13,8 +15,6 @@ const {
 } = require('vscode-languageserver-textdocument')
 
 const Registry = require('./registry');
-
-
 
 
 // Create a connection for the server, using Node's IPC as a transport.
@@ -31,9 +31,8 @@ connection.onInitialize(params => {
         capabilities: {
             textDocumentSync: TextDocumentSyncKind.Incremental,
             // Tell the client that this server supports code completion.
-            completionProvider: {
-                resolveProvider: true
-            }
+            hoverProvider: true,
+            completionProvider: false
         }
     }
 
@@ -46,42 +45,53 @@ connection.onInitialized(() => {
 
 
 // The content of a text document has changed. This event is emitted
-// when the text document first opened or when its content has changed.
-documents.onDidChangeContent(change => {
-    connection.console.log('Event received')
+documents.onDidChangeContent(change => {})
 
-    // connection.console.log(JSON.stringify(CompletionItemKind))
+
+connection.onHover(async ({ textDocument, position }) => {
+
+    const document = documents.get(textDocument.uri)
+
+    // Get Textline
+    const start = Position.create(position.line, 0)
+    const end = Position.create(position.line + 1, 0)
+    const range = Range.create(start, end)
+
+
+    let line = document.getText(range).replace(/([\r\n]+|[\n]+)/, '')
+    let category = null
+
+    const isResource = line.match(/\s*resource\s*"[A-Za-z0-9_]+"/) != null
+    const isDatasource = line.match(/\s*data\s*"[A-Za-z0-9_]+"/) != null
+
+    if (isDatasource)
+        category = Registry.TYPES['data']
+    else if (isResource)
+        category = Registry.TYPES['resource']
+    else
+        return
+
+    const identifier = line.match(/"[A-Za-z0-9_]+"/)[0].replace(/"+/g, '')
+
+    connection.console.log(`Search Identifier: ${identifier}`)
+    connection.console.log(`Search Category: ${category}`)
+
+    try {
+        const { resourceInfo, providerInfo } = await Registry.instance.find(identifier, category, connection)
+
+        connection.console.log(JSON.stringify(resourceInfo))
+        let content = `[**Terraform Registry**](${resourceInfo.docsUrl})`
+
+        return {
+            contents: content
+        }
+
+    } catch (exception) {
+        connection.console.log(exception.message)
+    }
+
 })
 
-
-connection.onCompletion(async _textDocumentPosition => {
-    // The pass parameter contains the position of the text document in
-    // which code complete got requested. For the example we ignore this
-    // info and always provide the same completion items.
-
-    const test = await Registry.instance.getProviderInfo('hashicorp/azurerm')
-
-    return test.docs.filter(v => !v.title.includes(' ')).map(element => ({
-            label: element.title,
-            kind: CompletionItemKind.Text,
-            data: element.id
-        })
-    )
-
-})
-
-// This handler resolves additional information for the item selected in
-// the completion list.
-connection.onCompletionResolve(async item => {
-
-    const test = await Registry.instance.getProviderInfo('hashicorp/azurerm')
-
-    return test.docs.filter(v => v.id == item.data).map(v => ({
-        ...v,
-        detail: "test test TESt",
-        documentation: "Some testing" 
-    }))
-})
 
 
 // Make the text document manager listen on the connection
