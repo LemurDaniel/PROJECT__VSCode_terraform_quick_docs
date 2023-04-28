@@ -12,3 +12,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## [0.0.2]
 
 - Update Changelog and Readme to released
+
+## [0.0.3]
+
+- fix: terraform api doesn't return azure/azapi as a verified provider

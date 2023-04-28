@@ -57,7 +57,7 @@ class Registry {
         return response
     }
 
-    async getProviders() {
+    async getProviders(connection) {
 
         const api = "/v1/providers?offset={{offset}}&limit=100&verified=true"
         const data = {}
@@ -68,16 +68,23 @@ class Registry {
             const response = await this.get(api.replace('{{offset}}', netxtOffset))
 
             response.providers.map(provider => ({
-                ...provider,
+                name: provider.name,
+                namespace: provider.namespace,
                 identifier: `${provider.namespace}/${provider.name}`
-            })
-            ).forEach(provider => data[provider.identifier] = provider)
+            })).forEach(provider => data[provider.identifier] = provider)
 
             previousOffset = netxtOffset
             netxtOffset = response.meta.next_offset
         } while (null != netxtOffset && previousOffset != netxtOffset)
 
-        return Object.values(data)
+        // API doesn't return azure/azapi as a verified provider
+        data['azure/azapi'] = {
+            name: 'azapi',
+            namespace: 'azure',
+            identifier: 'azure/azapi'
+        }
+
+        return data
 
     }
 
@@ -107,9 +114,13 @@ class Registry {
         const resourceName = identifier
         const secondaryName = identifier.split('_').slice(1).join('_')
 
-        const providerData = await this.getProviders().then(
-            providers => providers.filter(provider => provider.name == providerName)[0]
+        connection.console.log(`Search Provider: ${providerName}`)
+
+        const providerData = await this.getProviders(connection).then(
+            providers => Object.values(providers).filter(provider => provider.name.toLowerCase() == providerName.toLowerCase())[0]
         )
+
+        connection.console.log(`Providers Cached: ${(await this.getProviders()).length}`)
 
         if (null == providerData)
             throw `'${providerName}' not Found!`
