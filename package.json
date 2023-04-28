@@ -5,16 +5,23 @@
   "author": "LemurDaniel",
   "publisher": "LemurDaniel",
   "license": "GPL-3.0",
+  "icon": ".resources/simple_logo.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/LemurDaniel/PROJECT__VSCode_Extension_terraform_quick_docs"
   },
-  "version": "0.0.3",
+  "version": "0.0.4",
   "engines": {
     "vscode": "^1.70.0"
   },
   "categories": [
     "Other"
+  ],
+  "tags": [
+    "terraform",
+    "provider",
+    "documentation",
+    "docs"
   ],
   "activationEvents": [
     "onLanguage:terraform"

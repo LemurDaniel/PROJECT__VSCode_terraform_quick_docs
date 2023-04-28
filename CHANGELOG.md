@@ -16,3 +16,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## [0.0.3]
 
 - fix: terraform api doesn't return azure/azapi as a verified provider
+
+## [0.0.4]
+
+- Add a simple icon
