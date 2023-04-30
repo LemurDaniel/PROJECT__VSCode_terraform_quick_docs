@@ -20,3 +20,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## [0.0.4]
 
 - Add a simple icon
+
+## [0.0.5]
+
+- Add functionality for opening modules in the terraform registry

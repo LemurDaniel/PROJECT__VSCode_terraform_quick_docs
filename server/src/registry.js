@@ -57,7 +57,7 @@ class Registry {
         return response
     }
 
-    async getProviders(connection) {
+    async getProviders() {
 
         const api = "/v1/providers?offset={{offset}}&limit=100&verified=true"
         const data = {}
@@ -88,9 +88,26 @@ class Registry {
 
     }
 
+    async getModuleInfo(source, version = null) {
+
+        const docsUrl = `https://${Registry.#endpoint}/modules/{{namespace}}/{{name}}/{{provider}}/{{version}}`
+        const moduleInfo = await this.get(`v1/modules/${source}`)
+
+        if (moduleInfo.errors && moduleInfo.errors[0].toLowerCase() == 'not found') return null
+
+        moduleInfo['source'] = source
+        moduleInfo['docsUrl'] = docsUrl
+            .replace('{{namespace}}', moduleInfo.namespace)
+            .replace('{{provider}}', moduleInfo.provider)
+            .replace('{{name}}', moduleInfo.name)
+            .replace('{{version}}', moduleInfo.versions.includes(version) ? version : moduleInfo.version)
+
+        return moduleInfo
+    }
+
     async getProviderInfo(identifier) {
 
-        const docsUrl = 'https://registry.terraform.io/providers/{{namespace}}/{{provider}}/{{version}}/docs'
+        const docsUrl = `https://${Registry.#endpoint}/providers/{{namespace}}/{{provider}}/{{version}}/docs`
         const providerInfo = await this.get(`v1/providers/${identifier}`)
         providerInfo['identifier'] = identifier
         providerInfo['docsUrl'] = docsUrl
@@ -108,7 +125,7 @@ class Registry {
         return providerInfo
     }
 
-    async find(identifier, resourceCategory, connection) {
+    async findProvider(identifier, resourceCategory, connection) {
 
         const providerName = identifier.split('_')[0]
         const resourceName = identifier
@@ -119,8 +136,6 @@ class Registry {
         const providerData = await this.getProviders(connection).then(
             providers => Object.values(providers).filter(provider => provider.name.toLowerCase() == providerName.toLowerCase())[0]
         )
-
-        connection.console.log(`Providers Cached: ${(await this.getProviders()).length}`)
 
         if (null == providerData)
             throw `'${providerName}' not Found!`
@@ -138,7 +153,6 @@ class Registry {
             throw `'${resourceName}' not Found!`
 
         connection.console.log(`Found ResourceName: ${resourceInfo.title}`)
-        connection.console.log(resourceInfo)
 
         return { resourceInfo: resourceInfo, providerInfo: providerInfo }
 
