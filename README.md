@@ -4,9 +4,13 @@
 
 ##### - `Just hover over a Terraform 'Data' or 'Resource' Name or a 'module'`
 
-##### - `Only verified Terraform Providers are supported!`
+##### - `Supports only Modules in the Terraform Registry!`
 
-##### - `Only Modules in the Terraform Registry are supported!`
+##### - `By default supports most of the common Providers`
+
+##### - Add more specific Providers if needed in the Settings:
+
+![settings](.resources/terraform-quick-docs-4.gif)
 
 ---
 

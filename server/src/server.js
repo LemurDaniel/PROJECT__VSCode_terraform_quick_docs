@@ -1,8 +1,8 @@
 
 
 const {
+    DidChangeConfigurationNotification,
     createConnection,
-    CompletionItemKind,
     TextDocuments,
     ProposedFeatures,
     TextDocumentSyncKind,
@@ -17,13 +17,11 @@ const {
 const Registry = require('./registry');
 
 
+
 // Create a connection for the server, using Node's IPC as a transport.
 // Also include all preview / proposed LSP features.
-const connection = createConnection(ProposedFeatures.all);
-
-// Create a simple text document manager.
-const documents = new TextDocuments(TextDocument);
-
+const connection = createConnection(ProposedFeatures.all)
+const documents = new TextDocuments(TextDocument)
 
 connection.onInitialize(params => {
 
@@ -39,14 +37,30 @@ connection.onInitialize(params => {
     return result
 })
 
-connection.onInitialized(() => {
+connection.onInitialized(async () => {
+
+    const config = await connection.workspace.getConfiguration({
+        section: 'terraform-quick-docs'
+    })
+    Registry.additionalProviders = config.additional_supported_providers
+    connection.console.log(JSON.stringify(Registry.additionalProviders))
+
+    connection.client.register(DidChangeConfigurationNotification.type, undefined)
+    connection.onDidChangeConfiguration(async () => {
+        const config = await connection.workspace.getConfiguration({
+            section: 'terraform-quick-docs'
+        })
+        Registry.additionalProviders = config.additional_supported_providers
+        connection.console.log(`Changed Settings to: ${JSON.stringify(Registry.additionalProviders)}`)
+    })
+
     connection.console.log('Init Done')
+
 })
 
 
 // The content of a text document has changed. This event is emitted
 documents.onDidChangeContent(change => { })
-
 
 
 async function handleProviderResource(line, category) {
@@ -147,16 +161,17 @@ connection.onHover(async ({ textDocument, position }) => {
     try {
 
         if (isResource)
-            return handleProviderResource(line, Registry.TYPES['resource'])
+            return await handleProviderResource(line, Registry.TYPES['resource'])
         else if (isDatasource)
-            return handleProviderResource(line, Registry.TYPES['data'])
+            return await handleProviderResource(line, Registry.TYPES['data'])
         else if (isModule)
-            return handleProviderModule(document, position)
+            return await handleProviderModule(document, position)
         else
             return null
 
     } catch (exception) {
         connection.console.log(exception.message)
+        return null
     }
 })
 

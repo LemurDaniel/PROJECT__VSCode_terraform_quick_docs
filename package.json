@@ -8,9 +8,9 @@
   "icon": ".resources/simple_logo.png",
   "repository": {
     "type": "git",
-    "url": "https://github.com/LemurDaniel/PROJECT__VSCode_Extension_terraform_quick_docs"
+    "url": "https://github.com/LemurDaniel/PROJECT__VSCode_terraform_quick_docs"
   },
-  "version": "0.0.5",
+  "version": "0.0.6",
   "engines": {
     "vscode": "^1.70.0"
   },
@@ -41,25 +41,19 @@
       }
     ],
     "configuration": {
-      "type": "object",
-      "title": "Terraform Quick Docs Test",
+      "title": "Terraform Quick Docs",
       "properties": {
-        "languageServerExample.maxNumberOfProblems": {
-          "scope": "resource",
-          "type": "number",
-          "default": 100,
-          "description": "Controls the maximum number of problems produced by the server."
-        },
-        "languageServerExample.trace.server": {
-          "scope": "window",
-          "type": "string",
-          "enum": [
-            "off",
-            "messages",
-            "verbose"
+        "terraform-quick-docs.additional_supported_providers": {
+          "type": "array",
+          "default": [
+            "azure/azapi"
           ],
-          "default": "off",
-          "description": "Traces the communication between VS Code and the language server."
+          "items": {
+            "type": "string",
+            "pattern": "[a-zA-Z0-9_]/[a-zA-Z0-9_]+",
+            "patternErrorMessage": "Must be of format '<namespace>/<provider>'"
+          },
+          "description": "Add support for other Providers by specifing: '<namespace>/<provider>' like 'azure/azapi'"
         }
       }
     }
