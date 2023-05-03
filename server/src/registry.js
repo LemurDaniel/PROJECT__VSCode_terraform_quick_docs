@@ -12,6 +12,18 @@ class Registry {
         return Registry.#instance
     }
 
+    static #additionalProviders = []
+    static get additionalProviders() {
+        return Registry.#additionalProviders
+    }
+    static set additionalProviders(value) {
+        Registry.#additionalProviders = value.map(entry => ({
+            name: entry.split('/')[1],
+            namespace: entry.split('/')[0],
+            identifier: entry
+        }))
+    }
+
 
     static TYPES = {
         data: 'data-sources',
@@ -84,6 +96,10 @@ class Registry {
             identifier: 'azure/azapi'
         }
 
+        Registry.additionalProviders.forEach(providerData =>
+            data[providerData.identifier] = providerData
+        )
+
         return data
 
     }
@@ -138,7 +154,7 @@ class Registry {
         )
 
         if (null == providerData)
-            throw `'${providerName}' not Found!`
+            throw new Error(`'${providerName}' not Found!`)
 
         connection.console.log(`Found Provider: ${providerData.identifier}`)
 
@@ -150,7 +166,7 @@ class Registry {
         connection.console.log(`Found Providerinfo: ${providerData.identifier}`)
 
         if (null == resourceInfo)
-            throw `'${resourceName}' not Found!`
+            throw new Error(`'${resourceName}' not Found!`)
 
         connection.console.log(`Found ResourceName: ${resourceInfo.title}`)
 

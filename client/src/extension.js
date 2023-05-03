@@ -27,11 +27,11 @@ function activate(context) {
     }
 
     const clientOptions = {
-        documentSelector: [{ 
-            scheme: 'file', 
-            language: 'terraform' 
+        documentSelector: [{
+            scheme: 'file',
+            language: 'terraform'
         }],
-        synchronize: { }
+        synchronize: {}
     };
 
     client = new LanguageClient(
@@ -47,7 +47,9 @@ function activate(context) {
 
 
 // This method is called when your extension is deactivated
-function deactivate() { }
+function deactivate() {
+    if (client) return client.stop()
+}
 
 module.exports = {
     activate,

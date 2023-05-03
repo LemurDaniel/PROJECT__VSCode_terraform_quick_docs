@@ -24,3 +24,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## [0.0.5]
 
 - Add functionality for opening modules in the terraform registry
+
+## [0.0.6]
+
+- Settings to add support for more than the default Providers

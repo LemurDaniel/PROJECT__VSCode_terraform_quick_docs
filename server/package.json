@@ -7,7 +7,7 @@
     "publisher": "vscode",
     "repository": {
         "type": "git",
-        "url": "https://github.com/LemurDaniel/PROJECT__VSCode_Extension_terraform_quick_docs"
+        "url": "https://github.com/LemurDaniel/PROJECT__VSCode_terraform_quick_docs"
     },
     "dependencies": {
         "vscode-languageserver": "^8.1.0",
