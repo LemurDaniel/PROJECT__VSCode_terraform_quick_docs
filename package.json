@@ -10,14 +10,14 @@
     "type": "git",
     "url": "https://github.com/LemurDaniel/PROJECT__VSCode_terraform_quick_docs"
   },
-  "version": "0.0.7",
+  "version": "0.0.8",
   "engines": {
     "vscode": "^1.70.0"
   },
   "categories": [
     "Other"
   ],
-  "tags": [
+  "keywords": [
     "terraform",
     "tf",
     "hcl",
