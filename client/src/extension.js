@@ -5,20 +5,6 @@ const {
 } = require('vscode-languageclient/node')
 
 
-
-
-
-
-async function test() {
-
-    const vscode = require('vscode')
-    const ext = vscode.extensions.getExtension('hashicorp.terraform')
-    vscode.window.showInformationMessage(JSON.stringify(ext.exports))
-}
-
-test()
-
-
 let client = null
 
 function activate(context) {
