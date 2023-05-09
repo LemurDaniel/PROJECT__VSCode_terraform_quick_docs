@@ -21,7 +21,7 @@
 
 #### `Example 2:`
 
-![example-2](.resources/terraform-quick-docs-2.gif)
+![example-2](.resources/terraform-quick-docs-5.gif)
 
 #### `Example 3:`
 

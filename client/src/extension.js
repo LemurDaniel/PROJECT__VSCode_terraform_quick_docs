@@ -6,10 +6,22 @@ const {
 
 
 
+
+
+
+async function test() {
+
+    const vscode = require('vscode')
+    const ext = vscode.extensions.getExtension('hashicorp.terraform')
+    vscode.window.showInformationMessage(JSON.stringify(ext.exports))
+}
+
+test()
+
+
 let client = null
 
 function activate(context) {
-
 
     const serverModule = context.asAbsolutePath(
         path.join('server', 'src', 'server.js')
