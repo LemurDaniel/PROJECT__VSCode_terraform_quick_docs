@@ -5,11 +5,9 @@ const {
 } = require('vscode-languageclient/node')
 
 
-
 let client = null
 
 function activate(context) {
-
 
     const serverModule = context.asAbsolutePath(
         path.join('server', 'src', 'server.js')

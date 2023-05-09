@@ -63,9 +63,7 @@ connection.onInitialized(async () => {
 documents.onDidChangeContent(change => { })
 
 
-async function handleProviderResource(line, category) {
-
-    const identifier = line.match(/"[A-Za-z0-9_]+"/)[0].replace(/"+/g, '')
+async function handleProviderResource(identifier, category) {
 
     connection.console.log(`---------------------------------`)
     connection.console.log(`Search Identifier: ${identifier}`)
@@ -147,32 +145,51 @@ connection.onHover(async ({ textDocument, position }) => {
 
     const document = documents.get(textDocument.uri)
 
+    connection.console.log(JSON.stringify(position))
     // Get Textline
-    const start = Position.create(position.line, 0)
-    const end = Position.create(position.line + 1, 0)
-    const range = Range.create(start, end)
+    const lineStart = Position.create(position.line, 0)
+    const lineEnd = Position.create(position.line + 1, 0)
+    const lineRange = Range.create(lineStart, lineEnd)
 
-    const line = document.getText(range).replace(/([\r\n]+|[\n]+)/, '')
+    const fullLine = document.getText(lineRange).replace(/([\r\n]+|[\n]+)/, '')
 
-    const isResource = line.match(/\s*resource\s*"[A-Za-z0-9_]+"/) != null
-    const isDatasource = line.match(/\s*data\s*"[A-Za-z0-9_]+"/) != null
-    const isModule = line.match(/\s*module\s*"[A-Za-z0-9_-]+"/) != null
+    const isResourceDefinition = fullLine.match(/resource\s*"[A-Za-z0-9_]+"/)
+    const isDatasourceDefinition = fullLine.match(/data\s*"[A-Za-z0-9_]+"/)
+    const isModuleDefinition = fullLine.match(/\s*module\s*"[A-Za-z0-9_-]+"/)
+    const isDatasourceInline = fullLine.match(/data.[A-Za-z0-9_]+/)
+    const isResourceInline = fullLine.match(/[A-Za-z0-9_]+[\.]{1}[A-Za-z0-9_]+/)
 
     try {
 
-        if (isResource)
-            return await handleProviderResource(line, Registry.TYPES['resource'])
-        else if (isDatasource)
-            return await handleProviderResource(line, Registry.TYPES['data'])
-        else if (isModule)
+        if (isResourceDefinition) {
+            const identifier = isResourceDefinition.at(0).match(/"[A-Za-z0-9_]+"/)[0].replace(/"+/g, '')
+            return await handleProviderResource(identifier, Registry.TYPES['resource'])
+        } else if (isDatasourceDefinition) {
+            const identifier = isDatasourceDefinition.at(0).match(/"[A-Za-z0-9_]+"/)[0].replace(/"+/g, '')
+            return await handleProviderResource(identifier, Registry.TYPES['data'])
+        } else if (isModuleDefinition) {
             return await handleProviderModule(document, position)
-        else
-            return null
+        }
+        else if (isDatasourceInline) {
+            const inRange = position.character >= isDatasourceInline.index && position.character <= (isDatasourceInline.index + isDatasourceInline.at(0).length)
+            if (inRange) {
+                const identifier = isDatasourceInline.at(0).split('.').at(1)
+                return await handleProviderResource(identifier, Registry.TYPES['data'])
+            }
+        }
+        else if (isResourceInline) {
+            const inRange = position.character >= isResourceInline.index && position.character <= (isResourceInline.index + isResourceInline.at(0).length)
+            if (inRange) {
+                const identifier = isResourceInline.at(0).split('.').at(0)
+                return await handleProviderResource(identifier, Registry.TYPES['resource'])
+            }
+        }
 
     } catch (exception) {
         connection.console.log(exception.message)
-        return null
     }
+
+    return null
 })
 
 
