@@ -32,3 +32,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## [0.0.7]
 
 - Open Documentation for inline elements, such as 'data.<data_source>', '<resource_identifer>.<resource_name>'
+
+## [0.0.8]
+
+- Fix errors with previous implementation

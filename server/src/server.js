@@ -85,7 +85,6 @@ async function handleProviderResource(identifier, category) {
 async function handleProviderModule(document, position) {
 
     connection.console.log(`---------------------------------`)
-    connection.console.log(document.constructor.name)
     let source = null
     let version = null
     let lineNum = position.line + 1
@@ -145,7 +144,6 @@ connection.onHover(async ({ textDocument, position }) => {
 
     const document = documents.get(textDocument.uri)
 
-    connection.console.log(JSON.stringify(position))
     // Get Textline
     const lineStart = Position.create(position.line, 0)
     const lineEnd = Position.create(position.line + 1, 0)
@@ -156,8 +154,6 @@ connection.onHover(async ({ textDocument, position }) => {
     const isResourceDefinition = fullLine.match(/resource\s*"[A-Za-z0-9_]+"/)
     const isDatasourceDefinition = fullLine.match(/data\s*"[A-Za-z0-9_]+"/)
     const isModuleDefinition = fullLine.match(/\s*module\s*"[A-Za-z0-9_-]+"/)
-    const isDatasourceInline = fullLine.match(/data.[A-Za-z0-9_]+/)
-    const isResourceInline = fullLine.match(/[A-Za-z0-9_]+[\.]{1}[A-Za-z0-9_]+/)
 
     try {
 
@@ -170,20 +166,29 @@ connection.onHover(async ({ textDocument, position }) => {
         } else if (isModuleDefinition) {
             return await handleProviderModule(document, position)
         }
-        else if (isDatasourceInline) {
-            const inRange = position.character >= isDatasourceInline.index && position.character <= (isDatasourceInline.index + isDatasourceInline.at(0).length)
-            if (inRange) {
-                const identifier = isDatasourceInline.at(0).split('.').at(1)
-                return await handleProviderResource(identifier, Registry.TYPES['data'])
-            }
+
+        // Inline datasource matches
+        for (const inlineDataSource of fullLine.matchAll(/data\.[A-Za-z0-9_]+/g)) {
+            const inRange = position.character >= inlineDataSource.index &&
+                position.character <= (inlineDataSource.index + inlineDataSource.at(0).length)
+
+            if (!inRange) continue
+
+            const identifier = inlineDataSource.at(0).split('.').at(1)
+            return await handleProviderResource(identifier, Registry.TYPES['data'])
         }
-        else if (isResourceInline) {
-            const inRange = position.character >= isResourceInline.index && position.character <= (isResourceInline.index + isResourceInline.at(0).length)
-            if (inRange) {
-                const identifier = isResourceInline.at(0).split('.').at(0)
-                return await handleProviderResource(identifier, Registry.TYPES['resource'])
-            }
+
+        // Inline provider resources matches
+        for (const inlineResource of fullLine.matchAll(/(?<!data\.[A-Za-z0-9_]*)[A-Za-z0-9_]+_[A-Za-z0-9_]+/g)) {
+            const inRange = position.character >= inlineResource.index &&
+                position.character <= (inlineResource.index + inlineResource.at(0).length)
+
+            if (!inRange) continue
+
+            const identifier = inlineResource.at(0)
+            return await handleProviderResource(identifier, Registry.TYPES['resource'])
         }
+
 
     } catch (exception) {
         connection.console.log(exception.message)

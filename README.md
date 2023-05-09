@@ -2,7 +2,9 @@
 
 # Usage
 
-##### - `Just hover over a Terraform 'Data' or 'Resource' Name or a 'module'`
+##### - `Just hover over a Terraform 'Data' or 'Resource' Identifier or a 'Module'`
+
+####  - `Also supports hovering over referenced data or resource elements such as 'data.<identifier>'`
 
 ##### - `Supports only Modules in the Terraform Registry!`
 
