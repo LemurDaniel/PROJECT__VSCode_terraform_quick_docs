@@ -25,6 +25,13 @@
 
 ---
 
+#### `Commands:`
+
+- `Terraform Quick Docs: Show supported Providers` shows all currently supported Providers by the extension
+- `Terraform Quick Docs: Show Resource Documentation` list and open any resource documentation for any provider
+
+---
+
 
 ##### - `Add more specific Providers if needed in the Settings:`
 

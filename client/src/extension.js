@@ -43,7 +43,7 @@ async function activate(context) {
     client.start()
 
 
-    
+
     let disposable = vscode.commands.registerCommand('terraform-quick-docs.providers.show', async () => {
 
         try {
@@ -59,6 +59,47 @@ async function activate(context) {
 
             const info = await client.sendRequest('provider.info', selected.description)
             await vscode.env.openExternal(vscode.Uri.parse(info.docsUrl))
+
+        } catch (exception) {
+            vscode.window.showErrorMessage(exception.message)
+        }
+
+    })
+    context.subscriptions.push(disposable)
+
+    disposable = vscode.commands.registerCommand('terraform-quick-docs.resource.show', async () => {
+
+        try {
+
+            const providerOptions = await client.sendRequest('provider.list').then(
+                result => result.map(data => ({
+                    label: data.name,
+                    description: data.identifier
+                }))
+            )
+            const selected = await vscode.window.showQuickPick(providerOptions, {
+                title: "Choose a Provider"
+            })
+            if (null == selected) return
+
+            const sortOrder = ['overview', 'resources', 'data-sources', 'guides']
+            const resourceOptions = await client.sendRequest('provider.info', selected.description).then(
+                data => data.docs.map(resource => ({
+                    ...resource,
+                    label: resource.title,
+                    description: resource.category
+                })).sort((a, b) => {
+                    if (sortOrder.indexOf(a.category) > sortOrder.indexOf(b.category)) return 1
+                    else if (sortOrder.indexOf(a.category) < sortOrder.indexOf(b.category)) return -1
+                    else return 0
+                })
+            )
+            const resource = await vscode.window.showQuickPick(resourceOptions, {
+                title: "Choose a Resource / Data-Source / Guide"
+            })
+            if (null == resource) return
+
+            await vscode.env.openExternal(vscode.Uri.parse(resource.docsUrl))
 
         } catch (exception) {
             vscode.window.showErrorMessage(exception.message)
