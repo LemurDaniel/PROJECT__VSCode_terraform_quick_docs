@@ -36,3 +36,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## [0.0.8]
 
 - Fix errors with previous implementation
+
+## [0.0.9]
+
+- Change getProviders API to use v2 with more options
+- Read providers list from static JSON, instead of calling API on each start of language server.

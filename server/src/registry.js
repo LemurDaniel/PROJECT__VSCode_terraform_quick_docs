@@ -1,4 +1,5 @@
 const https = require('https')
+const fs = require('fs')
 
 class Registry {
 
@@ -17,7 +18,7 @@ class Registry {
         return Registry.#additionalProviders
     }
     static set additionalProviders(value) {
-        Registry.#additionalProviders = value.map(entry => ({
+        Registry.#additionalProviders = (value ?? []).map(entry => ({
             name: entry.split('/')[1],
             namespace: entry.split('/')[0],
             identifier: entry
@@ -69,38 +70,52 @@ class Registry {
         return response
     }
 
-    async getProviders() {
+    async getProvidersOutJson(path = `${__dirname}\\providers.json`) {
 
-        const api = "/v1/providers?offset={{offset}}&limit=100&verified=true"
-        const data = {}
-        let previousOffset = 0
-        let netxtOffset = 0
+        const providers = await this.getProvidersFromApi()
+        fs.writeFileSync(path, JSON.stringify(providers))
 
-        do {
-            const response = await this.get(api.replace('{{offset}}', netxtOffset))
+    }
 
-            response.providers.map(provider => ({
-                name: provider.name,
-                namespace: provider.namespace,
-                identifier: `${provider.namespace}/${provider.name}`
-            })).forEach(provider => data[provider.identifier] = provider)
+    async getProvidersFromJson(path = `${__dirname}\\providers.json`) {
 
-            previousOffset = netxtOffset
-            netxtOffset = response.meta.next_offset
-        } while (null != netxtOffset && previousOffset != netxtOffset)
+        if (path in this.#cache)
+            return Registry.additionalProviders.map(v => v).concat(this.#cache[path])
 
-        // API doesn't return azure/azapi as a verified provider
-        data['azure/azapi'] = {
-            name: 'azapi',
-            namespace: 'azure',
-            identifier: 'azure/azapi'
+        this.#cache[path] = JSON.parse(fs.readFileSync(path))
+
+        return await this.getProvidersFromJson(path)
+
+    }
+
+    async getProvidersFromApi() {
+
+        const query = {
+            "filter%5Btier%5D": "official%2Cpartner",
+            "page%5Bnumber%5D": 1,
+            "page%5Bsize%5D": "100",
+            "sort": '-downloads%2Ctier%2Cname' //"-featured%2Ctier%2Cname"
         }
 
-        Registry.additionalProviders.forEach(providerData =>
-            data[providerData.identifier] = providerData
-        )
+        let providers = Registry.additionalProviders.map(v => v)
+        let response
 
-        return data
+        do {
+            const queryString = Object.entries(query).map(([key, val]) => `${key}=${val}`).join('&')
+            response = await this.get(`/v2/providers?${queryString}`)
+
+            const responseData = response.data.map(data => ({
+                name: data.attributes.name,
+                namespace: data.attributes.namespace,
+                identifier: data.attributes['full-name'],
+                tier: data.attributes.tier
+            }))
+            providers = providers.concat(responseData)
+
+            query['page%5Bnumber%5D'] = response.meta.pagination['next-page']
+        } while (null != response.meta.pagination['next-page'])
+
+        return providers
 
     }
 
@@ -141,16 +156,14 @@ class Registry {
         return providerInfo
     }
 
-    async findProvider(identifier, resourceCategory, connection) {
+    async findProviderInfo(resourceIdentifier, connection) {
 
-        const providerName = identifier.split('_')[0]
-        const resourceName = identifier
-        const secondaryName = identifier.split('_').slice(1).join('_')
+        const providerName = resourceIdentifier.split('_')[0].toLowerCase()
 
         connection.console.log(`Search Provider: ${providerName}`)
 
-        const providerData = await this.getProviders(connection).then(
-            providers => Object.values(providers).filter(provider => provider.name.toLowerCase() == providerName.toLowerCase())[0]
+        const providerData = await this.getProvidersFromJson().then(
+            providers => providers.filter(provider => provider.name.toLowerCase() == providerName.toLowerCase())[0]
         )
 
         if (null == providerData)
@@ -159,11 +172,22 @@ class Registry {
         connection.console.log(`Found Provider: ${providerData.identifier}`)
 
         const providerInfo = await this.getProviderInfo(providerData.identifier)
+
+        connection.console.log(`Found Providerinfo: ${providerData.identifier}`)
+
+        return providerInfo
+
+    }
+
+    async findProviderResource(resourceIdentifier, resourceCategory, connection) {
+
+        const resourceName = resourceIdentifier
+        const secondaryName = resourceIdentifier.split('_').slice(1).join('_')
+
+        const providerInfo = await this.findProviderInfo(resourceIdentifier, connection)
         const resourceInfo = providerInfo.docs.filter(
             resource => (resource.title == resourceName || resource.title == secondaryName) && resource.category == resourceCategory
         )[0]
-
-        connection.console.log(`Found Providerinfo: ${providerData.identifier}`)
 
         if (null == resourceInfo)
             throw new Error(`'${resourceName}' not Found!`)
@@ -174,6 +198,9 @@ class Registry {
 
     }
 
+    async getResourceDocs(resourceId) {
+        return await this.get(`/v2/provider-docs/${resourceId}`)
+    }
 }
 
 module.exports = Registry
