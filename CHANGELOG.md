@@ -41,3 +41,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 - Change getProviders API to use v2 with more options
 - Read providers list from static JSON, instead of calling API on each start of language server.
+
+## [0.0.10]
+
+- Add Command for opening any Resource Documentation

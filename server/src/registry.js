@@ -149,7 +149,7 @@ class Registry {
         providerInfo.docs = providerInfo.docs.map(
             resource => ({
                 ...resource,
-                docsUrl: `${providerInfo.docsUrl}/${resource.category}/${resource.title}`
+                docsUrl: resource.category == 'overview' ? `${providerInfo.docsUrl}/${resource.category}` : `${providerInfo.docsUrl}/${resource.category}/${resource.slug ?? resource.title}`
             })
         )
 
