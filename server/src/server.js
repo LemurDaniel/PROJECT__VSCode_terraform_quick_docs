@@ -62,6 +62,26 @@ connection.onInitialized(async () => {
 // The content of a text document has changed. This event is emitted
 documents.onDidChangeContent(change => { })
 
+// Call necesseray apis on document.open
+documents.onDidOpen(({ document }) => {
+
+    let matches = document._content.match(/resource\s*"[A-Za-z0-9_]+"|data\s*"[A-Za-z0-9_]+"/g)
+    if (null == matches) return
+
+    matches = matches.map(line => line.match(/"[A-Za-z0-9_]+"/)[0].replace(/"+/g, ''))
+        .map(line => line.split('_').at(0))
+        .reduce((acc, value) => ({
+            ...acc,
+            [value]: value
+        }), {})
+    if (null == matches) return
+
+    Object.keys(matches).forEach(resourceIdentifier =>
+        Registry.instance.findProviderInfo(resourceIdentifier, connection)
+            .catch(error => connection.console.log(error.message))
+    )
+
+})
 
 async function handleProviderResource(identifier, category) {
 
@@ -69,7 +89,7 @@ async function handleProviderResource(identifier, category) {
     connection.console.log(`Search Identifier: ${identifier}`)
     connection.console.log(`Search Category: ${category}`)
 
-    const { resourceInfo, providerInfo } = await Registry.instance.findProvider(identifier, category, connection)
+    const { resourceInfo, providerInfo } = await Registry.instance.findProviderResource(identifier, category, connection)
 
     connection.console.log(JSON.stringify(resourceInfo))
     connection.console.log(`---------------------------------`)
@@ -197,6 +217,9 @@ connection.onHover(async ({ textDocument, position }) => {
     return null
 })
 
+
+connection.onRequest('provider.list', async () => await Registry.instance.getProvidersFromJson())
+connection.onRequest('provider.info', async (identifier) => await Registry.instance.getProviderInfo(identifier))
 
 
 // Make the text document manager listen on the connection

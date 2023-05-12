@@ -1,0 +1,1832 @@
+[
+    {
+        "name": "aws",
+        "namespace": "hashicorp",
+        "identifier": "hashicorp/aws",
+        "tier": "official"
+    },
+    {
+        "name": "template",
+        "namespace": "hashicorp",
+        "identifier": "hashicorp/template",
+        "tier": "official"
+    },
+    {
+        "name": "null",
+        "namespace": "hashicorp",
+        "identifier": "hashicorp/null",
+        "tier": "official"
+    },
+    {
+        "name": "random",
+        "namespace": "hashicorp",
+        "identifier": "hashicorp/random",
+        "tier": "official"
+    },
+    {
+        "name": "azurerm",
+        "namespace": "hashicorp",
+        "identifier": "hashicorp/azurerm",
+        "tier": "official"
+    },
+    {
+        "name": "google",
+        "namespace": "hashicorp",
+        "identifier": "hashicorp/google",
+        "tier": "official"
+    },
+    {
+        "name": "kubernetes",
+        "namespace": "hashicorp",
+        "identifier": "hashicorp/kubernetes",
+        "tier": "official"
+    },
+    {
+        "name": "local",
+        "namespace": "hashicorp",
+        "identifier": "hashicorp/local",
+        "tier": "official"
+    },
+    {
+        "name": "external",
+        "namespace": "hashicorp",
+        "identifier": "hashicorp/external",
+        "tier": "official"
+    },
+    {
+        "name": "archive",
+        "namespace": "hashicorp",
+        "identifier": "hashicorp/archive",
+        "tier": "official"
+    },
+    {
+        "name": "vault",
+        "namespace": "hashicorp",
+        "identifier": "hashicorp/vault",
+        "tier": "official"
+    },
+    {
+        "name": "google-beta",
+        "namespace": "hashicorp",
+        "identifier": "hashicorp/google-beta",
+        "tier": "official"
+    },
+    {
+        "name": "tls",
+        "namespace": "hashicorp",
+        "identifier": "hashicorp/tls",
+        "tier": "official"
+    },
+    {
+        "name": "time",
+        "namespace": "hashicorp",
+        "identifier": "hashicorp/time",
+        "tier": "official"
+    },
+    {
+        "name": "helm",
+        "namespace": "hashicorp",
+        "identifier": "hashicorp/helm",
+        "tier": "official"
+    },
+    {
+        "name": "datadog",
+        "namespace": "DataDog",
+        "identifier": "DataDog/datadog",
+        "tier": "partner"
+    },
+    {
+        "name": "azuread",
+        "namespace": "hashicorp",
+        "identifier": "hashicorp/azuread",
+        "tier": "official"
+    },
+    {
+        "name": "cloudflare",
+        "namespace": "cloudflare",
+        "identifier": "cloudflare/cloudflare",
+        "tier": "partner"
+    },
+    {
+        "name": "http",
+        "namespace": "hashicorp",
+        "identifier": "hashicorp/http",
+        "tier": "official"
+    },
+    {
+        "name": "github",
+        "namespace": "integrations",
+        "identifier": "integrations/github",
+        "tier": "partner"
+    },
+    {
+        "name": "newrelic",
+        "namespace": "newrelic",
+        "identifier": "newrelic/newrelic",
+        "tier": "partner"
+    },
+    {
+        "name": "pagerduty",
+        "namespace": "PagerDuty",
+        "identifier": "PagerDuty/pagerduty",
+        "tier": "partner"
+    },
+    {
+        "name": "cloudinit",
+        "namespace": "hashicorp",
+        "identifier": "hashicorp/cloudinit",
+        "tier": "official"
+    },
+    {
+        "name": "dns",
+        "namespace": "hashicorp",
+        "identifier": "hashicorp/dns",
+        "tier": "official"
+    },
+    {
+        "name": "consul",
+        "namespace": "hashicorp",
+        "identifier": "hashicorp/consul",
+        "tier": "official"
+    },
+    {
+        "name": "oci",
+        "namespace": "oracle",
+        "identifier": "oracle/oci",
+        "tier": "partner"
+    },
+    {
+        "name": "tfe",
+        "namespace": "hashicorp",
+        "identifier": "hashicorp/tfe",
+        "tier": "official"
+    },
+    {
+        "name": "okta",
+        "namespace": "okta",
+        "identifier": "okta/okta",
+        "tier": "partner"
+    },
+    {
+        "name": "vsphere",
+        "namespace": "hashicorp",
+        "identifier": "hashicorp/vsphere",
+        "tier": "official"
+    },
+    {
+        "name": "gitlab",
+        "namespace": "gitlabhq",
+        "identifier": "gitlabhq/gitlab",
+        "tier": "partner"
+    },
+    {
+        "name": "grafana",
+        "namespace": "grafana",
+        "identifier": "grafana/grafana",
+        "tier": "partner"
+    },
+    {
+        "name": "mongodbatlas",
+        "namespace": "mongodb",
+        "identifier": "mongodb/mongodbatlas",
+        "tier": "partner"
+    },
+    {
+        "name": "artifactory",
+        "namespace": "jfrog",
+        "identifier": "jfrog/artifactory",
+        "tier": "partner"
+    },
+    {
+        "name": "databricks",
+        "namespace": "databricks",
+        "identifier": "databricks/databricks",
+        "tier": "partner"
+    },
+    {
+        "name": "ec",
+        "namespace": "elastic",
+        "identifier": "elastic/ec",
+        "tier": "partner"
+    },
+    {
+        "name": "snowflake",
+        "namespace": "Snowflake-Labs",
+        "identifier": "Snowflake-Labs/snowflake",
+        "tier": "partner"
+    },
+    {
+        "name": "azuredevops",
+        "namespace": "microsoft",
+        "identifier": "microsoft/azuredevops",
+        "tier": "partner"
+    },
+    {
+        "name": "rancher2",
+        "namespace": "rancher",
+        "identifier": "rancher/rancher2",
+        "tier": "partner"
+    },
+    {
+        "name": "alicloud",
+        "namespace": "aliyun",
+        "identifier": "aliyun/alicloud",
+        "tier": "partner"
+    },
+    {
+        "name": "heroku",
+        "namespace": "heroku",
+        "identifier": "heroku/heroku",
+        "tier": "partner"
+    },
+    {
+        "name": "rollbar",
+        "namespace": "rollbar",
+        "identifier": "rollbar/rollbar",
+        "tier": "partner"
+    },
+    {
+        "name": "elasticstack",
+        "namespace": "elastic",
+        "identifier": "elastic/elasticstack",
+        "tier": "partner"
+    },
+    {
+        "name": "sumologic",
+        "namespace": "SumoLogic",
+        "identifier": "SumoLogic/sumologic",
+        "tier": "partner"
+    },
+    {
+        "name": "spectrocloud",
+        "namespace": "spectrocloud",
+        "identifier": "spectrocloud/spectrocloud",
+        "tier": "partner"
+    },
+    {
+        "name": "azapi",
+        "namespace": "Azure",
+        "identifier": "Azure/azapi",
+        "tier": "partner"
+    },
+    {
+        "name": "ns1",
+        "namespace": "ns1-terraform",
+        "identifier": "ns1-terraform/ns1",
+        "tier": "partner"
+    },
+    {
+        "name": "signalfx",
+        "namespace": "splunk-terraform",
+        "identifier": "splunk-terraform/signalfx",
+        "tier": "partner"
+    },
+    {
+        "name": "fastly",
+        "namespace": "fastly",
+        "identifier": "fastly/fastly",
+        "tier": "partner"
+    },
+    {
+        "name": "azurecaf",
+        "namespace": "aztfmod",
+        "identifier": "aztfmod/azurecaf",
+        "tier": "partner"
+    },
+    {
+        "name": "vcd",
+        "namespace": "vmware",
+        "identifier": "vmware/vcd",
+        "tier": "partner"
+    },
+    {
+        "name": "nomad",
+        "namespace": "hashicorp",
+        "identifier": "hashicorp/nomad",
+        "tier": "official"
+    },
+    {
+        "name": "digitalocean",
+        "namespace": "digitalocean",
+        "identifier": "digitalocean/digitalocean",
+        "tier": "partner"
+    },
+    {
+        "name": "confluent",
+        "namespace": "confluentinc",
+        "identifier": "confluentinc/confluent",
+        "tier": "partner"
+    },
+    {
+        "name": "spotinst",
+        "namespace": "spotinst",
+        "identifier": "spotinst/spotinst",
+        "tier": "partner"
+    },
+    {
+        "name": "sdm",
+        "namespace": "strongdm",
+        "identifier": "strongdm/sdm",
+        "tier": "partner"
+    },
+    {
+        "name": "lacework",
+        "namespace": "lacework",
+        "identifier": "lacework/lacework",
+        "tier": "partner"
+    },
+    {
+        "name": "auth0",
+        "namespace": "auth0",
+        "identifier": "auth0/auth0",
+        "tier": "partner"
+    },
+    {
+        "name": "statuscake",
+        "namespace": "StatusCakeDev",
+        "identifier": "StatusCakeDev/statuscake",
+        "tier": "partner"
+    },
+    {
+        "name": "launchdarkly",
+        "namespace": "launchdarkly",
+        "identifier": "launchdarkly/launchdarkly",
+        "tier": "partner"
+    },
+    {
+        "name": "googleworkspace",
+        "namespace": "hashicorp",
+        "identifier": "hashicorp/googleworkspace",
+        "tier": "official"
+    },
+    {
+        "name": "aiven",
+        "namespace": "aiven",
+        "identifier": "aiven/aiven",
+        "tier": "partner"
+    },
+    {
+        "name": "hcloud",
+        "namespace": "hetznercloud",
+        "identifier": "hetznercloud/hcloud",
+        "tier": "partner"
+    },
+    {
+        "name": "hcp",
+        "namespace": "hashicorp",
+        "identifier": "hashicorp/hcp",
+        "tier": "official"
+    },
+    {
+        "name": "nsxt",
+        "namespace": "vmware",
+        "identifier": "vmware/nsxt",
+        "tier": "partner"
+    },
+    {
+        "name": "awscc",
+        "namespace": "hashicorp",
+        "identifier": "hashicorp/awscc",
+        "tier": "official"
+    },
+    {
+        "name": "prismacloud",
+        "namespace": "PaloAltoNetworks",
+        "identifier": "PaloAltoNetworks/prismacloud",
+        "tier": "partner"
+    },
+    {
+        "name": "dome9",
+        "namespace": "dome9",
+        "identifier": "dome9/dome9",
+        "tier": "partner"
+    },
+    {
+        "name": "nutanix",
+        "namespace": "nutanix",
+        "identifier": "nutanix/nutanix",
+        "tier": "partner"
+    },
+    {
+        "name": "panos",
+        "namespace": "PaloAltoNetworks",
+        "identifier": "PaloAltoNetworks/panos",
+        "tier": "partner"
+    },
+    {
+        "name": "aviatrix",
+        "namespace": "AviatrixSystems",
+        "identifier": "AviatrixSystems/aviatrix",
+        "tier": "partner"
+    },
+    {
+        "name": "wavefront",
+        "namespace": "vmware",
+        "identifier": "vmware/wavefront",
+        "tier": "partner"
+    },
+    {
+        "name": "buildkite",
+        "namespace": "buildkite",
+        "identifier": "buildkite/buildkite",
+        "tier": "partner"
+    },
+    {
+        "name": "akamai",
+        "namespace": "akamai",
+        "identifier": "akamai/akamai",
+        "tier": "partner"
+    },
+    {
+        "name": "infoblox",
+        "namespace": "infobloxopen",
+        "identifier": "infobloxopen/infoblox",
+        "tier": "partner"
+    },
+    {
+        "name": "bigip",
+        "namespace": "F5Networks",
+        "identifier": "F5Networks/bigip",
+        "tier": "partner"
+    },
+    {
+        "name": "scaleway",
+        "namespace": "scaleway",
+        "identifier": "scaleway/scaleway",
+        "tier": "partner"
+    },
+    {
+        "name": "ovh",
+        "namespace": "ovh",
+        "identifier": "ovh/ovh",
+        "tier": "partner"
+    },
+    {
+        "name": "octopusdeploy",
+        "namespace": "OctopusDeployLabs",
+        "identifier": "OctopusDeployLabs/octopusdeploy",
+        "tier": "partner"
+    },
+    {
+        "name": "vra",
+        "namespace": "vmware",
+        "identifier": "vmware/vra",
+        "tier": "partner"
+    },
+    {
+        "name": "vultr",
+        "namespace": "vultr",
+        "identifier": "vultr/vultr",
+        "tier": "partner"
+    },
+    {
+        "name": "venafi",
+        "namespace": "Venafi",
+        "identifier": "Venafi/venafi",
+        "tier": "partner"
+    },
+    {
+        "name": "linode",
+        "namespace": "linode",
+        "identifier": "linode/linode",
+        "tier": "partner"
+    },
+    {
+        "name": "dynatrace",
+        "namespace": "dynatrace-oss",
+        "identifier": "dynatrace-oss/dynatrace",
+        "tier": "partner"
+    },
+    {
+        "name": "onepassword",
+        "namespace": "1Password",
+        "identifier": "1Password/onepassword",
+        "tier": "partner"
+    },
+    {
+        "name": "dnsimple",
+        "namespace": "dnsimple",
+        "identifier": "dnsimple/dnsimple",
+        "tier": "partner"
+    },
+    {
+        "name": "splunk",
+        "namespace": "splunk",
+        "identifier": "splunk/splunk",
+        "tier": "partner"
+    },
+    {
+        "name": "fortios",
+        "namespace": "fortinetdev",
+        "identifier": "fortinetdev/fortios",
+        "tier": "partner"
+    },
+    {
+        "name": "aci",
+        "namespace": "CiscoDevNet",
+        "identifier": "CiscoDevNet/aci",
+        "tier": "partner"
+    },
+    {
+        "name": "rke",
+        "namespace": "rancher",
+        "identifier": "rancher/rke",
+        "tier": "partner"
+    },
+    {
+        "name": "azurestack",
+        "namespace": "hashicorp",
+        "identifier": "hashicorp/azurestack",
+        "tier": "official"
+    },
+    {
+        "name": "ionoscloud",
+        "namespace": "ionos-cloud",
+        "identifier": "ionos-cloud/ionoscloud",
+        "tier": "partner"
+    },
+    {
+        "name": "ad",
+        "namespace": "hashicorp",
+        "identifier": "hashicorp/ad",
+        "tier": "official"
+    },
+    {
+        "name": "boundary",
+        "namespace": "hashicorp",
+        "identifier": "hashicorp/boundary",
+        "tier": "official"
+    },
+    {
+        "name": "tencentcloud",
+        "namespace": "tencentcloudstack",
+        "identifier": "tencentcloudstack/tencentcloud",
+        "tier": "partner"
+    },
+    {
+        "name": "checkly",
+        "namespace": "checkly",
+        "identifier": "checkly/checkly",
+        "tier": "partner"
+    },
+    {
+        "name": "harness",
+        "namespace": "harness",
+        "identifier": "harness/harness",
+        "tier": "partner"
+    },
+    {
+        "name": "oktaasa",
+        "namespace": "oktadeveloper",
+        "identifier": "oktadeveloper/oktaasa",
+        "tier": "partner"
+    },
+    {
+        "name": "fivetran",
+        "namespace": "fivetran",
+        "identifier": "fivetran/fivetran",
+        "tier": "partner"
+    },
+    {
+        "name": "vra7",
+        "namespace": "vmware",
+        "identifier": "vmware/vra7",
+        "tier": "partner"
+    },
+    {
+        "name": "sysdig",
+        "namespace": "sysdiglabs",
+        "identifier": "sysdiglabs/sysdig",
+        "tier": "partner"
+    },
+    {
+        "name": "metal",
+        "namespace": "equinix",
+        "identifier": "equinix/metal",
+        "tier": "partner"
+    },
+    {
+        "name": "iterative",
+        "namespace": "iterative",
+        "identifier": "iterative/iterative",
+        "tier": "partner"
+    },
+    {
+        "name": "hpegl",
+        "namespace": "HPE",
+        "identifier": "HPE/hpegl",
+        "tier": "partner"
+    },
+    {
+        "name": "turbot",
+        "namespace": "turbot",
+        "identifier": "turbot/turbot",
+        "tier": "partner"
+    },
+    {
+        "name": "zpa",
+        "namespace": "zscaler",
+        "identifier": "zscaler/zpa",
+        "tier": "partner"
+    },
+    {
+        "name": "gcorelabs",
+        "namespace": "G-Core",
+        "identifier": "G-Core/gcorelabs",
+        "tier": "partner"
+    },
+    {
+        "name": "honeycombio",
+        "namespace": "honeycombio",
+        "identifier": "honeycombio/honeycombio",
+        "tier": "partner"
+    },
+    {
+        "name": "better-uptime",
+        "namespace": "BetterStackHQ",
+        "identifier": "BetterStackHQ/better-uptime",
+        "tier": "partner"
+    },
+    {
+        "name": "equinix",
+        "namespace": "equinix",
+        "identifier": "equinix/equinix",
+        "tier": "partner"
+    },
+    {
+        "name": "netapp-cloudmanager",
+        "namespace": "NetApp",
+        "identifier": "NetApp/netapp-cloudmanager",
+        "tier": "partner"
+    },
+    {
+        "name": "logzio",
+        "namespace": "logzio",
+        "identifier": "logzio/logzio",
+        "tier": "partner"
+    },
+    {
+        "name": "terraform",
+        "namespace": "hashicorp",
+        "identifier": "hashicorp/terraform",
+        "tier": "official"
+    },
+    {
+        "name": "rediscloud",
+        "namespace": "RedisLabs",
+        "identifier": "RedisLabs/rediscloud",
+        "tier": "partner"
+    },
+    {
+        "name": "coder",
+        "namespace": "coder",
+        "identifier": "coder/coder",
+        "tier": "partner"
+    },
+    {
+        "name": "opc",
+        "namespace": "hashicorp",
+        "identifier": "hashicorp/opc",
+        "tier": "official"
+    },
+    {
+        "name": "onelogin",
+        "namespace": "onelogin",
+        "identifier": "onelogin/onelogin",
+        "tier": "partner"
+    },
+    {
+        "name": "oraclepaas",
+        "namespace": "hashicorp",
+        "identifier": "hashicorp/oraclepaas",
+        "tier": "official"
+    },
+    {
+        "name": "outscale",
+        "namespace": "outscale",
+        "identifier": "outscale/outscale",
+        "tier": "partner"
+    },
+    {
+        "name": "genesyscloud",
+        "namespace": "MyPureCloud",
+        "identifier": "MyPureCloud/genesyscloud",
+        "tier": "partner"
+    },
+    {
+        "name": "coralogix",
+        "namespace": "coralogix",
+        "identifier": "coralogix/coralogix",
+        "tier": "partner"
+    },
+    {
+        "name": "quorum",
+        "namespace": "ConsenSys",
+        "identifier": "ConsenSys/quorum",
+        "tier": "partner"
+    },
+    {
+        "name": "exoscale",
+        "namespace": "exoscale",
+        "identifier": "exoscale/exoscale",
+        "tier": "partner"
+    },
+    {
+        "name": "rockset",
+        "namespace": "rockset",
+        "identifier": "rockset/rockset",
+        "tier": "partner"
+    },
+    {
+        "name": "instaclustr",
+        "namespace": "instaclustr",
+        "identifier": "instaclustr/instaclustr",
+        "tier": "partner"
+    },
+    {
+        "name": "dme",
+        "namespace": "DNSMadeEasy",
+        "identifier": "DNSMadeEasy/dme",
+        "tier": "partner"
+    },
+    {
+        "name": "hcs",
+        "namespace": "hashicorp",
+        "identifier": "hashicorp/hcs",
+        "tier": "official"
+    },
+    {
+        "name": "rundeck",
+        "namespace": "rundeck",
+        "identifier": "rundeck/rundeck",
+        "tier": "partner"
+    },
+    {
+        "name": "astra",
+        "namespace": "datastax",
+        "identifier": "datastax/astra",
+        "tier": "partner"
+    },
+    {
+        "name": "logicmonitor",
+        "namespace": "logicmonitor",
+        "identifier": "logicmonitor/logicmonitor",
+        "tier": "partner"
+    },
+    {
+        "name": "citrixadc",
+        "namespace": "citrix",
+        "identifier": "citrix/citrixadc",
+        "tier": "partner"
+    },
+    {
+        "name": "opennebula",
+        "namespace": "OpenNebula",
+        "identifier": "OpenNebula/opennebula",
+        "tier": "partner"
+    },
+    {
+        "name": "vercel",
+        "namespace": "vercel",
+        "identifier": "vercel/vercel",
+        "tier": "partner"
+    },
+    {
+        "name": "intersight",
+        "namespace": "CiscoDevNet",
+        "identifier": "CiscoDevNet/intersight",
+        "tier": "partner"
+    },
+    {
+        "name": "rafay",
+        "namespace": "RafaySystems",
+        "identifier": "RafaySystems/rafay",
+        "tier": "partner"
+    },
+    {
+        "name": "metalcloud",
+        "namespace": "metalsoft-io",
+        "identifier": "metalsoft-io/metalcloud",
+        "tier": "partner"
+    },
+    {
+        "name": "b2",
+        "namespace": "Backblaze",
+        "identifier": "Backblaze/b2",
+        "tier": "partner"
+    },
+    {
+        "name": "netapp-gcp",
+        "namespace": "NetApp",
+        "identifier": "NetApp/netapp-gcp",
+        "tier": "partner"
+    },
+    {
+        "name": "buddy",
+        "namespace": "buddy",
+        "identifier": "buddy/buddy",
+        "tier": "partner"
+    },
+    {
+        "name": "checkpoint",
+        "namespace": "CheckPointSW",
+        "identifier": "CheckPointSW/checkpoint",
+        "tier": "partner"
+    },
+    {
+        "name": "ncloud",
+        "namespace": "NaverCloudPlatform",
+        "identifier": "NaverCloudPlatform/ncloud",
+        "tier": "partner"
+    },
+    {
+        "name": "lightstep",
+        "namespace": "lightstep",
+        "identifier": "lightstep/lightstep",
+        "tier": "partner"
+    },
+    {
+        "name": "vmc",
+        "namespace": "vmware",
+        "identifier": "vmware/vmc",
+        "tier": "partner"
+    },
+    {
+        "name": "mso",
+        "namespace": "CiscoDevNet",
+        "identifier": "CiscoDevNet/mso",
+        "tier": "partner"
+    },
+    {
+        "name": "civo",
+        "namespace": "civo",
+        "identifier": "civo/civo",
+        "tier": "partner"
+    },
+    {
+        "name": "salesforce",
+        "namespace": "hashicorp",
+        "identifier": "hashicorp/salesforce",
+        "tier": "official"
+    },
+    {
+        "name": "constellix",
+        "namespace": "Constellix",
+        "identifier": "Constellix/constellix",
+        "tier": "partner"
+    },
+    {
+        "name": "secretsmanager",
+        "namespace": "Keeper-Security",
+        "identifier": "Keeper-Security/secretsmanager",
+        "tier": "partner"
+    },
+    {
+        "name": "zerotier",
+        "namespace": "zerotier",
+        "identifier": "zerotier/zerotier",
+        "tier": "partner"
+    },
+    {
+        "name": "upcloud",
+        "namespace": "UpCloudLtd",
+        "identifier": "UpCloudLtd/upcloud",
+        "tier": "partner"
+    },
+    {
+        "name": "ilert",
+        "namespace": "iLert",
+        "identifier": "iLert/ilert",
+        "tier": "partner"
+    },
+    {
+        "name": "site24x7",
+        "namespace": "site24x7",
+        "identifier": "site24x7/site24x7",
+        "tier": "partner"
+    },
+    {
+        "name": "volterra",
+        "namespace": "volterraedge",
+        "identifier": "volterraedge/volterra",
+        "tier": "partner"
+    },
+    {
+        "name": "avi",
+        "namespace": "vmware",
+        "identifier": "vmware/avi",
+        "tier": "partner"
+    },
+    {
+        "name": "sigsci",
+        "namespace": "signalsciences",
+        "identifier": "signalsciences/sigsci",
+        "tier": "partner"
+    },
+    {
+        "name": "project",
+        "namespace": "jfrog",
+        "identifier": "jfrog/project",
+        "tier": "partner"
+    },
+    {
+        "name": "alkira",
+        "namespace": "alkiranet",
+        "identifier": "alkiranet/alkira",
+        "tier": "partner"
+    },
+    {
+        "name": "codefresh",
+        "namespace": "codefresh-io",
+        "identifier": "codefresh-io/codefresh",
+        "tier": "partner"
+    },
+    {
+        "name": "bridgecrew",
+        "namespace": "PaloAltoNetworks",
+        "identifier": "PaloAltoNetworks/bridgecrew",
+        "tier": "partner"
+    },
+    {
+        "name": "ultradns",
+        "namespace": "ultradns",
+        "identifier": "ultradns/ultradns",
+        "tier": "partner"
+    },
+    {
+        "name": "xray",
+        "namespace": "jfrog",
+        "identifier": "jfrog/xray",
+        "tier": "partner"
+    },
+    {
+        "name": "icinga2",
+        "namespace": "Icinga",
+        "identifier": "Icinga/icinga2",
+        "tier": "partner"
+    },
+    {
+        "name": "triton",
+        "namespace": "joyent",
+        "identifier": "joyent/triton",
+        "tier": "partner"
+    },
+    {
+        "name": "anxcloud",
+        "namespace": "anexia-it",
+        "identifier": "anexia-it/anxcloud",
+        "tier": "partner"
+    },
+    {
+        "name": "oneview",
+        "namespace": "HewlettPackard",
+        "identifier": "HewlettPackard/oneview",
+        "tier": "partner"
+    },
+    {
+        "name": "prismacloudcompute",
+        "namespace": "PaloAltoNetworks",
+        "identifier": "PaloAltoNetworks/prismacloudcompute",
+        "tier": "partner"
+    },
+    {
+        "name": "circonus",
+        "namespace": "circonus-labs",
+        "identifier": "circonus-labs/circonus",
+        "tier": "partner"
+    },
+    {
+        "name": "skytap",
+        "namespace": "skytap",
+        "identifier": "skytap/skytap",
+        "tier": "partner"
+    },
+    {
+        "name": "configcat",
+        "namespace": "configcat",
+        "identifier": "configcat/configcat",
+        "tier": "partner"
+    },
+    {
+        "name": "dcnm",
+        "namespace": "CiscoDevNet",
+        "identifier": "CiscoDevNet/dcnm",
+        "tier": "partner"
+    },
+    {
+        "name": "devcycle",
+        "namespace": "DevCycleHQ",
+        "identifier": "DevCycleHQ/devcycle",
+        "tier": "partner"
+    },
+    {
+        "name": "opal",
+        "namespace": "opalsecurity",
+        "identifier": "opalsecurity/opal",
+        "tier": "partner"
+    },
+    {
+        "name": "gridscale",
+        "namespace": "gridscale",
+        "identifier": "gridscale/gridscale",
+        "tier": "partner"
+    },
+    {
+        "name": "cloudsigma",
+        "namespace": "cloudsigma",
+        "identifier": "cloudsigma/cloudsigma",
+        "tier": "partner"
+    },
+    {
+        "name": "thunder",
+        "namespace": "a10networks",
+        "identifier": "a10networks/thunder",
+        "tier": "partner"
+    },
+    {
+        "name": "ns",
+        "namespace": "nullstone-io",
+        "identifier": "nullstone-io/ns",
+        "tier": "partner"
+    },
+    {
+        "name": "cbs",
+        "namespace": "PureStorage-OpenConnect",
+        "identifier": "PureStorage-OpenConnect/cbs",
+        "tier": "partner"
+    },
+    {
+        "name": "ciscoasa",
+        "namespace": "CiscoDevNet",
+        "identifier": "CiscoDevNet/ciscoasa",
+        "tier": "partner"
+    },
+    {
+        "name": "aquasec",
+        "namespace": "aquasecurity",
+        "identifier": "aquasecurity/aquasec",
+        "tier": "partner"
+    },
+    {
+        "name": "commvault",
+        "namespace": "Commvault",
+        "identifier": "Commvault/commvault",
+        "tier": "partner"
+    },
+    {
+        "name": "vthunder",
+        "namespace": "a10networks",
+        "identifier": "a10networks/vthunder",
+        "tier": "partner"
+    },
+    {
+        "name": "valtix",
+        "namespace": "valtix-security",
+        "identifier": "valtix-security/valtix",
+        "tier": "partner"
+    },
+    {
+        "name": "fmc",
+        "namespace": "CiscoDevNet",
+        "identifier": "CiscoDevNet/fmc",
+        "tier": "partner"
+    },
+    {
+        "name": "nobl9",
+        "namespace": "nobl9",
+        "identifier": "nobl9/nobl9",
+        "tier": "partner"
+    },
+    {
+        "name": "nirmata",
+        "namespace": "nirmata",
+        "identifier": "nirmata/nirmata",
+        "tier": "partner"
+    },
+    {
+        "name": "logtail",
+        "namespace": "BetterStackHQ",
+        "identifier": "BetterStackHQ/logtail",
+        "tier": "partner"
+    },
+    {
+        "name": "shoreline",
+        "namespace": "shorelinesoftware",
+        "identifier": "shorelinesoftware/shoreline",
+        "tier": "partner"
+    },
+    {
+        "name": "dsm",
+        "namespace": "fortanix",
+        "identifier": "fortanix/dsm",
+        "tier": "partner"
+    },
+    {
+        "name": "ciphertrust",
+        "namespace": "ThalesGroup",
+        "identifier": "ThalesGroup/ciphertrust",
+        "tier": "partner"
+    },
+    {
+        "name": "firehydrant",
+        "namespace": "firehydrant",
+        "identifier": "firehydrant/firehydrant",
+        "tier": "partner"
+    },
+    {
+        "name": "brightbox",
+        "namespace": "brightbox",
+        "identifier": "brightbox/brightbox",
+        "tier": "partner"
+    },
+    {
+        "name": "fortimanager",
+        "namespace": "fortinetdev",
+        "identifier": "fortinetdev/fortimanager",
+        "tier": "partner"
+    },
+    {
+        "name": "britive",
+        "namespace": "britive",
+        "identifier": "britive/britive",
+        "tier": "partner"
+    },
+    {
+        "name": "kaleido",
+        "namespace": "kaleido-io",
+        "identifier": "kaleido-io/kaleido",
+        "tier": "partner"
+    },
+    {
+        "name": "zia",
+        "namespace": "zscaler",
+        "identifier": "zscaler/zia",
+        "tier": "partner"
+    },
+    {
+        "name": "fly",
+        "namespace": "fly-apps",
+        "identifier": "fly-apps/fly",
+        "tier": "partner"
+    },
+    {
+        "name": "victorops",
+        "namespace": "splunk",
+        "identifier": "splunk/victorops",
+        "tier": "partner"
+    },
+    {
+        "name": "cloudscale",
+        "namespace": "cloudscale-ch",
+        "identifier": "cloudscale-ch/cloudscale",
+        "tier": "partner"
+    },
+    {
+        "name": "lumen",
+        "namespace": "LumenTech",
+        "identifier": "LumenTech/lumen",
+        "tier": "partner"
+    },
+    {
+        "name": "fusion",
+        "namespace": "PureStorage-OpenConnect",
+        "identifier": "PureStorage-OpenConnect/fusion",
+        "tier": "partner"
+    },
+    {
+        "name": "satori",
+        "namespace": "SatoriCyber",
+        "identifier": "SatoriCyber/satori",
+        "tier": "partner"
+    },
+    {
+        "name": "talos",
+        "namespace": "siderolabs",
+        "identifier": "siderolabs/talos",
+        "tier": "partner"
+    },
+    {
+        "name": "ngrok",
+        "namespace": "ngrok",
+        "identifier": "ngrok/ngrok",
+        "tier": "partner"
+    },
+    {
+        "name": "polaris",
+        "namespace": "rubrikinc",
+        "identifier": "rubrikinc/polaris",
+        "tier": "partner"
+    },
+    {
+        "name": "multy",
+        "namespace": "multycloud",
+        "identifier": "multycloud/multy",
+        "tier": "partner"
+    },
+    {
+        "name": "zitadel",
+        "namespace": "zitadel",
+        "identifier": "zitadel/zitadel",
+        "tier": "partner"
+    },
+    {
+        "name": "shipa",
+        "namespace": "shipa-corp",
+        "identifier": "shipa-corp/shipa",
+        "tier": "partner"
+    },
+    {
+        "name": "ecl",
+        "namespace": "nttcom",
+        "identifier": "nttcom/ecl",
+        "tier": "partner"
+    },
+    {
+        "name": "ah",
+        "namespace": "advancedhosting",
+        "identifier": "advancedhosting/ah",
+        "tier": "partner"
+    },
+    {
+        "name": "pnap",
+        "namespace": "phoenixnap",
+        "identifier": "phoenixnap/pnap",
+        "tier": "partner"
+    },
+    {
+        "name": "clumio",
+        "namespace": "clumio-code",
+        "identifier": "clumio-code/clumio",
+        "tier": "partner"
+    },
+    {
+        "name": "cloudngfwaws",
+        "namespace": "PaloAltoNetworks",
+        "identifier": "PaloAltoNetworks/cloudngfwaws",
+        "tier": "partner"
+    },
+    {
+        "name": "splunkconfig",
+        "namespace": "splunk",
+        "identifier": "splunk/splunkconfig",
+        "tier": "partner"
+    },
+    {
+        "name": "transloadit",
+        "namespace": "transloadit",
+        "identifier": "transloadit/transloadit",
+        "tier": "partner"
+    },
+    {
+        "name": "thousandeyes",
+        "namespace": "thousandeyes",
+        "identifier": "thousandeyes/thousandeyes",
+        "tier": "partner"
+    },
+    {
+        "name": "infinity-next",
+        "namespace": "CheckPointSW",
+        "identifier": "CheckPointSW/infinity-next",
+        "tier": "partner"
+    },
+    {
+        "name": "profitbricks",
+        "namespace": "ionos-cloud",
+        "identifier": "ionos-cloud/profitbricks",
+        "tier": "partner"
+    },
+    {
+        "name": "carvel",
+        "namespace": "vmware-tanzu",
+        "identifier": "vmware-tanzu/carvel",
+        "tier": "partner"
+    },
+    {
+        "name": "cloudsmith",
+        "namespace": "cloudsmith-io",
+        "identifier": "cloudsmith-io/cloudsmith",
+        "tier": "partner"
+    },
+    {
+        "name": "cloudtamerio",
+        "namespace": "cloudtamer-io",
+        "identifier": "cloudtamer-io/cloudtamerio",
+        "tier": "partner"
+    },
+    {
+        "name": "cloudeos",
+        "namespace": "aristanetworks",
+        "identifier": "aristanetworks/cloudeos",
+        "tier": "partner"
+    },
+    {
+        "name": "sematext",
+        "namespace": "sematext",
+        "identifier": "sematext/sematext",
+        "tier": "partner"
+    },
+    {
+        "name": "infracost",
+        "namespace": "infracost",
+        "identifier": "infracost/infracost",
+        "tier": "partner"
+    },
+    {
+        "name": "netapp-elementsw",
+        "namespace": "NetApp",
+        "identifier": "NetApp/netapp-elementsw",
+        "tier": "partner"
+    },
+    {
+        "name": "ably",
+        "namespace": "ably",
+        "identifier": "ably/ably",
+        "tier": "partner"
+    },
+    {
+        "name": "nutanixkps",
+        "namespace": "nutanix",
+        "identifier": "nutanix/nutanixkps",
+        "tier": "partner"
+    },
+    {
+        "name": "kion",
+        "namespace": "kionsoftware",
+        "identifier": "kionsoftware/kion",
+        "tier": "partner"
+    },
+    {
+        "name": "zedcloud",
+        "namespace": "zededa",
+        "identifier": "zededa/zedcloud",
+        "tier": "partner"
+    },
+    {
+        "name": "cockroach",
+        "namespace": "cockroachdb",
+        "identifier": "cockroachdb/cockroach",
+        "tier": "partner"
+    },
+    {
+        "name": "atlas",
+        "namespace": "ariga",
+        "identifier": "ariga/atlas",
+        "tier": "partner"
+    },
+    {
+        "name": "tanzu-mission-control",
+        "namespace": "vmware",
+        "identifier": "vmware/tanzu-mission-control",
+        "tier": "partner"
+    },
+    {
+        "name": "iosxe",
+        "namespace": "CiscoDevNet",
+        "identifier": "CiscoDevNet/iosxe",
+        "tier": "partner"
+    },
+    {
+        "name": "gocache",
+        "namespace": "gocachebr",
+        "identifier": "gocachebr/gocache",
+        "tier": "partner"
+    },
+    {
+        "name": "amixr",
+        "namespace": "alertmixer",
+        "identifier": "alertmixer/amixr",
+        "tier": "partner"
+    },
+    {
+        "name": "pingone",
+        "namespace": "pingidentity",
+        "identifier": "pingidentity/pingone",
+        "tier": "partner"
+    },
+    {
+        "name": "illumio-core",
+        "namespace": "illumio",
+        "identifier": "illumio/illumio-core",
+        "tier": "partner"
+    },
+    {
+        "name": "stackpath",
+        "namespace": "stackpath",
+        "identifier": "stackpath/stackpath",
+        "tier": "partner"
+    },
+    {
+        "name": "netskope",
+        "namespace": "netskopeoss",
+        "identifier": "netskopeoss/netskope",
+        "tier": "partner"
+    },
+    {
+        "name": "kentik-cloudexport",
+        "namespace": "kentik",
+        "identifier": "kentik/kentik-cloudexport",
+        "tier": "partner"
+    },
+    {
+        "name": "dockerless",
+        "namespace": "nullstone-io",
+        "identifier": "nullstone-io/dockerless",
+        "tier": "partner"
+    },
+    {
+        "name": "limelight",
+        "namespace": "llnw",
+        "identifier": "llnw/limelight",
+        "tier": "partner"
+    },
+    {
+        "name": "flagsmith",
+        "namespace": "Flagsmith",
+        "identifier": "Flagsmith/flagsmith",
+        "tier": "partner"
+    },
+    {
+        "name": "netris",
+        "namespace": "netrisai",
+        "identifier": "netrisai/netris",
+        "tier": "partner"
+    },
+    {
+        "name": "cpln",
+        "namespace": "controlplane-com",
+        "identifier": "controlplane-com/cpln",
+        "tier": "partner"
+    },
+    {
+        "name": "steampipecloud",
+        "namespace": "turbot",
+        "identifier": "turbot/steampipecloud",
+        "tier": "partner"
+    },
+    {
+        "name": "prosimo",
+        "namespace": "prosimo-io",
+        "identifier": "prosimo-io/prosimo",
+        "tier": "partner"
+    },
+    {
+        "name": "bluecat",
+        "namespace": "bluecatlabs",
+        "identifier": "bluecatlabs/bluecat",
+        "tier": "partner"
+    },
+    {
+        "name": "hivelocity",
+        "namespace": "hivelocity",
+        "identifier": "hivelocity/hivelocity",
+        "tier": "partner"
+    },
+    {
+        "name": "sdwan",
+        "namespace": "CiscoDevNet",
+        "identifier": "CiscoDevNet/sdwan",
+        "tier": "partner"
+    },
+    {
+        "name": "zentral",
+        "namespace": "zentralopensource",
+        "identifier": "zentralopensource/zentral",
+        "tier": "partner"
+    },
+    {
+        "name": "packetfabric",
+        "namespace": "PacketFabric",
+        "identifier": "PacketFabric/packetfabric",
+        "tier": "partner"
+    },
+    {
+        "name": "artifacts",
+        "namespace": "splunk",
+        "identifier": "splunk/artifacts",
+        "tier": "partner"
+    },
+    {
+        "name": "serverspace",
+        "namespace": "itglobalcom",
+        "identifier": "itglobalcom/serverspace",
+        "tier": "partner"
+    },
+    {
+        "name": "kentik-synthetics",
+        "namespace": "kentik",
+        "identifier": "kentik/kentik-synthetics",
+        "tier": "partner"
+    },
+    {
+        "name": "syntropystack",
+        "namespace": "SyntropyNet",
+        "identifier": "SyntropyNet/syntropystack",
+        "tier": "partner"
+    },
+    {
+        "name": "tetration",
+        "namespace": "CiscoDevNet",
+        "identifier": "CiscoDevNet/tetration",
+        "tier": "partner"
+    },
+    {
+        "name": "synthetics",
+        "namespace": "splunk",
+        "identifier": "splunk/synthetics",
+        "tier": "partner"
+    },
+    {
+        "name": "fortianalyzer",
+        "namespace": "fortinetdev",
+        "identifier": "fortinetdev/fortianalyzer",
+        "tier": "partner"
+    },
+    {
+        "name": "cohesity",
+        "namespace": "cohesity",
+        "identifier": "cohesity/cohesity",
+        "tier": "partner"
+    },
+    {
+        "name": "pipeline",
+        "namespace": "jfrog",
+        "identifier": "jfrog/pipeline",
+        "tier": "partner"
+    },
+    {
+        "name": "fic",
+        "namespace": "nttcom",
+        "identifier": "nttcom/fic",
+        "tier": "partner"
+    },
+    {
+        "name": "waapm",
+        "namespace": "wallix",
+        "identifier": "wallix/waapm",
+        "tier": "partner"
+    },
+    {
+        "name": "delphix",
+        "namespace": "delphix-integrations",
+        "identifier": "delphix-integrations/delphix",
+        "tier": "partner"
+    },
+    {
+        "name": "couchbasecapella",
+        "namespace": "couchbasecloud",
+        "identifier": "couchbasecloud/couchbasecapella",
+        "tier": "partner"
+    },
+    {
+        "name": "jupiterone",
+        "namespace": "JupiterOne",
+        "identifier": "JupiterOne/jupiterone",
+        "tier": "partner"
+    },
+    {
+        "name": "b1ddi",
+        "namespace": "infobloxopen",
+        "identifier": "infobloxopen/b1ddi",
+        "tier": "partner"
+    },
+    {
+        "name": "cloudvision",
+        "namespace": "aristanetworks",
+        "identifier": "aristanetworks/cloudvision",
+        "tier": "partner"
+    },
+    {
+        "name": "biganimal",
+        "namespace": "EnterpriseDB",
+        "identifier": "EnterpriseDB/biganimal",
+        "tier": "partner"
+    },
+    {
+        "name": "stackbill",
+        "namespace": "assistanz",
+        "identifier": "assistanz/stackbill",
+        "tier": "partner"
+    },
+    {
+        "name": "ionosdeveloper",
+        "namespace": "ionos-developer",
+        "identifier": "ionos-developer/ionosdeveloper",
+        "tier": "partner"
+    },
+    {
+        "name": "junos-vsrx",
+        "namespace": "Juniper",
+        "identifier": "Juniper/junos-vsrx",
+        "tier": "partner"
+    },
+    {
+        "name": "susepubliccloud",
+        "namespace": "SUSE",
+        "identifier": "SUSE/susepubliccloud",
+        "tier": "partner"
+    },
+    {
+        "name": "davinci",
+        "namespace": "pingidentity",
+        "identifier": "pingidentity/davinci",
+        "tier": "partner"
+    },
+    {
+        "name": "crunchybridge",
+        "namespace": "CrunchyData",
+        "identifier": "CrunchyData/crunchybridge",
+        "tier": "partner"
+    },
+    {
+        "name": "skysql",
+        "namespace": "mariadb-corporation",
+        "identifier": "mariadb-corporation/skysql",
+        "tier": "partner"
+    },
+    {
+        "name": "koyeb",
+        "namespace": "koyeb",
+        "identifier": "koyeb/koyeb",
+        "tier": "partner"
+    },
+    {
+        "name": "samsungcloudplatform",
+        "namespace": "SamsungSDSCloud",
+        "identifier": "SamsungSDSCloud/samsungcloudplatform",
+        "tier": "partner"
+    },
+    {
+        "name": "appviewx",
+        "namespace": "AppViewX",
+        "identifier": "AppViewX/appviewx",
+        "tier": "partner"
+    },
+    {
+        "name": "alibabacloudstack",
+        "namespace": "aliyun",
+        "identifier": "aliyun/alibabacloudstack",
+        "tier": "partner"
+    },
+    {
+        "name": "cohesivenet",
+        "namespace": "cohesive",
+        "identifier": "cohesive/cohesivenet",
+        "tier": "partner"
+    },
+    {
+        "name": "tidbcloud",
+        "namespace": "tidbcloud",
+        "identifier": "tidbcloud/tidbcloud",
+        "tier": "partner"
+    },
+    {
+        "name": "infra",
+        "namespace": "infrahq",
+        "identifier": "infrahq/infra",
+        "tier": "partner"
+    },
+    {
+        "name": "latitudesh",
+        "namespace": "latitudesh",
+        "identifier": "latitudesh/latitudesh",
+        "tier": "partner"
+    },
+    {
+        "name": "lyvecloud",
+        "namespace": "Seagate",
+        "identifier": "Seagate/lyvecloud",
+        "tier": "partner"
+    },
+    {
+        "name": "cml2",
+        "namespace": "CiscoDevNet",
+        "identifier": "CiscoDevNet/cml2",
+        "tier": "partner"
+    },
+    {
+        "name": "seeweb",
+        "namespace": "Seeweb",
+        "identifier": "Seeweb/seeweb",
+        "tier": "partner"
+    },
+    {
+        "name": "netooze",
+        "namespace": "netooze",
+        "identifier": "netooze/netooze",
+        "tier": "partner"
+    },
+    {
+        "name": "keyfactor",
+        "namespace": "keyfactor-pub",
+        "identifier": "keyfactor-pub/keyfactor",
+        "tier": "partner"
+    },
+    {
+        "name": "skysql-beta",
+        "namespace": "mariadb-corporation",
+        "identifier": "mariadb-corporation/skysql-beta",
+        "tier": "partner"
+    },
+    {
+        "name": "scp",
+        "namespace": "ScpDevTerra",
+        "identifier": "ScpDevTerra/scp",
+        "tier": "partner"
+    },
+    {
+        "name": "netskopebwan",
+        "namespace": "netskopeoss",
+        "identifier": "netskopeoss/netskopebwan",
+        "tier": "partner"
+    },
+    {
+        "name": "gcore",
+        "namespace": "G-Core",
+        "identifier": "G-Core/gcore",
+        "tier": "partner"
+    },
+    {
+        "name": "indykite",
+        "namespace": "indykite",
+        "identifier": "indykite/indykite",
+        "tier": "partner"
+    },
+    {
+        "name": "ome",
+        "namespace": "dell",
+        "identifier": "dell/ome",
+        "tier": "partner"
+    },
+    {
+        "name": "powermax",
+        "namespace": "dell",
+        "identifier": "dell/powermax",
+        "tier": "partner"
+    },
+    {
+        "name": "netactuate",
+        "namespace": "netactuate",
+        "identifier": "netactuate/netactuate",
+        "tier": "partner"
+    },
+    {
+        "name": "timescale",
+        "namespace": "timescale",
+        "identifier": "timescale/timescale",
+        "tier": "partner"
+    },
+    {
+        "name": "aoscx",
+        "namespace": "aruba",
+        "identifier": "aruba/aoscx",
+        "tier": "partner"
+    },
+    {
+        "name": "powerflex",
+        "namespace": "dell",
+        "identifier": "dell/powerflex",
+        "tier": "partner"
+    },
+    {
+        "name": "snyk",
+        "namespace": "snyk-terraform-assets",
+        "identifier": "snyk-terraform-assets/snyk",
+        "tier": "partner"
+    },
+    {
+        "name": "fortiadc",
+        "namespace": "fortinetdev",
+        "identifier": "fortinetdev/fortiadc",
+        "tier": "partner"
+    },
+    {
+        "name": "powerstore",
+        "namespace": "dell",
+        "identifier": "dell/powerstore",
+        "tier": "partner"
+    },
+    {
+        "name": "fortiflexvm",
+        "namespace": "fortinetdev",
+        "identifier": "fortinetdev/fortiflexvm",
+        "tier": "partner"
+    },
+    {
+        "name": "drp",
+        "namespace": "rackn",
+        "identifier": "rackn/drp",
+        "tier": "partner"
+    },
+    {
+        "name": "speakeasy",
+        "namespace": "speakeasy-api",
+        "identifier": "speakeasy-api/speakeasy",
+        "tier": "partner"
+    },
+    {
+        "name": "zenlayercloud",
+        "namespace": "zenlayer",
+        "identifier": "zenlayer/zenlayercloud",
+        "tier": "partner"
+    }
+]

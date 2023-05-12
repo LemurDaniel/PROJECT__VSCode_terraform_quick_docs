@@ -1,3 +1,4 @@
+const vscode = require('vscode')
 const path = require('path')
 const {
     LanguageClient,
@@ -7,7 +8,7 @@ const {
 
 let client = null
 
-function activate(context) {
+async function activate(context) {
 
     const serverModule = context.asAbsolutePath(
         path.join('server', 'src', 'server.js')
@@ -39,14 +40,40 @@ function activate(context) {
         clientOptions
     );
 
-    client.start();
+    client.start()
+
+
+    
+    let disposable = vscode.commands.registerCommand('terraform-quick-docs.providers.show', async () => {
+
+        try {
+
+            const providers = await client.sendRequest('provider.list').then(
+                result => result.map(data => ({
+                    label: data.name,
+                    description: data.identifier
+                }))
+            )
+            const selected = await vscode.window.showQuickPick(providers)
+            if (null == selected) return
+
+            const info = await client.sendRequest('provider.info', selected.description)
+            await vscode.env.openExternal(vscode.Uri.parse(info.docsUrl))
+
+        } catch (exception) {
+            vscode.window.showErrorMessage(exception.message)
+        }
+
+    })
+    context.subscriptions.push(disposable)
 
 }
 
 
 // This method is called when your extension is deactivated
-function deactivate() {
+function deactivate(context) {
     if (client) return client.stop()
+    context.subscriptions.forEach(disposable => disposable.dispose())
 }
 
 module.exports = {

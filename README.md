@@ -2,17 +2,11 @@
 
 # Usage
 
-##### - `Just hover over a Terraform 'Data' or 'Resource' Identifier or a 'Module'`
-
-####  - `Also supports hovering over referenced data or resource elements such as 'data.<identifier>'`
+##### - `Just hover over a Terraform 'Data', 'Resource', 'Module' or 'data.<identifier>', etc.`
 
 ##### - `Supports only Modules in the Terraform Registry!`
 
-##### - `By default supports most of the common Providers`
-
-##### - Add more specific Providers if needed in the Settings:
-
-![settings](.resources/terraform-quick-docs-4.gif)
+##### - `By default supports all official and partner Providers`
 
 ---
 
@@ -28,3 +22,10 @@
 #### `Example 3:`
 
 ![example-3](.resources/terraform-quick-docs-3.gif)
+
+---
+
+
+##### - `Add more specific Providers if needed in the Settings:`
+
+![settings](.resources/terraform-quick-docs-4.gif)
