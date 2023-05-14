@@ -169,9 +169,8 @@ connection.onCompletion(async ({ textDocument, position }) => {
     connection.console.log('-----------------------------------------------------')
     connection.console.log('Currently in Block:')
     connection.console.log(JSON.stringify(currentBlock))
-    const test = await completionMetaForBlock(currentBlock)
     connection.console.log(`Found Docs For:`)
-    connection.console.log(JSON.stringify(test))
+    connection.console.log(JSON.stringify(await completionMetaForBlock(currentBlock)))
     connection.console.log('-----------------------------------------------------')
 })
 
@@ -195,8 +194,13 @@ async function completionMetaForBlock(blockDefinition) {
     resourceDocumentation = await Registry.instance.getResourceDocs(resourceInfo.id)
     if (null == resourceDocumentation) return null
 
-    tfDocsAnalyzeCache[resourceInfo.id] = docsAnalyzer.analyze(resourceDocumentation.data.attributes)
-    return tfDocsAnalyzeCache[resourceInfo.id]
+    try {
+        connection.console.log('Analyzing Resource Docs')
+        tfDocsAnalyzeCache[resourceInfo.id] = docsAnalyzer.analyze(resourceDocumentation.data.attributes)
+    } catch (exception) {
+        connection.console.log(exception.message)
+        return null
+    }
 
 }
 

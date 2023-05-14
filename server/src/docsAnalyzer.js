@@ -14,19 +14,17 @@ module.exports = class DocsAnalyzer {
             ['PARAMETER', /^\s*`[a-z_]+`\s*[-:]\s*[^\r\n|\n]+/i, false],
             ['BLOCK', /^[`a-z_\s]+ block supports the following:/i, false],
             ['LIST_SEGMENT', /^[-\*]/, false],
-            ['IGNORE', /^[^\n\r]+/, true]
+            ['IGNORE', /^\S/, true]
         ])
     }
 
     analyze(docsAttributes) {
 
-        const argumentReference = docsAttributes.content
-            .substring(
-                docsAttributes.content.indexOf('## Argument Reference'),
-                docsAttributes.content.indexOf('## Attributes Reference')
-            ).split('\\n').join('\n')
+        const argumentsIndex = docsAttributes.content.match(/argument[s]?\s*reference/i).index + "arguments reference".length
+        const attributesIndex = docsAttributes.content.match(/attribute[s]?\s*reference/i).index - "attributes reference".length
 
-        this.#tokenizer.content = argumentReference
+        this.#tokenizer.content = docsAttributes.content.substring(argumentsIndex, attributesIndex).split('\\n').join('\n')
+
         return {
             category: docsAttributes.category,
             subcategory: docsAttributes.subcategory,
@@ -95,6 +93,7 @@ module.exports = class DocsAnalyzer {
 
         const definitions = []
         while (null != this.#tokenizer.current && this.#tokenizer.current.type != stopLookahead) {
+            console.log(this.#tokenizer.current.type, this.#tokenizer.current.value)
             const definition = this.definition()
             if (null != definition) {
                 definitions.push(definition)
