@@ -15,7 +15,8 @@ const {
 } = require('vscode-languageserver-textdocument')
 
 const Registry = require('./registry');
-
+const BlockAnalyzer = require('./blockAnalyzer')
+const DocsAnalyzer = require('./docsAnalyzer')
 
 
 // Create a connection for the server, using Node's IPC as a transport.
@@ -30,7 +31,7 @@ connection.onInitialize(params => {
             textDocumentSync: TextDocumentSyncKind.Incremental,
             // Tell the client that this server supports code completion.
             hoverProvider: true,
-            completionProvider: false
+            completionProvider: true
         }
     }
 
@@ -58,9 +59,41 @@ connection.onInitialized(async () => {
 
 })
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+////// File opens, changes
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+const docsAnalyzer = new DocsAnalyzer()
+const blockAnalyzer = new BlockAnalyzer()
+const tfConfigParseCache = {}
+const tfDocsAnalyzeCache = {}
+
+function analyzeFile(document) {
+
+    if (document._uri in tfConfigParseCache) {
+        const { content, changed, lastParse } = tfConfigParseCache[document._uri]
+        if (!changed) return content
+    }
+
+    tfConfigParseCache[document._uri] = {
+        lastParse: Date.now(),
+        content: blockAnalyzer.analyze(document.getText()),
+        changed: false
+    }
+
+    return tfConfigParseCache[document._uri].content
+}
+
 
 // The content of a text document has changed. This event is emitted
-documents.onDidChangeContent(change => { })
+documents.onDidChangeContent(({ document }) => {
+
+    if (document._uri in tfConfigParseCache) {
+        tfConfigParseCache[document._uri].changed = true
+    }
+
+})
 
 // Call necesseray apis on document.open
 documents.onDidOpen(({ document }) => {
@@ -81,7 +114,100 @@ documents.onDidOpen(({ document }) => {
             .catch(error => connection.console.log(error.message))
     )
 
+    analyzeFile(document)
 })
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+////// Autcompletion
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function inRange(position, range) {
+
+    return position.line > range.linestart && position.line < range.lineend
+
+}
+
+function findBlock(definitions, position) {
+
+    const line = position.line
+    for (const definitionBlock of definitions) {
+
+        if (!inRange(position, definitionBlock.value.range)) continue
+
+        if (definitionBlock.value.dynamics.length > 0) {
+            const block = findBlock(definitionBlock.dynamics, position)
+        }
+
+        if (definitionBlock.type != 'DynamicDefinition') return definitionBlock
+        if (null == definitionBlock.type.attributes.for_each) return definitionBlock
+
+        if (!inRange(position, definitionBlock.value.attributes.content.range)) return definitionBlock
+
+        return definitionBlock.value.attributes.content
+
+    }
+
+    return null
+}
+
+connection.onCompletion(async ({ textDocument, position }) => {
+
+    connection.console.log(JSON.stringify(position))
+    const document = documents.get(textDocument.uri)
+
+    let currentBlock = null
+    for (const definitionBlock of analyzeFile(document)) {
+
+        const range = definitionBlock.value.range
+        if (position.line <= range.linestart) continue
+        if (position.line >= range.lineend) continue
+        currentBlock = definitionBlock
+        break
+
+    }
+
+    connection.console.log('-----------------------------------------------------')
+    connection.console.log('Currently in Block:')
+    connection.console.log(JSON.stringify(currentBlock))
+    const test = await completionMetaForBlock(currentBlock)
+    connection.console.log(`Found Docs For:`)
+    connection.console.log(JSON.stringify(test))
+    connection.console.log('-----------------------------------------------------')
+})
+
+
+async function completionMetaForBlock(blockDefinition) {
+
+    if (null == blockDefinition) return
+
+    let resourceInfo = null
+    const identifier = blockDefinition.value.identifier
+
+    if (blockDefinition.type == 'ResourceDefinition')
+        resourceInfo = await Registry.instance.findProviderResource(identifier, Registry.TYPES['resource']).then(info => info?.resourceInfo)
+    else if (blockDefinition.type == 'DataSourceDefinition')
+        resourceInfo = await Registry.instance.findProviderResource(identifier, Registry.TYPES['data']).then(info => info?.resourceInfo)
+
+    if (null == resourceInfo) return null
+    if (resourceInfo.id in tfDocsAnalyzeCache)
+        return tfDocsAnalyzeCache[resourceInfo.id]
+
+    resourceDocumentation = await Registry.instance.getResourceDocs(resourceInfo.id)
+    if (null == resourceDocumentation) return null
+
+    tfDocsAnalyzeCache[resourceInfo.id] = docsAnalyzer.analyze(resourceDocumentation.data.attributes)
+    return tfDocsAnalyzeCache[resourceInfo.id]
+
+}
+
+connection.onCompletionResolve(test => {
+
+    connection.console.log(`Resolve ${JSON.stringify(test)}`)
+})
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+////// Hovering
+//////////////////////////////////////////////////////////////////////////////////////////////////////
 
 async function handleProviderResource(identifier, category) {
 
@@ -148,7 +274,7 @@ async function handleProviderModule(document, position) {
     if (null == source) return null
 
 
-    const moduleInfo = await Registry.instance.getModuleInfo(source, version, connection)
+    const moduleInfo = await Registry.instance.getModuleInfo(source, version)
     if (null == moduleInfo) return null
 
     connection.console.log(`Found Module: '${moduleInfo.id}'`)

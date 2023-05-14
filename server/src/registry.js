@@ -156,11 +156,11 @@ class Registry {
         return providerInfo
     }
 
-    async findProviderInfo(resourceIdentifier, connection) {
+    async findProviderInfo(resourceIdentifier) {
 
         const providerName = resourceIdentifier.split('_')[0].toLowerCase()
 
-        connection.console.log(`Search Provider: ${providerName}`)
+        console.log(`Search Provider: ${providerName}`)
 
         const providerData = await this.getProvidersFromJson().then(
             providers => providers.filter(provider => provider.name.toLowerCase() == providerName.toLowerCase())[0]
@@ -169,22 +169,22 @@ class Registry {
         if (null == providerData)
             throw new Error(`'${providerName}' not Found!`)
 
-        connection.console.log(`Found Provider: ${providerData.identifier}`)
+        console.log(`Found Provider: ${providerData.identifier}`)
 
         const providerInfo = await this.getProviderInfo(providerData.identifier)
 
-        connection.console.log(`Found Providerinfo: ${providerData.identifier}`)
+        console.log(`Found Providerinfo: ${providerData.identifier}`)
 
         return providerInfo
 
     }
 
-    async findProviderResource(resourceIdentifier, resourceCategory, connection) {
+    async findProviderResource(resourceIdentifier, resourceCategory) {
 
         const resourceName = resourceIdentifier
         const secondaryName = resourceIdentifier.split('_').slice(1).join('_')
 
-        const providerInfo = await this.findProviderInfo(resourceIdentifier, connection)
+        const providerInfo = await this.findProviderInfo(resourceIdentifier)
         const resourceInfo = providerInfo.docs.filter(
             resource => (resource.title == resourceName || resource.title == secondaryName) && resource.category == resourceCategory
         )[0]
@@ -192,7 +192,7 @@ class Registry {
         if (null == resourceInfo)
             throw new Error(`'${resourceName}' not Found!`)
 
-        connection.console.log(`Found ResourceName: ${resourceInfo.title}`)
+        console.log(`Found ResourceName: ${resourceInfo.title}`)
 
         return { resourceInfo: resourceInfo, providerInfo: providerInfo }
 

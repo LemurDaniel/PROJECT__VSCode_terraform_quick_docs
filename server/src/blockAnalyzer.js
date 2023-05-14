@@ -2,7 +2,7 @@
 const { Tokenizer, Node } = require('./tokenizer')
 
 
-class BlockAnalyzer {
+module.exports = class BlockAnalyzer {
 
     #tokenizer
     #currentLine
@@ -27,18 +27,13 @@ class BlockAnalyzer {
         this.#tokenizer.content = configuration
         this.#currentLine = 1
 
-        return {
-            filename: "",
-            definitions: this.definitionList()
-        }
+        return this.definitionList()
     }
 
     definitionList(stopLookahead = null) {
 
         const definitions = []
         while (null != this.#tokenizer.current && this.#tokenizer.current.type != stopLookahead) {
-
-            console.log(this.#tokenizer.current.type, stopLookahead, this.#currentLine)
             const definition = this.definition()
             if (null != definition) {
                 definitions.push(definition)
@@ -153,15 +148,3 @@ class BlockAnalyzer {
         return current
     }
 }
-
-
-let file = './test_configuration.tf'
-let content = require('fs').readFileSync(file, 'utf-8')
-const analyzer = new BlockAnalyzer()
-
-require('fs').writeFileSync(file.replace('.tf', '.out.json'), JSON.stringify(analyzer.analyze(content)))
-
-file = './test_configuration2.tf'
-content = require('fs').readFileSync(file, 'utf-8')
-
-require('fs').writeFileSync(file.replace('.tf', '.out.json'), JSON.stringify(analyzer.analyze(content)))

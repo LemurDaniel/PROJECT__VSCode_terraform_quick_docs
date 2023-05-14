@@ -2,10 +2,10 @@
 const { Tokenizer, Node } = require('./tokenizer')
 
 
-class DocsAnalyzer {
+module.exports = class DocsAnalyzer {
 
     #tokenizer
-    constructor(content) {
+    constructor() {
         this.#tokenizer = new Tokenizer([
             ['WHITESPACE', /^\s+/, true],
             ['NOTE', /^->[^\n\r]+/, false],
@@ -162,14 +162,3 @@ class DocsAnalyzer {
         return current
     }
 }
-
-
-
-
-const file = './sample-full-03.json'
-const docsJson = require('fs').readFileSync(file, 'utf-8')
-
-const analyzer = new DocsAnalyzer()
-const output = analyzer.analyze(JSON.parse(docsJson).data.attributes)
-
-require('fs').writeFileSync(file.replace('.json', '.out.json'), JSON.stringify(output))
