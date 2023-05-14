@@ -30,8 +30,33 @@ class DocsAnalyzer {
             subcategory: docsAttributes.subcategory,
             slug: docsAttributes.slug,
             title: docsAttributes.title,
-            definitions: this.definitionList()
+            definitions: this.cleanup(this.definitionList())
         }
+    }
+
+    cleanup(definitions) {
+
+        const references = {}
+        const cleaned = []
+
+        for (const entry of definitions) {
+
+            if (entry.type == 'ParameterDefinition') {
+                cleaned.push(entry)
+                references[entry.value.name] = entry.value
+            }
+
+            else if (entry.type == 'ParameterBlock') {
+                if (entry.value.referencePath[0] in references)
+                    references[entry.value.referencePath[0]].value = entry
+
+                else
+                    console.log(`Unmatched => ${entry.value.referencePath}`)
+            }
+        }
+
+
+        return cleaned
     }
 
     definitionList(stopLookahead = null) {
@@ -75,7 +100,7 @@ class DocsAnalyzer {
                 const notes = this.#tokenizer.current.type == 'NOTES' ? this.#eat('NOTES').value : null
                 return new Node('ParameterBlock', {
                     notes: notes,
-                    references: current.match(/`[A-Za-z0-9_]+`/g).map(v => v.replaceAll('`', '')),
+                    referencePath: current.match(/`[A-Za-z0-9_]+`/g).map(v => v.replaceAll('`', '')),
                     parameters: this.definitionList('BLOCK')
                 })
             }
