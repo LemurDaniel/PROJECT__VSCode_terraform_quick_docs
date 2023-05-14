@@ -20,8 +20,8 @@ module.exports = class DocsAnalyzer {
 
     analyze(docsAttributes) {
 
-        const argumentsIndex = docsAttributes.content.match(/argument[s]?\s*reference/i).index + "arguments reference".length
-        const attributesIndex = docsAttributes.content.match(/attribute[s]?\s*reference/i).index - "attributes reference".length
+        const argumentsIndex = docsAttributes.content.match(/argument[s]*\s*reference/i).index + "arguments reference".length
+        const attributesIndex = docsAttributes.content.match(/attribute[s]*\s*reference/i).index - "attributes reference".length
 
         this.#tokenizer.content = docsAttributes.content.substring(argumentsIndex, attributesIndex).split('\\n').join('\n')
 
@@ -53,8 +53,10 @@ module.exports = class DocsAnalyzer {
                 unmatched.push(block)
         }
 
-        console.log('Unmatched Blocks: ')
-        unmatched.forEach(b => console.log(`    ${b.value.referencePath}`))
+        if (unmatched.length > 0) {
+            console.log('Unmatched Blocks: ')
+            unmatched.forEach(b => console.log(`    ${b.value.referencePath}`))
+        }
 
         return parameterDefinitions
     }
@@ -93,7 +95,7 @@ module.exports = class DocsAnalyzer {
 
         const definitions = []
         while (null != this.#tokenizer.current && this.#tokenizer.current.type != stopLookahead) {
-            console.log(this.#tokenizer.current.type, this.#tokenizer.current.value)
+            //console.log(this.#tokenizer.current.type, this.#tokenizer.current.value)
             const definition = this.definition()
             if (null != definition) {
                 definitions.push(definition)
@@ -138,6 +140,10 @@ module.exports = class DocsAnalyzer {
                     referencePath: current.match(/`[A-Za-z0-9_]+`/g).map(v => v.replaceAll('`', '')),
                     parameters: this.definitionList('BLOCK')
                 })
+            }
+
+            default: {
+                if (this.#tokenizer.current) this.#eat(this.#tokenizer.current.type)
             }
         }
 

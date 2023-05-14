@@ -24,41 +24,6 @@ const DocsAnalyzer = require('./docsAnalyzer')
 const connection = createConnection(ProposedFeatures.all)
 const documents = new TextDocuments(TextDocument)
 
-connection.onInitialize(params => {
-
-    const result = {
-        capabilities: {
-            textDocumentSync: TextDocumentSyncKind.Incremental,
-            // Tell the client that this server supports code completion.
-            hoverProvider: true,
-            completionProvider: true
-        }
-    }
-
-    return result
-})
-
-connection.onInitialized(async () => {
-
-    const config = await connection.workspace.getConfiguration({
-        section: 'terraform-quick-docs'
-    })
-    Registry.additionalProviders = config.additional_supported_providers
-    connection.console.log(JSON.stringify(Registry.additionalProviders))
-
-    connection.client.register(DidChangeConfigurationNotification.type, undefined)
-    connection.onDidChangeConfiguration(async () => {
-        const config = await connection.workspace.getConfiguration({
-            section: 'terraform-quick-docs'
-        })
-        Registry.additionalProviders = config.additional_supported_providers
-        connection.console.log(`Changed Settings to: ${JSON.stringify(Registry.additionalProviders)}`)
-    })
-
-    connection.console.log('Init Done')
-
-})
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 ////// File opens, changes
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -81,6 +46,11 @@ function analyzeFile(document) {
         content: blockAnalyzer.analyze(document.getText()),
         changed: false
     }
+
+    // Call and already cache elements
+    //tfConfigParseCache[document._uri].content.forEach(
+    //    definitionBlock => completionMetaForBlock(definitionBlock)
+    //)
 
     return tfConfigParseCache[document._uri].content
 }
@@ -122,9 +92,7 @@ documents.onDidOpen(({ document }) => {
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function inRange(position, range) {
-
     return position.line > range.linestart && position.line < range.lineend
-
 }
 
 function findBlock(definitions, position) {
@@ -150,6 +118,35 @@ function findBlock(definitions, position) {
     return null
 }
 
+async function completionMetaForBlock(blockDefinition) {
+
+    if (null == blockDefinition) return
+
+    let resourceInfo = null
+    const identifier = blockDefinition.value.identifier
+
+    if (blockDefinition.type == 'ResourceDefinition')
+        resourceInfo = await Registry.instance.findProviderResource(identifier, Registry.TYPES['resource']).then(info => info?.resourceInfo)
+    else if (blockDefinition.type == 'DataSourceDefinition')
+        resourceInfo = await Registry.instance.findProviderResource(identifier, Registry.TYPES['data']).then(info => info?.resourceInfo)
+
+    if (null == resourceInfo) return null
+    if (resourceInfo.id in tfDocsAnalyzeCache)
+        return tfDocsAnalyzeCache[resourceInfo.id]
+
+    resourceDocumentation = await Registry.instance.getResourceDocs(resourceInfo)
+    if (null == resourceDocumentation) return null
+
+    try {
+        tfDocsAnalyzeCache[resourceInfo.id] = docsAnalyzer.analyze(resourceDocumentation.data.attributes)
+        return tfDocsAnalyzeCache[resourceInfo.id]
+    } catch (exception) {
+        connection.console.log(exception.message)
+        return null
+    }
+
+}
+
 connection.onCompletion(async ({ textDocument, position }) => {
 
     connection.console.log(JSON.stringify(position))
@@ -173,36 +170,6 @@ connection.onCompletion(async ({ textDocument, position }) => {
     connection.console.log(JSON.stringify(await completionMetaForBlock(currentBlock)))
     connection.console.log('-----------------------------------------------------')
 })
-
-
-async function completionMetaForBlock(blockDefinition) {
-
-    if (null == blockDefinition) return
-
-    let resourceInfo = null
-    const identifier = blockDefinition.value.identifier
-
-    if (blockDefinition.type == 'ResourceDefinition')
-        resourceInfo = await Registry.instance.findProviderResource(identifier, Registry.TYPES['resource']).then(info => info?.resourceInfo)
-    else if (blockDefinition.type == 'DataSourceDefinition')
-        resourceInfo = await Registry.instance.findProviderResource(identifier, Registry.TYPES['data']).then(info => info?.resourceInfo)
-
-    if (null == resourceInfo) return null
-    if (resourceInfo.id in tfDocsAnalyzeCache)
-        return tfDocsAnalyzeCache[resourceInfo.id]
-
-    resourceDocumentation = await Registry.instance.getResourceDocs(resourceInfo.id)
-    if (null == resourceDocumentation) return null
-
-    try {
-        connection.console.log('Analyzing Resource Docs')
-        tfDocsAnalyzeCache[resourceInfo.id] = docsAnalyzer.analyze(resourceDocumentation.data.attributes)
-    } catch (exception) {
-        connection.console.log(exception.message)
-        return null
-    }
-
-}
 
 connection.onCompletionResolve(test => {
 
@@ -348,13 +315,52 @@ connection.onHover(async ({ textDocument, position }) => {
 })
 
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+////// Initzalizee
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+connection.onInitialize(params => {
+
+    const result = {
+        capabilities: {
+            textDocumentSync: TextDocumentSyncKind.Incremental,
+            // Tell the client that this server supports code completion.
+            hoverProvider: true,
+            completionProvider: true
+        }
+    }
+
+    return result
+
+})
+
+connection.onInitialized(async () => {
+
+    connection.client.register(DidChangeConfigurationNotification.type, undefined)
+    connection.onDidChangeConfiguration(async () => {
+        const config = await connection.workspace.getConfiguration({
+            section: 'terraform-quick-docs'
+        })
+        Registry.additionalProviders = config.additional_supported_providers
+        connection.console.log(`Changed Settings to: ${JSON.stringify(Registry.additionalProviders)}`)
+    })
+
+
+    const config = await connection.workspace.getConfiguration({
+        section: 'terraform-quick-docs'
+    })
+    Registry.additionalProviders = config.additional_supported_providers
+    Registry.clientConnection = connection
+
+    connection.console.log('Init Done')
+
+})
+
 connection.onRequest('provider.list', async () => await Registry.instance.getProvidersFromJson())
 connection.onRequest('provider.info', async (identifier) => await Registry.instance.getProviderInfo(identifier))
-
 
 // Make the text document manager listen on the connection
 // for open, change and close text document events
 documents.listen(connection)
-
-// Listen on the connection
 connection.listen()
