@@ -8,7 +8,9 @@ class DocsAnalyzer {
     constructor(content) {
         this.#tokenizer = new Tokenizer([
             ['WHITESPACE', /^\s+/, true],
-            ['NOTES', /^->\s*\*+Note:\*+[^\n\r]+/, false],
+            ['NOTE', /^->[^\n\r]+/, false],
+            ['WARNING', /^!>[^\n\r]+/, false],
+            ['ISSUE', /^~>[^\n\r]+/, false],
             ['PARAMETER', /^\s*`[A-Za-z_]+`\s*[-:]\s*[^\r\n|\n]+/, false],
             ['BLOCK', /^[`A-Za-z_\s]+ block supports the following:/, false],
             ['LIST_SEGMENT', /^[-\*]/, false],
@@ -94,6 +96,9 @@ class DocsAnalyzer {
         const definitions = []
         while (null != this.#tokenizer.current && this.#tokenizer.current.type != stopLookahead) {
             console.log(this.#tokenizer.current.type)
+
+            if (this.#tokenizer.current.type == 'NOTE') console.log(this.#tokenizer.current.value)
+
             const definition = this.definition()
             if (null != definition) {
                 definitions.push(definition)
@@ -120,6 +125,9 @@ class DocsAnalyzer {
 
                 return new Node('ParameterDefinition', {
                     name: identifier,
+                    note: this.#tokenizer.current?.type == 'NOTE' ? this.#eat('NOTE').value : null,
+                    issue: this.#tokenizer.current?.type == 'ISSUE' ? this.#eat('ISSUE').value : null,
+                    warning: this.#tokenizer.current?.type == 'WARNING' ? this.#eat('WARNING').value : null,
                     description: description.replace(/\(required\)|\(optional\)/i, '').trim(),
                     required: description.toLowerCase().includes('(required)')
                 })
@@ -127,16 +135,17 @@ class DocsAnalyzer {
 
             case 'BLOCK': {
                 const current = this.#eat('BLOCK').value
-                const notes = this.#tokenizer.current.type == 'NOTES' ? this.#eat('NOTES').value : null
+
                 return new Node('ParameterBlock', {
-                    notes: notes,
+                    note: this.#tokenizer.current?.type == 'NOTE' ? this.#eat('NOTE').value : null,
+                    issue: this.#tokenizer.current?.type == 'ISSUE' ? this.#eat('ISSUE').value : null,
+                    warning: this.#tokenizer.current?.type == 'WARNING' ? this.#eat('WARNING').value : null,
                     referencePath: current.match(/`[A-Za-z0-9_]+`/g).map(v => v.replaceAll('`', '')),
                     parameters: this.definitionList('BLOCK')
                 })
             }
         }
 
-        this.#eat()
         return null
     }
 
@@ -161,7 +170,7 @@ class DocsAnalyzer {
 
 
 
-const file = './sample-full-01.json'
+const file = './sample-full-03.json'
 const docsJson = require('fs').readFileSync(file, 'utf-8')
 
 const analyzer = new DocsAnalyzer()

@@ -1,0 +1,307 @@
+{
+    "category": "resources",
+    "subcategory": "Groups",
+    "slug": "group",
+    "title": "group",
+    "definitions": [
+        {
+            "type": "ParameterDefinition",
+            "value": {
+                "name": "administrative_unit_ids",
+                "note": null,
+                "issue": null,
+                "warning": "!> **Warning** Do not use the `administrative_unit_ids` property at the same time as the [azuread_administrative_unit_member](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/administrative_unit_member) resource, or the `members` property of the [azuread_administrative_unit](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/administrative_unit#members) resource, _for the same group_. Doing so will cause a conflict and administrative unit members will be removed.",
+                "description": "The object IDs of administrative units in which the group is a member. If specified, new groups will be created in the scope of the first administrative unit and added to the others. If empty, new groups will be created at the tenant level.",
+                "required": false
+            }
+        },
+        {
+            "type": "ParameterDefinition",
+            "value": {
+                "name": "assignable_to_role",
+                "note": null,
+                "issue": null,
+                "warning": null,
+                "description": "Indicates whether this group can be assigned to an Azure Active Directory role. Defaults to `false`. Can only be set to `true` for security",
+                "required": false
+            }
+        },
+        {
+            "type": "ParameterDefinition",
+            "value": {
+                "name": "auto_subscribe_new_members",
+                "note": null,
+                "issue": "~> **Known Permissions Issue** The `auto_subscribe_new_members` property can only be set when authenticating as a Member user of the tenant and _not_ when authenticating as a Guest user or as a service principal. Please see the [Microsoft Graph Known Issues](https://docs.microsoft.com/en-us/graph/known-issues#groups) documentation.",
+                "warning": null,
+                "description": "Indicates whether new members added to the group will be auto",
+                "required": false
+            }
+        },
+        {
+            "type": "ParameterDefinition",
+            "value": {
+                "name": "behaviors",
+                "note": null,
+                "issue": null,
+                "warning": null,
+                "description": "A set of behaviors for a Microsoft 365 group. Possible values are `AllowOnlyMembersToPost`, `HideGroupInOutlook`, `SubscribeMembersToCalendarEventsDisabled`, `SubscribeNewGroupMembers` and `WelcomeEmailDisabled`. See [official documentation](https",
+                "required": false
+            }
+        },
+        {
+            "type": "ParameterDefinition",
+            "value": {
+                "name": "description",
+                "note": null,
+                "issue": null,
+                "warning": null,
+                "description": "The description for the group.",
+                "required": false
+            }
+        },
+        {
+            "type": "ParameterDefinition",
+            "value": {
+                "name": "display_name",
+                "note": null,
+                "issue": null,
+                "warning": null,
+                "description": "The display name for the group.",
+                "required": true
+            }
+        },
+        {
+            "type": "ParameterDefinition",
+            "value": {
+                "name": "dynamic_membership",
+                "note": null,
+                "issue": null,
+                "warning": null,
+                "description": "A `dynamic_membership` block as documented below. Required when `types` contains `DynamicMembership`. Cannot be used with the `members` property.",
+                "required": false,
+                "block": {
+                    "type": "ParameterBlock",
+                    "value": {
+                        "note": null,
+                        "issue": null,
+                        "warning": null,
+                        "referencePath": [
+                            "dynamic_membership"
+                        ],
+                        "parameters": [
+                            {
+                                "type": "ParameterDefinition",
+                                "value": {
+                                    "name": "enabled",
+                                    "note": null,
+                                    "issue": null,
+                                    "warning": null,
+                                    "description": "Whether rule processing is \"On\" (true) or \"Paused\" (false).",
+                                    "required": true
+                                }
+                            },
+                            {
+                                "type": "ParameterDefinition",
+                                "value": {
+                                    "name": "rule",
+                                    "note": null,
+                                    "issue": "~> **Dynamic Group Memberships** Remember to include `DynamicMembership` in the set of `types` for the group when configuring a dynamic membership rule. Dynamic membership is a premium feature which requires an Azure Active Directory P1 or P2 license.",
+                                    "warning": null,
+                                    "description": "The rule that determines membership of this group. For more information, see official documentation on [membership rules syntax](https",
+                                    "required": true
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "type": "ParameterDefinition",
+            "value": {
+                "name": "external_senders_allowed",
+                "note": null,
+                "issue": "~> **Known Permissions Issue** The `external_senders_allowed` property can only be set when authenticating as a Member user of the tenant and _not_ when authenticating as a Guest user or as a service principal. Please see the [Microsoft Graph Known Issues](https://docs.microsoft.com/en-us/graph/known-issues#groups) documentation.",
+                "warning": null,
+                "description": "Indicates whether people external to the organization can send messages to the group. Can only be set for Unified groups.",
+                "required": false
+            }
+        },
+        {
+            "type": "ParameterDefinition",
+            "value": {
+                "name": "hide_from_address_lists",
+                "note": null,
+                "issue": "~> **Known Permissions Issue** The `hide_from_address_lists` property can only be set when authenticating as a Member user of the tenant and _not_ when authenticating as a Guest user or as a service principal. Please see the [Microsoft Graph Known Issues](https://docs.microsoft.com/en-us/graph/known-issues#groups) documentation.",
+                "warning": null,
+                "description": "Indicates whether the group is displayed in certain parts of the Outlook user interface",
+                "required": false
+            }
+        },
+        {
+            "type": "ParameterDefinition",
+            "value": {
+                "name": "hide_from_outlook_clients",
+                "note": null,
+                "issue": "~> **Known Permissions Issue** The `hide_from_outlook_clients` property can only be set when authenticating as a Member user of the tenant and _not_ when authenticating as a Guest user or as a service principal. Please see the [Microsoft Graph Known Issues](https://docs.microsoft.com/en-us/graph/known-issues#groups) documentation.",
+                "warning": null,
+                "description": "Indicates whether the group is displayed in Outlook clients, such as Outlook for Windows and Outlook on the web. Can only be set for Unified groups.",
+                "required": false
+            }
+        },
+        {
+            "type": "ParameterDefinition",
+            "value": {
+                "name": "mail_enabled",
+                "note": null,
+                "issue": null,
+                "warning": null,
+                "description": "Whether the group is a mail enabled, with a shared group mailbox. At least one of `mail_enabled` or `security_enabled` must be specified. Only Microsoft 365 groups can be mail enabled (see the `types` property).",
+                "required": false
+            }
+        },
+        {
+            "type": "ParameterDefinition",
+            "value": {
+                "name": "mail_nickname",
+                "note": null,
+                "issue": null,
+                "warning": null,
+                "description": "The mail alias for the group, unique in the organisation. Required for mail",
+                "required": false
+            }
+        },
+        {
+            "type": "ParameterDefinition",
+            "value": {
+                "name": "members",
+                "note": null,
+                "issue": null,
+                "warning": "!> **Warning** Do not use the `members` property at the same time as the [azuread_group_member](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/group_member) resource for the same group. Doing so will cause a conflict and group members will be removed.",
+                "description": "A set of members who should be present in this group. Supported object types are Users, Groups or Service Principals. Cannot be used with the `dynamic_membership` block.",
+                "required": false
+            }
+        },
+        {
+            "type": "ParameterDefinition",
+            "value": {
+                "name": "onpremises_group_type",
+                "note": null,
+                "issue": null,
+                "warning": null,
+                "description": "The on",
+                "required": false
+            }
+        },
+        {
+            "type": "ParameterDefinition",
+            "value": {
+                "name": "owners",
+                "note": "-> **Group Ownership**  It's recommended to always specify one or more group owners, including the principal being used to execute Terraform, such as in the example above. When removing group owners, if a user principal has been assigned ownership, the last user cannot be removed as an owner. Microsoft 365 groups are required to always have at least one owner which _must be a user_ (i.e. not a service principal).",
+                "issue": null,
+                "warning": null,
+                "description": "A set of object IDs of principals that will be granted ownership of the group. Supported object types are users or service principals. By default, the principal being used to execute Terraform is assigned as the sole owner. Groups cannot be created with no owners or have all their owners removed.",
+                "required": false
+            }
+        },
+        {
+            "type": "ParameterDefinition",
+            "value": {
+                "name": "prevent_duplicate_names",
+                "note": null,
+                "issue": null,
+                "warning": null,
+                "description": "If `true`, will return an error if an existing group is found with the same name. Defaults to `false`.",
+                "required": false
+            }
+        },
+        {
+            "type": "ParameterDefinition",
+            "value": {
+                "name": "provisioning_options",
+                "note": null,
+                "issue": null,
+                "warning": null,
+                "description": "A set of provisioning options for a Microsoft 365 group. The only supported value is `Team`. See [official documentation](https",
+                "required": false
+            }
+        },
+        {
+            "type": "ParameterDefinition",
+            "value": {
+                "name": "security_enabled",
+                "note": null,
+                "issue": null,
+                "warning": null,
+                "description": "Whether the group is a security group for controlling access to in",
+                "required": false
+            }
+        },
+        {
+            "type": "ParameterDefinition",
+            "value": {
+                "name": "theme",
+                "note": null,
+                "issue": null,
+                "warning": null,
+                "description": "The colour theme for a Microsoft 365 group. Possible values are `Blue`, `Green`, `Orange`, `Pink`, `Purple`, `Red` or `Teal`. By default, no theme is set.",
+                "required": false
+            }
+        },
+        {
+            "type": "ParameterDefinition",
+            "value": {
+                "name": "types",
+                "note": "-> **Supported Group Types** At present, only security groups and Microsoft 365 groups can be created or managed with this resource. Distribution groups and mail-enabled security groups are not supported. Microsoft 365 groups can be security-enabled.",
+                "issue": null,
+                "warning": null,
+                "description": "A set of group types to configure for the group. Supported values are `DynamicMembership`, which denotes a group with dynamic membership, and `Unified`, which specifies a Microsoft 365 group. Required when `mail_enabled` is true. Changing this forces a new resource to be created.",
+                "required": false
+            }
+        },
+        {
+            "type": "ParameterDefinition",
+            "value": {
+                "name": "visibility",
+                "note": "-> **Group Name Uniqueness** Group names are not unique within Azure Active Directory. Use the `prevent_duplicate_names` argument to check for existing groups if you want to avoid name collisions.",
+                "issue": null,
+                "warning": null,
+                "description": "The group join policy and group content visibility. Possible values are `Private`, `Public`, or `Hiddenmembership`. Only Microsoft 365 groups can have `Hiddenmembership` visibility and this value must be set when the group is created. By default, security groups will receive `Private` visibility and Microsoft 365 groups will receive `Public` visibility.",
+                "required": false
+            }
+        },
+        {
+            "type": "ParameterDefinition",
+            "value": {
+                "name": "writeback_enabled",
+                "note": null,
+                "issue": null,
+                "warning": null,
+                "description": "Whether the group will be written back to the configured on",
+                "required": false
+            }
+        },
+        {
+            "type": "ParameterDefinition",
+            "value": {
+                "name": "enabled",
+                "note": null,
+                "issue": null,
+                "warning": null,
+                "description": "Whether rule processing is \"On\" (true) or \"Paused\" (false).",
+                "required": true
+            }
+        },
+        {
+            "type": "ParameterDefinition",
+            "value": {
+                "name": "rule",
+                "note": null,
+                "issue": "~> **Dynamic Group Memberships** Remember to include `DynamicMembership` in the set of `types` for the group when configuring a dynamic membership rule. Dynamic membership is a premium feature which requires an Azure Active Directory P1 or P2 license.",
+                "warning": null,
+                "description": "The rule that determines membership of this group. For more information, see official documentation on [membership rules syntax](https",
+                "required": true
+            }
+        }
+    ]
+}

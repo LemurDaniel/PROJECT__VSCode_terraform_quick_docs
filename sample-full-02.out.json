@@ -1,0 +1,30 @@
+{
+    "category": "data-sources",
+    "subcategory": "App Service (Web Apps)",
+    "slug": "function_app",
+    "title": "function_app",
+    "definitions": [
+        {
+            "type": "ParameterDefinition",
+            "value": {
+                "name": "name",
+                "note": null,
+                "issue": null,
+                "warning": null,
+                "description": "The name of the Function App resource.",
+                "required": false
+            }
+        },
+        {
+            "type": "ParameterDefinition",
+            "value": {
+                "name": "resource_group_name",
+                "note": null,
+                "issue": null,
+                "warning": null,
+                "description": "The name of the Resource Group where the Function App exists.",
+                "required": false
+            }
+        }
+    ]
+}
