@@ -1,0 +1,150 @@
+{
+    "filename": "",
+    "definitions": [
+        {
+            "type": "ResourceDefinition",
+            "value": {
+                "name": "schedule_request_start_date",
+                "identifier": "time_rotating",
+                "range": {
+                    "linestart": 26,
+                    "lineend": 28
+                },
+                "block": []
+            }
+        },
+        {
+            "type": "ResourceDefinition",
+            "value": {
+                "name": "pim_assignment_ad_group_base",
+                "identifier": "azuread_group",
+                "range": {
+                    "linestart": 88,
+                    "lineend": 104
+                },
+                "block": [
+                    {
+                        "type": "DynamicDefinition",
+                        "value": {
+                            "name": null,
+                            "identifier": "testing_testing",
+                            "range": {
+                                "linestart": 96,
+                                "lineend": 102
+                            },
+                            "block": []
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "type": "ResourceDefinition",
+            "value": {
+                "name": "pim_assignment_ad_group_ignore_lifecycle",
+                "identifier": "azuread_group",
+                "range": {
+                    "linestart": 108,
+                    "lineend": 123
+                },
+                "block": []
+            }
+        },
+        {
+            "type": "ResourceDefinition",
+            "value": {
+                "name": "pim_assignment_ad_group_ignore_lifecycle",
+                "identifier": "azuread_group_member",
+                "range": {
+                    "linestart": 125,
+                    "lineend": 130
+                },
+                "block": []
+            }
+        },
+        {
+            "type": "ResourceDefinition",
+            "value": {
+                "name": "catalog_association",
+                "identifier": "azuread_access_package_resource_catalog_association",
+                "range": {
+                    "linestart": 135,
+                    "lineend": 141
+                },
+                "block": []
+            }
+        },
+        {
+            "type": "ResourceDefinition",
+            "value": {
+                "name": "access_package_association",
+                "identifier": "azuread_access_package_resource_package_association",
+                "range": {
+                    "linestart": 143,
+                    "lineend": 148
+                },
+                "block": []
+            }
+        },
+        {
+            "type": "DataSourceDefinition",
+            "value": {
+                "name": "assignment_group_members",
+                "identifier": "azuread_user",
+                "range": {
+                    "linestart": 151,
+                    "lineend": 159
+                },
+                "block": []
+            }
+        },
+        {
+            "type": "ResourceDefinition",
+            "value": {
+                "name": "assignment_group_members_upns",
+                "identifier": "azuread_group_member",
+                "range": {
+                    "linestart": 161,
+                    "lineend": 166
+                },
+                "block": []
+            }
+        },
+        {
+            "type": "DataSourceDefinition",
+            "value": {
+                "name": "assignment_group_members",
+                "identifier": "azuread_group",
+                "range": {
+                    "linestart": 169,
+                    "lineend": 176
+                },
+                "block": []
+            }
+        },
+        {
+            "type": "ResourceDefinition",
+            "value": {
+                "name": "assignment_group_members_groups",
+                "identifier": "azuread_group_member",
+                "range": {
+                    "linestart": 177,
+                    "lineend": 182
+                },
+                "block": []
+            }
+        },
+        {
+            "type": "ResourceDefinition",
+            "value": {
+                "name": "assignment_group_members_object_ids",
+                "identifier": "azuread_group_member",
+                "range": {
+                    "linestart": 184,
+                    "lineend": 193
+                },
+                "block": []
+            }
+        }
+    ]
+}

@@ -1,0 +1,34 @@
+{
+    "filename": "",
+    "definitions": [
+        {
+            "type": "ResourceDefinition",
+            "value": {
+                "name": "pim_assignment_ad_group_base",
+                "identifier": "azuread_group",
+                "range": {
+                    "linestart": 6,
+                    "lineend": 26
+                },
+                "block": [
+                    [],
+                    {
+                        "type": "DynamicDefinition",
+                        "value": {
+                            "name": null,
+                            "identifier": "testing_testing",
+                            "range": {
+                                "linestart": 18,
+                                "lineend": 24
+                            },
+                            "block": [
+                                [],
+                                []
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}

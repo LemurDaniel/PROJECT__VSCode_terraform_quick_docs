@@ -95,10 +95,6 @@ class DocsAnalyzer {
 
         const definitions = []
         while (null != this.#tokenizer.current && this.#tokenizer.current.type != stopLookahead) {
-            console.log(this.#tokenizer.current.type)
-
-            if (this.#tokenizer.current.type == 'NOTE') console.log(this.#tokenizer.current.value)
-
             const definition = this.definition()
             if (null != definition) {
                 definitions.push(definition)
