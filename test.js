@@ -30,33 +30,63 @@ class DocsAnalyzer {
             subcategory: docsAttributes.subcategory,
             slug: docsAttributes.slug,
             title: docsAttributes.title,
-            definitions: this.cleanup(this.definitionList())
+            definitions: this.#cleanup(this.definitionList())
         }
     }
 
-    cleanup(definitions) {
+    #cleanup(definitions) {
 
+        const parameterBlocks = []
+        const parameterDefinitions = []
         const references = {}
-        const cleaned = []
+
+        this.#sortTypes(definitions, parameterBlocks, parameterDefinitions, references)
+
+        const unmatched = []
+        for (const block of parameterBlocks) {
+            const fullReferencePath = block.value.referencePath.join('.')
+            if (fullReferencePath in references)
+                references[fullReferencePath].block = block
+            //else if (block.value.referencePath[0] in references)
+            //    references[block.value.referencePath[0]].block = block
+            else
+                unmatched.push(block)
+        }
+
+        console.log('Unmatched Blocks: ')
+        unmatched.forEach(b => console.log(`    ${b.value.referencePath}`))
+
+        return parameterDefinitions
+    }
+
+    #sortTypes(definitions, parameterBlocks, parameterDefinitions, references, currentPath = []) {
 
         for (const entry of definitions) {
 
             if (entry.type == 'ParameterDefinition') {
-                cleaned.push(entry)
-                references[entry.value.name] = entry.value
+                parameterDefinitions.push(entry)
+
+                if (currentPath.length > 0) {
+                    const fullReferencePath = [...currentPath, entry.value.name].join('.')
+                    references[fullReferencePath] = entry.value
+                }
+
+                if (!(entry.value.name in references))
+                    references[entry.value.name] = entry.value
             }
 
             else if (entry.type == 'ParameterBlock') {
-                if (entry.value.referencePath[0] in references)
-                    references[entry.value.referencePath[0]].value = entry
-
-                else
-                    console.log(`Unmatched => ${entry.value.referencePath}`)
+                parameterBlocks.push(entry)
+                this.#sortTypes(
+                    entry.value.parameters,
+                    parameterBlocks,
+                    parameterDefinitions,
+                    references,
+                    currentPath.concat(entry.value.referencePath)
+                )
             }
         }
 
-
-        return cleaned
     }
 
     definitionList(stopLookahead = null) {
@@ -90,7 +120,7 @@ class DocsAnalyzer {
 
                 return new Node('ParameterDefinition', {
                     name: identifier,
-                    description: description.substring(12),
+                    description: description.replace(/\(required\)|\(optional\)/i, '').trim(),
                     required: description.toLowerCase().includes('(required)')
                 })
             }
