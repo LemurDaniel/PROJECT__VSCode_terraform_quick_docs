@@ -8,7 +8,7 @@
             "type": "ParameterDefinition",
             "value": {
                 "name": "project_id",
-                "description": "The project ID or project name.",
+                "description": "he project ID or project name.",
                 "required": true
             }
         },
@@ -16,7 +16,7 @@
             "type": "ParameterDefinition",
             "value": {
                 "name": "name",
-                "description": "The name of the build definition.",
+                "description": "he name of the build definition.",
                 "required": false
             }
         },
@@ -24,7 +24,7 @@
             "type": "ParameterDefinition",
             "value": {
                 "name": "path",
-                "description": "The folder path of the build definition.",
+                "description": "he folder path of the build definition.",
                 "required": false
             }
         },
@@ -32,7 +32,7 @@
             "type": "ParameterDefinition",
             "value": {
                 "name": "agent_pool_name",
-                "description": "The agent pool that should execute the build. Defaults to `Azure Pipelines`.",
+                "description": "he agent pool that should execute the build. Defaults to `Azure Pipelines`.",
                 "required": false
             }
         },
@@ -40,7 +40,7 @@
             "type": "ParameterDefinition",
             "value": {
                 "name": "repository",
-                "description": "A `repository` block as documented below.",
+                "description": " `repository` block as documented below.",
                 "required": true
             }
         },
@@ -48,7 +48,7 @@
             "type": "ParameterDefinition",
             "value": {
                 "name": "ci_trigger",
-                "description": "Continuous Integration trigger.",
+                "description": "ontinuous Integration trigger.",
                 "required": false
             }
         },
@@ -56,7 +56,7 @@
             "type": "ParameterDefinition",
             "value": {
                 "name": "pull_request_trigger",
-                "description": "Pull Request Integration Integration trigger.",
+                "description": "ull Request Integration Integration trigger.",
                 "required": false
             }
         },
@@ -64,7 +64,7 @@
             "type": "ParameterDefinition",
             "value": {
                 "name": "variable_groups",
-                "description": "A list of variable group IDs (integers) to link to the build definition.",
+                "description": " list of variable group IDs (integers) to link to the build definition.",
                 "required": false
             }
         },
@@ -72,288 +72,451 @@
             "type": "ParameterDefinition",
             "value": {
                 "name": "variable",
-                "description": "A list of `variable` blocks, as documented below.",
+                "description": " list of `variable` blocks, as documented below.",
                 "required": false
             }
         },
         {
-            "type": "ParameterDefinition",
+            "type": "ParameterBlock",
             "value": {
-                "name": "name",
-                "description": "The name of the variable.",
-                "required": true
+                "notes": null,
+                "references": [
+                    "variable"
+                ],
+                "parameters": [
+                    {
+                        "type": "ParameterDefinition",
+                        "value": {
+                            "name": "name",
+                            "description": "he name of the variable.",
+                            "required": true
+                        }
+                    },
+                    {
+                        "type": "ParameterDefinition",
+                        "value": {
+                            "name": "value",
+                            "description": "he value of the variable.",
+                            "required": false
+                        }
+                    },
+                    {
+                        "type": "ParameterDefinition",
+                        "value": {
+                            "name": "secret_value",
+                            "description": "he secret value of the variable. Used when `is_secret` set to `true`.",
+                            "required": false
+                        }
+                    },
+                    {
+                        "type": "ParameterDefinition",
+                        "value": {
+                            "name": "is_secret",
+                            "description": "rue if the variable is a secret. Defaults to `false`.",
+                            "required": false
+                        }
+                    },
+                    {
+                        "type": "ParameterDefinition",
+                        "value": {
+                            "name": "allow_override",
+                            "description": "rue if the variable can be overridden. Defaults to `true`.",
+                            "required": false
+                        }
+                    }
+                ]
             }
         },
         {
-            "type": "ParameterDefinition",
+            "type": "ParameterBlock",
             "value": {
-                "name": "value",
-                "description": "The value of the variable.",
-                "required": false
+                "notes": null,
+                "references": [
+                    "repository"
+                ],
+                "parameters": [
+                    {
+                        "type": "ParameterDefinition",
+                        "value": {
+                            "name": "branch_name",
+                            "description": "he branch name for which builds are triggered. Defaults to `master`.",
+                            "required": false
+                        }
+                    },
+                    {
+                        "type": "ParameterDefinition",
+                        "value": {
+                            "name": "repo_id",
+                            "description": "he id of the repository. For `TfsGit` repos, this is simply the ID of the repository. For `Github` repos, this will take the form of `<GitHub Org>/<Repo Name>`. For `Bitbucket` repos, this will take the form of `<Workspace ID>/<Repo Name>`.",
+                            "required": true
+                        }
+                    },
+                    {
+                        "type": "ParameterDefinition",
+                        "value": {
+                            "name": "repo_type",
+                            "description": "he repository type. Valid values",
+                            "required": false
+                        }
+                    },
+                    {
+                        "type": "ParameterDefinition",
+                        "value": {
+                            "name": "service_connection_id",
+                            "description": "he service connection ID. Used if the `repo_type` is `GitHub` or `GitHubEnterprise`.",
+                            "required": false
+                        }
+                    },
+                    {
+                        "type": "ParameterDefinition",
+                        "value": {
+                            "name": "yml_path",
+                            "description": "he path of the Yaml file describing the build definition.",
+                            "required": true
+                        }
+                    },
+                    {
+                        "type": "ParameterDefinition",
+                        "value": {
+                            "name": "github_enterprise_url",
+                            "description": "he Github Enterprise URL. Used if `repo_type` is `GithubEnterprise`.",
+                            "required": false
+                        }
+                    },
+                    {
+                        "type": "ParameterDefinition",
+                        "value": {
+                            "name": "report_build_status",
+                            "description": "eport build status. Default is true.",
+                            "required": false
+                        }
+                    }
+                ]
             }
         },
         {
-            "type": "ParameterDefinition",
+            "type": "ParameterBlock",
             "value": {
-                "name": "secret_value",
-                "description": "The secret value of the variable. Used when `is_secret` set to `true`.",
-                "required": false
+                "notes": null,
+                "references": [
+                    "ci_trigger"
+                ],
+                "parameters": [
+                    {
+                        "type": "ParameterDefinition",
+                        "value": {
+                            "name": "use_yaml",
+                            "description": "se the azure",
+                            "required": false
+                        }
+                    },
+                    {
+                        "type": "ParameterDefinition",
+                        "value": {
+                            "name": "override",
+                            "description": "verride the azure",
+                            "required": false
+                        }
+                    }
+                ]
             }
         },
         {
-            "type": "ParameterDefinition",
+            "type": "ParameterBlock",
             "value": {
-                "name": "is_secret",
-                "description": "True if the variable is a secret. Defaults to `false`.",
-                "required": false
+                "notes": null,
+                "references": [
+                    "ci_trigger",
+                    "override"
+                ],
+                "parameters": [
+                    {
+                        "type": "ParameterDefinition",
+                        "value": {
+                            "name": "batch",
+                            "description": "f you set batch to true, when a pipeline is running, the system waits until the run is completed, then starts another run with all changes that have not yet been built. Defaults to `true`.",
+                            "required": false
+                        }
+                    },
+                    {
+                        "type": "ParameterDefinition",
+                        "value": {
+                            "name": "branch_filter",
+                            "description": "he branches to include and exclude from the trigger.",
+                            "required": false
+                        }
+                    },
+                    {
+                        "type": "ParameterDefinition",
+                        "value": {
+                            "name": "path_filter",
+                            "description": "pecify file paths to include or exclude. Note that the wildcard syntax is different between branches/tags and file paths.",
+                            "required": false
+                        }
+                    },
+                    {
+                        "type": "ParameterDefinition",
+                        "value": {
+                            "name": "max_concurrent_builds_per_branch",
+                            "description": "he number of max builds per branch. Defaults to `1`.",
+                            "required": false
+                        }
+                    },
+                    {
+                        "type": "ParameterDefinition",
+                        "value": {
+                            "name": "polling_interval",
+                            "description": "ow often the external repository is polled. Defaults to `0`.",
+                            "required": false
+                        }
+                    },
+                    {
+                        "type": "ParameterDefinition",
+                        "value": {
+                            "name": "polling_job_id",
+                            "description": "his is the ID of the polling job that polls the external repository. Once the build definition is saved/updated, this value is set.",
+                            "required": false
+                        }
+                    }
+                ]
             }
         },
         {
-            "type": "ParameterDefinition",
+            "type": "ParameterBlock",
             "value": {
-                "name": "allow_override",
-                "description": "True if the variable can be overridden. Defaults to `true`.",
-                "required": false
+                "notes": null,
+                "references": [
+                    "pull_request_trigger"
+                ],
+                "parameters": [
+                    {
+                        "type": "ParameterDefinition",
+                        "value": {
+                            "name": "use_yaml",
+                            "description": "se the azure",
+                            "required": false
+                        }
+                    },
+                    {
+                        "type": "ParameterDefinition",
+                        "value": {
+                            "name": "initial_branch",
+                            "description": "hen use_yaml is true set this to the name of the branch that the azure",
+                            "required": false
+                        }
+                    },
+                    {
+                        "type": "ParameterDefinition",
+                        "value": {
+                            "name": "forks",
+                            "description": "et permissions for Forked repositories.",
+                            "required": true
+                        }
+                    },
+                    {
+                        "type": "ParameterDefinition",
+                        "value": {
+                            "name": "override",
+                            "description": "verride the azure",
+                            "required": false
+                        }
+                    }
+                ]
             }
         },
         {
-            "type": "ParameterDefinition",
+            "type": "ParameterBlock",
             "value": {
-                "name": "branch_name",
-                "description": "The branch name for which builds are triggered. Defaults to `master`.",
-                "required": false
+                "notes": null,
+                "references": [
+                    "forks"
+                ],
+                "parameters": [
+                    {
+                        "type": "ParameterDefinition",
+                        "value": {
+                            "name": "enabled",
+                            "description": "uild pull requests form forms of this repository.",
+                            "required": true
+                        }
+                    },
+                    {
+                        "type": "ParameterDefinition",
+                        "value": {
+                            "name": "share_secrets",
+                            "description": "ake secrets available to builds of forks.",
+                            "required": true
+                        }
+                    }
+                ]
             }
         },
         {
-            "type": "ParameterDefinition",
+            "type": "ParameterBlock",
             "value": {
-                "name": "repo_id",
-                "description": "The id of the repository. For `TfsGit` repos, this is simply the ID of the repository. For `Github` repos, this will take the form of `<GitHub Org>/<Repo Name>`. For `Bitbucket` repos, this will take the form of `<Workspace ID>/<Repo Name>`.",
-                "required": true
+                "notes": null,
+                "references": [
+                    "pull_request_trigger",
+                    "override"
+                ],
+                "parameters": [
+                    {
+                        "type": "ParameterDefinition",
+                        "value": {
+                            "name": "auto_cancel",
+                            "description": " Defaults to `true`.",
+                            "required": false
+                        }
+                    },
+                    {
+                        "type": "ParameterDefinition",
+                        "value": {
+                            "name": "branch_filter",
+                            "description": "he branches to include and exclude from the trigger.",
+                            "required": false
+                        }
+                    },
+                    {
+                        "type": "ParameterDefinition",
+                        "value": {
+                            "name": "path_filter",
+                            "description": "pecify file paths to include or exclude. Note that the wildcard syntax is different between branches/tags and file paths.",
+                            "required": false
+                        }
+                    }
+                ]
             }
         },
         {
-            "type": "ParameterDefinition",
+            "type": "ParameterBlock",
             "value": {
-                "name": "repo_type",
-                "description": "The repository type. Valid values: `GitHub` or `TfsGit` or `Bitbucket` or `GitHub Enterprise`. Defaults to `GitHub`. If `repo_type` is `GitHubEnterprise`, must use existing project and GitHub Enterprise service connection.",
-                "required": false
+                "notes": null,
+                "references": [
+                    "branch_filter"
+                ],
+                "parameters": [
+                    {
+                        "type": "ParameterDefinition",
+                        "value": {
+                            "name": "include",
+                            "description": "ist of branch patterns to include.",
+                            "required": false
+                        }
+                    },
+                    {
+                        "type": "ParameterDefinition",
+                        "value": {
+                            "name": "exclude",
+                            "description": "ist of branch patterns to exclude.",
+                            "required": false
+                        }
+                    }
+                ]
             }
         },
         {
-            "type": "ParameterDefinition",
+            "type": "ParameterBlock",
             "value": {
-                "name": "service_connection_id",
-                "description": "The service connection ID. Used if the `repo_type` is `GitHub` or `GitHubEnterprise`.",
-                "required": false
+                "notes": null,
+                "references": [
+                    "path_filter"
+                ],
+                "parameters": [
+                    {
+                        "type": "ParameterDefinition",
+                        "value": {
+                            "name": "include",
+                            "description": "ist of path patterns to include.",
+                            "required": false
+                        }
+                    },
+                    {
+                        "type": "ParameterDefinition",
+                        "value": {
+                            "name": "exclude",
+                            "description": "ist of path patterns to exclude.",
+                            "required": false
+                        }
+                    }
+                ]
             }
         },
         {
-            "type": "ParameterDefinition",
+            "type": "ParameterBlock",
             "value": {
-                "name": "yml_path",
-                "description": "The path of the Yaml file describing the build definition.",
-                "required": true
+                "notes": "-> **Note:** Schedule pipeline will not use any schedules defined in the YAML file. To use schedules from the YAML file, delete all scheduled triggers.",
+                "references": [
+                    "schedules"
+                ],
+                "parameters": [
+                    {
+                        "type": "ParameterDefinition",
+                        "value": {
+                            "name": "days_to_build",
+                            "description": "hen to build. Valid values",
+                            "required": true
+                        }
+                    },
+                    {
+                        "type": "ParameterDefinition",
+                        "value": {
+                            "name": "schedule_only_with_changes",
+                            "description": "chedule builds if the source or pipeline has changed. Defaults to `true`.",
+                            "required": false
+                        }
+                    },
+                    {
+                        "type": "ParameterDefinition",
+                        "value": {
+                            "name": "start_hours",
+                            "description": "uild start hour. Defaults to `0`. Valid values",
+                            "required": false
+                        }
+                    },
+                    {
+                        "type": "ParameterDefinition",
+                        "value": {
+                            "name": "start_minutes",
+                            "description": "uild start minute. Defaults to `0`. Valid values",
+                            "required": false
+                        }
+                    },
+                    {
+                        "type": "ParameterDefinition",
+                        "value": {
+                            "name": "time_zone",
+                            "description": "uild time zone. Defaults to `(UTC) Coordinated Universal Time`. Valid values",
+                            "required": false
+                        }
+                    }
+                ]
             }
         },
         {
-            "type": "ParameterDefinition",
+            "type": "ParameterBlock",
             "value": {
-                "name": "github_enterprise_url",
-                "description": "The Github Enterprise URL. Used if `repo_type` is `GithubEnterprise`.",
-                "required": false
-            }
-        },
-        {
-            "type": "ParameterDefinition",
-            "value": {
-                "name": "report_build_status",
-                "description": "Report build status. Default is true.",
-                "required": false
-            }
-        },
-        {
-            "type": "ParameterDefinition",
-            "value": {
-                "name": "use_yaml",
-                "description": "Use the azure",
-                "required": false
-            }
-        },
-        {
-            "type": "ParameterDefinition",
-            "value": {
-                "name": "override",
-                "description": "Override the azure",
-                "required": false
-            }
-        },
-        {
-            "type": "ParameterDefinition",
-            "value": {
-                "name": "batch",
-                "description": "If you set batch to true, when a pipeline is running, the system waits until the run is completed, then starts another run with all changes that have not yet been built. Defaults to `true`.",
-                "required": false
-            }
-        },
-        {
-            "type": "ParameterDefinition",
-            "value": {
-                "name": "branch_filter",
-                "description": "The branches to include and exclude from the trigger.",
-                "required": false
-            }
-        },
-        {
-            "type": "ParameterDefinition",
-            "value": {
-                "name": "path_filter",
-                "description": "Specify file paths to include or exclude. Note that the wildcard syntax is different between branches/tags and file paths.",
-                "required": false
-            }
-        },
-        {
-            "type": "ParameterDefinition",
-            "value": {
-                "name": "max_concurrent_builds_per_branch",
-                "description": "The number of max builds per branch. Defaults to `1`.",
-                "required": false
-            }
-        },
-        {
-            "type": "ParameterDefinition",
-            "value": {
-                "name": "polling_interval",
-                "description": "How often the external repository is polled. Defaults to `0`.",
-                "required": false
-            }
-        },
-        {
-            "type": "ParameterDefinition",
-            "value": {
-                "name": "polling_job_id",
-                "description": "This is the ID of the polling job that polls the external repository. Once the build definition is saved/updated, this value is set.",
-                "required": false
-            }
-        },
-        {
-            "type": "ParameterDefinition",
-            "value": {
-                "name": "use_yaml",
-                "description": "Use the azure",
-                "required": false
-            }
-        },
-        {
-            "type": "ParameterDefinition",
-            "value": {
-                "name": "initial_branch",
-                "description": "When use_yaml is true set this to the name of the branch that the azure",
-                "required": false
-            }
-        },
-        {
-            "type": "ParameterDefinition",
-            "value": {
-                "name": "forks",
-                "description": "Set permissions for Forked repositories.",
-                "required": true
-            }
-        },
-        {
-            "type": "ParameterDefinition",
-            "value": {
-                "name": "override",
-                "description": "Override the azure",
-                "required": false
-            }
-        },
-        {
-            "type": "ParameterDefinition",
-            "value": {
-                "name": "enabled",
-                "description": "Build pull requests form forms of this repository.",
-                "required": true
-            }
-        },
-        {
-            "type": "ParameterDefinition",
-            "value": {
-                "name": "share_secrets",
-                "description": "Make secrets available to builds of forks.",
-                "required": true
-            }
-        },
-        {
-            "type": "ParameterDefinition",
-            "value": {
-                "name": "auto_cancel",
-                "description": ". Defaults to `true`.",
-                "required": false
-            }
-        },
-        {
-            "type": "ParameterDefinition",
-            "value": {
-                "name": "branch_filter",
-                "description": "The branches to include and exclude from the trigger.",
-                "required": false
-            }
-        },
-        {
-            "type": "ParameterDefinition",
-            "value": {
-                "name": "path_filter",
-                "description": "Specify file paths to include or exclude. Note that the wildcard syntax is different between branches/tags and file paths.",
-                "required": false
-            }
-        },
-        {
-            "type": "ParameterDefinition",
-            "value": {
-                "name": "include",
-                "description": "List of branch patterns to include.",
-                "required": false
-            }
-        },
-        {
-            "type": "ParameterDefinition",
-            "value": {
-                "name": "exclude",
-                "description": "List of branch patterns to exclude.",
-                "required": false
-            }
-        },
-        {
-            "type": "ParameterDefinition",
-            "value": {
-                "name": "include",
-                "description": "List of path patterns to include.",
-                "required": false
-            }
-        },
-        {
-            "type": "ParameterDefinition",
-            "value": {
-                "name": "exclude",
-                "description": "List of path patterns to exclude.",
-                "required": false
-            }
-        },
-        {
-            "type": "ParameterDefinition",
-            "value": {
-                "name": "include",
-                "description": "List of branch patterns to include.",
-                "required": false
-            }
-        },
-        {
-            "type": "ParameterDefinition",
-            "value": {
-                "name": "exclude",
-                "description": "List of branch patterns to exclude.",
-                "required": false
+                "notes": null,
+                "references": [
+                    "branch_filter"
+                ],
+                "parameters": [
+                    {
+                        "type": "ParameterDefinition",
+                        "value": {
+                            "name": "include",
+                            "description": "ist of branch patterns to include.",
+                            "required": false
+                        }
+                    },
+                    {
+                        "type": "ParameterDefinition",
+                        "value": {
+                            "name": "exclude",
+                            "description": "ist of branch patterns to exclude.",
+                            "required": false
+                        }
+                    }
+                ]
             }
         }
     ]

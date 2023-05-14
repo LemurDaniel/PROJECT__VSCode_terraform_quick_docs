@@ -8,9 +8,10 @@ class DocsAnalyzer {
     constructor(content) {
         this.#tokenizer = new Tokenizer([
             ['WHITESPACE', /^\s+/, true],
+            ['NOTES', /^->\s*\*+Note:\*+[^\n\r]+/, false],
+            ['PARAMETER', /^\s*`[A-Za-z_]+`\s*[-:]\s*[^\r\n|\n]+/, false],
+            ['BLOCK', /^[`A-Za-z_\s]+ block supports the following:/, false],
             ['LIST_SEGMENT', /^[-\*]/, false],
-            ['PARAMETER', /^\s*`[A-Za-z_]+`\s*-\s*[^\r\n|\n]+/, false],
-            ['BLOCK', /^`[A-Za-z_]+` block supports the following:/, false],
             ['IGNORE', /^[^\n\r]+/, true]
         ])
     }
@@ -24,37 +25,43 @@ class DocsAnalyzer {
             ).split('\\n').join('\n')
 
         this.#tokenizer.content = argumentReference
-        const documentation = {
+        return {
             category: docsAttributes.category,
             subcategory: docsAttributes.subcategory,
             slug: docsAttributes.slug,
             title: docsAttributes.title,
-            definitions: []
+            definitions: this.definitionList()
         }
+    }
 
-        console.log(argumentReference)
-        while (null != this.#tokenizer.current) {
+    definitionList(stopLookahead = null) {
+
+        const definitions = []
+        while (null != this.#tokenizer.current && this.#tokenizer.current.type != stopLookahead) {
+            console.log(this.#tokenizer.current.type)
             const definition = this.definition()
             if (null != definition) {
-                documentation.definitions.push(definition)
+                definitions.push(definition)
             }
         }
 
-        return documentation
+        return definitions
     }
 
     definition() {
 
-        console.log(this.#tokenizer.current.type)
-        if (this.#tokenizer.current.type == 'LIST_SEGMENT')
-            this.#eat('LIST_SEGMENT')
-
         switch (this.#tokenizer.current.type) {
+
+            case 'LIST_SEGMENT': {
+                this.#eat('LIST_SEGMENT')
+                if (this.#tokenizer.current.type == 'BLOCK') return null
+                else return this.definition()
+            }
 
             case 'PARAMETER': {
                 const current = this.#eat('PARAMETER').value
                 const identifier = current.match(/`[A-Za-z0-9_]+`/)[0].replaceAll('`', '')
-                const description = current.split('-')[1]
+                const description = current.split(/[-:]/)[1].trim()
 
                 return new Node('ParameterDefinition', {
                     name: identifier,
@@ -64,8 +71,13 @@ class DocsAnalyzer {
             }
 
             case 'BLOCK': {
-                this.#eat('BLOCK')
-                return null
+                const current = this.#eat('BLOCK').value
+                const notes = this.#tokenizer.current.type == 'NOTES' ? this.#eat('NOTES').value : null
+                return new Node('ParameterBlock', {
+                    notes: notes,
+                    references: current.match(/`[A-Za-z0-9_]+`/g).map(v => v.replaceAll('`', '')),
+                    parameters: this.definitionList('BLOCK')
+                })
             }
         }
 
