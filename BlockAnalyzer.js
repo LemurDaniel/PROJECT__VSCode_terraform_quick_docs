@@ -16,6 +16,8 @@ class BlockAnalyzer {
             ['RESOURCE_BLOCK', /^resource\s*"[a-z0-9_]+"\s*"[a-z0-9_]+"/i, false],
             ['DATA_BLOCK', /^data\s*"[a-z0-9_]+"\s*"[a-z0-9_]+"/i, false],
             ['DYNAMIC_BLOCK', /^dynamic\s*"[a-z0-9_]+"/i, false],
+            ['IDENTIFIER', /^[a-z0-9_]+/i, false],
+            ['ASSIGNMENT', /^=/, false],
             ['IGNORE', /^[\S]/, true]
         ])
     }
@@ -77,9 +79,27 @@ class BlockAnalyzer {
 
             case 'BRACKET_START': {
                 this.#eat('BRACKET_START')
-                const definitions = this.definitionList('BRACKET_END')
+                this.definitionList('BRACKET_END')
                 this.#eat('BRACKET_END')
-                return definitions.length > 0 ? definitions : null
+                return null
+            }
+
+            case 'IDENTIFIER': {
+                const name = this.#eat('IDENTIFIER').value
+                if (this.#tokenizer.current.type == 'ASSIGNMENT') {
+                    this.#eat('ASSIGNMENT')
+                    return new Node('BlockAttribute', name)
+                }
+                else if (name == 'content' && this.#tokenizer.current.type == 'BRACKET_START') {
+                    return this.blockDefinition('contentDefinition', 'content')
+                }
+                else
+                    return null
+            }
+
+            case 'ASSIGNMENT': {
+                this.#eat('ASSIGNMENT')
+                return null
             }
         }
 
@@ -88,7 +108,6 @@ class BlockAnalyzer {
 
     blockDefinition(name, resourceIdentifier, resourceName) {
 
-        this.#eat('BRACKET_START')
         const node = new Node(name, {
             name: resourceName,
             identifier: resourceIdentifier,
@@ -96,7 +115,20 @@ class BlockAnalyzer {
                 linestart: this.#currentLine,
                 lineend: null
             },
-            block: this.definitionList('BRACKET_END')
+            attributes: {},
+            dynamics: []
+        })
+
+        this.#eat('BRACKET_START')
+        this.definitionList('BRACKET_END').forEach(member => {
+            if (member.type == 'BlockAttribute')
+                node.value.attributes[member.value] = member.type
+            else if (member.type == 'DynamicDefinition')
+                node.value.dynamics.push(member)
+            else if(member.type == 'contentDefinition')
+                node.value.attributes.content = member.value
+            else
+                throw Error(member.type)
         })
         this.#eat('BRACKET_END')
 
@@ -123,10 +155,13 @@ class BlockAnalyzer {
 }
 
 
-const file = './test_configuration2.tf'
-const content = require('fs').readFileSync(file, 'utf-8')
-
+let file = './test_configuration.tf'
+let content = require('fs').readFileSync(file, 'utf-8')
 const analyzer = new BlockAnalyzer()
-const output = analyzer.analyze(content)
 
-require('fs').writeFileSync(file.replace('.tf', '.out.json'), JSON.stringify(output))
+require('fs').writeFileSync(file.replace('.tf', '.out.json'), JSON.stringify(analyzer.analyze(content)))
+
+file = './test_configuration2.tf'
+content = require('fs').readFileSync(file, 'utf-8')
+
+require('fs').writeFileSync(file.replace('.tf', '.out.json'), JSON.stringify(analyzer.analyze(content)))

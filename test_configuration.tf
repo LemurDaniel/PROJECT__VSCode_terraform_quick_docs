@@ -19,7 +19,8 @@ resource "azuread_group" "pim_assignment_ad_group_base" {
     for_each = {}
 
     content {
-
+      something   = null
+      blabla_test = null
     }
   }
 

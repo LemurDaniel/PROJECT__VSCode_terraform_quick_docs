@@ -8,10 +8,16 @@
                 "identifier": "azuread_group",
                 "range": {
                     "linestart": 6,
-                    "lineend": 26
+                    "lineend": 27
                 },
-                "block": [
-                    [],
+                "attributes": {
+                    "display_name": "BlockAttribute",
+                    "mail_enabled": "BlockAttribute",
+                    "security_enabled": "BlockAttribute",
+                    "random_thing_in_brackets": "BlockAttribute",
+                    "owners": "BlockAttribute"
+                },
+                "dynamics": [
                     {
                         "type": "DynamicDefinition",
                         "value": {
@@ -19,12 +25,24 @@
                             "identifier": "testing_testing",
                             "range": {
                                 "linestart": 18,
-                                "lineend": 24
+                                "lineend": 25
                             },
-                            "block": [
-                                [],
-                                []
-                            ]
+                            "attributes": {
+                                "for_each": "BlockAttribute",
+                                "content": {
+                                    "identifier": "content",
+                                    "range": {
+                                        "linestart": 21,
+                                        "lineend": 24
+                                    },
+                                    "attributes": {
+                                        "something": "BlockAttribute",
+                                        "blabla_test": "BlockAttribute"
+                                    },
+                                    "dynamics": []
+                                }
+                            },
+                            "dynamics": []
                         }
                     }
                 ]

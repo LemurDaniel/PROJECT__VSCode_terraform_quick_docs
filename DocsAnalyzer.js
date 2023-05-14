@@ -11,8 +11,8 @@ class DocsAnalyzer {
             ['NOTE', /^->[^\n\r]+/, false],
             ['WARNING', /^!>[^\n\r]+/, false],
             ['ISSUE', /^~>[^\n\r]+/, false],
-            ['PARAMETER', /^\s*`[A-Za-z_]+`\s*[-:]\s*[^\r\n|\n]+/, false],
-            ['BLOCK', /^[`A-Za-z_\s]+ block supports the following:/, false],
+            ['PARAMETER', /^\s*`[a-z_]+`\s*[-:]\s*[^\r\n|\n]+/i, false],
+            ['BLOCK', /^[`a-z_\s]+ block supports the following:/i, false],
             ['LIST_SEGMENT', /^[-\*]/, false],
             ['IGNORE', /^[^\n\r]+/, true]
         ])

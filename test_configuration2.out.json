@@ -10,7 +10,10 @@
                     "linestart": 26,
                     "lineend": 28
                 },
-                "block": []
+                "attributes": {
+                    "rotation_days": "BlockAttribute"
+                },
+                "dynamics": []
             }
         },
         {
@@ -20,9 +23,16 @@
                 "identifier": "azuread_group",
                 "range": {
                     "linestart": 88,
-                    "lineend": 104
+                    "lineend": 105
                 },
-                "block": [
+                "attributes": {
+                    "display_name": "BlockAttribute",
+                    "mail_enabled": "BlockAttribute",
+                    "security_enabled": "BlockAttribute",
+                    "description": "BlockAttribute",
+                    "owners": "BlockAttribute"
+                },
+                "dynamics": [
                     {
                         "type": "DynamicDefinition",
                         "value": {
@@ -30,9 +40,24 @@
                             "identifier": "testing_testing",
                             "range": {
                                 "linestart": 96,
-                                "lineend": 102
+                                "lineend": 103
                             },
-                            "block": []
+                            "attributes": {
+                                "for_each": "BlockAttribute",
+                                "content": {
+                                    "identifier": "content",
+                                    "range": {
+                                        "linestart": 99,
+                                        "lineend": 102
+                                    },
+                                    "attributes": {
+                                        "something": "BlockAttribute",
+                                        "blabla_test": "BlockAttribute"
+                                    },
+                                    "dynamics": []
+                                }
+                            },
+                            "dynamics": []
                         }
                     }
                 ]
@@ -44,10 +69,18 @@
                 "name": "pim_assignment_ad_group_ignore_lifecycle",
                 "identifier": "azuread_group",
                 "range": {
-                    "linestart": 108,
-                    "lineend": 123
+                    "linestart": 109,
+                    "lineend": 124
                 },
-                "block": []
+                "attributes": {
+                    "count": "BlockAttribute",
+                    "display_name": "BlockAttribute",
+                    "mail_enabled": "BlockAttribute",
+                    "security_enabled": "BlockAttribute",
+                    "description": "BlockAttribute",
+                    "owners": "BlockAttribute"
+                },
+                "dynamics": []
             }
         },
         {
@@ -56,10 +89,15 @@
                 "name": "pim_assignment_ad_group_ignore_lifecycle",
                 "identifier": "azuread_group_member",
                 "range": {
-                    "linestart": 125,
-                    "lineend": 130
+                    "linestart": 126,
+                    "lineend": 131
                 },
-                "block": []
+                "attributes": {
+                    "count": "BlockAttribute",
+                    "group_object_id": "BlockAttribute",
+                    "member_object_id": "BlockAttribute"
+                },
+                "dynamics": []
             }
         },
         {
@@ -68,10 +106,17 @@
                 "name": "catalog_association",
                 "identifier": "azuread_access_package_resource_catalog_association",
                 "range": {
-                    "linestart": 135,
-                    "lineend": 141
+                    "linestart": 136,
+                    "lineend": 142
                 },
-                "block": []
+                "attributes": {
+                    "count": "BlockAttribute",
+                    "acf_foundation_access_package_catalog": "BlockAttribute",
+                    "catalog_id": "BlockAttribute",
+                    "resource_origin_id": "BlockAttribute",
+                    "resource_origin_system": "BlockAttribute"
+                },
+                "dynamics": []
             }
         },
         {
@@ -80,10 +125,16 @@
                 "name": "access_package_association",
                 "identifier": "azuread_access_package_resource_package_association",
                 "range": {
-                    "linestart": 143,
-                    "lineend": 148
+                    "linestart": 144,
+                    "lineend": 149
                 },
-                "block": []
+                "attributes": {
+                    "for_each": "BlockAttribute",
+                    "acf_foundation_access_package_catalog": "BlockAttribute",
+                    "access_package_id": "BlockAttribute",
+                    "catalog_resource_association_id": "BlockAttribute"
+                },
+                "dynamics": []
             }
         },
         {
@@ -92,10 +143,16 @@
                 "name": "assignment_group_members",
                 "identifier": "azuread_user",
                 "range": {
-                    "linestart": 151,
-                    "lineend": 159
+                    "linestart": 152,
+                    "lineend": 160
                 },
-                "block": []
+                "attributes": {
+                    "for_each": "BlockAttribute",
+                    "member": "BlockAttribute",
+                    "mail_nickname": "BlockAttribute",
+                    "user_principal_name": "BlockAttribute"
+                },
+                "dynamics": []
             }
         },
         {
@@ -104,10 +161,15 @@
                 "name": "assignment_group_members_upns",
                 "identifier": "azuread_group_member",
                 "range": {
-                    "linestart": 161,
-                    "lineend": 166
+                    "linestart": 162,
+                    "lineend": 167
                 },
-                "block": []
+                "attributes": {
+                    "for_each": "BlockAttribute",
+                    "group_object_id": "BlockAttribute",
+                    "member_object_id": "BlockAttribute"
+                },
+                "dynamics": []
             }
         },
         {
@@ -116,10 +178,15 @@
                 "name": "assignment_group_members",
                 "identifier": "azuread_group",
                 "range": {
-                    "linestart": 169,
-                    "lineend": 176
+                    "linestart": 170,
+                    "lineend": 177
                 },
-                "block": []
+                "attributes": {
+                    "for_each": "BlockAttribute",
+                    "member": "BlockAttribute",
+                    "display_name": "BlockAttribute"
+                },
+                "dynamics": []
             }
         },
         {
@@ -128,10 +195,15 @@
                 "name": "assignment_group_members_groups",
                 "identifier": "azuread_group_member",
                 "range": {
-                    "linestart": 177,
-                    "lineend": 182
+                    "linestart": 178,
+                    "lineend": 183
                 },
-                "block": []
+                "attributes": {
+                    "for_each": "BlockAttribute",
+                    "group_object_id": "BlockAttribute",
+                    "member_object_id": "BlockAttribute"
+                },
+                "dynamics": []
             }
         },
         {
@@ -140,10 +212,15 @@
                 "name": "assignment_group_members_object_ids",
                 "identifier": "azuread_group_member",
                 "range": {
-                    "linestart": 184,
-                    "lineend": 193
+                    "linestart": 185,
+                    "lineend": 194
                 },
-                "block": []
+                "attributes": {
+                    "for_each": "BlockAttribute",
+                    "group_object_id": "BlockAttribute",
+                    "member_object_id": "BlockAttribute"
+                },
+                "dynamics": []
             }
         }
     ]
