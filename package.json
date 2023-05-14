@@ -1,7 +1,7 @@
 {
   "name": "terraform-quick-docs",
   "displayName": "Terraform Quick Docs",
-  "description": "Access Terraform Docs by hovering over Resources.",
+  "description": "Access Terraform Docs by hovering over Resources and autocomplete based on docs.",
   "author": "LemurDaniel",
   "publisher": "LemurDaniel",
   "license": "GPL-3.0",

@@ -4,6 +4,8 @@
 
 ##### - `Just hover over a Terraform 'Data', 'Resource', 'Module' or 'data.<identifier>', etc.`
 
+##### - `Supports autocompletion for several resources based in the docs`
+
 ##### - `Supports only Modules in the Terraform Registry!`
 
 ##### - `By default supports all official and partner Providers`
