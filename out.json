@@ -1,0 +1,148 @@
+[
+    {
+        "type": "ResourceDefinition",
+        "value": {
+            "name": "vm_mgmt_nic",
+            "identifier": "azurerm_network_interface",
+            "fullPath": [
+                "azurerm_network_interface"
+            ],
+            "range": {
+                "linestart": 1,
+                "lineend": 48
+            },
+            "attributes": {
+                "name": "BlockAttribute",
+                "location": "BlockAttribute",
+                "resource_group_name": "BlockAttribute",
+                "tags": "BlockAttribute"
+            },
+            "blockDefinitions": [
+                {
+                    "type": "DynamicDefinition",
+                    "value": {
+                        "name": null,
+                        "identifier": "testing_testing",
+                        "fullPath": [
+                            "azurerm_network_interface",
+                            "testing_testing"
+                        ],
+                        "range": {
+                            "linestart": 6,
+                            "lineend": 23
+                        },
+                        "attributes": {
+                            "for_each": "BlockAttribute"
+                        },
+                        "blockDefinitions": [
+                            {
+                                "type": "AttributeBlockDefinition",
+                                "value": {
+                                    "identifier": "content",
+                                    "fullPath": [
+                                        "azurerm_network_interface",
+                                        "testing_testing",
+                                        "content"
+                                    ],
+                                    "range": {
+                                        "linestart": 9,
+                                        "lineend": 22
+                                    },
+                                    "attributes": {
+                                        "something": "BlockAttribute",
+                                        "blabla_test": "BlockAttribute"
+                                    },
+                                    "blockDefinitions": [
+                                        {
+                                            "type": "DynamicDefinition",
+                                            "value": {
+                                                "name": null,
+                                                "identifier": "testing_testing",
+                                                "fullPath": [
+                                                    "azurerm_network_interface",
+                                                    "testing_testing",
+                                                    "content",
+                                                    "testing_testing"
+                                                ],
+                                                "range": {
+                                                    "linestart": 13,
+                                                    "lineend": 20
+                                                },
+                                                "attributes": {
+                                                    "for_each": "BlockAttribute"
+                                                },
+                                                "blockDefinitions": [
+                                                    {
+                                                        "type": "AttributeBlockDefinition",
+                                                        "value": {
+                                                            "identifier": "content",
+                                                            "fullPath": [
+                                                                "azurerm_network_interface",
+                                                                "testing_testing",
+                                                                "content",
+                                                                "testing_testing",
+                                                                "content"
+                                                            ],
+                                                            "range": {
+                                                                "linestart": 16,
+                                                                "lineend": 19
+                                                            },
+                                                            "attributes": {
+                                                                "something": "BlockAttribute",
+                                                                "blabla_test": "BlockAttribute"
+                                                            },
+                                                            "blockDefinitions": []
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "type": "AttributeBlockDefinition",
+                    "value": {
+                        "identifier": "ip_configuration",
+                        "fullPath": [
+                            "azurerm_network_interface",
+                            "ip_configuration"
+                        ],
+                        "range": {
+                            "linestart": 24,
+                            "lineend": 30
+                        },
+                        "attributes": {
+                            "name": "BlockAttribute",
+                            "subnet_id": "BlockAttribute",
+                            "private_ip_address_allocation": "BlockAttribute",
+                            "public_ip_address_id": "BlockAttribute"
+                        },
+                        "blockDefinitions": []
+                    }
+                },
+                {
+                    "type": "AttributeBlockDefinition",
+                    "value": {
+                        "identifier": "lifecycle",
+                        "fullPath": [
+                            "azurerm_network_interface",
+                            "lifecycle"
+                        ],
+                        "range": {
+                            "linestart": 34,
+                            "lineend": 47
+                        },
+                        "attributes": {
+                            "ignore_changes": "BlockAttribute"
+                        },
+                        "blockDefinitions": []
+                    }
+                }
+            ]
+        }
+    }
+]

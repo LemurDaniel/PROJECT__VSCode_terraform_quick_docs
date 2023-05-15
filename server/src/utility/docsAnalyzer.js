@@ -26,11 +26,13 @@ module.exports = class DocsAnalyzer {
         this.#tokenizer.content = docsAttributes.content.substring(argumentsIndex, attributesIndex).split('\\n').join('\n')
 
         return {
-            category: docsAttributes.category,
-            subcategory: docsAttributes.subcategory,
-            slug: docsAttributes.slug,
-            title: docsAttributes.title,
-            definitions: this.#cleanup(this.definitionList())
+            value: {
+                category: docsAttributes.category,
+                subcategory: docsAttributes.subcategory,
+                slug: docsAttributes.slug,
+                title: docsAttributes.title,
+                parameters: this.#cleanup(this.definitionList())
+            }
         }
     }
 
@@ -126,6 +128,7 @@ module.exports = class DocsAnalyzer {
                     issue: this.#tokenizer.current?.type == 'ISSUE' ? this.#eat('ISSUE').value : null,
                     warning: this.#tokenizer.current?.type == 'WARNING' ? this.#eat('WARNING').value : null,
                     description: description.replace(/\(required\)|\(optional\)/i, '').trim(),
+                    fullDescription: description,
                     required: description.toLowerCase().includes('(required)')
                 })
             }

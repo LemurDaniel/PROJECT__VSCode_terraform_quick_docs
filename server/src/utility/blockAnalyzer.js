@@ -6,8 +6,10 @@ module.exports = class BlockAnalyzer {
 
     #tokenizer
     #currentLine
-    constructor(content) {
+    #currentPath
+    constructor() {
         this.#currentLine = 0
+        this.#currentPath = []
         this.#tokenizer = new Tokenizer([
             ['LINEBREAK', /^\r\n|^\n/, false],
             ['WHITESPACE', /^\s+/, true],
@@ -25,6 +27,7 @@ module.exports = class BlockAnalyzer {
     analyze(configuration) {
 
         this.#tokenizer.content = configuration
+        this.#currentPath = []
         this.#currentLine = 1
 
         return this.definitionList()
@@ -85,8 +88,8 @@ module.exports = class BlockAnalyzer {
                     this.#eat('ASSIGNMENT')
                     return new Node('BlockAttribute', name)
                 }
-                else if (name == 'content' && this.#tokenizer.current.type == 'BRACKET_START') {
-                    return this.blockDefinition('contentDefinition', 'content')
+                else if (this.#tokenizer.current.type == 'BRACKET_START') {
+                    return this.blockDefinition('AttributeBlockDefinition', name)
                 }
                 else
                     return null
@@ -103,15 +106,17 @@ module.exports = class BlockAnalyzer {
 
     blockDefinition(name, resourceIdentifier, resourceName) {
 
+        this.#currentPath.push(resourceIdentifier)
         const node = new Node(name, {
             name: resourceName,
             identifier: resourceIdentifier,
+            fullPath: this.#currentPath.join('.').split('.'),
             range: {
                 linestart: this.#currentLine,
                 lineend: null
             },
             attributes: {},
-            dynamics: []
+            blockDefinitions: []
         })
 
         this.#eat('BRACKET_START')
@@ -119,12 +124,13 @@ module.exports = class BlockAnalyzer {
             if (member.type == 'BlockAttribute')
                 node.value.attributes[member.value] = member.type
             else if (member.type == 'DynamicDefinition')
-                node.value.dynamics.push(member)
-            else if(member.type == 'contentDefinition')
-                node.value.attributes.content = member.value
+                node.value.blockDefinitions.push(member)
+            else if (member.type == 'AttributeBlockDefinition')
+                node.value.blockDefinitions.push(member)
             else
                 throw Error(member.type)
         })
+        this.#currentPath.pop()
         this.#eat('BRACKET_END')
 
         node.value.range.lineend = this.#currentLine

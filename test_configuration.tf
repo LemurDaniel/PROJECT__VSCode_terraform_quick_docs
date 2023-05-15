@@ -1,19 +1,7 @@
-
-
-
-
-# Create Azure AD Group for Eligible or Active PIM-Assignments
-resource "azuread_group" "pim_assignment_ad_group_base" {
-  display_name     = format("acf_pimv3_%s_%s_%s_%s__BASE", local.current_scope.type, local.current_scope.name, var.assignment_name, var.schedule_type)
-  mail_enabled     = false
-  security_enabled = true
-  random_thing_in_brackets = {
-    is_scope = can(regex("^/managementgroups/[^/]+$", lower(var.assignment_scope)))
-    name     = split("/", var.assignment_scope)[length(split("/", var.assignment_scope)) - 1]
-    full     = format("/providers/Microsoft.Management%s", var.assignment_scope)
-    type     = "mgmt"
-  }
-  owners = var.aad_group_owner_ids
+resource "azurerm_network_interface" "vm_mgmt_nic" {
+  name                = module.nic_mgmt_naming.name
+  location            = var.location
+  resource_group_name = var.resource_group_name
 
   dynamic "testing_testing" {
     for_each = {}
@@ -21,7 +9,42 @@ resource "azuread_group" "pim_assignment_ad_group_base" {
     content {
       something   = null
       blabla_test = null
+
+      dynamic "testing_testing" {
+        for_each = {}
+
+        content {
+          something   = null
+          blabla_test = null
+        }
+      }
+
     }
   }
+  
+  ip_configuration {
 
+    
+    name                          = "primary"
+    subnet_id                     = lookup(var.acf_hub_virtual_network_subnets, "subnet_bip_mgmt").id
+    private_ip_address_allocation = "Dynamic"
+    public_ip_address_id          = module.bigip_mgmt_pip.id
+  }
+
+  tags = var.tags
+
+  lifecycle {
+    ignore_changes = [
+      tags["govAccountable"],
+      tags["govResponsible"],
+      tags["govExternalResponsible"],
+      tags["govBusinessCriticality"],
+      tags["govBilling"],
+      tags["govCompany"],
+      tags["govCostCenter"],
+      tags["govWorkloadDescription"],
+      tags["govWorkloadName"],
+      tags["govEnvironment"],
+    ]
+  }
 }
