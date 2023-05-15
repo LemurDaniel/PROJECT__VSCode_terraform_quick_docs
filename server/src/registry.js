@@ -37,7 +37,7 @@ class Registry {
         this.#cache = {}
     }
 
-    async get(api, additionalCacheInfo) {
+    async get(api, additionalCacheInfo = '', ttl = Number.MAX_SAFE_INTEGER) {
 
         const path = `/${api}`.replace(/[\/]+/g, '/')
         const cachePath = `${path}/${additionalCacheInfo}`
@@ -71,7 +71,8 @@ class Registry {
         if (null != Registry.clientConnection) {
             Registry.clientConnection.sendRequest('cache.set', {
                 cachePath: cachePath,
-                data: response
+                data: response,
+                ttl: ttl
             })
         }
 
@@ -130,7 +131,7 @@ class Registry {
     async getModuleInfo(source, version = null) {
 
         const docsUrl = `https://${Registry.#endpoint}/modules/{{namespace}}/{{name}}/{{provider}}/{{version}}`
-        const moduleInfo = await this.get(`v1/modules/${source}`)
+        const moduleInfo = await this.get(`v1/modules/${source}`, 'module', 12 * 60 * 60)
 
         if (moduleInfo.errors && moduleInfo.errors[0].toLowerCase() == 'not found') return null
 
@@ -147,7 +148,7 @@ class Registry {
     async getProviderInfo(identifier) {
 
         const docsUrl = `https://${Registry.#endpoint}/providers/{{namespace}}/{{provider}}/{{version}}/docs`
-        const providerInfo = await this.get(`v1/providers/${identifier}`)
+        const providerInfo = await this.get(`v1/providers/${identifier}`, 'provider', 12 * 60 * 60)
 
         if (null == providerInfo) {
             return console.log(`Not Found: ${identifier}`)

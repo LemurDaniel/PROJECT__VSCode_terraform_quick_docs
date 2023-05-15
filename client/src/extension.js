@@ -55,18 +55,22 @@ async function activate(context) {
         const filePath = path.join(context.globalStorageUri.fsPath, cachePath)
         if (fs.existsSync(filePath)) {
             const cache = JSON.parse(fs.readFileSync(filePath))
-            vscode.window.showInformationMessage(`Fetch Cache: ${cachePath} - ${JSON.stringify(cache)}`)
-            return cache
+            if(cache.expires <= Date.now()) return null
+            vscode.window.showInformationMessage(`Fetch Cache: ${cachePath} - ${JSON.stringify(cache.content)}`)
+            return cache.content
         }
         else
             return null
     })
 
-    client.onRequest('cache.set', ({ cachePath, data }) => {
+    client.onRequest('cache.set', ({ cachePath, data, ttl = Number.MAX_SAFE_INTEGER }) => {
         cachePath = `${cachePath.replaceAll(/[\\\/]+/g, '.')}.json`
         vscode.window.showInformationMessage(`Set Cache: ${cachePath} - ${JSON.stringify(data)}`)
         const filePath = path.join(context.globalStorageUri.fsPath, cachePath)
-        fs.writeFileSync(filePath, JSON.stringify(data))
+        fs.writeFileSync(filePath, JSON.stringify({
+            content: data,
+            expires: Date.now() + 1000 * ttl
+        }))
     })
 
     client.start()
