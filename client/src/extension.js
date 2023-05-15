@@ -1,5 +1,6 @@
 const vscode = require('vscode')
 const path = require('path')
+const fs = require('fs')
 const {
     LanguageClient,
     TransportKind
@@ -40,75 +41,54 @@ async function activate(context) {
         clientOptions
     );
 
+
+
+
+    if (!(fs.existsSync(path.join(context.globalStorageUri.fsPath)))) {
+        fs.mkdirSync(path.join(context.globalStorageUri.fsPath), {
+            recursive: true
+        })
+    }
+
+    client.onRequest('cache.fetch', cachePath => {
+        cachePath = `${cachePath.replaceAll(/[\\\/]+/g, '.')}.json`.replace(/[/\\?%*:|"<>\s]/g, '_').toLowerCase().substring(0, 200)
+        const filePath = path.join(context.globalStorageUri.fsPath, cachePath)
+        if (fs.existsSync(filePath)) {
+            const cache = JSON.parse(fs.readFileSync(filePath))
+            if (cache.expires <= Date.now()) return null
+            //vscode.window.showInformationMessage(`Fetch Cache: ${cachePath} - ${JSON.stringify(cache.content)}`)
+            return cache.content
+        }
+        else
+            return null
+    })
+
+    client.onRequest('cache.set', ({ cachePath, data, ttl = Number.MAX_SAFE_INTEGER }) => {
+        cachePath = `${cachePath.replaceAll(/[\\\/]+/g, '.')}.json`.replace(/[/\\?%*:|"<>\s]/g, '_').toLowerCase().substring(0, 200)
+        //vscode.window.showInformationMessage(`Set Cache: ${cachePath} - ${JSON.stringify(data)}`)
+        const filePath = path.join(context.globalStorageUri.fsPath, cachePath)
+        fs.writeFileSync(filePath, JSON.stringify({
+            content: data,
+            expires: Date.now() + 1000 * ttl
+        }))
+    })
+
     client.start()
 
 
-
-    let disposable = vscode.commands.registerCommand('terraform-quick-docs.providers.show', async () => {
-
-        try {
-
-            const providers = await client.sendRequest('provider.list').then(
-                result => result.map(data => ({
-                    label: data.name,
-                    description: data.identifier
-                }))
-            )
-            const selected = await vscode.window.showQuickPick(providers)
-            if (null == selected) return
-
-            const info = await client.sendRequest('provider.info', selected.description)
-            await vscode.env.openExternal(vscode.Uri.parse(info.docsUrl))
-
-        } catch (exception) {
-            vscode.window.showErrorMessage(exception.message)
-        }
-
-    })
+    const listProviders = require('./commands/provider.list')
+    let disposable = vscode.commands.registerCommand('terraform-quick-docs.providers.list',
+        async () => await listProviders(client)
+    )
     context.subscriptions.push(disposable)
 
-    disposable = vscode.commands.registerCommand('terraform-quick-docs.resource.show', async () => {
-
-        try {
-
-            const providerOptions = await client.sendRequest('provider.list').then(
-                result => result.map(data => ({
-                    label: data.name,
-                    description: data.identifier
-                }))
-            )
-            const selected = await vscode.window.showQuickPick(providerOptions, {
-                title: "Choose a Provider"
-            })
-            if (null == selected) return
-
-            const sortOrder = ['overview', 'resources', 'data-sources', 'guides']
-            const resourceOptions = await client.sendRequest('provider.info', selected.description).then(
-                data => data.docs.map(resource => ({
-                    ...resource,
-                    label: resource.title,
-                    description: resource.category
-                })).sort((a, b) => {
-                    if (sortOrder.indexOf(a.category) > sortOrder.indexOf(b.category)) return 1
-                    else if (sortOrder.indexOf(a.category) < sortOrder.indexOf(b.category)) return -1
-                    else return 0
-                })
-            )
-            const resource = await vscode.window.showQuickPick(resourceOptions, {
-                title: "Choose a Resource / Data-Source / Guide"
-            })
-            if (null == resource) return
-
-            await vscode.env.openExternal(vscode.Uri.parse(resource.docsUrl))
-
-        } catch (exception) {
-            vscode.window.showErrorMessage(exception.message)
-        }
-
-    })
+    const showResources = require('./commands/resource.show')
+    disposable = vscode.commands.registerCommand('terraform-quick-docs.resource.show',
+        async () => await showResources(client)
+    )
     context.subscriptions.push(disposable)
-
 }
+
 
 
 // This method is called when your extension is deactivated

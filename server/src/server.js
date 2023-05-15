@@ -16,54 +16,24 @@ const {
 
 const Registry = require('./registry');
 
-
-
 // Create a connection for the server, using Node's IPC as a transport.
 // Also include all preview / proposed LSP features.
 const connection = createConnection(ProposedFeatures.all)
 const documents = new TextDocuments(TextDocument)
+let initDone = false
 
-connection.onInitialize(params => {
-
-    const result = {
-        capabilities: {
-            textDocumentSync: TextDocumentSyncKind.Incremental,
-            // Tell the client that this server supports code completion.
-            hoverProvider: true,
-            completionProvider: false
-        }
-    }
-
-    return result
-})
-
-connection.onInitialized(async () => {
-
-    const config = await connection.workspace.getConfiguration({
-        section: 'terraform-quick-docs'
-    })
-    Registry.additionalProviders = config.additional_supported_providers
-    connection.console.log(JSON.stringify(Registry.additionalProviders))
-
-    connection.client.register(DidChangeConfigurationNotification.type, undefined)
-    connection.onDidChangeConfiguration(async () => {
-        const config = await connection.workspace.getConfiguration({
-            section: 'terraform-quick-docs'
-        })
-        Registry.additionalProviders = config.additional_supported_providers
-        connection.console.log(`Changed Settings to: ${JSON.stringify(Registry.additionalProviders)}`)
-    })
-
-    connection.console.log('Init Done')
-
-})
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+////// File opens, changes
+//////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 // The content of a text document has changed. This event is emitted
-documents.onDidChangeContent(change => { })
+documents.onDidChangeContent(({ document }) => {})
 
 // Call necesseray apis on document.open
 documents.onDidOpen(({ document }) => {
+
+    if (!initDone) return
 
     let matches = document._content.match(/resource\s*"[A-Za-z0-9_]+"|data\s*"[A-Za-z0-9_]+"/g)
     if (null == matches) return
@@ -82,6 +52,10 @@ documents.onDidOpen(({ document }) => {
     )
 
 })
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+////// Hovering
+//////////////////////////////////////////////////////////////////////////////////////////////////////
 
 async function handleProviderResource(identifier, category) {
 
@@ -148,7 +122,7 @@ async function handleProviderModule(document, position) {
     if (null == source) return null
 
 
-    const moduleInfo = await Registry.instance.getModuleInfo(source, version, connection)
+    const moduleInfo = await Registry.instance.getModuleInfo(source, version)
     if (null == moduleInfo) return null
 
     connection.console.log(`Found Module: '${moduleInfo.id}'`)
@@ -218,13 +192,53 @@ connection.onHover(async ({ textDocument, position }) => {
 })
 
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+////// Initzalizee
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+connection.onInitialize(params => {
+
+    const result = {
+        capabilities: {
+            textDocumentSync: TextDocumentSyncKind.Incremental,
+            // Tell the client that this server supports code completion.
+            hoverProvider: true,
+            completionProvider: false
+        }
+    }
+
+    return result
+
+})
+
+connection.onInitialized(async () => {
+
+    connection.client.register(DidChangeConfigurationNotification.type, undefined)
+    connection.onDidChangeConfiguration(async () => {
+        const config = await connection.workspace.getConfiguration({
+            section: 'terraform-quick-docs'
+        })
+        Registry.additionalProviders = config.additional_supported_providers
+        connection.console.log(`Changed Settings to: ${JSON.stringify(Registry.additionalProviders)}`)
+    })
+
+
+    const config = await connection.workspace.getConfiguration({
+        section: 'terraform-quick-docs'
+    })
+    Registry.additionalProviders = config.additional_supported_providers
+    Registry.clientConnection = connection
+
+    connection.console.log('Init Done')
+    initDone = true
+
+})
+
 connection.onRequest('provider.list', async () => await Registry.instance.getProvidersFromJson())
 connection.onRequest('provider.info', async (identifier) => await Registry.instance.getProviderInfo(identifier))
-
 
 // Make the text document manager listen on the connection
 // for open, change and close text document events
 documents.listen(connection)
-
-// Listen on the connection
 connection.listen()

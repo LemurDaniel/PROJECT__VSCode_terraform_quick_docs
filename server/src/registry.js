@@ -5,6 +5,7 @@ class Registry {
 
     static #instance = null
     static #endpoint = "registry.terraform.io"
+    static clientConnection = null
 
     static get instance() {
         if (null == Registry.#instance) {
@@ -36,12 +37,14 @@ class Registry {
         this.#cache = {}
     }
 
-    async get(api) {
+    async get(api, additionalCacheInfo = '', ttl = Number.MAX_SAFE_INTEGER) {
 
         const path = `/${api}`.replace(/[\/]+/g, '/')
+        const cachePath = `${path}/${additionalCacheInfo}`
 
-        if (path in this.#cache) {
-            return this.#cache[path]
+        if (null != Registry.clientConnection) {
+            const cache = await Registry.clientConnection.sendRequest('cache.fetch', cachePath)
+            if (null != cache) return cache
         }
 
         const response = await new Promise((resolve, reject) => {
@@ -65,7 +68,13 @@ class Registry {
             }
         })
 
-        this.#cache[path] = response
+        if (null != Registry.clientConnection) {
+            Registry.clientConnection.sendRequest('cache.set', {
+                cachePath: cachePath,
+                data: response,
+                ttl: ttl
+            })
+        }
 
         return response
     }
@@ -122,7 +131,7 @@ class Registry {
     async getModuleInfo(source, version = null) {
 
         const docsUrl = `https://${Registry.#endpoint}/modules/{{namespace}}/{{name}}/{{provider}}/{{version}}`
-        const moduleInfo = await this.get(`v1/modules/${source}`)
+        const moduleInfo = await this.get(`v1/modules/${source}`, 'module', 12 * 60 * 60)
 
         if (moduleInfo.errors && moduleInfo.errors[0].toLowerCase() == 'not found') return null
 
@@ -139,7 +148,12 @@ class Registry {
     async getProviderInfo(identifier) {
 
         const docsUrl = `https://${Registry.#endpoint}/providers/{{namespace}}/{{provider}}/{{version}}/docs`
-        const providerInfo = await this.get(`v1/providers/${identifier}`)
+        const providerInfo = await this.get(`v1/providers/${identifier}`, 'provider', 12 * 60 * 60)
+
+        if (null == providerInfo) {
+            return console.log(`Not Found: ${identifier}`)
+        }
+
         providerInfo['identifier'] = identifier
         providerInfo['docsUrl'] = docsUrl
             .replace('{{namespace}}', providerInfo.namespace)
@@ -149,6 +163,7 @@ class Registry {
         providerInfo.docs = providerInfo.docs.map(
             resource => ({
                 ...resource,
+                providerVersion: providerInfo.version,
                 docsUrl: resource.category == 'overview' ? `${providerInfo.docsUrl}/${resource.category}` : `${providerInfo.docsUrl}/${resource.category}/${resource.slug ?? resource.title}`
             })
         )
@@ -156,12 +171,11 @@ class Registry {
         return providerInfo
     }
 
-    async findProviderInfo(resourceIdentifier, connection) {
+    async findProviderInfo(resourceIdentifier) {
 
         const providerName = resourceIdentifier.split('_')[0].toLowerCase()
 
-        connection.console.log(`Search Provider: ${providerName}`)
-
+        console.log(`Search Provider: ${providerName}`)
         const providerData = await this.getProvidersFromJson().then(
             providers => providers.filter(provider => provider.name.toLowerCase() == providerName.toLowerCase())[0]
         )
@@ -169,22 +183,22 @@ class Registry {
         if (null == providerData)
             throw new Error(`'${providerName}' not Found!`)
 
-        connection.console.log(`Found Provider: ${providerData.identifier}`)
+
+        console.log(`Found Provider: ${providerData.identifier}`)
 
         const providerInfo = await this.getProviderInfo(providerData.identifier)
-
-        connection.console.log(`Found Providerinfo: ${providerData.identifier}`)
+        console.log(`Found Providerinfo: ${providerData.identifier}`)
 
         return providerInfo
 
     }
 
-    async findProviderResource(resourceIdentifier, resourceCategory, connection) {
+    async findProviderResource(resourceIdentifier, resourceCategory) {
 
         const resourceName = resourceIdentifier
         const secondaryName = resourceIdentifier.split('_').slice(1).join('_')
 
-        const providerInfo = await this.findProviderInfo(resourceIdentifier, connection)
+        const providerInfo = await this.findProviderInfo(resourceIdentifier)
         const resourceInfo = providerInfo.docs.filter(
             resource => (resource.title == resourceName || resource.title == secondaryName) && resource.category == resourceCategory
         )[0]
@@ -192,14 +206,13 @@ class Registry {
         if (null == resourceInfo)
             throw new Error(`'${resourceName}' not Found!`)
 
-        connection.console.log(`Found ResourceName: ${resourceInfo.title}`)
-
+        console.log(`Found ResourceName: ${resourceInfo.title}`)
         return { resourceInfo: resourceInfo, providerInfo: providerInfo }
 
     }
 
-    async getResourceDocs(resourceId) {
-        return await this.get(`/v2/provider-docs/${resourceId}`)
+    async getResourceDocs(resourceInfo) {
+        return await this.get(`/v2/provider-docs/${resourceInfo.id}`, resourceInfo.providerVersion)
     }
 }
 

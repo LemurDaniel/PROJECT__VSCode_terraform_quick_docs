@@ -45,3 +45,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## [0.0.10]
 
 - Add Command for opening any Resource Documentation
+
+## [0.0.11]
+
+- Add filecaching on API-Calls
