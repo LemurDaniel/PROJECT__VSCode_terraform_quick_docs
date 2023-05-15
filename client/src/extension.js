@@ -51,11 +51,11 @@ async function activate(context) {
     }
 
     client.onRequest('cache.fetch', cachePath => {
-        cachePath = `${cachePath.replaceAll(/[\\\/]+/g, '.')}.json`
+        cachePath = `${cachePath.replaceAll(/[\\\/]+/g, '.')}.json`.replace(/[/\\?%*:|"<>\s]/g, '_').toLowerCase().substring(0, 200)
         const filePath = path.join(context.globalStorageUri.fsPath, cachePath)
         if (fs.existsSync(filePath)) {
             const cache = JSON.parse(fs.readFileSync(filePath))
-            if(cache.expires <= Date.now()) return null
+            if (cache.expires <= Date.now()) return null
             vscode.window.showInformationMessage(`Fetch Cache: ${cachePath} - ${JSON.stringify(cache.content)}`)
             return cache.content
         }
@@ -64,7 +64,7 @@ async function activate(context) {
     })
 
     client.onRequest('cache.set', ({ cachePath, data, ttl = Number.MAX_SAFE_INTEGER }) => {
-        cachePath = `${cachePath.replaceAll(/[\\\/]+/g, '.')}.json`
+        cachePath = `${cachePath.replaceAll(/[\\\/]+/g, '.')}.json`.replace(/[/\\?%*:|"<>\s]/g, '_').toLowerCase().substring(0, 200)
         vscode.window.showInformationMessage(`Set Cache: ${cachePath} - ${JSON.stringify(data)}`)
         const filePath = path.join(context.globalStorageUri.fsPath, cachePath)
         fs.writeFileSync(filePath, JSON.stringify({

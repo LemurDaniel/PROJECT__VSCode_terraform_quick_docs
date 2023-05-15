@@ -29,7 +29,6 @@ let initDone = false
 ////// File opens, changes
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
 const docsAnalyzer = new DocsAnalyzer()
 const blockAnalyzer = new BlockAnalyzer()
 const tfConfigParseCache = {}
@@ -65,6 +64,7 @@ documents.onDidChangeContent(({ document }) => {
     }
 
 })
+
 
 // Call necesseray apis on document.open
 documents.onDidOpen(({ document }) => {
