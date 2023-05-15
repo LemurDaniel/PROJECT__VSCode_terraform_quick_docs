@@ -26,7 +26,11 @@ const config = {
         mainFields: ['browser', 'module', 'main'], // look for `browser` entry point in imported node modules
         extensions: ['.js'],
         alias: {},
-        fallback: { }
+        fallback: {
+            "fs": false,
+            "os": false,
+            "path": false,
+        }
     },
     module: {}
 };
