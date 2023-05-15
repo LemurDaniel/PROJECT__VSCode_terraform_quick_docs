@@ -1,5 +1,6 @@
 const vscode = require('vscode')
 const path = require('path')
+const fs = require('fs')
 const {
     LanguageClient,
     TransportKind
@@ -40,15 +41,32 @@ async function activate(context) {
         clientOptions
     );
 
-    client.onRequest('cache.fetch', path => {
-        const cache = context.globalState.get(path)
-        vscode.window.showInformationMessage(`Fetch Cache: ${path} - ${JSON.stringify(cache)}`)
-        return cache
+
+
+
+    if (!(fs.existsSync(path.join(context.globalStorageUri.fsPath)))) {
+        fs.mkdirSync(path.join(context.globalStorageUri.fsPath), {
+            recursive: true
+        })
+    }
+
+    client.onRequest('cache.fetch', cachePath => {
+        cachePath = `${cachePath.replaceAll(/[\\\/]+/g, '.')}.json`
+        const filePath = path.join(context.globalStorageUri.fsPath, cachePath)
+        if (fs.existsSync(filePath)) {
+            const cache = JSON.parse(fs.readFileSync(filePath))
+            vscode.window.showInformationMessage(`Fetch Cache: ${cachePath} - ${JSON.stringify(cache)}`)
+            return cache
+        }
+        else
+            return null
     })
 
-    client.onRequest('cache.set', ({ path, data }) => {
-        vscode.window.showInformationMessage(`Set Cache: ${path} - ${JSON.stringify(data)}`)
-        context.globalState.update(path, data)
+    client.onRequest('cache.set', ({ cachePath, data }) => {
+        cachePath = `${cachePath.replaceAll(/[\\\/]+/g, '.')}.json`
+        vscode.window.showInformationMessage(`Set Cache: ${cachePath} - ${JSON.stringify(data)}`)
+        const filePath = path.join(context.globalStorageUri.fsPath, cachePath)
+        fs.writeFileSync(filePath, JSON.stringify(data))
     })
 
     client.start()

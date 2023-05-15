@@ -70,7 +70,7 @@ class Registry {
 
         if (null != Registry.clientConnection) {
             Registry.clientConnection.sendRequest('cache.set', {
-                path: cachePath,
+                cachePath: cachePath,
                 data: response
             })
         }

@@ -23,6 +23,7 @@ const DocsAnalyzer = require('./docsAnalyzer')
 // Also include all preview / proposed LSP features.
 const connection = createConnection(ProposedFeatures.all)
 const documents = new TextDocuments(TextDocument)
+let initDone = false
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 ////// File opens, changes
@@ -67,6 +68,8 @@ documents.onDidChangeContent(({ document }) => {
 
 // Call necesseray apis on document.open
 documents.onDidOpen(({ document }) => {
+
+    if (!initDone) return
 
     let matches = document._content.match(/resource\s*"[A-Za-z0-9_]+"|data\s*"[A-Za-z0-9_]+"/g)
     if (null == matches) return
@@ -354,6 +357,7 @@ connection.onInitialized(async () => {
     Registry.clientConnection = connection
 
     connection.console.log('Init Done')
+    initDone = true
 
 })
 
