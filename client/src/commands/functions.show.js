@@ -16,7 +16,7 @@ module.exports = async function command(client) {
         const functionInfo = await vscode.window.showQuickPick(category.data.map(
             functionInfo => ({
                 ...functionInfo,
-                label: functionInfo.title,
+                label: functionInfo.syntax[0],
                 description: functionInfo.description?.replace(/`[^`]+`/, '')
             })
         ))
