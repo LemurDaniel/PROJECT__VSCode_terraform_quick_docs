@@ -54,3 +54,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 - Added hover support for terraform functions
 - Added commands to open terraform functions docs and addtional docs
+
+## [0.0.13]
+
+- Tweaks to the function documentations

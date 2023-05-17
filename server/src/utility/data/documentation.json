@@ -13,9 +13,12 @@
                     "data": [
                         {
                             "title": "abs",
+                            "syntax": [
+                                "abs(number)"
+                            ],
                             "fullPath": "/terraform/language/functions/abs",
                             "path": "/language/functions/abs",
-                            "description": "`abs` returns the absolute value of the given number. In other words, if the",
+                            "description": "`abs` returns the absolute value of the given number.",
                             "full": [
                                 "---",
                                 "page_title: abs - Functions - Configuration Language",
@@ -42,9 +45,12 @@
                         },
                         {
                             "title": "ceil",
+                            "syntax": [
+                                "ceil(number)"
+                            ],
                             "fullPath": "/terraform/language/functions/ceil",
                             "path": "/language/functions/ceil",
-                            "description": "`ceil` returns the closest whole number that is greater than or equal to the",
+                            "description": "`ceil` returns the closest whole number that is greater than or equal to the given value.",
                             "full": [
                                 "---",
                                 "page_title: ceil - Functions - Configuration Language",
@@ -75,9 +81,12 @@
                         },
                         {
                             "title": "floor",
+                            "syntax": [
+                                "floor(number)"
+                            ],
                             "fullPath": "/terraform/language/functions/floor",
                             "path": "/language/functions/floor",
-                            "description": "`floor` returns the closest whole number that is less than or equal to the",
+                            "description": "`floor` returns the closest whole number that is less than or equal to the given value.",
                             "full": [
                                 "---",
                                 "page_title: floor - Functions - Configuration Language",
@@ -108,6 +117,9 @@
                         },
                         {
                             "title": "log",
+                            "syntax": [
+                                "log(number, base)"
+                            ],
                             "fullPath": "/terraform/language/functions/log",
                             "path": "/language/functions/log",
                             "description": "`log` returns the logarithm of a given number in a given base.",
@@ -149,6 +161,10 @@
                         },
                         {
                             "title": "max",
+                            "syntax": [
+                                "max(...numbers)",
+                                "max([number, number]...)"
+                            ],
                             "fullPath": "/terraform/language/functions/max",
                             "path": "/language/functions/max",
                             "description": "`max` takes one or more numbers and returns the greatest number from the set.",
@@ -184,6 +200,10 @@
                         },
                         {
                             "title": "min",
+                            "syntax": [
+                                "min(...numbers)",
+                                "min([number, number]...)"
+                            ],
                             "fullPath": "/terraform/language/functions/min",
                             "path": "/language/functions/min",
                             "description": "`min` takes one or more numbers and returns the smallest number from the set.",
@@ -219,9 +239,12 @@
                         },
                         {
                             "title": "parseint",
+                            "syntax": [
+                                "min(string, base)"
+                            ],
                             "fullPath": "/terraform/language/functions/parseint",
                             "path": "/language/functions/parseint",
-                            "description": "`parseint` parses the given string as a representation of an integer in",
+                            "description": "`parseint` parses the given string as a representation of an integer in he specified base and returns the resulting number.",
                             "full": [
                                 "---",
                                 "page_title: parseint - Functions - Configuration Language",
@@ -277,6 +300,9 @@
                         },
                         {
                             "title": "pow",
+                            "syntax": [
+                                "pow(number, exponent)"
+                            ],
                             "fullPath": "/terraform/language/functions/pow",
                             "path": "/language/functions/pow",
                             "description": "`pow` calculates an exponent, by raising its first argument to the power of the second argument.",
@@ -302,9 +328,12 @@
                         },
                         {
                             "title": "signum",
+                            "syntax": [
+                                "signum(number)"
+                            ],
                             "fullPath": "/terraform/language/functions/signum",
                             "path": "/language/functions/signum",
-                            "description": "`signum` determines the sign of a number, returning a number between -1 and",
+                            "description": "`signum` determines the sign of a number, returning a number between -1 and 1 to represent the sign.",
                             "full": [
                                 "---",
                                 "page_title: signum - Functions - Configuration Language",
@@ -335,6 +364,9 @@
                     "data": [
                         {
                             "title": "chomp",
+                            "syntax": [
+                                "chomp(string)"
+                            ],
                             "fullPath": "/terraform/language/functions/chomp",
                             "path": "/language/functions/chomp",
                             "description": "`chomp` removes newline characters at the end of a string.",
@@ -370,6 +402,9 @@
                         },
                         {
                             "title": "endswith",
+                            "syntax": [
+                                "endswith(string, suffix)"
+                            ],
                             "fullPath": "/terraform/language/functions/endswith",
                             "path": "/language/functions/endswith",
                             "description": "`endswith` takes two values: a string to check and a suffix string. The function returns true if the first string ends with that exact suffix.",
@@ -405,9 +440,12 @@
                         },
                         {
                             "title": "format",
+                            "syntax": [
+                                "format(string, ...values)"
+                            ],
                             "fullPath": "/terraform/language/functions/format",
                             "path": "/language/functions/format",
-                            "description": "`format` function produces a string by formatting a number of other values according",
+                            "description": "`format` function produces a string by formatting a number of other values according according to a specification string.",
                             "full": [
                                 "---",
                                 "page_title: format - Functions - Configuration Language",
@@ -558,9 +596,12 @@
                         },
                         {
                             "title": "formatlist",
+                            "syntax": [
+                                "formatlist(string, ...[value, value])"
+                            ],
                             "fullPath": "/terraform/language/functions/formatlist",
                             "path": "/language/functions/formatlist",
-                            "description": "`formatlist` produces a list of strings by formatting a number of other",
+                            "description": "`formatlist` produces a list of strings by formatting a number of other values according to a specification string.",
                             "full": [
                                 "---",
                                 "page_title: formatlist - Functions - Configuration Language",
@@ -615,9 +656,12 @@
                         },
                         {
                             "title": "indent",
+                            "syntax": [
+                                "indent(num_spaces, string)"
+                            ],
                             "fullPath": "/terraform/language/functions/indent",
                             "path": "/language/functions/indent",
-                            "description": "`indent` adds a given number of spaces to the beginnings of all but the first",
+                            "description": "`indent` adds a given number of spaces to the beginnings of all but the first line in a given multi-line string.",
                             "full": [
                                 "---",
                                 "page_title: indent - Functions - Configuration Language",
@@ -654,9 +698,12 @@
                         },
                         {
                             "title": "join",
+                            "syntax": [
+                                "join(seperator, list)"
+                            ],
                             "fullPath": "/terraform/language/functions/join",
                             "path": "/language/functions/join",
-                            "description": "`join` produces a string by concatenating all of the elements of the specified",
+                            "description": "`join` produces a string by concatenating all of the elements of the specified ist of strings with the specified separator.",
                             "full": [
                                 "---",
                                 "page_title: join - Functions - Configuration Language",
@@ -693,6 +740,9 @@
                         },
                         {
                             "title": "lower",
+                            "syntax": [
+                                "lower(string)"
+                            ],
                             "fullPath": "/terraform/language/functions/lower",
                             "path": "/language/functions/lower",
                             "description": "`lower` converts all cased letters in the given string to lowercase.",
@@ -727,6 +777,9 @@
                         },
                         {
                             "title": "regex",
+                            "syntax": [
+                                "regex(pattern, string)"
+                            ],
                             "fullPath": "/terraform/language/functions/regex",
                             "path": "/language/functions/regex",
                             "description": "`regex` applies a regular expression to a string and returns the matching substrings.",
@@ -896,6 +949,9 @@
                         },
                         {
                             "title": "regexall",
+                            "syntax": [
+                                "regexall(pattern, string)"
+                            ],
                             "fullPath": "/terraform/language/functions/regexall",
                             "path": "/language/functions/regexall",
                             "description": "`regexall` applies a regular expression to a string and returns a list of all matches.",
@@ -961,9 +1017,12 @@
                         },
                         {
                             "title": "replace",
+                            "syntax": [
+                                "replace(string, substring, replacement)"
+                            ],
                             "fullPath": "/terraform/language/functions/replace",
                             "path": "/language/functions/replace",
-                            "description": "`replace` searches a given string for another given substring, and replaces",
+                            "description": "`replace` searches a given string for another given substring, and replaces all occurrences with a given replacement string.",
                             "full": [
                                 "---",
                                 "page_title: replace - Functions - Configuration Language",
@@ -1006,9 +1065,12 @@
                         },
                         {
                             "title": "split",
+                            "syntax": [
+                                "split(separator, string)"
+                            ],
                             "fullPath": "/terraform/language/functions/split",
                             "path": "/language/functions/split",
-                            "description": "`split` produces a list by dividing a given string at all occurrences of a",
+                            "description": "`split` produces a list by dividing a given string at all occurrences of a given separator.",
                             "full": [
                                 "---",
                                 "page_title: split - Functions - Configuration Language",
@@ -1053,6 +1115,9 @@
                         },
                         {
                             "title": "startswith",
+                            "syntax": [
+                                "startswith(string, prefix)"
+                            ],
                             "fullPath": "/terraform/language/functions/startswith",
                             "path": "/language/functions/startswith",
                             "description": "`startswith` takes two values: a string to check and a prefix string. The function returns true if the string begins with that exact prefix.",
@@ -1088,6 +1153,9 @@
                         },
                         {
                             "title": "strrev",
+                            "syntax": [
+                                "strrev(string)"
+                            ],
                             "fullPath": "/terraform/language/functions/strrev",
                             "path": "/language/functions/strrev",
                             "description": "`strrev` reverses the characters in a string.",
@@ -1122,6 +1190,9 @@
                         },
                         {
                             "title": "substr",
+                            "syntax": [
+                                "substr(string, offset, length)"
+                            ],
                             "fullPath": "/terraform/language/functions/substr",
                             "path": "/language/functions/substr",
                             "description": "`substr` extracts a substring from a given string by offset and (maximum) length.",
@@ -1176,6 +1247,9 @@
                         },
                         {
                             "title": "title",
+                            "syntax": [
+                                "title(string)"
+                            ],
                             "fullPath": "/terraform/language/functions/title",
                             "path": "/language/functions/title",
                             "description": "`title` converts the first letter of each word in the given string to uppercase.",
@@ -1208,9 +1282,12 @@
                         },
                         {
                             "title": "trim",
+                            "syntax": [
+                                "trim(string, characters)"
+                            ],
                             "fullPath": "/terraform/language/functions/trim",
                             "path": "/language/functions/trim",
-                            "description": "`trim` removes the specified set of characters from the start and end of the given",
+                            "description": "`trim` removes the specified set of characters from the start and end of the given string.",
                             "full": [
                                 "---",
                                 "page_title: trim - Functions - Configuration Language",
@@ -1256,6 +1333,9 @@
                         },
                         {
                             "title": "trimprefix",
+                            "syntax": [
+                                "trimprefix(string, prefix)"
+                            ],
                             "fullPath": "/terraform/language/functions/trimprefix",
                             "path": "/language/functions/trimprefix",
                             "description": "`trimprefix` removes the specified prefix from the start of the given string. If the string does not start with the prefix, the string is returned unchanged.",
@@ -1293,6 +1373,9 @@
                         },
                         {
                             "title": "trimsuffix",
+                            "syntax": [
+                                "trimsuffix(string, suffix)"
+                            ],
                             "fullPath": "/terraform/language/functions/trimsuffix",
                             "path": "/language/functions/trimsuffix",
                             "description": "`trimsuffix` removes the specified suffix from the end of the given string.",
@@ -1325,9 +1408,12 @@
                         },
                         {
                             "title": "trimspace",
+                            "syntax": [
+                                "trimspace(string)"
+                            ],
                             "fullPath": "/terraform/language/functions/trimspace",
                             "path": "/language/functions/trimspace",
-                            "description": "`trimspace` removes any space characters from the start and end of the given",
+                            "description": "`trimspace` removes any space characters from the start and end of the given string.",
                             "full": [
                                 "---",
                                 "page_title: trimspace - Functions - Configuration Language",
@@ -1360,6 +1446,9 @@
                         },
                         {
                             "title": "upper",
+                            "syntax": [
+                                "upper(string)"
+                            ],
                             "fullPath": "/terraform/language/functions/upper",
                             "path": "/language/functions/upper",
                             "description": "`upper` converts all cased letters in the given string to uppercase.",
@@ -1399,9 +1488,12 @@
                     "data": [
                         {
                             "title": "alltrue",
+                            "syntax": [
+                                "alltrue(list)"
+                            ],
                             "fullPath": "/terraform/language/functions/alltrue",
                             "path": "/language/functions/alltrue",
-                            "description": "`alltrue` returns `true` if all elements in a given collection are `true`",
+                            "description": "`alltrue` returns `true` if all elements in a given collection are `true` or `\"true\"`.",
                             "full": [
                                 "---",
                                 "page_title: alltrue - Functions - Configuration Language",
@@ -1433,9 +1525,12 @@
                         },
                         {
                             "title": "anytrue",
+                            "syntax": [
+                                "anytrue(list)"
+                            ],
                             "fullPath": "/terraform/language/functions/anytrue",
                             "path": "/language/functions/anytrue",
-                            "description": "`anytrue` returns `true` if any element in a given collection is `true`",
+                            "description": "`anytrue` returns `true` if any element in a given collection is `true` or \"true\".",
                             "full": [
                                 "---",
                                 "page_title: anytrue - Functions - Configuration Language",
@@ -1471,9 +1566,12 @@
                         },
                         {
                             "title": "chunklist",
+                            "syntax": [
+                                "chunklist(list, chunk_size)"
+                            ],
                             "fullPath": "/terraform/language/functions/chunklist",
                             "path": "/language/functions/chunklist",
-                            "description": "`chunklist` splits a single list into fixed-size chunks, returning a list",
+                            "description": "`chunklist` splits a single list into fixed-size chunks, returning a list of lists.",
                             "full": [
                                 "---",
                                 "page_title: chunklist - Functions - Configuration Language",
@@ -1531,9 +1629,13 @@
                         },
                         {
                             "title": "coalesce",
+                            "syntax": [
+                                "coalesce(...values)",
+                                "coalesce([value, value]...)"
+                            ],
                             "fullPath": "/terraform/language/functions/coalesce",
                             "path": "/language/functions/coalesce",
-                            "description": "`coalesce` takes any number of arguments and returns the first one",
+                            "description": "`coalesce` takes any number of arguments and returns the first one that isn't null or an empty string.",
                             "full": [
                                 "---",
                                 "page_title: coalesce - Functions - Configuration Language",
@@ -1595,9 +1697,12 @@
                         },
                         {
                             "title": "coalescelist",
+                            "syntax": [
+                                "coalescelist(...lists)"
+                            ],
                             "fullPath": "/terraform/language/functions/coalescelist",
                             "path": "/language/functions/coalescelist",
-                            "description": "`coalescelist` takes any number of list arguments and returns the first one",
+                            "description": "`coalescelist` takes any number of list arguments and returns the first one that isn't empty.",
                             "full": [
                                 "---",
                                 "page_title: coalescelist - Functions - Configuration Language",
@@ -1645,9 +1750,12 @@
                         },
                         {
                             "title": "compact",
+                            "syntax": [
+                                "compact(list)"
+                            ],
                             "fullPath": "/terraform/language/functions/compact",
                             "path": "/language/functions/compact",
-                            "description": "`compact` takes a list of strings and returns a new list with any null or empty string",
+                            "description": "`compact` takes a list of strings and returns a new list with any null or empty string elements removed.",
                             "full": [
                                 "---",
                                 "page_title: compact - Functions - Configuration Language",
@@ -1673,6 +1781,9 @@
                         },
                         {
                             "title": "concat",
+                            "syntax": [
+                                "concat(list, ...lists)"
+                            ],
                             "fullPath": "/terraform/language/functions/concat",
                             "path": "/language/functions/concat",
                             "description": "`concat` takes two or more lists and combines them into a single list.",
@@ -1701,9 +1812,12 @@
                         },
                         {
                             "title": "contains",
+                            "syntax": [
+                                "contains(list, value)"
+                            ],
                             "fullPath": "/terraform/language/functions/contains",
                             "path": "/language/functions/contains",
-                            "description": "`contains` determines whether a given list or set contains a given single value",
+                            "description": "`contains` determines whether a given list or set contains a given single value as one of its elements.",
                             "full": [
                                 "---",
                                 "page_title: contains - Functions - Configuration Language",
@@ -1731,9 +1845,12 @@
                         },
                         {
                             "title": "distinct",
+                            "syntax": [
+                                "distinct(list)"
+                            ],
                             "fullPath": "/terraform/language/functions/distinct",
                             "path": "/language/functions/distinct",
-                            "description": "`distinct` takes a list and returns a new list with any duplicate elements",
+                            "description": "`distinct` takes a list and returns a new list with any duplicate elements removed.",
                             "full": [
                                 "---",
                                 "page_title: distinct - Functions - Configuration Language",
@@ -1763,6 +1880,9 @@
                         },
                         {
                             "title": "element",
+                            "syntax": [
+                                "element(list, index)"
+                            ],
                             "fullPath": "/terraform/language/functions/element",
                             "path": "/language/functions/element",
                             "description": "`element` retrieves a single element from a list.",
@@ -1818,9 +1938,12 @@
                         },
                         {
                             "title": "flatten",
+                            "syntax": [
+                                "flatten(list)"
+                            ],
                             "fullPath": "/terraform/language/functions/flatten",
                             "path": "/language/functions/flatten",
-                            "description": "`flatten` takes a list and replaces any elements that are lists with a",
+                            "description": "`flatten` takes a list and replaces any elements that are lists with a flattened sequence of the list contents.",
                             "full": [
                                 "---",
                                 "page_title: flatten - Functions - Configuration Language",
@@ -1931,7 +2054,10 @@
                             ]
                         },
                         {
-                            "title": "index_function",
+                            "title": "index",
+                            "syntax": [
+                                "index(list, value)"
+                            ],
                             "fullPath": "/terraform/language/functions/index_function",
                             "path": "/language/functions/index_function",
                             "description": "`index` finds the element index for a given value in a list.",
@@ -1967,6 +2093,9 @@
                         },
                         {
                             "title": "keys",
+                            "syntax": [
+                                "keys(map)"
+                            ],
                             "fullPath": "/terraform/language/functions/keys",
                             "path": "/language/functions/keys",
                             "description": "`keys` takes a map and returns a list containing the keys from that map.",
@@ -2001,6 +2130,9 @@
                         },
                         {
                             "title": "length",
+                            "syntax": [
+                                "length(list|map|string)"
+                            ],
                             "fullPath": "/terraform/language/functions/length",
                             "path": "/language/functions/length",
                             "description": "`length` determines the length of a given list, map, or string.",
@@ -2048,9 +2180,12 @@
                         },
                         {
                             "title": "list",
+                            "syntax": [
+                                "list(...values)"
+                            ],
                             "fullPath": "/terraform/language/functions/list",
                             "path": "/language/functions/list",
-                            "description": "`list` function is no longer available. Prior to Terraform v0.12 it was",
+                            "description": "Depreciated since v0.12, use tolist(list|set)",
                             "full": [
                                 "---",
                                 "page_title: list - Functions - Configuration Language",
@@ -2082,6 +2217,9 @@
                         },
                         {
                             "title": "lookup",
+                            "syntax": [
+                                "lookup(map, key, default)"
+                            ],
                             "fullPath": "/terraform/language/functions/lookup",
                             "path": "/language/functions/lookup",
                             "description": "`lookup` retrieves the value of a single element from a map, given its key.",
@@ -2120,9 +2258,12 @@
                         },
                         {
                             "title": "map",
+                            "syntax": [
+                                "map(...values)"
+                            ],
                             "fullPath": "/terraform/language/functions/map",
                             "path": "/language/functions/map",
-                            "description": "`map` function is no longer available. Prior to Terraform v0.12 it was",
+                            "description": "Depreciated since v0.12, use tomap(object).",
                             "full": [
                                 "---",
                                 "page_title: map - Functions - Configuration Language",
@@ -2157,9 +2298,12 @@
                         },
                         {
                             "title": "matchkeys",
+                            "syntax": [
+                                "matchkeys(valuelist, keylist, searchset)"
+                            ],
                             "fullPath": "/terraform/language/functions/matchkeys",
                             "path": "/language/functions/matchkeys",
-                            "description": "`matchkeys` constructs a new list by taking a subset of elements from one",
+                            "description": "`matchkeys` constructs a new list by taking a subset of elements from one list by matching corresponding indexes in another list.",
                             "full": [
                                 "---",
                                 "page_title: matchkeys - Functions - Configuration Language",
@@ -2235,9 +2379,12 @@
                         },
                         {
                             "title": "merge",
+                            "syntax": [
+                                "merge(...maps|objects)"
+                            ],
                             "fullPath": "/terraform/language/functions/merge",
                             "path": "/language/functions/merge",
-                            "description": "`merge` takes an arbitrary number of maps or objects, and returns a single map",
+                            "description": "`merge` takes an arbitrary number of maps or objects, and returns a single map or object that contains a merged set of elements from all arguments.",
                             "full": [
                                 "---",
                                 "page_title: merge - Functions - Configuration Language",
@@ -2294,6 +2441,9 @@
                         },
                         {
                             "title": "one",
+                            "syntax": [
+                                "one(list|set)"
+                            ],
                             "fullPath": "/terraform/language/functions/one",
                             "path": "/language/functions/one",
                             "description": "`one` takes a list, set, or tuple value with either zero or one elements.",
@@ -2421,9 +2571,14 @@
                         },
                         {
                             "title": "range",
+                            "syntax": [
+                                "range(start, limit, step)",
+                                "range(start, limit)",
+                                "range(limit)"
+                            ],
                             "fullPath": "/terraform/language/functions/range",
                             "path": "/language/functions/range",
-                            "description": "`range` generates a list of numbers using a start value, a limit value,",
+                            "description": "`range` generates a list of numbers using a start value, a limit value, and a step value.",
                             "full": [
                                 "---",
                                 "page_title: range - Functions - Configuration Language",
@@ -2568,9 +2723,12 @@
                         },
                         {
                             "title": "reverse",
+                            "syntax": [
+                                "reverse(list)"
+                            ],
                             "fullPath": "/terraform/language/functions/reverse",
                             "path": "/language/functions/reverse",
-                            "description": "`reverse` takes a sequence and produces a new sequence of the same length",
+                            "description": "`reverse` reverses a given sequence.",
                             "full": [
                                 "---",
                                 "page_title: reverse - Functions - Configuration Language",
@@ -2600,9 +2758,12 @@
                         },
                         {
                             "title": "setintersection",
+                            "syntax": [
+                                "setintersection(...sets)"
+                            ],
                             "fullPath": "/terraform/language/functions/setintersection",
                             "path": "/language/functions/setintersection",
-                            "description": "`setintersection` function takes multiple sets and produces a single set",
+                            "description": "`setintersection` function takes multiple sets and produces a single set containing only the elements that all of the given sets have in common.",
                             "full": [
                                 "---",
                                 "page_title: setintersection - Functions - Configuration Language",
@@ -2647,9 +2808,12 @@
                         },
                         {
                             "title": "setproduct",
+                            "syntax": [
+                                "setproduct(...sets)"
+                            ],
                             "fullPath": "/terraform/language/functions/setproduct",
                             "path": "/language/functions/setproduct",
-                            "description": "`setproduct` function finds all of the possible combinations of elements",
+                            "description": "`setproduct` function finds all of the possible combinations of elements from all of the given sets by computing the cartesian product.",
                             "full": [
                                 "---",
                                 "page_title: setproduct - Functions - Configuration Language",
@@ -2936,9 +3100,12 @@
                         },
                         {
                             "title": "setsubtract",
+                            "syntax": [
+                                "setsubtract(...sets)"
+                            ],
                             "fullPath": "/terraform/language/functions/setsubtract",
                             "path": "/language/functions/setsubtract",
-                            "description": "`setsubtract` function returns a new set containing the elements from the first set that are not present in the second set. In other words, it computes the",
+                            "description": "`setsubtract` function returns a new set containing the elements from the first set that are not present in the second set.",
                             "full": [
                                 "---",
                                 "page_title: setsubtract - Functions - Configuration Language",
@@ -2986,9 +3153,12 @@
                         },
                         {
                             "title": "setunion",
+                            "syntax": [
+                                "setunion(...sets)"
+                            ],
                             "fullPath": "/terraform/language/functions/setunion",
                             "path": "/language/functions/setunion",
-                            "description": "`setunion` function takes multiple sets and produces a single set",
+                            "description": "`setunion` function takes multiple sets and produces a single set containing the elements from all of the given sets.",
                             "full": [
                                 "---",
                                 "page_title: setunion - Functions - Configuration Language",
@@ -3036,6 +3206,9 @@
                         },
                         {
                             "title": "slice",
+                            "syntax": [
+                                "slice(list, startindex, endindex)"
+                            ],
                             "fullPath": "/terraform/language/functions/slice",
                             "path": "/language/functions/slice",
                             "description": "`slice` extracts some consecutive elements from within a list.",
@@ -3075,9 +3248,12 @@
                         },
                         {
                             "title": "sort",
+                            "syntax": [
+                                "sort(list)"
+                            ],
                             "fullPath": "/terraform/language/functions/sort",
                             "path": "/language/functions/sort",
-                            "description": "`sort` takes a list of strings and returns a new list with those strings",
+                            "description": "`sort` takes a list of strings and returns a new list with those strings sorted lexicographically.",
                             "full": [
                                 "---",
                                 "page_title: sort - Functions - Configuration Language",
@@ -3109,6 +3285,9 @@
                         },
                         {
                             "title": "sum",
+                            "syntax": [
+                                "sum(list<number>)"
+                            ],
                             "fullPath": "/terraform/language/functions/sum",
                             "path": "/language/functions/sum",
                             "description": "`sum` takes a list or set of numbers and returns the sum of those numbers.",
@@ -3134,9 +3313,12 @@
                         },
                         {
                             "title": "transpose",
+                            "syntax": [
+                                "transpose(map)"
+                            ],
                             "fullPath": "/terraform/language/functions/transpose",
                             "path": "/language/functions/transpose",
-                            "description": "`transpose` takes a map of lists of strings and swaps the keys and values",
+                            "description": "`transpose` takes a map of lists of strings and swaps the keys and values to produce a new map of lists of strings.",
                             "full": [
                                 "---",
                                 "page_title: transpose - Functions - Configuration Language",
@@ -3171,9 +3353,12 @@
                         },
                         {
                             "title": "values",
+                            "syntax": [
+                                "values(map)"
+                            ],
                             "fullPath": "/terraform/language/functions/values",
                             "path": "/language/functions/values",
-                            "description": "`values` takes a map and returns a list containing the values of the elements",
+                            "description": "`values` takes a map and returns a list containing the values of the elements in that map.",
                             "full": [
                                 "---",
                                 "page_title: values - Functions - Configuration Language",
@@ -3207,9 +3392,12 @@
                         },
                         {
                             "title": "zipmap",
+                            "syntax": [
+                                "zipmap(keyslist, valueslist)"
+                            ],
                             "fullPath": "/terraform/language/functions/zipmap",
                             "path": "/language/functions/zipmap",
-                            "description": "`zipmap` constructs a map from a list of keys and a corresponding list of",
+                            "description": "`zipmap` constructs a map from a list of keys and a corresponding list of values.",
                             "full": [
                                 "---",
                                 "page_title: zipmap - Functions - Configuration Language",
@@ -3253,9 +3441,12 @@
                     "data": [
                         {
                             "title": "base64decode",
+                            "syntax": [
+                                "base64decode(base64)"
+                            ],
                             "fullPath": "/terraform/language/functions/base64decode",
                             "path": "/language/functions/base64decode",
-                            "description": "`base64decode` takes a string containing a Base64 character sequence and",
+                            "description": "`base64decode` takes a string containing a Base64 character sequence and returns the original string.",
                             "full": [
                                 "---",
                                 "page_title: base64decode - Functions - Configuration Language",
@@ -3307,6 +3498,9 @@
                         },
                         {
                             "title": "base64encode",
+                            "syntax": [
+                                "base64encode(string)"
+                            ],
                             "fullPath": "/terraform/language/functions/base64encode",
                             "path": "/language/functions/base64encode",
                             "description": "`base64encode` applies Base64 encoding to a string.",
@@ -3363,9 +3557,12 @@
                         },
                         {
                             "title": "base64gzip",
+                            "syntax": [
+                                "base64gzip(string)"
+                            ],
                             "fullPath": "/terraform/language/functions/base64gzip",
                             "path": "/language/functions/base64gzip",
-                            "description": "`base64gzip` compresses a string with gzip and then encodes the result in",
+                            "description": "`base64gzip` compresses a string with gzip and then encodes the result in Base64 encoding.",
                             "full": [
                                 "---",
                                 "page_title: base64gzip - Functions - Configuration Language",
@@ -3402,9 +3599,12 @@
                         },
                         {
                             "title": "csvdecode",
+                            "syntax": [
+                                "csvdecode(string)"
+                            ],
                             "fullPath": "/terraform/language/functions/csvdecode",
                             "path": "/language/functions/csvdecode",
-                            "description": "`csvdecode` decodes a string containing CSV-formatted data and produces a",
+                            "description": "`csvdecode` decodes a string containing CSV-formatted data and produces a list of maps representing that data.",
                             "full": [
                                 "---",
                                 "page_title: csvdecode - Functions - Configuration Language",
@@ -3505,9 +3705,12 @@
                         },
                         {
                             "title": "jsondecode",
+                            "syntax": [
+                                "jsondecode(string)"
+                            ],
                             "fullPath": "/terraform/language/functions/jsondecode",
                             "path": "/language/functions/jsondecode",
-                            "description": "`jsondecode` interprets a given string as JSON, returning a representation",
+                            "description": "`jsondecode` interprets a given string as JSON, returning a representation its value.",
                             "full": [
                                 "---",
                                 "page_title: jsondecode - Functions - Configuration Language",
@@ -3559,6 +3762,9 @@
                         },
                         {
                             "title": "jsonencode",
+                            "syntax": [
+                                "jsonencode(object)"
+                            ],
                             "fullPath": "/terraform/language/functions/jsonencode",
                             "path": "/language/functions/jsonencode",
                             "description": "`jsonencode` encodes a given value to a string using JSON syntax.",
@@ -3617,9 +3823,12 @@
                         },
                         {
                             "title": "textdecodebase64",
+                            "syntax": [
+                                "textdecodebase64(base64, encoding)"
+                            ],
                             "fullPath": "/terraform/language/functions/textdecodebase64",
                             "path": "/language/functions/textdecodebase64",
-                            "description": "`textdecodebase64` function decodes a string that was previously Base64-encoded,",
+                            "description": "`textdecodebase64` function decodes a string that was previously Base64-encoded.",
                             "full": [
                                 "---",
                                 "page_title: textdecodebase64 - Functions - Configuration Language",
@@ -3667,9 +3876,12 @@
                         },
                         {
                             "title": "textencodebase64",
+                            "syntax": [
+                                "textencodebase64(string, encoding)"
+                            ],
                             "fullPath": "/terraform/language/functions/textencodebase64",
                             "path": "/language/functions/textencodebase64",
-                            "description": "`textencodebase64` encodes the unicode characters in a given string using a",
+                            "description": "`textencodebase64` encodes the unicode characters in a given string using a specified character encoding.",
                             "full": [
                                 "---",
                                 "page_title: textencodebase64 - Functions - Configuration Language",
@@ -3726,6 +3938,9 @@
                         },
                         {
                             "title": "urlencode",
+                            "syntax": [
+                                "urlencode(string)"
+                            ],
                             "fullPath": "/terraform/language/functions/urlencode",
                             "path": "/language/functions/urlencode",
                             "description": "`urlencode` applies URL encoding to a given string.",
@@ -3765,9 +3980,12 @@
                         },
                         {
                             "title": "yamldecode",
+                            "syntax": [
+                                "yamldecode(string)"
+                            ],
                             "fullPath": "/terraform/language/functions/yamldecode",
                             "path": "/language/functions/yamldecode",
-                            "description": "`yamldecode` parses a string as a subset of YAML, and produces a representation",
+                            "description": "`yamldecode` parses a string as a subset of YAML, and produces a representation of its value.",
                             "full": [
                                 "---",
                                 "page_title: yamldecode - Functions - Configuration Language",
@@ -3872,9 +4090,12 @@
                         },
                         {
                             "title": "yamlencode",
+                            "syntax": [
+                                "yamlencode(object)"
+                            ],
                             "fullPath": "/terraform/language/functions/yamlencode",
                             "path": "/language/functions/yamlencode",
-                            "description": "`yamlencode` encodes a given value to a string using",
+                            "description": "`yamlencode` encodes a given value to a string using YAML 1.2",
                             "full": [
                                 "---",
                                 "page_title: yamlencode - Functions - Configuration Language",
@@ -3962,9 +4183,12 @@
                     "data": [
                         {
                             "title": "abspath",
+                            "syntax": [
+                                "abspath(path)"
+                            ],
                             "fullPath": "/terraform/language/functions/abspath",
                             "path": "/language/functions/abspath",
-                            "description": "`abspath` takes a string containing a filesystem path and converts it",
+                            "description": "`abspath` takes a string containing a filesystem path and converts it to an absolute path.",
                             "full": [
                                 "---",
                                 "page_title: abspath - Functions - Configuration Language",
@@ -3993,9 +4217,12 @@
                         },
                         {
                             "title": "dirname",
+                            "syntax": [
+                                "dirname(path)"
+                            ],
                             "fullPath": "/terraform/language/functions/dirname",
                             "path": "/language/functions/dirname",
-                            "description": "`dirname` takes a string containing a filesystem path and removes the last",
+                            "description": "`dirname` takes a string containing a filesystem path and removes the last portion from it.",
                             "full": [
                                 "---",
                                 "page_title: dirname - Functions - Configuration Language",
@@ -4040,9 +4267,12 @@
                         },
                         {
                             "title": "pathexpand",
+                            "syntax": [
+                                "pathexpand(path)"
+                            ],
                             "fullPath": "/terraform/language/functions/pathexpand",
                             "path": "/language/functions/pathexpand",
-                            "description": "`pathexpand` takes a filesystem path that might begin with a `~` segment,",
+                            "description": "`pathexpand` takes a filesystem path that might begin with a `~` segment, and if so it replaces that segment with the current user's home directory path.",
                             "full": [
                                 "---",
                                 "page_title: pathexpand - Functions - Configuration Language",
@@ -4102,9 +4332,12 @@
                         },
                         {
                             "title": "basename",
+                            "syntax": [
+                                "basename(path)"
+                            ],
                             "fullPath": "/terraform/language/functions/basename",
                             "path": "/language/functions/basename",
-                            "description": "`basename` takes a string containing a filesystem path and removes all except",
+                            "description": "`basename` takes a string containing a filesystem path and removes all except the last portion from it.",
                             "full": [
                                 "---",
                                 "page_title: basename - Functions - Configuration Language",
@@ -4151,9 +4384,12 @@
                         },
                         {
                             "title": "file",
+                            "syntax": [
+                                "file(path)"
+                            ],
                             "fullPath": "/terraform/language/functions/file",
                             "path": "/language/functions/file",
-                            "description": "`file` reads the contents of a file at the given path and returns them as",
+                            "description": "`file` reads the contents of a file at the given path and returns them as a string.",
                             "full": [
                                 "---",
                                 "page_title: file - Functions - Configuration Language",
@@ -4205,6 +4441,9 @@
                         },
                         {
                             "title": "fileexists",
+                            "syntax": [
+                                "fileexists(path)"
+                            ],
                             "fullPath": "/terraform/language/functions/fileexists",
                             "path": "/language/functions/fileexists",
                             "description": "`fileexists` determines whether a file exists at a given path.",
@@ -4247,6 +4486,9 @@
                         },
                         {
                             "title": "fileset",
+                            "syntax": [
+                                "fileset(path, pattern)"
+                            ],
                             "fullPath": "/terraform/language/functions/fileset",
                             "path": "/language/functions/fileset",
                             "description": "`fileset` enumerates a set of regular file names given a path and pattern.",
@@ -4332,9 +4574,12 @@
                         },
                         {
                             "title": "filebase64",
+                            "syntax": [
+                                "filebase64(path)"
+                            ],
                             "fullPath": "/terraform/language/functions/filebase64",
                             "path": "/language/functions/filebase64",
-                            "description": "`filebase64` reads the contents of a file at the given path and returns them as",
+                            "description": "`filebase64` reads the contents of a file at the given path and returns them as a base64-encoded string.",
                             "full": [
                                 "---",
                                 "page_title: filebase64 - Functions - Configuration Language",
@@ -4386,9 +4631,12 @@
                         },
                         {
                             "title": "templatefile",
+                            "syntax": [
+                                "templatefile(path)"
+                            ],
                             "fullPath": "/terraform/language/functions/templatefile",
                             "path": "/language/functions/templatefile",
-                            "description": "`templatefile` reads the file at the given path and renders its content",
+                            "description": "`templatefile` reads the file at the given path and renders its content as a template.",
                             "full": [
                                 "---",
                                 "page_title: templatefile - Functions - Configuration Language",
@@ -4549,6 +4797,9 @@
                     "data": [
                         {
                             "title": "formatdate",
+                            "syntax": [
+                                "formatdate(pattern, timestamp)"
+                            ],
                             "fullPath": "/terraform/language/functions/formatdate",
                             "path": "/language/functions/formatdate",
                             "description": "`formatdate` converts a timestamp into a different time format.",
@@ -4662,6 +4913,9 @@
                         },
                         {
                             "title": "timeadd",
+                            "syntax": [
+                                "timeadd(timestamp, duration)"
+                            ],
                             "fullPath": "/terraform/language/functions/timeadd",
                             "path": "/language/functions/timeadd",
                             "description": "`timeadd` adds a duration to a timestamp, returning a new timestamp.",
@@ -4708,9 +4962,12 @@
                         },
                         {
                             "title": "timecmp",
+                            "syntax": [
+                                "timecmp(timestamp, timestamp)"
+                            ],
                             "fullPath": "/terraform/language/functions/timecmp",
                             "path": "/language/functions/timecmp",
-                            "description": "`timecmp` compares two timestamps and returns a number that represents the",
+                            "description": "`timecmp` compares two timestamps and returns a number that represents the timestamp.",
                             "full": [
                                 "---",
                                 "page_title: timecmp - Functions - Configuration Language",
@@ -4782,6 +5039,9 @@
                         },
                         {
                             "title": "timestamp",
+                            "syntax": [
+                                "timestamp()"
+                            ],
                             "fullPath": "/terraform/language/functions/timestamp",
                             "path": "/language/functions/timestamp",
                             "description": "`timestamp` returns a UTC timestamp string in [RFC 3339](https://tools.ietf.org/html/rfc3339) format.",
@@ -4836,9 +5096,12 @@
                     "data": [
                         {
                             "title": "base64sha256",
+                            "syntax": [
+                                "base64sha256(string)"
+                            ],
                             "fullPath": "/terraform/language/functions/base64sha256",
                             "path": "/language/functions/base64sha256",
-                            "description": "`base64sha256` computes the SHA256 hash of a given string and encodes it with",
+                            "description": "`base64sha256` computes the SHA256 hash of a given string and encodes it with Base64.",
                             "full": [
                                 "---",
                                 "page_title: base64sha256 - Functions - Configuration Language",
@@ -4875,9 +5138,12 @@
                         },
                         {
                             "title": "base64sha512",
+                            "syntax": [
+                                "base64sha512(string)"
+                            ],
                             "fullPath": "/terraform/language/functions/base64sha512",
                             "path": "/language/functions/base64sha512",
-                            "description": "`base64sha512` computes the SHA512 hash of a given string and encodes it with",
+                            "description": "`base64sha512` computes the SHA512 hash of a given string and encodes it with Base64.",
                             "full": [
                                 "---",
                                 "page_title: base64sha512 - Functions - Configuration Language",
@@ -4914,9 +5180,12 @@
                         },
                         {
                             "title": "bcrypt",
+                            "syntax": [
+                                "bcrypt(string, cost)"
+                            ],
                             "fullPath": "/terraform/language/functions/bcrypt",
                             "path": "/language/functions/bcrypt",
-                            "description": "`bcrypt` computes a hash of the given string using the Blowfish cipher,",
+                            "description": "`bcrypt` computes a hash of the given string using the Blowfish cipher.",
                             "full": [
                                 "---",
                                 "page_title: bcrypt - Functions - Configuration Language",
@@ -4958,6 +5227,9 @@
                         },
                         {
                             "title": "filebase64sha256",
+                            "syntax": [
+                                "filebase64sha256(path)"
+                            ],
                             "fullPath": "/terraform/language/functions/filebase64sha256",
                             "path": "/language/functions/filebase64sha256",
                             "description": "`filebase64sha256` is a variant of [`base64sha256`](/terraform/language/functions/base64sha256)",
@@ -4981,6 +5253,9 @@
                         },
                         {
                             "title": "filebase64sha512",
+                            "syntax": [
+                                "filebase64sha512(path)"
+                            ],
                             "fullPath": "/terraform/language/functions/filebase64sha512",
                             "path": "/language/functions/filebase64sha512",
                             "description": "`filebase64sha512` is a variant of [`base64sha512`](/terraform/language/functions/base64sha512)",
@@ -5004,6 +5279,9 @@
                         },
                         {
                             "title": "filemd5",
+                            "syntax": [
+                                "filemd5(path)"
+                            ],
                             "fullPath": "/terraform/language/functions/filemd5",
                             "path": "/language/functions/filemd5",
                             "description": "`filemd5` is a variant of [`md5`](/terraform/language/functions/md5)",
@@ -5027,6 +5305,9 @@
                         },
                         {
                             "title": "filesha1",
+                            "syntax": [
+                                "filesha1(path)"
+                            ],
                             "fullPath": "/terraform/language/functions/filesha1",
                             "path": "/language/functions/filesha1",
                             "description": "`filesha1` is a variant of [`sha1`](/terraform/language/functions/sha1)",
@@ -5050,6 +5331,9 @@
                         },
                         {
                             "title": "filesha256",
+                            "syntax": [
+                                "filesha256(path)"
+                            ],
                             "fullPath": "/terraform/language/functions/filesha256",
                             "path": "/language/functions/filesha256",
                             "description": "`filesha256` is a variant of [`sha256`](/terraform/language/functions/sha256)",
@@ -5073,6 +5357,9 @@
                         },
                         {
                             "title": "filesha512",
+                            "syntax": [
+                                "filesha512(path)"
+                            ],
                             "fullPath": "/terraform/language/functions/filesha512",
                             "path": "/language/functions/filesha512",
                             "description": "`filesha512` is a variant of [`sha512`](/terraform/language/functions/sha512)",
@@ -5096,9 +5383,12 @@
                         },
                         {
                             "title": "md5",
+                            "syntax": [
+                                "md5(string)"
+                            ],
                             "fullPath": "/terraform/language/functions/md5",
                             "path": "/language/functions/md5",
-                            "description": "`md5` computes the MD5 hash of a given string and encodes it with",
+                            "description": "`md5` computes the MD5 hash of a given string and encodes it with hexadecimal digits.",
                             "full": [
                                 "---",
                                 "page_title: md5 - Functions - Configuration Language",
@@ -5135,9 +5425,12 @@
                         },
                         {
                             "title": "rsadecrypt",
+                            "syntax": [
+                                "rsadecrypt(ciphertext, privatekey)"
+                            ],
                             "fullPath": "/terraform/language/functions/rsadecrypt",
                             "path": "/language/functions/rsadecrypt",
-                            "description": "`rsadecrypt` decrypts an RSA-encrypted ciphertext, returning the corresponding",
+                            "description": "`rsadecrypt` decrypts an RSA-encrypted ciphertext, returning the corresponding cleartext.",
                             "full": [
                                 "---",
                                 "page_title: rsadecrypt - Functions - Configuration Language",
@@ -5174,9 +5467,12 @@
                         },
                         {
                             "title": "sha1",
+                            "syntax": [
+                                "rsadecrypt(string)"
+                            ],
                             "fullPath": "/terraform/language/functions/sha1",
                             "path": "/language/functions/sha1",
-                            "description": "`sha1` computes the SHA1 hash of a given string and encodes it with",
+                            "description": "`sha1` computes the SHA1 hash of a given string and encodes it with hexadecimal digits.",
                             "full": [
                                 "---",
                                 "page_title: sha1 - Functions - Configuration Language",
@@ -5213,9 +5509,12 @@
                         },
                         {
                             "title": "sha256",
+                            "syntax": [
+                                "sha256(string)"
+                            ],
                             "fullPath": "/terraform/language/functions/sha256",
                             "path": "/language/functions/sha256",
-                            "description": "`sha256` computes the SHA256 hash of a given string and encodes it with",
+                            "description": "`sha256` computes the SHA256 hash of a given string and encodes it with hexadecimal digits.",
                             "full": [
                                 "---",
                                 "page_title: sha256 - Functions - Configuration Language",
@@ -5252,9 +5551,12 @@
                         },
                         {
                             "title": "sha512",
+                            "syntax": [
+                                "sha512(string)"
+                            ],
                             "fullPath": "/terraform/language/functions/sha512",
                             "path": "/language/functions/sha512",
-                            "description": "`sha512` computes the SHA512 hash of a given string and encodes it with",
+                            "description": "`sha512` computes the SHA512 hash of a given string and encodes it with hexadecimal digits.",
                             "full": [
                                 "---",
                                 "page_title: sha512 - Functions - Configuration Language",
@@ -5289,6 +5591,9 @@
                         },
                         {
                             "title": "uuid",
+                            "syntax": [
+                                "uuid()"
+                            ],
                             "fullPath": "/terraform/language/functions/uuid",
                             "path": "/language/functions/uuid",
                             "description": "`uuid` generates a unique identifier string.",
@@ -5334,9 +5639,12 @@
                         },
                         {
                             "title": "uuidv5",
+                            "syntax": [
+                                "uuidv5(namespace, name)"
+                            ],
                             "fullPath": "/terraform/language/functions/uuidv5",
                             "path": "/language/functions/uuidv5",
-                            "description": "`uuidv5` generates a _name-based_ UUID, as described in",
+                            "description": "`uuidv5` generates a _name-based_ UUID, as described in also known as a \"version 5\" UUID.",
                             "full": [
                                 "---",
                                 "page_title: uuidv5 - Functions - Configuration Language",
@@ -5427,9 +5735,12 @@
                     "data": [
                         {
                             "title": "cidrhost",
+                            "syntax": [
+                                "cidrhost(prefix, hostnum)"
+                            ],
                             "fullPath": "/terraform/language/functions/cidrhost",
                             "path": "/language/functions/cidrhost",
-                            "description": "`cidrhost` calculates a full host IP address for a given host number within",
+                            "description": "`cidrhost` calculates a full host IP address for a given host number within IP network address prefix.",
                             "full": [
                                 "---",
                                 "page_title: cidrhost - Functions - Configuration Language",
@@ -5489,9 +5800,12 @@
                         },
                         {
                             "title": "cidrnetmask",
+                            "syntax": [
+                                "cidrnetmask(prefix)"
+                            ],
                             "fullPath": "/terraform/language/functions/cidrnetmask",
                             "path": "/language/functions/cidrnetmask",
-                            "description": "`cidrnetmask` converts an IPv4 address prefix given in CIDR notation into",
+                            "description": "`cidrnetmask` converts an IPv4 address prefix given in CIDR notation into notation into a subnet mask address.",
                             "full": [
                                 "---",
                                 "page_title: cidrnetmask - Functions - Configuration Language",
@@ -5533,6 +5847,9 @@
                         },
                         {
                             "title": "cidrsubnet",
+                            "syntax": [
+                                "cidrsubnet(prefix, newbits, netnum)"
+                            ],
                             "fullPath": "/terraform/language/functions/cidrsubnet",
                             "path": "/language/functions/cidrsubnet",
                             "description": "`cidrsubnet` calculates a subnet address within given IP network address prefix.",
@@ -5712,9 +6029,12 @@
                         },
                         {
                             "title": "cidrsubnets",
+                            "syntax": [
+                                "cidrsubnets(prefix, ...newbits)"
+                            ],
                             "fullPath": "/terraform/language/functions/cidrsubnets",
                             "path": "/language/functions/cidrsubnets",
-                            "description": "`cidrsubnets` calculates a sequence of consecutive IP address ranges within",
+                            "description": "`cidrsubnets` calculates a sequence of consecutive IP address ranges within a particular CIDR prefix.",
                             "full": [
                                 "---",
                                 "page_title: cidrsubnets - Functions - Configuration Language",
@@ -5829,9 +6149,12 @@
                     "data": [
                         {
                             "title": "can",
+                            "syntax": [
+                                "can(function(...args))"
+                            ],
                             "fullPath": "/terraform/language/functions/can",
                             "path": "/language/functions/can",
-                            "description": "`can` evaluates the given expression and returns a boolean value indicating",
+                            "description": "`can` evaluates the given expression and returns a boolean value indicating whether the expression produced a result without any errors.",
                             "full": [
                                 "---",
                                 "page_title: can - Functions - Configuration Language",
@@ -5911,9 +6234,12 @@
                         },
                         {
                             "title": "nonsensitive",
+                            "syntax": [
+                                "nonsensitive(data)"
+                            ],
                             "fullPath": "/terraform/language/functions/nonsensitive",
                             "path": "/language/functions/nonsensitive",
-                            "description": "`nonsensitive` takes a sensitive value and returns a copy of that value with",
+                            "description": "`nonsensitive` takes a sensitive value and returns a copy of that value with the sensitive marking removed.",
                             "full": [
                                 "---",
                                 "page_title: nonsensitive - Functions - Configuration Language",
@@ -6047,9 +6373,12 @@
                         },
                         {
                             "title": "sensitive",
+                            "syntax": [
+                                "sensitive(data)"
+                            ],
                             "fullPath": "/terraform/language/functions/sensitive",
                             "path": "/language/functions/sensitive",
-                            "description": "`sensitive` takes any value and returns a copy of it marked so that Terraform",
+                            "description": "`sensitive` takes any value and returns a copy of it marked so that Terraform will treat it as sensitive.",
                             "full": [
                                 "---",
                                 "page_title: sensitive - Functions - Configuration Language",
@@ -6097,6 +6426,9 @@
                         },
                         {
                             "title": "tobool",
+                            "syntax": [
+                                "tobool(value)"
+                            ],
                             "fullPath": "/terraform/language/functions/tobool",
                             "path": "/language/functions/tobool",
                             "description": "`tobool` converts its argument to a boolean value.",
@@ -6141,6 +6473,9 @@
                         },
                         {
                             "title": "tolist",
+                            "syntax": [
+                                "tolist(list|set)"
+                            ],
                             "fullPath": "/terraform/language/functions/tolist",
                             "path": "/language/functions/tolist",
                             "description": "`tolist` converts its argument to a list value.",
@@ -6188,6 +6523,9 @@
                         },
                         {
                             "title": "tomap",
+                            "syntax": [
+                                "tomap(object)"
+                            ],
                             "fullPath": "/terraform/language/functions/tomap",
                             "path": "/language/functions/tomap",
                             "description": "`tomap` converts its argument to a map value.",
@@ -6229,6 +6567,9 @@
                         },
                         {
                             "title": "tonumber",
+                            "syntax": [
+                                "tonumber(value)"
+                            ],
                             "fullPath": "/terraform/language/functions/tonumber",
                             "path": "/language/functions/tonumber",
                             "description": "`tonumber` converts its argument to a number value.",
@@ -6268,6 +6609,9 @@
                         },
                         {
                             "title": "toset",
+                            "syntax": [
+                                "toset(list|set)"
+                            ],
                             "fullPath": "/terraform/language/functions/toset",
                             "path": "/language/functions/toset",
                             "description": "`toset` converts its argument to a set value.",
@@ -6326,6 +6670,9 @@
                         },
                         {
                             "title": "tostring",
+                            "syntax": [
+                                "tostring(value)"
+                            ],
                             "fullPath": "/terraform/language/functions/tostring",
                             "path": "/language/functions/tostring",
                             "description": "`tostring` converts its argument to a string value.",
@@ -6366,9 +6713,12 @@
                         },
                         {
                             "title": "try",
+                            "syntax": [
+                                "try(expression, fallback)"
+                            ],
                             "fullPath": "/terraform/language/functions/try",
                             "path": "/language/functions/try",
-                            "description": "`try` evaluates all of its argument expressions in turn and returns the result",
+                            "description": "`try` evaluates all of its argument expressions in turn and returns the result of the first one that does not produce any errors.",
                             "full": [
                                 "---",
                                 "page_title: try - Functions - Configuration Language",
@@ -6485,6 +6835,9 @@
                         },
                         {
                             "title": "type",
+                            "syntax": [
+                                "type(value)"
+                            ],
                             "fullPath": "/terraform/language/functions/type",
                             "path": "/language/functions/type",
                             "description": "`type` returns the type of a given value.",
@@ -6650,56 +7003,67 @@
             "data": [
                 {
                     "title": "local",
+                    "description": "The local backend stores state on the local filesystem, locks that state using system APIs, and performs operations locally.",
                     "fullPath": "/terraform/language/settings/backends/local",
                     "path": "/language/settings/backends/local"
                 },
                 {
                     "title": "remote",
+                    "description": "The remote backend is unique among all other Terraform backends because it can both store state snapshots and execute operations for Terraform Cloud's CLI-driven run workflow. It used to be called an \"enhanced\" backend.",
                     "fullPath": "/terraform/language/settings/backends/remote",
                     "path": "/language/settings/backends/remote"
                 },
                 {
                     "title": "azurerm",
+                    "description": "Stores the state as a Blob with the given Key within the Blob Container within the Blob Storage Account.",
                     "fullPath": "/terraform/language/settings/backends/azurerm",
                     "path": "/language/settings/backends/azurerm"
                 },
                 {
                     "title": "consul",
+                    "description": "Stores the state in the Consul KV store at a given path.",
                     "fullPath": "/terraform/language/settings/backends/consul",
                     "path": "/language/settings/backends/consul"
                 },
                 {
                     "title": "cos",
+                    "description": "Stores the state as an object in a configurable prefix in a given bucket on Tencent Cloud Object Storage (COS).",
                     "fullPath": "/terraform/language/settings/backends/cos",
                     "path": "/language/settings/backends/cos"
                 },
                 {
                     "title": "gcs",
+                    "description": "Stores the state as an object in a configurable prefix in a pre-existing bucket on Google Cloud Storage (GCS). The bucket must exist prior to configuring the backend.",
                     "fullPath": "/terraform/language/settings/backends/gcs",
                     "path": "/language/settings/backends/gcs"
                 },
                 {
                     "title": "http",
+                    "description": "Stores the state using a simple REST client. State will be fetched via GET, updated via POST, and purged with DELETE. The method used for updating is configurable.",
                     "fullPath": "/terraform/language/settings/backends/http",
                     "path": "/language/settings/backends/http"
                 },
                 {
                     "title": "Kubernetes",
+                    "description": "Stores the state in a Kubernetes secret.",
                     "fullPath": "/terraform/language/settings/backends/kubernetes",
                     "path": "/language/settings/backends/kubernetes"
                 },
                 {
                     "title": "oss",
+                    "description": "Stores the state as a given key in a given bucket on Stores Alibaba Cloud OSS.",
                     "fullPath": "/terraform/language/settings/backends/oss",
                     "path": "/language/settings/backends/oss"
                 },
                 {
                     "title": "pg",
+                    "description": "Stores the state in a Postgres database version 10 or newer.",
                     "fullPath": "/terraform/language/settings/backends/pg",
                     "path": "/language/settings/backends/pg"
                 },
                 {
                     "title": "s3",
+                    "description": "Stores the state as a given key in a given bucket on Amazon S3.",
                     "fullPath": "/terraform/language/settings/backends/s3",
                     "path": "/language/settings/backends/s3"
                 }

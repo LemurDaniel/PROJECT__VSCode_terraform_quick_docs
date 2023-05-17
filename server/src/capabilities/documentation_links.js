@@ -134,16 +134,15 @@ async function getLinkForPosition(document, position) {
 
     // Inline function elements
     for (const functionInfo of Registry.instance.getFunctionsFlat()) {
-        for (const inlineResource of fullLine.matchAll(new RegExp(`${functionInfo.title}[\s]*[\(]+`, 'gi'))) {
+        for (const inlineResource of fullLine.matchAll(new RegExp(`[^a-z]${functionInfo.title}[\s]*[\(]+`, 'gi'))) {
             const inRange = position.character >= inlineResource.index &&
                 position.character <= (inlineResource.index + inlineResource.at(0).length)
-
             if (!inRange) continue
 
             const webUrl = `${Registry.instance.getFunctionsData().baseUrl}/${functionInfo.fullPath}`//.replace(/[^:][/]+/g, '/')
-            console.log(`[**${functionInfo.title} Documentation**](${webUrl})`)
             return {
-                contents: `[**${functionInfo.title}()** Documentation](${webUrl})`
+                contents: `[**${functionInfo.syntax[0]}** Documentation](${webUrl})`
+                // contents: `[**${functionInfo.syntax[0]}**](${webUrl}) ${functionInfo.description.replace(/`[^`]+`/g, '')}`
             }
         }
     }
