@@ -2,37 +2,35 @@
 
 # Usage
 
-##### - `Just hover over a Terraform 'Data', 'Resource', 'Module' or 'data.<identifier>', etc.`
+#### - Just hover over a Terraform 'Data', 'Resource', 'Module' or 'data.<identifier>', etc.
 
-##### - `Supports only Modules in the Terraform Registry!`
-
-##### - `By default supports all official and partner Providers`
-
----
-
-#### `Example 1:`
-
-![example-1](.resources/terraform-quick-docs-1.gif)
-
-
-#### `Example 2:`
-
-![example-2](.resources/terraform-quick-docs-5.gif)
-
-#### `Example 3:`
-
-![example-3](.resources/terraform-quick-docs-3.gif)
+#### - By default supports all official and partner Providers
 
 ---
 
 #### `Commands:`
 
-- `Terraform Quick Docs: Show supported Providers` shows all currently supported Providers by the extension
 - `Terraform Quick Docs: Show Resource Documentation` list and open any resource documentation for any provider
+- `Terraform Quick Docs: Show Functions Documentation` list and open any terraform function documentation
+- `Terraform Quick Docs: Show additional Documentation` list and open additional documentations
+- `Terraform Quick Docs: Show supported Providers` shows all currently supported Providers by the extension
 
 ---
 
+#### `Hovering Example:`
 
-##### - `Add more specific Providers if needed in the Settings:`
+![example-1](.resources/terraform-quick-docs-6.gif)
+
+#### `Commands Example:`
+
+![example-2](.resources/terraform-quick-docs-7.gif)
+
+#### `Supports only Modules in the Terraform Registry`:`
+
+![example-3](.resources/terraform-quick-docs-3.gif)
+  
+---
+
+#### - `Add more specific Providers if needed in the Settings:`
 
 ![settings](.resources/terraform-quick-docs-4.gif)

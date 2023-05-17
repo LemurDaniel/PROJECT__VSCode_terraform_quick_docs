@@ -76,15 +76,27 @@ async function activate(context) {
     client.start()
 
 
+    const showResources = require('./commands/resource.show')
+    let disposable = vscode.commands.registerCommand('terraform-quick-docs.resource.show',
+        async () => await showResources(client)
+    )
+    context.subscriptions.push(disposable)
+
+    const showFunctions = require('./commands/functions.show')
+    disposable = vscode.commands.registerCommand('terraform-quick-docs.functions.show',
+        async () => await showFunctions(client)
+    )
+    context.subscriptions.push(disposable)
+
     const listProviders = require('./commands/provider.list')
-    let disposable = vscode.commands.registerCommand('terraform-quick-docs.providers.list',
+    disposable = vscode.commands.registerCommand('terraform-quick-docs.providers.list',
         async () => await listProviders(client)
     )
     context.subscriptions.push(disposable)
 
-    const showResources = require('./commands/resource.show')
-    disposable = vscode.commands.registerCommand('terraform-quick-docs.resource.show',
-        async () => await showResources(client)
+    const docsShow = require('./commands/documentation.show')
+    disposable = vscode.commands.registerCommand('terraform-quick-docs.documentation.show',
+        async () => await docsShow(client)
     )
     context.subscriptions.push(disposable)
 }
