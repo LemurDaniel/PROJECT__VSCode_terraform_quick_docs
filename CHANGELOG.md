@@ -49,3 +49,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## [0.0.11]
 
 - Add filecaching on API-Calls
+
+## [0.0.12]
+
+- Added hover support for terraform functions
+- Added commands to open terraform functions docs and addtional docs

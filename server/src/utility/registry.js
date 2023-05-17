@@ -79,14 +79,14 @@ class Registry {
         return response
     }
 
-    async getProvidersOutJson(path = `${__dirname}\\providers.json`) {
+    async getProvidersOutJson(path = `${__dirname}\\data\\providers.json`) {
 
         const providers = await this.getProvidersFromApi()
         fs.writeFileSync(path, JSON.stringify(providers))
 
     }
 
-    async getProvidersFromJson(path = `${__dirname}\\providers.json`) {
+    async getProvidersFromJson(path = `${__dirname}\\data\\providers.json`) {
 
         if (path in this.#cache)
             return Registry.additionalProviders.map(v => v).concat(this.#cache[path])
@@ -213,6 +213,21 @@ class Registry {
 
     async getResourceDocs(resourceInfo) {
         return await this.get(`/v2/provider-docs/${resourceInfo.id}`, resourceInfo.providerVersion)
+    }
+
+
+
+
+    getFunctionsFlat() {
+        return this.getFunctionsData().data.map(category => category.data).flat()
+    }
+    getFunctionsData() {
+        if ("functionData" in this.#cache) return this.#cache["functionData"]
+        this.#cache["functionData"] = this.getAllDocumentationData().data.filter(docs => docs.title.toLowerCase() == 'functions')[0]
+        return this.getFunctionsData()
+    }
+    getAllDocumentationData() {
+        return JSON.parse(fs.readFileSync(`${__dirname}/data/documentation.json`))
     }
 }
 

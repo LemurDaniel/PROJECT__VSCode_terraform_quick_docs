@@ -1,7 +1,7 @@
 {
   "name": "terraform-quick-docs",
   "displayName": "Terraform Quick Docs",
-  "description": "Access Terraform Docs by hovering over Resources.",
+  "description": "Access Terraform Provider and Function Docs by hovering over Resources.",
   "author": "LemurDaniel",
   "publisher": "LemurDaniel",
   "license": "GPL-3.0",
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "https://github.com/LemurDaniel/PROJECT__VSCode_terraform_quick_docs"
   },
-  "version": "0.0.11",
+  "version": "0.0.12",
   "engines": {
     "vscode": "^1.70.0"
   },
@@ -30,12 +30,20 @@
   "contributes": {
     "commands": [
       {
-        "command": "terraform-quick-docs.providers.show",
-        "title": "Terraform Quick Docs: Show supported Providers"
-      },
-      {
         "command": "terraform-quick-docs.resource.show",
         "title": "Terraform Quick Docs: Show Resource Documentation"
+      },
+      {
+        "command": "terraform-quick-docs.functions.show",
+        "title": "Terraform Quick Docs: Show Function Documentation"
+      },
+      {
+        "command": "terraform-quick-docs.documentation.show",
+        "title": "Terraform Quick Docs: Show additional Documentations"
+      },
+      {
+        "command": "terraform-quick-docs.providers.list",
+        "title": "Terraform Quick Docs: Show supported Providers"
       }
     ],
     "languages": [
