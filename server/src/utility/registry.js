@@ -14,6 +14,12 @@ class Registry {
         return Registry.#instance
     }
 
+    // Found via analyzing terraform files
+    static requiredProvidersAtPath = {}
+
+    // Correlates to the settings
+    static recursionDepth = 10
+    static ignoreVersion = false
     static #additionalProviders = []
     static get additionalProviders() {
         return Registry.#additionalProviders
@@ -27,6 +33,7 @@ class Registry {
     }
 
 
+    // Datatypes for getting resource or data-source
     static TYPES = {
         data: 'data-sources',
         resource: 'resources'
@@ -89,11 +96,50 @@ class Registry {
     async getProvidersFromJson(path = `${__dirname}\\data\\providers.json`) {
 
         if (path in this.#cache)
-            return Registry.additionalProviders.map(v => v).concat(this.#cache[path])
+            return Registry.additionalProviders
+                .map(provider => ({ ...provider, fromSettings: true }))
+                .concat(this.#cache[path])
 
         this.#cache[path] = JSON.parse(fs.readFileSync(path))
+            .map(provider => ({
+                ...provider, officialPartnerStatus: true,
+            }))
 
         return await this.getProvidersFromJson(path)
+
+    }
+
+    async getProvidersInConfiguration() {
+
+        const alreadyDefined = {}
+        let providersList = await this.getProvidersFromJson()
+        providersList.forEach(provider => alreadyDefined[provider.identifier] = provider)
+
+        const providersInConfiguration = {}
+        for (const [fullPath, requiredProviders] of Object.entries(Registry.requiredProvidersAtPath)) {
+
+            for (const [name, data] of Object.entries(requiredProviders)) {
+                if (data.source in providersInConfiguration && fullPath.split('\\').length >= providersInConfiguration[data.source].segments) {
+                    continue
+                }
+
+                providersInConfiguration[data.source] = {
+                    name: name,
+                    namespace: data.source.split('/')[0],
+                    identifier: data.source,
+                    version: data.version ?? providersInConfiguration[data.source]?.version,
+                    fsPath: fullPath,
+                    fromConfiguration: true,
+                    segments: fullPath.split('\\').length,
+                    fromSettings: alreadyDefined[data.source]?.fromSettings ?? false,
+                    officialPartnerStatus: alreadyDefined[data.source]?.officialPartnerStatus ?? false,
+                }
+            }
+
+        }
+
+        providersList = providersList.filter(provider => !(provider.identifier in providersInConfiguration))
+        return Object.values(providersInConfiguration).concat(providersList)
 
     }
 
@@ -145,13 +191,15 @@ class Registry {
         return moduleInfo
     }
 
-    async getProviderInfo(identifier) {
+    // Gets a provider based on an identifier 'namespace/name'
+    async getProviderInfo(identifier, version) {
 
         const docsUrl = `https://${Registry.#endpoint}/providers/{{namespace}}/{{provider}}/{{version}}/docs`
-        const providerInfo = await this.get(`v1/providers/${identifier}`, 'provider', 12 * 60 * 60)
+        const endpoint = null != version && !Registry.ignoreVersion ? `v1/providers/${identifier}/${version}` : `v1/providers/${identifier}`
+        const providerInfo = await this.get(endpoint, 'provider', 12 * 60 * 60)
 
-        if (null == providerInfo) {
-            return console.log(`Not Found: ${identifier}`)
+        if (null == providerInfo || providerInfo.errors?.at(0)?.toLowerCase() == 'not found') {
+            throw new Error(`Not Found: ${identifier}`, endpoint)
         }
 
         providerInfo['identifier'] = identifier
@@ -171,6 +219,7 @@ class Registry {
         return providerInfo
     }
 
+    // finds provider based on a resource identifier 'azurerm_bla_bla'
     async findProviderInfo(resourceIdentifier) {
 
         const providerName = resourceIdentifier.split('_')[0].toLowerCase()
@@ -185,7 +234,6 @@ class Registry {
 
 
         console.log(`Found Provider: ${providerData.identifier}`)
-
         const providerInfo = await this.getProviderInfo(providerData.identifier)
         console.log(`Found Providerinfo: ${providerData.identifier}`)
 
@@ -193,6 +241,7 @@ class Registry {
 
     }
 
+    // finds provider resource based on a resource identifier 'azurerm_bla_bla' and a category
     async findProviderResource(resourceIdentifier, resourceCategory) {
 
         const resourceName = resourceIdentifier
@@ -209,6 +258,14 @@ class Registry {
         console.log(`Found ResourceName: ${resourceInfo.title}`)
         return { resourceInfo: resourceInfo, providerInfo: providerInfo }
 
+    }
+
+    // gets a resource from a specific provder with version
+    getProviderResource(providerInfo, resourceIdentifier, resourceCategory) {
+        const resourceName = resourceIdentifier.split('_').slice(1).join('_')
+        return providerInfo.docs.filter(
+            resource => (resource.title == resourceName || resource.title == resourceIdentifier) && resource.category == resourceCategory
+        )[0]
     }
 
     async getResourceDocs(resourceInfo) {

@@ -23,6 +23,10 @@ const {
     getLinkForPosition
 } = require('./capabilities/documentation_links')
 
+const {
+    analyzeRequiredProviders
+} = require('./capabilities/analyze_required_providers')
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 ////// Initalize
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -35,6 +39,7 @@ let initDone = false
 
 documents.onDidOpen(({ document }) => {
 
+    /*
     if (!initDone) return
 
     let matches = document._content.match(/resource\s*"[A-Za-z0-9_]+"|data\s*"[A-Za-z0-9_]+"/g)
@@ -53,7 +58,15 @@ documents.onDidOpen(({ document }) => {
             .findProviderInfo(resourceIdentifier)
             .catch(error => connection.console.log(error.message))
     )
+    */
 
+})
+
+documents.onDidSave(async ({ document }) => {
+
+    const fspath = await connection.sendRequest('fspath.get', document.uri)
+    analyzeRequiredProviders(fspath, false)
+    console.log('analyzed: ${fspath}')
 })
 
 connection.onInitialize(params => {
@@ -73,25 +86,35 @@ connection.onInitialize(params => {
 
 connection.onInitialized(async () => {
 
-    connection.client.register(DidChangeConfigurationNotification.type, undefined)
-    connection.onDidChangeConfiguration(async () => {
+
+    // Handling of changed settings in vscode
+    const onSettingsChange = async () => {
         const config = await connection.workspace.getConfiguration({
             section: 'terraform-quick-docs'
         })
-        Registry.additionalProviders = config.additional_supported_providers
-        connection.console.log(`Changed Settings to: ${JSON.stringify(Registry.additionalProviders)}`)
-    })
+        Registry.additionalProviders = config.additionalSupportedProviders
+        Registry.ignoreVersion = config.alwaysOpenLatestVersion == false
+        Registry.recursionDepth = Number.parseInt(config.recursionDepth)
+        connection.console.log(`Changed Settings to: ${JSON.stringify({
+            ignoreVersion: Registry.ignoreVersion,
+            recursionDepth: Registry.recursionDepth,
+            additionalProviders: Registry.additionalProviders
+        })}`)
+    }
+    connection.client.register(DidChangeConfigurationNotification.type, undefined)
+    connection.onDidChangeConfiguration(onSettingsChange)
 
-
-    const config = await connection.workspace.getConfiguration({
-        section: 'terraform-quick-docs'
-    })
-    Registry.additionalProviders = config.additional_supported_providers
+    // Inital configuring of settings
+    await onSettingsChange()
     Registry.clientConnection = connection
+
+    const folders = await connection.workspace.getWorkspaceFolders()
+    folders.map(({ uri }) =>
+        connection.sendRequest('fspath.get', uri).then(fspath => analyzeRequiredProviders(fspath, true))
+    )
 
     connection.console.log('Init Done')
     initDone = true
-
 })
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -103,13 +126,15 @@ connection.onHover(async ({ textDocument, position }) => {
     try {
 
         const document = documents.get(textDocument.uri)
-        return await getLinkForPosition(document, position)
+        const fsPath = await connection.sendRequest('fspath.get', textDocument.uri)
+        return await getLinkForPosition(fsPath, document, position)
 
     } catch (exception) {
         connection.console.log(exception.message)
     }
 
     return null
+
 })
 
 
@@ -117,8 +142,8 @@ connection.onHover(async ({ textDocument, position }) => {
 ////// Methods for Client Calls
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-connection.onRequest('provider.list', async () => await Registry.instance.getProvidersFromJson())
-connection.onRequest('provider.info', async (identifier) => await Registry.instance.getProviderInfo(identifier))
+connection.onRequest('provider.list', async () => await Registry.instance.getProvidersInConfiguration())
+connection.onRequest('provider.info', async identifier => await Registry.instance.getProviderInfo(identifier).catch(err => ({ error: 'NOT FOUND' })))
 connection.onRequest('functions.data', () => Registry.instance.getFunctionsData())
 connection.onRequest('documentation.data', () => Registry.instance.getAllDocumentationData())
 

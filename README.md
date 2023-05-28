@@ -1,5 +1,3 @@
-[Marketplace](https://marketplace.visualstudio.com/items?itemName=LemurDaniel.terraform-quick-docs)
-
 # Usage
 
 #### - Just hover over a Terraform 'Data', 'Resource', 'Module' or 'data.<identifier>', etc.
@@ -30,6 +28,9 @@
 ![example-3](.resources/terraform-quick-docs-3.gif)
   
 ---
+
+#### - `Prefer latest version over version specified in 'required_providers'-block`
+![settings](.resources/terraform-quick-docs-8.jpg)
 
 #### - `Add more specific Providers if needed in the Settings:`
 
