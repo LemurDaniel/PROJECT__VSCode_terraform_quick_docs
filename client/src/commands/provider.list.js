@@ -23,6 +23,9 @@ module.exports = async function command(client) {
         if (null == selected) return
 
         const info = await client.sendRequest('provider.info', selected.identifier)
+        if (info.error == 'NOT FOUND')
+            throw new Error(`'${selected.identifier}' was not found!`)
+
         await vscode.env.openExternal(vscode.Uri.parse(info.docsUrl))
 
     } catch (exception) {

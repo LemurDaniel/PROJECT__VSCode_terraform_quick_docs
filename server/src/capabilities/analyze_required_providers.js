@@ -3,9 +3,11 @@ const fs = require('fs')
 const Registry = require('../utility/registry')
 const BlockAnalyzer = require('../utility/blockAnalyzer')
 
+let MAX_RECURSION_DEPTH = 10
+
 function* readDirectory(fspath, recursive, recursiondepth = 0) {
 
-    if (recursiondepth >= 20) return
+    if (recursiondepth >= MAX_RECURSION_DEPTH) return
 
     //Testing long execution blocking main thread
     //let num = 0
@@ -27,7 +29,7 @@ function* readDirectory(fspath, recursive, recursiondepth = 0) {
     }
 
     for (const fullPath of directoryQueue) {
-        yield* readDirectory(fullPath, recursive, recursiondepth++)
+        yield* readDirectory(fullPath, recursive, recursiondepth + 1)
     }
 }
 
@@ -35,23 +37,25 @@ function* readDirectory(fspath, recursive, recursiondepth = 0) {
 
 // Overkill but execute recursive analyazing of files as a thread. Good to not block main-thread, when going through many files recursivley
 const Thread = require('node:worker_threads');
+const { error } = require('console')
 
 async function analyzeRequiredProviders(fsPath, recursive = true) {
 
     // Start thread if main-thread
     if (recursive && Thread.isMainThread) {
+        MAX_RECURSION_DEPTH = Registry.recursionDepth
+
         const worker = new Thread.Worker(__filename)
         worker.on('message', ({ parentpath, requiredProviders }) => {
-            console.log(`analyzed '${parentpath}'`)
             Registry.requiredProvidersAtPath[parentpath] = requiredProviders
             // Fetch API for providers and cache
-            Object.values( Registry.requiredProvidersAtPath[parentpath]).map(
-                provider => Registry.instance.getProviderInfo(provider.source, provider.version)
+            Object.values(Registry.requiredProvidersAtPath[parentpath]).map(
+                provider => Registry.instance.getProviderInfo(provider.source, provider.version).catch(error => console.log(error))
             )
         })
 
         // Call thread to excute on path
-        worker.postMessage({ fsPath: fsPath, recursive: recursive })
+        worker.postMessage({ fsPath: fsPath, recursive: recursive, maxRecursionDepth: Registry.recursionDepth })
         return null
     }
 
@@ -63,8 +67,7 @@ async function analyzeRequiredProviders(fsPath, recursive = true) {
         if (!fileContent.includes('required_providers')) continue
         try {
             const analyzed = blockAnalyzer.analyze(fileContent)
-            console.log(`analyzed ${parentpath}`)
-
+            console.log(`analyzed '${parentpath}'`)
 
             const terraformBlock = analyzed.filter(block => block.type == 'AttributeBlockDefinition' && block.value.identifier == 'terraform').at(0)?.value
             if (!terraformBlock) continue
@@ -83,15 +86,15 @@ async function analyzeRequiredProviders(fsPath, recursive = true) {
 
             if (Thread.isMainThread) {
                 // Fetch API for providers and cache
-                await Promise.all(Object.values( Registry.requiredProvidersAtPath[parentpath]).map(
-                    provider => Registry.instance.getProviderInfo(provider.source, provider.version)
+                await Promise.all(Object.values(Registry.requiredProvidersAtPath[parentpath]).map(
+                    provider => Registry.instance.getProviderInfo(provider.source, provider.version).catch(error => console.log(error))
                 ))
             }
             // Inform main thread about results
             else {
                 Thread.parentPort.postMessage({
                     parentpath: parentpath,
-                    requiredProviders:  Registry.requiredProvidersAtPath[parentpath]
+                    requiredProviders: Registry.requiredProvidersAtPath[parentpath]
                 })
             }
 
@@ -108,7 +111,10 @@ async function analyzeRequiredProviders(fsPath, recursive = true) {
 
 if (!Thread.isMainThread) {
     // Listen to parent thread.
-    Thread.parentPort.on('message', ({ fsPath, recursive }) => analyzeRequiredProviders(fsPath, recursive))
+    Thread.parentPort.on('message', ({ fsPath, recursive, maxRecursionDepth }) => {
+        MAX_RECURSION_DEPTH = maxRecursionDepth
+        analyzeRequiredProviders(fsPath, recursive)
+    })
 }
 
 
@@ -126,9 +132,9 @@ function findRequiredProvider(fsPath, identifier) {
 
     while (segements.length > 0) {
         const parentPath = segements.join('\\')
-        if (parentPath in  Registry.requiredProvidersAtPath) {
+        if (parentPath in Registry.requiredProvidersAtPath) {
 
-            const requiredProviders =  Registry.requiredProvidersAtPath[parentPath]
+            const requiredProviders = Registry.requiredProvidersAtPath[parentPath]
             if (identifier in requiredProviders) {
                 targetProvider.source = requiredProviders[identifier].source ?? targetProvider.source
                 targetProvider.version = requiredProviders[identifier].version ?? targetProvider.version

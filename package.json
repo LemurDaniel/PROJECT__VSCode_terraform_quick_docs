@@ -77,6 +77,11 @@
           "type": "boolean",
           "default": true,
           "description": "If set to true, will ignore any versions in 'required_providers' and always open the latest version"
+        },
+        "terraform-quick-docs.recursionDepth": {
+          "type": "number",
+          "default": 10,
+          "description": "Max Recursion Depth when anaylzing terraform configurations"
         }
       }
     }

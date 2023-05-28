@@ -24,7 +24,7 @@ async function handleProviderResource(fsPath, identifier, category) {
 
     let resourceInfo = null
     if (requiredProvider && requiredProvider.source) {
-        const providerInfo = await Registry.instance.getProviderInfo(requiredProvider.source, requiredProvider.version)
+        const providerInfo = await Registry.instance.getProviderInfo(requiredProvider.source, requiredProvider.version).catch(error => console.log(error))
         resourceInfo = Registry.instance.getProviderResource(providerInfo, identifier, category)
         console.log(`Found ${requiredProvider.version} | Ignoring Version: ${Registry.ignoreVersion}`)
         console.log(`via required_providers`)

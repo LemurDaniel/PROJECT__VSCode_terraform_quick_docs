@@ -94,7 +94,12 @@ connection.onInitialized(async () => {
         })
         Registry.additionalProviders = config.additionalSupportedProviders
         Registry.ignoreVersion = config.alwaysOpenLatestVersion == false
-        connection.console.log(`Changed Settings to: ${JSON.stringify(Registry.additionalProviders)}`)
+        Registry.recursionDepth = Number.parseInt(config.recursionDepth)
+        connection.console.log(`Changed Settings to: ${JSON.stringify({
+            ignoreVersion: Registry.ignoreVersion,
+            recursionDepth: Registry.recursionDepth,
+            additionalProviders: Registry.additionalProviders
+        })}`)
     }
     connection.client.register(DidChangeConfigurationNotification.type, undefined)
     connection.onDidChangeConfiguration(onSettingsChange)
@@ -103,10 +108,9 @@ connection.onInitialized(async () => {
     await onSettingsChange()
     Registry.clientConnection = connection
 
-
     const folders = await connection.workspace.getWorkspaceFolders()
     folders.map(({ uri }) =>
-        connection.sendRequest('fspath.get', uri).then(fspath => analyzeRequiredProviders(fspath))
+        connection.sendRequest('fspath.get', uri).then(fspath => analyzeRequiredProviders(fspath, true))
     )
 
     connection.console.log('Init Done')
@@ -139,7 +143,7 @@ connection.onHover(async ({ textDocument, position }) => {
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 connection.onRequest('provider.list', async () => await Registry.instance.getProvidersInConfiguration())
-connection.onRequest('provider.info', async identifier => await Registry.instance.getProviderInfo(identifier))
+connection.onRequest('provider.info', async identifier => await Registry.instance.getProviderInfo(identifier).catch(err => ({ error: 'NOT FOUND' })))
 connection.onRequest('functions.data', () => Registry.instance.getFunctionsData())
 connection.onRequest('documentation.data', () => Registry.instance.getAllDocumentationData())
 

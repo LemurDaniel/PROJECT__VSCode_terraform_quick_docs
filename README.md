@@ -1,5 +1,3 @@
-[Marketplace](https://marketplace.visualstudio.com/items?itemName=LemurDaniel.terraform-quick-docs)
-
 # Usage
 
 #### - Just hover over a Terraform 'Data', 'Resource', 'Module' or 'data.<identifier>', etc.

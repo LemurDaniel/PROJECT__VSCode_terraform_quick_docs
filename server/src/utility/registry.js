@@ -18,6 +18,7 @@ class Registry {
     static requiredProvidersAtPath = {}
 
     // Correlates to the settings
+    static recursionDepth = 10
     static ignoreVersion = false
     static #additionalProviders = []
     static get additionalProviders() {
@@ -198,7 +199,7 @@ class Registry {
         const providerInfo = await this.get(endpoint, 'provider', 12 * 60 * 60)
 
         if (null == providerInfo || providerInfo.errors?.at(0)?.toLowerCase() == 'not found') {
-            return console.log(`Not Found: ${identifier}`, endpoint)
+            throw new Error(`Not Found: ${identifier}`, endpoint)
         }
 
         providerInfo['identifier'] = identifier
