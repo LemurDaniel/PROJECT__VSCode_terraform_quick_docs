@@ -64,3 +64,5 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Queries terraform 'required_providers'-block for source and version
 - Providers that are defined there, will be found regardles if they are partner or official providers
 - Setting to ignore set provider version in 'required_providers'-block
+- `Terraform Quick Docs: Show Resource Documentation` shows providers in configuration as top of the list
+- `Terraform Quick Docs: Show supported Providers` shows providers in configuration as top of the list
