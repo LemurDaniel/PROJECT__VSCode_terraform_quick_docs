@@ -1,15 +1,17 @@
-const {
-    Position,
-    Range
-} = require('vscode-languageserver/node')
 
 const fs = require('fs')
 const Registry = require('../utility/registry')
 const BlockAnalyzer = require('../utility/blockAnalyzer')
 
+function* readDirectory(fspath, recursive, recursiondepth = 0) {
 
-function* readDirectory(fspath, recursive) {
+    if (recursiondepth >= 20) return
 
+    //Testing long execution blocking main thread
+    //let num = 0
+    //while (num <= 1000000000) { num++ }
+
+    const directoryQueue = []
     for (const filename of fs.readdirSync(fspath)) {
 
         const fullPath = `${fspath}\\${filename}`
@@ -21,55 +23,96 @@ function* readDirectory(fspath, recursive) {
         }
 
         const isDirectory = fs.statSync(fullPath).isDirectory()
-        if (isDirectory && recursive) yield* readDirectory(fullPath, recursive)
+        if (isDirectory && recursive) directoryQueue.push(fullPath)
     }
 
+    for (const fullPath of directoryQueue) {
+        yield* readDirectory(fullPath, recursive, recursiondepth++)
+    }
 }
 
-const requiredProvidersAtPath = {}
+
+
+// Overkill but execute recursive analyazing of files as a thread. Good to not block main-thread, when going through many files recursivley
+const Thread = require('node:worker_threads');
 
 async function analyzeRequiredProviders(fsPath, recursive = true) {
 
+    // Start thread if main-thread
+    if (recursive && Thread.isMainThread) {
+        const worker = new Thread.Worker(__filename)
+        worker.on('message', ({ parentpath, requiredProviders }) => {
+            console.log(`analyzed '${parentpath}'`)
+            Registry.requiredProvidersAtPath[parentpath] = requiredProviders
+            // Fetch API for providers and cache
+            Object.values( Registry.requiredProvidersAtPath[parentpath]).map(
+                provider => Registry.instance.getProviderInfo(provider.source, provider.version)
+            )
+        })
+
+        // Call thread to excute on path
+        worker.postMessage({ fsPath: fsPath, recursive: recursive })
+        return null
+    }
+
+    // Executed by worked thread
     const blockAnalyzer = new BlockAnalyzer()
-
-
     for (const { parentpath, filepath } of readDirectory(fsPath, recursive)) {
 
         const fileContent = fs.readFileSync(filepath, 'utf-8')
         if (!fileContent.includes('required_providers')) continue
-        const analyzed = blockAnalyzer.analyze(fileContent)
+        try {
+            const analyzed = blockAnalyzer.analyze(fileContent)
+            console.log(`analyzed ${parentpath}`)
 
 
-        const terraformBlock = analyzed.filter(block => block.type == 'AttributeBlockDefinition' && block.value.identifier == 'terraform').at(0)?.value
-        if (!terraformBlock) continue
+            const terraformBlock = analyzed.filter(block => block.type == 'AttributeBlockDefinition' && block.value.identifier == 'terraform').at(0)?.value
+            if (!terraformBlock) continue
+            const requiredProviders = terraformBlock.blockDefinitions.filter(block => block.type == 'AttributeBlockDefinition' && block.value.identifier == 'required_providers').at(0)?.value
+            if (!requiredProviders) continue
 
 
-        const requiredProviders = terraformBlock.blockDefinitions
-            .filter(block => block.type == 'AttributeBlockDefinition' && block.value.identifier == 'required_providers').at(0)?.value
-        if (!requiredProviders) continue
-
-        requiredProvidersAtPath[parentpath] = {}
-        for (const [provider, value] of Object.entries(requiredProviders.attributes)) {
-            if (!value.attributes?.source?.value) continue
-            requiredProvidersAtPath[parentpath][provider] = {
-                source: value.attributes?.source?.value,
-                version: value.attributes?.version?.value
+            Registry.requiredProvidersAtPath[parentpath] = {}
+            for (const [provider, value] of Object.entries(requiredProviders.attributes)) {
+                if (!value.attributes?.source?.value) continue
+                Registry.requiredProvidersAtPath[parentpath][provider] = {
+                    source: value.attributes?.source?.value,
+                    version: value.attributes?.version?.value
+                }
             }
 
-            Registry.instance.getProviderInfo(
-                requiredProvidersAtPath[parentpath][provider].source,
-                requiredProvidersAtPath[parentpath][provider].version
-            )
-        }
+            if (Thread.isMainThread) {
+                // Fetch API for providers and cache
+                await Promise.all(Object.values( Registry.requiredProvidersAtPath[parentpath]).map(
+                    provider => Registry.instance.getProviderInfo(provider.source, provider.version)
+                ))
+            }
+            // Inform main thread about results
+            else {
+                Thread.parentPort.postMessage({
+                    parentpath: parentpath,
+                    requiredProviders:  Registry.requiredProvidersAtPath[parentpath]
+                })
+            }
 
+        } catch (exception) {
+            console.log(`failed ${parentpath}`)
+            console.log(exception.message)
+            continue
+        }
     }
 
     return
 
 }
 
+if (!Thread.isMainThread) {
+    // Listen to parent thread.
+    Thread.parentPort.on('message', ({ fsPath, recursive }) => analyzeRequiredProviders(fsPath, recursive))
+}
 
 
+// Find required provider definition based on filepath going upwards to parent directories
 function findRequiredProvider(fsPath, identifier) {
 
     //console.log(requiredProvidersAtPath)
@@ -83,16 +126,14 @@ function findRequiredProvider(fsPath, identifier) {
 
     while (segements.length > 0) {
         const parentPath = segements.join('\\')
-        if (parentPath in requiredProvidersAtPath) {
+        if (parentPath in  Registry.requiredProvidersAtPath) {
 
-            const requiredProviders = requiredProvidersAtPath[parentPath]
+            const requiredProviders =  Registry.requiredProvidersAtPath[parentPath]
             if (identifier in requiredProviders) {
-                targetProvider.source = targetProvider.source ?? requiredProviders[identifier].source
-                targetProvider.version = targetProvider.version ?? requiredProviders[identifier].version
+                targetProvider.source = requiredProviders[identifier].source ?? targetProvider.source
+                targetProvider.version = requiredProviders[identifier].version ?? targetProvider.version
             }
 
-            if (targetProvider.version != null && targetProvider.source != null)
-                return targetProvider
         }
 
         segements.pop()

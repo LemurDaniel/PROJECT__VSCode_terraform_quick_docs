@@ -10,7 +10,7 @@
     "type": "git",
     "url": "https://github.com/LemurDaniel/PROJECT__VSCode_terraform_quick_docs"
   },
-  "version": "0.0.13",
+  "version": "0.0.14",
   "engines": {
     "vscode": "^1.70.0"
   },
@@ -61,7 +61,7 @@
     "configuration": {
       "title": "Terraform Quick Docs",
       "properties": {
-        "terraform-quick-docs.additional_supported_providers": {
+        "terraform-quick-docs.additionalSupportedProviders": {
           "type": "array",
           "default": [
             "azure/azapi"
@@ -73,10 +73,10 @@
           },
           "description": "Add support for other Providers by specifing: '<namespace>/<provider>' like 'azure/azapi'"
         },
-        "terraform-quick-docs.always_open_newest_version": {
+        "terraform-quick-docs.alwaysOpenLatestVersion": {
           "type": "boolean",
           "default": true,
-          "description": "If set to true, will ignore required_providers and always open the newest version"
+          "description": "If set to true, will ignore any versions in 'required_providers' and always open the latest version"
         }
       }
     }

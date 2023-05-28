@@ -58,3 +58,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## [0.0.13]
 
 - Tweaks to the function documentations
+
+## [0.0.14]
+
+- Queries terraform 'required_providers'-block for source and version
+- Providers that are defined there, will be found regardles if they are partner or official providers
+- Setting to ignore set provider version in 'required_providers'-block

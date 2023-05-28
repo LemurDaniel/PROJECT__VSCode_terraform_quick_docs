@@ -12,7 +12,6 @@ const {
     TextDocument
 } = require('vscode-languageserver-textdocument')
 
-const fs = require('fs')
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 ////// import custom
@@ -40,9 +39,9 @@ let initDone = false
 
 documents.onDidOpen(({ document }) => {
 
+    /*
     if (!initDone) return
 
-    return
     let matches = document._content.match(/resource\s*"[A-Za-z0-9_]+"|data\s*"[A-Za-z0-9_]+"/g)
     if (null == matches) return
 
@@ -59,6 +58,7 @@ documents.onDidOpen(({ document }) => {
             .findProviderInfo(resourceIdentifier)
             .catch(error => connection.console.log(error.message))
     )
+    */
 
 })
 
@@ -66,7 +66,7 @@ documents.onDidSave(async ({ document }) => {
 
     const fspath = await connection.sendRequest('fspath.get', document.uri)
     analyzeRequiredProviders(fspath, false)
-    console.log(fspath)
+    console.log('analyzed: ${fspath}')
 })
 
 connection.onInitialize(params => {
@@ -92,7 +92,8 @@ connection.onInitialized(async () => {
         const config = await connection.workspace.getConfiguration({
             section: 'terraform-quick-docs'
         })
-        Registry.additionalProviders = config.additional_supported_providers
+        Registry.additionalProviders = config.additionalSupportedProviders
+        Registry.ignoreVersion = config.alwaysOpenLatestVersion == false
         connection.console.log(`Changed Settings to: ${JSON.stringify(Registry.additionalProviders)}`)
     }
     connection.client.register(DidChangeConfigurationNotification.type, undefined)
@@ -103,10 +104,10 @@ connection.onInitialized(async () => {
     Registry.clientConnection = connection
 
 
-    workspaceFolders = await connection.workspace.getWorkspaceFolders()
-    const fsPath = await connection.sendRequest('fspath.get', workspaceFolders[0].uri)
-    analyzeRequiredProviders(fsPath)
-
+    const folders = await connection.workspace.getWorkspaceFolders()
+    folders.map(({ uri }) =>
+        connection.sendRequest('fspath.get', uri).then(fspath => analyzeRequiredProviders(fspath))
+    )
 
     connection.console.log('Init Done')
     initDone = true
@@ -129,6 +130,7 @@ connection.onHover(async ({ textDocument, position }) => {
     }
 
     return null
+
 })
 
 
@@ -136,8 +138,8 @@ connection.onHover(async ({ textDocument, position }) => {
 ////// Methods for Client Calls
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-connection.onRequest('provider.list', async () => await Registry.instance.getProvidersFromJson())
-connection.onRequest('provider.info', async (identifier) => await Registry.instance.getProviderInfo(identifier))
+connection.onRequest('provider.list', async () => await Registry.instance.getProvidersInConfiguration())
+connection.onRequest('provider.info', async identifier => await Registry.instance.getProviderInfo(identifier))
 connection.onRequest('functions.data', () => Registry.instance.getFunctionsData())
 connection.onRequest('documentation.data', () => Registry.instance.getAllDocumentationData())
 

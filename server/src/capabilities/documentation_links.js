@@ -26,14 +26,19 @@ async function handleProviderResource(fsPath, identifier, category) {
     if (requiredProvider && requiredProvider.source) {
         const providerInfo = await Registry.instance.getProviderInfo(requiredProvider.source, requiredProvider.version)
         resourceInfo = Registry.instance.getProviderResource(providerInfo, identifier, category)
+        console.log(`Found ${requiredProvider.version} | Ignoring Version: ${Registry.ignoreVersion}`)
+        console.log(`via required_providers`)
+        console.log(JSON.stringify(resourceInfo))
+        console.log(`---------------------------------`)
     }
     else {
         const result = await Registry.instance.findProviderResource(identifier, category)
         resourceInfo = result.resourceInfo
+        console.log(`via findProviderResource`)
+        console.log(JSON.stringify(resourceInfo))
+        console.log(`---------------------------------`)
     }
 
-    console.log(JSON.stringify(resourceInfo))
-    console.log(`---------------------------------`)
 
     let content = `[**Terraform Registry**](${resourceInfo.docsUrl})`
 

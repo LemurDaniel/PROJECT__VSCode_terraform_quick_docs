@@ -31,6 +31,9 @@
   
 ---
 
+#### - `Prefer latest version over version specified in 'required_providers'-block`
+![settings](.resources/terraform-quick-docs-8.jpg)
+
 #### - `Add more specific Providers if needed in the Settings:`
 
 ![settings](.resources/terraform-quick-docs-4.gif)

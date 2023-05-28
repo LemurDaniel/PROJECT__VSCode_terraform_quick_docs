@@ -5,15 +5,24 @@ module.exports = async function command(client) {
     try {
 
         const providers = await client.sendRequest('provider.list').then(
-            result => result.map(data => ({
-                label: data.name,
-                description: data.identifier
-            }))
+            result => result.map(data => {
+                const option = {
+                    identifier: data.identifier,
+                    label: data.name,
+                    description: data.identifier
+                }
+
+                if (data.fromConfiguration) {
+                    option.description = `${data.identifier} - (required_provider in Configuration)`
+                }
+
+                return option
+            })
         )
         const selected = await vscode.window.showQuickPick(providers)
         if (null == selected) return
 
-        const info = await client.sendRequest('provider.info', selected.description)
+        const info = await client.sendRequest('provider.info', selected.identifier)
         await vscode.env.openExternal(vscode.Uri.parse(info.docsUrl))
 
     } catch (exception) {
