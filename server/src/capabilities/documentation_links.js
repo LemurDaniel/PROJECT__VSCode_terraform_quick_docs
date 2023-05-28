@@ -5,16 +5,32 @@ const {
     Range
 } = require('vscode-languageserver/node')
 
+const {
+    findRequiredProvider
+} = require('./analyze_required_providers')
+
+
 const Registry = require('../utility/registry');
 
 
-async function handleProviderResource(identifier, category) {
+async function handleProviderResource(fsPath, identifier, category) {
 
     console.log(`---------------------------------`)
     console.log(`Search Identifier: ${identifier}`)
     console.log(`Search Category: ${category}`)
 
-    const { resourceInfo, providerInfo } = await Registry.instance.findProviderResource(identifier, category)
+    const requiredProvider = findRequiredProvider(fsPath, identifier)
+    console.log(requiredProvider)
+
+    let resourceInfo = null
+    if (requiredProvider && requiredProvider.source) {
+        const providerInfo = await Registry.instance.getProviderInfo(requiredProvider.source, requiredProvider.version)
+        resourceInfo = Registry.instance.getProviderResource(providerInfo, identifier, category)
+    }
+    else {
+        const result = await Registry.instance.findProviderResource(identifier, category)
+        resourceInfo = result.resourceInfo
+    }
 
     console.log(JSON.stringify(resourceInfo))
     console.log(`---------------------------------`)
@@ -86,7 +102,7 @@ async function handleProviderModule(document, position) {
 }
 
 
-async function getLinkForPosition(document, position) {
+async function getLinkForPosition(fsPath, document, position) {
 
     // Get Textline
     const lineStart = Position.create(position.line, 0)
@@ -102,10 +118,10 @@ async function getLinkForPosition(document, position) {
 
     if (isResourceDefinition) {
         const identifier = isResourceDefinition.at(0).match(/"[A-Za-z0-9_]+"/)[0].replace(/"+/g, '')
-        return await handleProviderResource(identifier, Registry.TYPES['resource'])
+        return await handleProviderResource(fsPath, identifier, Registry.TYPES['resource'])
     } else if (isDatasourceDefinition) {
         const identifier = isDatasourceDefinition.at(0).match(/"[A-Za-z0-9_]+"/)[0].replace(/"+/g, '')
-        return await handleProviderResource(identifier, Registry.TYPES['data'])
+        return await handleProviderResource(fsPath, identifier, Registry.TYPES['data'])
     } else if (isModuleDefinition) {
         return await handleProviderModule(document, position)
     }
@@ -118,7 +134,7 @@ async function getLinkForPosition(document, position) {
         if (!inRange) continue
 
         const identifier = inlineDataSource.at(0).split('.').at(1)
-        return await handleProviderResource(identifier, Registry.TYPES['data'])
+        return await handleProviderResource(fsPath, identifier, Registry.TYPES['data'])
     }
 
     // Inline provider resources matches
@@ -129,7 +145,7 @@ async function getLinkForPosition(document, position) {
         if (!inRange) continue
 
         const identifier = inlineResource.at(0)
-        return await handleProviderResource(identifier, Registry.TYPES['resource'])
+        return await handleProviderResource(fsPath, identifier, Registry.TYPES['resource'])
     }
 
     // Inline function elements

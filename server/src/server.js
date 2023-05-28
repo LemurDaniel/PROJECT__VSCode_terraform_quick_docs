@@ -12,6 +12,7 @@ const {
     TextDocument
 } = require('vscode-languageserver-textdocument')
 
+const fs = require('fs')
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 ////// import custom
@@ -22,6 +23,10 @@ const Registry = require('./utility/registry')
 const {
     getLinkForPosition
 } = require('./capabilities/documentation_links')
+
+const {
+    analyzeRequiredProviders
+} = require('./capabilities/analyze_required_providers')
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 ////// Initalize
@@ -37,6 +42,7 @@ documents.onDidOpen(({ document }) => {
 
     if (!initDone) return
 
+    return
     let matches = document._content.match(/resource\s*"[A-Za-z0-9_]+"|data\s*"[A-Za-z0-9_]+"/g)
     if (null == matches) return
 
@@ -56,6 +62,13 @@ documents.onDidOpen(({ document }) => {
 
 })
 
+documents.onDidSave(async ({ document }) => {
+
+    const fspath = await connection.sendRequest('fspath.get', document.uri)
+    analyzeRequiredProviders(fspath, false)
+    console.log(fspath)
+})
+
 connection.onInitialize(params => {
 
     const result = {
@@ -73,25 +86,30 @@ connection.onInitialize(params => {
 
 connection.onInitialized(async () => {
 
-    connection.client.register(DidChangeConfigurationNotification.type, undefined)
-    connection.onDidChangeConfiguration(async () => {
+
+    // Handling of changed settings in vscode
+    const onSettingsChange = async () => {
         const config = await connection.workspace.getConfiguration({
             section: 'terraform-quick-docs'
         })
         Registry.additionalProviders = config.additional_supported_providers
         connection.console.log(`Changed Settings to: ${JSON.stringify(Registry.additionalProviders)}`)
-    })
+    }
+    connection.client.register(DidChangeConfigurationNotification.type, undefined)
+    connection.onDidChangeConfiguration(onSettingsChange)
 
-
-    const config = await connection.workspace.getConfiguration({
-        section: 'terraform-quick-docs'
-    })
-    Registry.additionalProviders = config.additional_supported_providers
+    // Inital configuring of settings
+    await onSettingsChange()
     Registry.clientConnection = connection
+
+
+    workspaceFolders = await connection.workspace.getWorkspaceFolders()
+    const fsPath = await connection.sendRequest('fspath.get', workspaceFolders[0].uri)
+    analyzeRequiredProviders(fsPath)
+
 
     connection.console.log('Init Done')
     initDone = true
-
 })
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -103,7 +121,8 @@ connection.onHover(async ({ textDocument, position }) => {
     try {
 
         const document = documents.get(textDocument.uri)
-        return await getLinkForPosition(document, position)
+        const fsPath = await connection.sendRequest('fspath.get', textDocument.uri)
+        return await getLinkForPosition(fsPath, document, position)
 
     } catch (exception) {
         connection.console.log(exception.message)

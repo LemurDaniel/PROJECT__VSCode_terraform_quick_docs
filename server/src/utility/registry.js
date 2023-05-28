@@ -145,13 +145,15 @@ class Registry {
         return moduleInfo
     }
 
-    async getProviderInfo(identifier) {
+    // Gets a provider based on an identifier 'namespace/name'
+    async getProviderInfo(identifier, version) {
 
         const docsUrl = `https://${Registry.#endpoint}/providers/{{namespace}}/{{provider}}/{{version}}/docs`
-        const providerInfo = await this.get(`v1/providers/${identifier}`, 'provider', 12 * 60 * 60)
+        const endpoint = null != version ? `v1/providers/${identifier}/${version}` : `v1/providers/${identifier}`
+        const providerInfo = await this.get(endpoint, 'provider', 12 * 60 * 60)
 
-        if (null == providerInfo) {
-            return console.log(`Not Found: ${identifier}`)
+        if (null == providerInfo || providerInfo.errors?.at(0)?.toLowerCase() == 'not found') {
+            return console.log(`Not Found: ${identifier}`, endpoint)
         }
 
         providerInfo['identifier'] = identifier
@@ -171,6 +173,7 @@ class Registry {
         return providerInfo
     }
 
+    // finds provider based on a resource identifier 'azurerm_bla_bla'
     async findProviderInfo(resourceIdentifier) {
 
         const providerName = resourceIdentifier.split('_')[0].toLowerCase()
@@ -185,7 +188,6 @@ class Registry {
 
 
         console.log(`Found Provider: ${providerData.identifier}`)
-
         const providerInfo = await this.getProviderInfo(providerData.identifier)
         console.log(`Found Providerinfo: ${providerData.identifier}`)
 
@@ -193,6 +195,7 @@ class Registry {
 
     }
 
+    // finds provider resource based on a resource identifier 'azurerm_bla_bla' and a category
     async findProviderResource(resourceIdentifier, resourceCategory) {
 
         const resourceName = resourceIdentifier
@@ -209,6 +212,14 @@ class Registry {
         console.log(`Found ResourceName: ${resourceInfo.title}`)
         return { resourceInfo: resourceInfo, providerInfo: providerInfo }
 
+    }
+
+    // gets a resource from a specific provder with version
+    getProviderResource(providerInfo, resourceIdentifier, resourceCategory) {
+        const resourceName = resourceIdentifier.split('_').slice(1).join('_')
+        return providerInfo.docs.filter(
+            resource => (resource.title == resourceName || resource.title == resourceIdentifier) && resource.category == resourceCategory
+        )[0]
     }
 
     async getResourceDocs(resourceInfo) {

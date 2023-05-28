@@ -43,6 +43,16 @@ async function activate(context) {
 
 
 
+    client.onRequest('fspath.get', uri => {
+        let fspath = vscode.Uri.parse(uri).fsPath.replace('/', '\\')
+        if (fspath.split('\\').at(-1).includes('.')){
+            const arr = fspath.split('\\')
+            arr.pop()
+            return arr.join('\\')
+        }
+        else
+            return fspath
+    })
 
     if (!(fs.existsSync(path.join(context.globalStorageUri.fsPath)))) {
         fs.mkdirSync(path.join(context.globalStorageUri.fsPath), {

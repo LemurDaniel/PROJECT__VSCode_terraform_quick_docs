@@ -72,6 +72,11 @@
             "patternErrorMessage": "Must be of format '<namespace>/<provider>'"
           },
           "description": "Add support for other Providers by specifing: '<namespace>/<provider>' like 'azure/azapi'"
+        },
+        "terraform-quick-docs.always_open_newest_version": {
+          "type": "boolean",
+          "default": true,
+          "description": "If set to true, will ignore required_providers and always open the newest version"
         }
       }
     }
