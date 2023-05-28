@@ -66,3 +66,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Setting to ignore set provider version in 'required_providers'-block
 - `Terraform Quick Docs: Show Resource Documentation` shows providers in configuration as top of the list
 - `Terraform Quick Docs: Show supported Providers` shows providers in configuration as top of the list
+
+## [0.0.15]
+
+- fixed error with settings
