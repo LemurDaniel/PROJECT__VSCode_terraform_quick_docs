@@ -93,7 +93,7 @@ connection.onInitialized(async () => {
             section: 'terraform-quick-docs'
         })
         Registry.additionalProviders = config.additionalSupportedProviders
-        Registry.ignoreVersion = config.alwaysOpenLatestVersion == false
+        Registry.ignoreVersion = config.alwaysOpenLatestVersion
         Registry.recursionDepth = Number.parseInt(config.recursionDepth)
         connection.console.log(`Changed Settings to: ${JSON.stringify({
             ignoreVersion: Registry.ignoreVersion,
@@ -109,7 +109,7 @@ connection.onInitialized(async () => {
     Registry.clientConnection = connection
 
     const folders = await connection.workspace.getWorkspaceFolders()
-    folders.map(({ uri }) =>
+    folders?.map(({ uri }) =>
         connection.sendRequest('fspath.get', uri).then(fspath => analyzeRequiredProviders(fspath, true))
     )
 
