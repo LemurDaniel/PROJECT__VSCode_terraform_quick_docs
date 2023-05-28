@@ -67,7 +67,7 @@ async function analyzeRequiredProviders(fsPath, recursive = true) {
         if (!fileContent.includes('required_providers')) continue
         try {
             const analyzed = blockAnalyzer.analyze(fileContent)
-            console.log(`analyzed '${parentpath}'`)
+            console.log(`analyzed '${filepath}'`)
 
             const terraformBlock = analyzed.filter(block => block.type == 'AttributeBlockDefinition' && block.value.identifier == 'terraform').at(0)?.value
             if (!terraformBlock) continue
