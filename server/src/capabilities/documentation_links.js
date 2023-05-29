@@ -48,6 +48,7 @@ async function handleProviderResource(fsPath, identifier, category) {
 
 }
 
+// TODO use blockAnalyzer instead of going throug line by line
 async function handleProviderModule(document, position) {
 
     console.log(`---------------------------------`)
