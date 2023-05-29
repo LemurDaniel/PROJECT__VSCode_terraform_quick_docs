@@ -1,7 +1,7 @@
 {
   "name": "terraform-quick-docs",
   "displayName": "Terraform Quick Docs",
-  "description": "Access Terraform Provider and Function Docs by hovering over Resources.",
+  "description": "Access Terraform Provider and Function Documentations by hovering over Resources.",
   "author": "LemurDaniel",
   "publisher": "LemurDaniel",
   "license": "GPL-3.0",
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "https://github.com/LemurDaniel/PROJECT__VSCode_terraform_quick_docs"
   },
-  "version": "0.0.15",
+  "version": "0.0.16",
   "engines": {
     "vscode": "^1.70.0"
   },
@@ -19,6 +19,7 @@
   ],
   "keywords": [
     "terraform",
+    "documentation",
     "tf",
     "hcl",
     "devops"
@@ -63,9 +64,7 @@
       "properties": {
         "terraform-quick-docs.additionalSupportedProviders": {
           "type": "array",
-          "default": [
-            "azure/azapi"
-          ],
+          "default": [],
           "items": {
             "type": "string",
             "pattern": "[a-zA-Z0-9_]/[a-zA-Z0-9_]+",

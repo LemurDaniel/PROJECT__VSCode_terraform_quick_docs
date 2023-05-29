@@ -177,6 +177,8 @@ class Registry {
     async getModuleInfo(source, version = null) {
 
         const docsUrl = `https://${Registry.#endpoint}/modules/{{namespace}}/{{name}}/{{provider}}/{{version}}`
+
+        source = source.split('/').slice(0, 3).join('/')
         const moduleInfo = await this.get(`v1/modules/${source}`, 'module', 12 * 60 * 60)
 
         if (moduleInfo.errors && moduleInfo.errors[0].toLowerCase() == 'not found') return null
