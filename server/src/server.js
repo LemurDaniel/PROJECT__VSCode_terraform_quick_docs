@@ -17,7 +17,8 @@ const {
 ////// import custom
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const Registry = require('./utility/registry')
+const Settings = require('./settings')
+const Registry = require('./registry')
 
 const {
     getLinkForPosition
@@ -63,10 +64,8 @@ documents.onDidOpen(({ document }) => {
 })
 
 documents.onDidSave(async ({ document }) => {
-
-    const fspath = await connection.sendRequest('fspath.get', document.uri)
-    analyzeRequiredProviders(fspath, false)
-    console.log('analyzed: ${fspath}')
+    connection.sendRequest('fspath.get', document.uri)
+        .then(fsPath => analyzeRequiredProviders(fsPath, false)).catch(error => console.log(error))
 })
 
 connection.onInitialize(params => {
@@ -93,12 +92,14 @@ connection.onInitialized(async () => {
             section: 'terraform-quick-docs'
         })
         Registry.additionalProviders = config.additionalSupportedProviders
-        Registry.ignoreVersion = config.alwaysOpenLatestVersion
-        Registry.recursionDepth = Number.parseInt(config.recursionDepth)
+        Settings.ignoreVersion = config.alwaysOpenLatestVersion
+        Settings.recursionDepth = Number.parseInt(config.recursionDepth)
+        Settings.supporOtherModuleSource = config.supporOtherModuleSource
         connection.console.log(`Changed Settings to: ${JSON.stringify({
-            ignoreVersion: Registry.ignoreVersion,
-            recursionDepth: Registry.recursionDepth,
-            additionalProviders: Registry.additionalProviders
+            ignoreVersion: Settings.ignoreVersion,
+            recursionDepth: Settings.recursionDepth,
+            additionalProviders: Registry.additionalProviders,
+            supporOtherModuleSource: Settings.supporOtherModuleSource
         })}`)
     }
     connection.client.register(DidChangeConfigurationNotification.type, undefined)
@@ -106,11 +107,11 @@ connection.onInitialized(async () => {
 
     // Inital configuring of settings
     await onSettingsChange()
-    Registry.clientConnection = connection
+    Settings.clientConnection = connection
 
     const folders = await connection.workspace.getWorkspaceFolders()
-    folders?.map(({ uri }) =>
-        connection.sendRequest('fspath.get', uri).then(fspath => analyzeRequiredProviders(fspath, true))
+    folders?.map(({ uri }) => connection.sendRequest('fspath.get', uri)
+        .then(fsPath => analyzeRequiredProviders(fsPath, true)).catch(error => console.log(error))
     )
 
     connection.console.log('Init Done')
@@ -126,8 +127,7 @@ connection.onHover(async ({ textDocument, position }) => {
     try {
 
         const document = documents.get(textDocument.uri)
-        const fsPath = await connection.sendRequest('fspath.get', textDocument.uri)
-        return await getLinkForPosition(fsPath, document, position)
+        return await getLinkForPosition(document, position)
 
     } catch (exception) {
         connection.console.log(exception.message)

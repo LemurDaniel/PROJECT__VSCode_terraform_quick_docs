@@ -1,6 +1,7 @@
 
 const fs = require('fs')
-const Registry = require('../utility/registry')
+const Settings = require('../settings')
+const Registry = require('../registry')
 const BlockAnalyzer = require('../utility/blockAnalyzer')
 
 let MAX_RECURSION_DEPTH = 10
@@ -36,26 +37,27 @@ function* readDirectory(fspath, recursive, recursiondepth = 0) {
 
 
 // Overkill but execute recursive analyazing of files as a thread. Good to not block main-thread, when going through many files recursivley
-const Thread = require('node:worker_threads');
-const { error } = require('console')
+const Thread = require('node:worker_threads')
 
 async function analyzeRequiredProviders(fsPath, recursive = true) {
 
     // Start thread if main-thread
     if (recursive && Thread.isMainThread) {
-        MAX_RECURSION_DEPTH = Registry.recursionDepth
+        MAX_RECURSION_DEPTH = Settings.recursionDepth
 
         const worker = new Thread.Worker(__filename)
         worker.on('message', ({ parentpath, requiredProviders }) => {
-            Registry.requiredProvidersAtPath[parentpath] = requiredProviders
+
+            console.log(`workerthread analyzed '${parentpath}'`)
+            Settings.requiredProvidersAtPath[parentpath] = requiredProviders
             // Fetch API for providers and cache
-            Object.values(Registry.requiredProvidersAtPath[parentpath]).map(
+            Object.values(Settings.requiredProvidersAtPath[parentpath]).map(
                 provider => Registry.instance.getProviderInfo(provider.source, provider.version).catch(error => console.log(error))
             )
         })
 
         // Call thread to excute on path
-        worker.postMessage({ fsPath: fsPath, recursive: recursive, maxRecursionDepth: Registry.recursionDepth })
+        worker.postMessage({ fsPath: fsPath, recursive: recursive, maxRecursionDepth: Settings.recursionDepth })
         return null
     }
 
@@ -67,7 +69,10 @@ async function analyzeRequiredProviders(fsPath, recursive = true) {
         if (!fileContent.includes('required_providers')) continue
         try {
             const analyzed = blockAnalyzer.analyze(fileContent)
-            console.log(`analyzed '${filepath}'`)
+
+            if (Thread.isMainThread) {
+                console.log(`analyzed '${filepath}'`)
+            }
 
             const terraformBlock = analyzed.filter(block => block.type == 'AttributeBlockDefinition' && block.value.identifier == 'terraform').at(0)?.value
             if (!terraformBlock) continue
@@ -75,10 +80,10 @@ async function analyzeRequiredProviders(fsPath, recursive = true) {
             if (!requiredProviders) continue
 
 
-            Registry.requiredProvidersAtPath[parentpath] = {}
+            Settings.requiredProvidersAtPath[parentpath] = {}
             for (const [provider, value] of Object.entries(requiredProviders.attributes)) {
                 if (!value.attributes?.source?.value) continue
-                Registry.requiredProvidersAtPath[parentpath][provider] = {
+                Settings.requiredProvidersAtPath[parentpath][provider] = {
                     source: value.attributes?.source?.value,
                     version: value.attributes?.version?.value
                 }
@@ -86,7 +91,7 @@ async function analyzeRequiredProviders(fsPath, recursive = true) {
 
             if (Thread.isMainThread) {
                 // Fetch API for providers and cache
-                await Promise.all(Object.values(Registry.requiredProvidersAtPath[parentpath]).map(
+                await Promise.all(Object.values(Settings.requiredProvidersAtPath[parentpath]).map(
                     provider => Registry.instance.getProviderInfo(provider.source, provider.version).catch(error => console.log(error))
                 ))
             }
@@ -94,7 +99,7 @@ async function analyzeRequiredProviders(fsPath, recursive = true) {
             else {
                 Thread.parentPort.postMessage({
                     parentpath: parentpath,
-                    requiredProviders: Registry.requiredProvidersAtPath[parentpath]
+                    requiredProviders: Settings.requiredProvidersAtPath[parentpath]
                 })
             }
 
@@ -119,7 +124,7 @@ if (!Thread.isMainThread) {
 
 
 // Find required provider definition based on filepath going upwards to parent directories
-function findRequiredProvider(fsPath, identifier) {
+async function findRequiredProvider(fsPath, identifier) {
 
     //console.log(requiredProvidersAtPath)
     identifier = identifier.split('_')[0]
@@ -132,9 +137,9 @@ function findRequiredProvider(fsPath, identifier) {
 
     while (segements.length > 0) {
         const parentPath = segements.join('\\')
-        if (parentPath in Registry.requiredProvidersAtPath) {
+        if (parentPath in Settings.requiredProvidersAtPath) {
 
-            const requiredProviders = Registry.requiredProvidersAtPath[parentPath]
+            const requiredProviders = Settings.requiredProvidersAtPath[parentPath]
             if (identifier in requiredProviders) {
                 targetProvider.source = requiredProviders[identifier].source ?? targetProvider.source
                 targetProvider.version = requiredProviders[identifier].version ?? targetProvider.version

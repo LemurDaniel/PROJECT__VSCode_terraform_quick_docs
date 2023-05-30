@@ -9,25 +9,25 @@ const {
     findRequiredProvider
 } = require('./analyze_required_providers')
 
+const Settings = require('../settings')
+const Registry = require('../registry')
 
-const Registry = require('../utility/registry');
 
-
-async function handleProviderResource(fsPath, identifier, category) {
+async function handleProviderResource(document, identifier, category) {
 
     console.log(`---------------------------------`)
     console.log(`Search Identifier: ${identifier}`)
     console.log(`Search Category: ${category}`)
 
-    const requiredProvider = findRequiredProvider(fsPath, identifier)
+    const fsPath = await Settings.clientConnection.sendRequest('fspath.get', document.uri)
+    const requiredProvider = await findRequiredProvider(fsPath, identifier)
     console.log(requiredProvider)
 
     let resourceInfo = null
     if (requiredProvider && requiredProvider.source) {
         const providerInfo = await Registry.instance.getProviderInfo(requiredProvider.source, requiredProvider.version).catch(error => console.log(error))
         resourceInfo = Registry.instance.getProviderResource(providerInfo, identifier, category)
-        console.log(`Found ${requiredProvider.version} | Ignoring Version: ${Registry.ignoreVersion}`)
-        console.log(`via required_providers`)
+        console.log(`via required_providers | Found ${requiredProvider.version} | Ignoring Version: ${Settings.ignoreVersion}`)
         console.log(JSON.stringify(resourceInfo))
         console.log(`---------------------------------`)
     }
@@ -94,7 +94,41 @@ async function handleProviderModule(document, position) {
 
     if (null == source) return null
 
+    // Generic Git Repository
+    if (Settings.supporOtherModuleSource && (source.match(/^git::ssh/i) || source.match(/^git::http/i))) {
 
+        const url = source
+            // remove prefix when over https
+            .replace(/git::https:\/\//i, '')
+            // remove prefix when over ssh
+            .replace(/git::ssh:\/\/[^@]+@/i, '')
+            .replace(/^[^@]+@/, '')
+            .replace('.git', '')
+            .replace(/\?.+/, '')
+            .replace(/\/\/.*/, '')
+
+        const protocol = source.includes('http://') ? 'http' : 'https'
+
+        return {
+            contents: `[**${url}**](${protocol}://${url})`
+        }
+    }
+
+    // unprefixed github.com URLs or unprefixed bitbucket.org URLs
+    if (Settings.supporOtherModuleSource && source.match(/github\.com[:\/]?/i) || source.match(/bitbucket\.org\//i)) {
+
+        const url = source
+            .replace(/git@github.com:/i, 'github.com/').replace(/\.git/, '')
+            .split('/').slice(0, 3).join('/')
+
+        const protocol = source.includes('http://') ? 'http' : 'https'
+
+        return {
+            contents: `[**${url}**](${protocol}://${url})`
+        }
+    }
+
+    // Modules in the terraform registry
     const moduleInfo = await Registry.instance.getModuleInfo(source, version)
     if (null == moduleInfo) return null
 
@@ -108,7 +142,7 @@ async function handleProviderModule(document, position) {
 }
 
 
-async function getLinkForPosition(fsPath, document, position) {
+async function getLinkForPosition(document, position) {
 
     // Get Textline
     const lineStart = Position.create(position.line, 0)
@@ -124,10 +158,10 @@ async function getLinkForPosition(fsPath, document, position) {
 
     if (isResourceDefinition) {
         const identifier = isResourceDefinition.at(0).match(/"[A-Za-z0-9_]+"/)[0].replace(/"+/g, '')
-        return await handleProviderResource(fsPath, identifier, Registry.TYPES['resource'])
+        return await handleProviderResource(document, identifier, Registry.TYPES['resource'])
     } else if (isDatasourceDefinition) {
         const identifier = isDatasourceDefinition.at(0).match(/"[A-Za-z0-9_]+"/)[0].replace(/"+/g, '')
-        return await handleProviderResource(fsPath, identifier, Registry.TYPES['data'])
+        return await handleProviderResource(document, identifier, Registry.TYPES['data'])
     } else if (isModuleDefinition) {
         return await handleProviderModule(document, position)
     }
@@ -140,7 +174,7 @@ async function getLinkForPosition(fsPath, document, position) {
         if (!inRange) continue
 
         const identifier = inlineDataSource.at(0).split('.').at(1)
-        return await handleProviderResource(fsPath, identifier, Registry.TYPES['data'])
+        return await handleProviderResource(document, identifier, Registry.TYPES['data'])
     }
 
     // Inline provider resources matches
@@ -151,7 +185,7 @@ async function getLinkForPosition(fsPath, document, position) {
         if (!inRange) continue
 
         const identifier = inlineResource.at(0)
-        return await handleProviderResource(fsPath, identifier, Registry.TYPES['resource'])
+        return await handleProviderResource(document, identifier, Registry.TYPES['resource'])
     }
 
     // Inline function elements
