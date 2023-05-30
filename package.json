@@ -10,7 +10,7 @@
     "type": "git",
     "url": "https://github.com/LemurDaniel/PROJECT__VSCode_terraform_quick_docs"
   },
-  "version": "0.0.16",
+  "version": "0.0.17",
   "engines": {
     "vscode": "^1.70.0"
   },
@@ -76,6 +76,11 @@
           "type": "boolean",
           "default": true,
           "description": "If set to true, will ignore any versions in 'required_providers' and always open the latest version"
+        },
+        "terraform-quick-docs.supporOtherModuleSource": {
+          "type": "boolean",
+          "default": true,
+          "description": "If set to true, will also show hoverlinks for other module sources like github.com, gitbucket, etc."
         },
         "terraform-quick-docs.recursionDepth": {
           "type": "number",

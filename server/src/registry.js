@@ -1,11 +1,12 @@
 const https = require('https')
 const fs = require('fs')
 
+const Settings = require('./settings')
+
 class Registry {
 
     static #instance = null
     static #endpoint = "registry.terraform.io"
-    static clientConnection = null
 
     static get instance() {
         if (null == Registry.#instance) {
@@ -14,12 +15,6 @@ class Registry {
         return Registry.#instance
     }
 
-    // Found via analyzing terraform files
-    static requiredProvidersAtPath = {}
-
-    // Correlates to the settings
-    static recursionDepth = 10
-    static ignoreVersion = false
     static #additionalProviders = []
     static get additionalProviders() {
         return Registry.#additionalProviders
@@ -49,8 +44,8 @@ class Registry {
         const path = `/${api}`.replace(/[\/]+/g, '/')
         const cachePath = `${path}/${additionalCacheInfo}`
 
-        if (null != Registry.clientConnection) {
-            const cache = await Registry.clientConnection.sendRequest('cache.fetch', cachePath)
+        if (null != Settings.clientConnection) {
+            const cache = await Settings.clientConnection.sendRequest('cache.fetch', cachePath)
             if (null != cache) return cache
         }
 
@@ -75,8 +70,8 @@ class Registry {
             }
         })
 
-        if (null != Registry.clientConnection) {
-            Registry.clientConnection.sendRequest('cache.set', {
+        if (null != Settings.clientConnection) {
+            Settings.clientConnection.sendRequest('cache.set', {
                 cachePath: cachePath,
                 data: response,
                 ttl: ttl
@@ -116,7 +111,7 @@ class Registry {
         providersList.forEach(provider => alreadyDefined[provider.identifier] = provider)
 
         const providersInConfiguration = {}
-        for (const [fullPath, requiredProviders] of Object.entries(Registry.requiredProvidersAtPath)) {
+        for (const [fullPath, requiredProviders] of Object.entries(Settings.requiredProvidersAtPath)) {
 
             for (const [name, data] of Object.entries(requiredProviders)) {
                 if (data.source in providersInConfiguration && fullPath.split('\\').length >= providersInConfiguration[data.source].segments) {
@@ -197,7 +192,7 @@ class Registry {
     async getProviderInfo(identifier, version) {
 
         const docsUrl = `https://${Registry.#endpoint}/providers/{{namespace}}/{{provider}}/{{version}}/docs`
-        const endpoint = null != version && !Registry.ignoreVersion ? `v1/providers/${identifier}/${version}` : `v1/providers/${identifier}`
+        const endpoint = null != version && !Settings.ignoreVersion ? `v1/providers/${identifier}/${version}` : `v1/providers/${identifier}`
         const providerInfo = await this.get(endpoint, 'provider', 12 * 60 * 60)
 
         if (null == providerInfo || providerInfo.errors?.at(0)?.toLowerCase() == 'not found') {
