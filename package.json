@@ -80,7 +80,7 @@
         "terraform-quick-docs.supporOtherModuleSource": {
           "type": "boolean",
           "default": true,
-          "description": "If set to true, will also show hoverlinks for other module sources like github.com, gitbucket, etc."
+          "description": "If set to true, will also show hoverlinks for other module sources like github.com, bitbucket, etc."
         },
         "terraform-quick-docs.recursionDepth": {
           "type": "number",
