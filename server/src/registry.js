@@ -5,6 +5,13 @@ const Settings = require('./settings')
 
 class Registry {
 
+    static #builtinResource = {
+        "terraform_data": {
+            isBuiltin: true,
+            docsUrl: "https://developer.hashicorp.com/terraform/language/resources/terraform-data"
+        }
+    }
+
     static #instance = null
     static #endpoint = "registry.terraform.io"
 
@@ -240,6 +247,10 @@ class Registry {
 
     // finds provider resource based on a resource identifier 'azurerm_bla_bla' and a category
     async findProviderResource(resourceIdentifier, resourceCategory) {
+
+        if (resourceIdentifier in Registry.#builtinResource) {
+            return { resourceInfo: Registry.#builtinResource[resourceIdentifier], providerInfo: null }
+        }
 
         const resourceName = resourceIdentifier
         const secondaryName = resourceIdentifier.split('_').slice(1).join('_')
