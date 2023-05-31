@@ -39,8 +39,11 @@ async function handleProviderResource(document, identifier, category) {
         console.log(`---------------------------------`)
     }
 
-
-    let content = `[**Terraform Registry**](${resourceInfo.docsUrl})`
+    let content = null
+    if (resourceInfo.isBuiltin)
+        content = `[**${identifier}**](${resourceInfo.docsUrl})`
+    else
+        content = `[**Terraform Registry**](${resourceInfo.docsUrl})`
 
     return {
         contents: content
