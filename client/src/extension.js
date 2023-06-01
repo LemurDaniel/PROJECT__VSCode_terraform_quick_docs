@@ -1,3 +1,4 @@
+const ProviderView = require('./ProviderView')
 const vscode = require('vscode')
 const path = require('path')
 const fs = require('fs')
@@ -42,10 +43,10 @@ async function activate(context) {
     );
 
 
-
+    // Register Client Methods
     client.onRequest('fspath.get', uri => {
         let fspath = vscode.Uri.parse(uri).fsPath.replace('/', '\\')
-        if (fspath.split('\\').at(-1).includes('.')){
+        if (fspath.split('\\').at(-1).includes('.')) {
             const arr = fspath.split('\\')
             arr.pop()
             return arr.join('\\')
@@ -83,12 +84,12 @@ async function activate(context) {
         }))
     })
 
-    client.start()
 
 
+    // Register Commands
     const showResources = require('./commands/resource.show')
     let disposable = vscode.commands.registerCommand('terraform-quick-docs.resource.show',
-        async () => await showResources(client)
+        async context => await showResources(context, client)
     )
     context.subscriptions.push(disposable)
 
@@ -109,6 +110,14 @@ async function activate(context) {
         async () => await docsShow(client)
     )
     context.subscriptions.push(disposable)
+
+
+    // Register View
+    disposable = ProviderView.init(client)
+    context.subscriptions.push(disposable)
+
+    // Start
+    client.start()
 }
 
 

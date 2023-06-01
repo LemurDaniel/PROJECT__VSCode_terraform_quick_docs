@@ -49,6 +49,7 @@ async function analyzeRequiredProviders(fsPath, recursive = true) {
         worker.on('message', ({ parentpath, requiredProviders }) => {
 
             console.log(`workerthread analyzed '${parentpath}'`)
+            Settings.clientConnection.sendRequest('providerview.refresh', null)
             Settings.requiredProvidersAtPath[parentpath] = requiredProviders
             // Fetch API for providers and cache
             Object.values(Settings.requiredProvidersAtPath[parentpath]).map(

@@ -113,34 +113,39 @@ class Registry {
 
     async getProvidersInConfiguration() {
 
-        const alreadyDefined = {}
+        const defaultProviders = {}
         let providersList = await this.getProvidersFromJson()
-        providersList.forEach(provider => alreadyDefined[provider.identifier] = provider)
+        providersList.forEach(provider => defaultProviders[provider.identifier.toLowerCase()] = provider)
 
         const providersInConfiguration = {}
         for (const [fullPath, requiredProviders] of Object.entries(Settings.requiredProvidersAtPath)) {
 
             for (const [name, data] of Object.entries(requiredProviders)) {
-                if (data.source in providersInConfiguration && fullPath.split('\\').length >= providersInConfiguration[data.source].segments) {
+
+                const configuredProvider = providersInConfiguration[data.source.toLowerCase()]
+                const defaultProvider = defaultProviders[data.source.toLowerCase()]
+
+                if (null != configuredProvider && fullPath.split('\\').length >= configuredProvider.segments) {
                     continue
                 }
 
-                providersInConfiguration[data.source] = {
+                providersInConfiguration[data.source.toLowerCase()] = {
                     name: name,
                     namespace: data.source.split('/')[0],
                     identifier: data.source,
-                    version: data.version ?? providersInConfiguration[data.source]?.version,
+                    version: data.version ?? configuredProvider?.version,
                     fsPath: fullPath,
-                    fromConfiguration: true,
                     segments: fullPath.split('\\').length,
-                    fromSettings: alreadyDefined[data.source]?.fromSettings ?? false,
-                    officialPartnerStatus: alreadyDefined[data.source]?.officialPartnerStatus ?? false,
+                    fromConfiguration: true,
+                    fromSettings: defaultProvider?.fromSettings ?? false,
+                    officialPartnerStatus: defaultProvider?.officialPartnerStatus ?? false,
+                    tier: defaultProvider?.tier
                 }
             }
 
         }
 
-        providersList = providersList.filter(provider => !(provider.identifier in providersInConfiguration))
+        providersList = providersList.filter(provider => !(provider.identifier.toLowerCase() in providersInConfiguration))
         return Object.values(providersInConfiguration).concat(providersList)
 
     }
@@ -277,7 +282,7 @@ class Registry {
     }
 
     async getResourceDocs(resourceInfo) {
-        return await this.get(`/v2/provider-docs/${resourceInfo.id}`, resourceInfo.providerVersion)
+        return await this.get(`/v2/provider-docs/${resourceInfo.id}`, resourceInfo.providerVersion).then(result => result.data)
     }
 
 

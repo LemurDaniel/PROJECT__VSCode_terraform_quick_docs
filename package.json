@@ -29,10 +29,28 @@
   ],
   "main": "./client/src/extension.js",
   "contributes": {
+    "views": {
+      "explorer": [
+        {
+          "id": "terraform-quick-docs.view.providers",
+          "name": "Terraform Providers"
+        }
+      ]
+    },
+    "menus": {
+      "view/item/context": [
+        {
+          "command": "terraform-quick-docs.resource.show",
+          "when": "view == terraform-quick-docs.view.providers && (viewItem == resourceContext || viewItem == providerContext)",
+          "group": "inline"
+        }
+      ]
+    },
     "commands": [
       {
         "command": "terraform-quick-docs.resource.show",
-        "title": "Terraform Quick Docs: Show Resource Documentation"
+        "title": "Terraform Quick Docs: Show Resource Documentation",
+        "icon": "$(globe)"
       },
       {
         "command": "terraform-quick-docs.functions.show",
