@@ -62,6 +62,12 @@ class ProviderView {
             if (element.definedVersion)
                 item.description = element.definedVersion
 
+            item.command = {
+                "title": "Open Resources",
+                "command": "terraform-quick-docs.resource.show",
+                "arguments": [element]
+            }
+
             return item
         }
         else if (element instanceof Folder) {
@@ -72,7 +78,7 @@ class ProviderView {
             return item
         }
         else if (element instanceof ProviderView.Container) {
-            const item = new vscode.TreeItem(element.label, Collapsed)
+            const item = new vscode.TreeItem(element.label, Expanded)
             item.description = element.description
             item.contextValue = "folderContext"
 
@@ -86,8 +92,7 @@ class ProviderView {
         if (null == element) {
 
             const requiredProvidersAtPath = await this.#client.sendRequest('requiredprovider.get')
-            require('fs').writeFileSync(`${__dirname}/test.json`, JSON.stringify(requiredProvidersAtPath))
-
+            
             const rootFolder = new Folder()
             for (const [path, providers] of Object.entries(requiredProvidersAtPath)) {
                 const reducedPath = vscode.workspace.workspaceFolders.reduce((path, folder) => path.replace(folder.uri.fsPath, ''), path)
