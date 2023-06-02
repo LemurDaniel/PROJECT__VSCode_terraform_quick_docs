@@ -82,3 +82,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## [0.0.18]
 
 - Support hover for built-in resource: `terraform_data`
+
+## [0.0.19]
+
+- fix null being ignored when parsin providers
