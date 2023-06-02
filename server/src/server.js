@@ -25,7 +25,7 @@ const {
 } = require('./capabilities/documentation_links')
 
 const {
-    analyzeRequiredProviders
+    analyzeRequiredProviders,
 } = require('./capabilities/analyze_required_providers')
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -65,9 +65,7 @@ documents.onDidOpen(({ document }) => {
 
 documents.onDidSave(async ({ document }) => {
     const fsPath = await connection.sendRequest('fspath.get', document.uri)
-    await analyzeRequiredProviders(fsPath, false)
-        .then(res => connection.sendRequest('providerview.refresh', null))
-        .catch(error => console.log(error))
+    await analyzeRequiredProviders(fsPath, false).catch(error => console.log(error))
 })
 
 connection.onInitialize(params => {
@@ -77,7 +75,8 @@ connection.onInitialize(params => {
             textDocumentSync: TextDocumentSyncKind.Incremental,
             // Tell the client that this server supports code completion.
             hoverProvider: true,
-            completionProvider: false
+            completionProvider: false,
+            workspaceFolders: true
         }
     }
 
@@ -93,15 +92,15 @@ connection.onInitialized(async () => {
         const config = await connection.workspace.getConfiguration({
             section: 'terraform-quick-docs'
         })
-        Registry.additionalProviders = config.additionalSupportedProviders
+        Registry.additionalProviders = [] //config.additionalSupportedProviders
         Settings.ignoreVersion = config.alwaysOpenLatestVersion
         Settings.recursionDepth = Number.parseInt(config.recursionDepth)
-        Settings.supporOtherModuleSource = config.supporOtherModuleSource
+        Settings.supportOtherModuleSource = config.supportOtherModuleSource
         connection.console.log(`Changed Settings to: ${JSON.stringify({
             ignoreVersion: Settings.ignoreVersion,
             recursionDepth: Settings.recursionDepth,
             additionalProviders: Registry.additionalProviders,
-            supporOtherModuleSource: Settings.supporOtherModuleSource
+            supportOtherModuleSource: Settings.supportOtherModuleSource
         })}`)
     }
     connection.client.register(DidChangeConfigurationNotification.type, undefined)
@@ -112,9 +111,21 @@ connection.onInitialized(async () => {
     Settings.clientConnection = connection
 
     const folders = await connection.workspace.getWorkspaceFolders()
-    folders?.map(({ uri }) => connection.sendRequest('fspath.get', uri)
-        .then(fsPath => analyzeRequiredProviders(fsPath, true)).catch(error => console.log(error))
+    folders?.map(folder => connection.sendRequest('fspath.get', folder.uri)
+        .then(fsPath => analyzeRequiredProviders(fsPath, true))
+        .catch(error => console.log(error))
     )
+
+
+    connection.workspace.onDidChangeWorkspaceFolders(({ added, removed }) => {
+        added?.forEach(element => connection.sendRequest('fspath.get', element.uri)
+            .then(fsPath => analyzeRequiredProviders(fsPath, true))
+            .catch(error => console.log(error))
+        )
+        
+        if(removed.length > 0) connection.sendRequest('projectview.refresh', null)
+    })
+
 
     connection.console.log('Init Done')
     initDone = true
@@ -149,7 +160,7 @@ connection.onRequest('provider.info', async identifier => await Registry.instanc
 connection.onRequest('functions.data', () => Registry.instance.getFunctionsData())
 connection.onRequest('documentation.data', () => Registry.instance.getAllDocumentationData())
 connection.onRequest('resource.docs', resourceInfo => Registry.instance.getResourceDocs(resourceInfo))
-connection.onRequest('requiredprovider.get', () => Settings.requiredProvidersAtPath)
+connection.onRequest('requiredprovider.get', () => Settings.terraformBlock)
 
 // Make the text document manager listen on the connection
 // for open, change and close text document events

@@ -20,7 +20,7 @@ module.exports = class BlockAnalyzer {
             ['DATA_BLOCK', /^data\s*"[a-z0-9_]+"\s*"[a-z0-9_]+"/i, false],
             ['DYNAMIC_BLOCK', /^dynamic\s*"[a-z0-9_]+"/i, false],
 
-            ['IDENTIFIER', /^(?!false\b.*\n|true\b.*\n|null\b.*\n)[A-Za-z_]{1}[\w_\-]*\s+/i, false],
+            ['IDENTIFIER', /^(?!false\b.*\n|true\b.*\n)[A-Za-z_]{1}[\w_\-]*\s+/i, false],
             ['ASSIGNMENT', /^=/, false],
 
             ['STRING', /^"[^"]*"|^'[^']*'/, false],

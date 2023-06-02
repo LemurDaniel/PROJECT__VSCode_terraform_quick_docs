@@ -10,7 +10,7 @@
     "type": "git",
     "url": "https://github.com/LemurDaniel/PROJECT__VSCode_terraform_quick_docs"
   },
-  "version": "0.0.20",
+  "version": "0.0.21",
   "engines": {
     "vscode": "^1.70.0"
   },
@@ -71,27 +71,20 @@
     "configuration": {
       "title": "Terraform Quick Docs",
       "properties": {
-        "terraform-quick-docs.additionalSupportedProviders": {
-          "type": "array",
-          "default": [],
-          "items": {
-            "type": "string",
-            "pattern": "[a-zA-Z0-9_]/[a-zA-Z0-9_]+",
-            "patternErrorMessage": "Must be of format '<namespace>/<provider>'"
-          },
-          "description": "Add support for other Providers by specifing: '<namespace>/<provider>' like 'azure/azapi'"
-        },
         "terraform-quick-docs.alwaysOpenLatestVersion": {
+          "order": 0,
           "type": "boolean",
           "default": true,
           "description": "If set to true, will ignore any versions in 'required_providers' and always open the latest version"
         },
-        "terraform-quick-docs.supporOtherModuleSource": {
+        "terraform-quick-docs.supportOtherModuleSource": {
+          "order": 1,
           "type": "boolean",
           "default": true,
           "description": "If set to true, will also show hoverlinks for other module sources like github.com, bitbucket, etc."
         },
         "terraform-quick-docs.recursionDepth": {
+          "order": 2,
           "type": "number",
           "default": 10,
           "description": "Max Recursion Depth when anaylzing terraform configurations"
