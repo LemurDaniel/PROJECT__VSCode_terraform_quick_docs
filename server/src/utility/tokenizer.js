@@ -9,26 +9,7 @@ class Node {
 
 class Tokenizer {
 
-    static Default = [
-        ['WHITESPACE', /^\s+/],
-        ['COMMENT', /^#[^\n]+|^\/\*[\s\S]*?\*\//],
-        ['IGNORE', /^;/],
-        ['SEPERATOR', /^\n+|^;+/],
-        ['BLOCK_END', /^}/],
-        ['BLOCK_START', /^{/],
-        ['ARRAY_END', /^\]/],
-        ['ARRAY_START', /^\[/],
-        ['ARRAY_SEPERATOR', /^,/],
-        //['HEREDOC_STRING', /^<<-{0,1}(\w+)\s*\n((?,[\s\S])*?)\s*\n\s*\1[\s\n]{0,1}/],
-        ['MODULE', /^module/],
-        ['VARIABLE', /^(?!false\b.*\n|true\b.*\n|null\b.*\n)[A-Za-z_]{1}[\w_\-]*\s+/],
-        ['STRING', /^\"[^ \"]*\"|^'[^']*'/],
-        ['BOOLEAN', /^true|^false/],
-        ['NULL', /^null/],
-        ['FLOAT', /^[+-]?\d+\.\d+/],
-        ['NUMBER', /^[+-]?\d+/],
-        ['ASSIGNMENT', /^=/]
-    ]
+    static Default = []
 
     #content
     #current

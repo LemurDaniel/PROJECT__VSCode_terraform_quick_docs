@@ -25,7 +25,6 @@ module.exports = class BlockAnalyzer {
 
             ['STRING', /^"[^"]*"|^'[^']*'/, false],
             ['BOOLEAN', /^true|^false/, false],
-            ['NULL', /^null/, false],
             ['FLOAT', /^[+-]?\d+\.\d+/, false],
             ['NUMBER', /^[+-]?\d+/, false],
 
