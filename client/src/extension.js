@@ -1,4 +1,4 @@
-const ProviderView = require('./ProviderView')
+const ProviderView = require('./providerView')
 const vscode = require('vscode')
 const path = require('path')
 const fs = require('fs')
