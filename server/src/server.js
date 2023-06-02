@@ -64,8 +64,10 @@ documents.onDidOpen(({ document }) => {
 })
 
 documents.onDidSave(async ({ document }) => {
-    connection.sendRequest('fspath.get', document.uri)
-        .then(fsPath => analyzeRequiredProviders(fsPath, false)).catch(error => console.log(error))
+    const fsPath = await connection.sendRequest('fspath.get', document.uri)
+    await analyzeRequiredProviders(fsPath, false)
+        .then(res => connection.sendRequest('providerview.refresh', null))
+        .catch(error => console.log(error))
 })
 
 connection.onInitialize(params => {
@@ -146,6 +148,8 @@ connection.onRequest('provider.list', async () => await Registry.instance.getPro
 connection.onRequest('provider.info', async identifier => await Registry.instance.getProviderInfo(identifier).catch(err => ({ error: 'NOT FOUND' })))
 connection.onRequest('functions.data', () => Registry.instance.getFunctionsData())
 connection.onRequest('documentation.data', () => Registry.instance.getAllDocumentationData())
+connection.onRequest('resource.docs', resourceInfo => Registry.instance.getResourceDocs(resourceInfo))
+connection.onRequest('requiredprovider.get', () => Settings.requiredProvidersAtPath)
 
 // Make the text document manager listen on the connection
 // for open, change and close text document events

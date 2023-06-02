@@ -10,7 +10,7 @@
     "type": "git",
     "url": "https://github.com/LemurDaniel/PROJECT__VSCode_terraform_quick_docs"
   },
-  "version": "0.0.19",
+  "version": "0.0.20",
   "engines": {
     "vscode": "^1.70.0"
   },
@@ -29,10 +29,19 @@
   ],
   "main": "./client/src/extension.js",
   "contributes": {
+    "views": {
+      "explorer": [
+        {
+          "id": "terraform-quick-docs.view.providers",
+          "name": "Terraform Providers"
+        }
+      ]
+    },
     "commands": [
       {
         "command": "terraform-quick-docs.resource.show",
-        "title": "Terraform Quick Docs: Show Resource Documentation"
+        "title": "Terraform Quick Docs: Show Resource Documentation",
+        "icon": "$(globe)"
       },
       {
         "command": "terraform-quick-docs.functions.show",

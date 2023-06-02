@@ -1,34 +1,42 @@
 const vscode = require('vscode')
+const https = require('https')
+const Provider = require('../provider')
 
-module.exports = async function command(client) {
+module.exports = async function command(context, client) {
 
     try {
 
-        const providerOptions = await client.sendRequest('provider.list').then(
-            result => result.map(data => {
-                const option = {
-                    identifier: data.identifier,
-                    label: data.name,
-                    description: data.identifier
-                }
+        if (context instanceof Provider.Resource) {
+            return await vscode.env.openExternal(vscode.Uri.parse(context.docsUrl))
+        }
 
-                if (data.fromConfiguration) {
-                    option.description = `${data.identifier} - (required_provider in Configuration)`
-                }
-
-                return option
+        let selectedProvider = context
+        if(context == null || !(context instanceof Provider)) {
+            const providerOptions = await client.sendRequest('provider.list').then(
+                result => result.map(data => {
+                    const option = {
+                        identifier: data.identifier,
+                        label: data.name,
+                        description: data.identifier
+                    }
+    
+                    if (data.fromConfiguration) {
+                        option.description = `${data.identifier} - (required_provider in Configuration)`
+                    }
+    
+                    return option
+                })
+            )
+            selectedProvider = await vscode.window.showQuickPick(providerOptions, {
+                title: "Choose a Provider"
             })
-        )
-        const selected = await vscode.window.showQuickPick(providerOptions, {
-            title: "Choose a Provider"
-        })
-        if (null == selected) return
-
+            if (null == selectedProvider) return
+        }
 
         const sortOrder = ['overview', 'resources', 'data-sources', 'guides']
-        const info = await client.sendRequest('provider.info', selected.identifier)
+        const info = await client.sendRequest('provider.info', selectedProvider.identifier)
         if (info.error == 'NOT FOUND')
-            throw new Error(`'${selected.identifier}' was not found!`)
+            throw new Error(`'${selectedProvider.identifier}' was not found!`)
 
         const resourceOptions = info.docs
             .map(resource => ({
