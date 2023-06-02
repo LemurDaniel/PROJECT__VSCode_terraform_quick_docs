@@ -1,5 +1,4 @@
 const vscode = require('vscode')
-const https = require('https')
 const Provider = require('../provider')
 
 module.exports = async function command(context, client) {
@@ -51,7 +50,7 @@ module.exports = async function command(context, client) {
             })
 
         const resource = await vscode.window.showQuickPick(resourceOptions, {
-            title: "Choose a Resource / Data-Source / Guide"
+            title: `Choose from ${selectedProvider.identifier}`
         })
         if (null == resource) return
 

@@ -6,10 +6,10 @@ class Settings {
     // Correlates to the settings
     static recursionDepth = 10
     static ignoreVersion = true
-    static supporOtherModuleSource = true
+    static supportOtherModuleSource = true
 
     // Found via analyzing terraform files
-    static requiredProvidersAtPath = {}
+    static terraformBlock = {}
 
     static clientConnection = null
 }

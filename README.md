@@ -23,15 +23,16 @@
 
 ![example-2](.resources/terraform-quick-docs-7.gif)
 
-#### `Supports only Modules in the Terraform Registry`:`
+#### `Supports only Modules in the Terraform Registry:`
 
 ![example-3](.resources/terraform-quick-docs-3.gif)
+
+#### - `Additional overview of required providers:`
+
+![settings](.resources/terraform-quick-docs-9.jpg)
+
   
 ---
 
-#### - `Prefer latest version over version specified in 'required_providers'-block`
-![settings](.resources/terraform-quick-docs-8.jpg)
-
-#### - `Add more specific Providers if needed in the Settings:`
-
-![settings](.resources/terraform-quick-docs-4.gif)
+#### - `Prefer latest version over version specified in 'required_providers'-block and other settings`
+![settings](.resources/terraform-quick-docs-10.jpg)

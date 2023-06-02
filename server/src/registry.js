@@ -118,9 +118,9 @@ class Registry {
         providersList.forEach(provider => defaultProviders[provider.identifier.toLowerCase()] = provider)
 
         const providersInConfiguration = {}
-        for (const [fullPath, requiredProviders] of Object.entries(Settings.requiredProvidersAtPath)) {
+        for (const [fullPath, terraform] of Object.entries(Settings.terraformBlock)) {
 
-            for (const [name, data] of Object.entries(requiredProviders)) {
+            for (const [name, data] of Object.entries(terraform.requiredProviders)) {
 
                 const configuredProvider = providersInConfiguration[data.source.toLowerCase()]
                 const defaultProvider = defaultProviders[data.source.toLowerCase()]

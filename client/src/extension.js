@@ -113,14 +113,11 @@ async function activate(context) {
 
 
     // Register View
-    disposable = ProviderView.init(client)
-    context.subscriptions.push(disposable)
+    context.subscriptions.push(ProviderView.init(client))
 
     // Start
     client.start()
 }
-
-
 
 // This method is called when your extension is deactivated
 function deactivate(context) {

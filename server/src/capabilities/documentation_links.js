@@ -98,7 +98,7 @@ async function handleProviderModule(document, position) {
     if (null == source) return null
 
     // Generic Git Repository
-    if (Settings.supporOtherModuleSource && (source.match(/^git::ssh/i) || source.match(/^git::http/i))) {
+    if (Settings.supportOtherModuleSource && (source.match(/^git::ssh/i) || source.match(/^git::http/i))) {
 
         const url = source
             // remove prefix when over https
@@ -118,7 +118,7 @@ async function handleProviderModule(document, position) {
     }
 
     // unprefixed github.com URLs or unprefixed bitbucket.org URLs
-    if (Settings.supporOtherModuleSource && source.match(/github\.com[:\/]?/i) || source.match(/bitbucket\.org\//i)) {
+    if (Settings.supportOtherModuleSource && source.match(/github\.com[:\/]?/i) || source.match(/bitbucket\.org\//i)) {
 
         const url = source
             .replace(/git@github.com:/i, 'github.com/').replace(/\.git/, '')
