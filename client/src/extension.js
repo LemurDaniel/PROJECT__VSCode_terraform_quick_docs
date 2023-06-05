@@ -30,7 +30,7 @@ async function activate(context) {
     const clientOptions = {
         documentSelector: [{
             scheme: 'file',
-            language: 'terraform'
+            pattern: '**/*.tf',
         }],
         synchronize: {}
     };
