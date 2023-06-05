@@ -4,6 +4,13 @@ All notable changes to the "terraform-quick-docs" extension will be documented i
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.0.22]
+
+### Fix
+
+- Fixed issue with missing highlighting of Terraform-Extension from Anton Kulikov, due to conflicting language contributions
+
+
 ## [0.0.21]
 
 ### Improvements
