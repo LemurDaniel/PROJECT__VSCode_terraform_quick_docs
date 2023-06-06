@@ -4,6 +4,12 @@ All notable changes to the "terraform-quick-docs" extension will be documented i
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.0.23]
+
+### Fix
+
+- Fixed extension crashes due to filepath issues on linux
+
 ## [0.0.22]
 
 ### Fix

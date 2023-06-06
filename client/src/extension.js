@@ -45,12 +45,9 @@ async function activate(context) {
 
     // Register Client Methods
     client.onRequest('fspath.get', uri => {
-        let fspath = vscode.Uri.parse(uri).fsPath.replace('/', '\\')
-        if (fspath.split('\\').at(-1).includes('.')) {
-            const arr = fspath.split('\\')
-            arr.pop()
-            return arr.join('\\')
-        }
+        let fspath = vscode.Uri.parse(uri).fsPath.replace(/[\/\\]+/g, '/')
+        if (!fs.statSync(fspath).isDirectory())
+            return fspath.split('/').slice(0, -1).join('/')
         else
             return fspath
     })

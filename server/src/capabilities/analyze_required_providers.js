@@ -10,6 +10,7 @@ function* readDirectory(fspath, recursive, recursiondepth = 0) {
 
     if (recursiondepth >= MAX_RECURSION_DEPTH) return
 
+    fspath = fspath.replace(/[\/\\]+/g, '/')
     //Testing long execution blocking main thread
     //let num = 0
     //while (num <= 1000000000) { num++ }
@@ -17,10 +18,13 @@ function* readDirectory(fspath, recursive, recursiondepth = 0) {
     const directoryQueue = []
     for (const filename of fs.readdirSync(fspath)) {
 
-        const fullPath = `${fspath}\\${filename}`
+        const fullPath = [fspath, filename].join('/')
         if (filename.includes('.')) {
             if (filename.split('.').at(-1) == 'tf')
-                yield ({ parentpath: fspath, filepath: fullPath })
+                yield ({
+                    parentpath: fspath,
+                    filepath: fullPath
+                })
             else
                 continue
         }
@@ -63,18 +67,19 @@ async function analyzeRequiredProviders(fsPath, recursive = true) {
 
         // Call thread to excute on path
         worker.postMessage({ fsPath: fsPath, recursive: recursive, maxRecursionDepth: Settings.recursionDepth })
+        console.log('Started Workerthread')
         return null
     }
 
 
 
-    
+
     // Executed by worked thread
     const blockAnalyzer = new BlockAnalyzer()
     for (const { parentpath, filepath } of readDirectory(fsPath, recursive)) {
 
         const fileContent = fs.readFileSync(filepath, 'utf-8')
-        if (!fileContent.includes('required_providers')) continue
+        if (!fileContent.includes('required_providers') && !fileContent.includes('required_version')) continue
         try {
 
             // analyze tf files for terraform blocl
@@ -83,32 +88,26 @@ async function analyzeRequiredProviders(fsPath, recursive = true) {
                 console.log(`analyzed '${filepath}'`)
             }
 
-            const terraformBlock = analyzed.filter(block => block.type == 'AttributeBlockDefinition' && block.value.identifier == 'terraform').at(0)?.value
-            if (!terraformBlock) continue
-
-            // Add required version if found
             Settings.terraformBlock[parentpath] = {
-                requiredVersion: terraformBlock.attributes?.required_version?.value,
+                requiredVersion: null,
                 requiredProviders: {}
             }
 
-            // Add required provders if there
-            const requiredProviders = terraformBlock.blockDefinitions.filter(block => block.type == 'AttributeBlockDefinition' && block.value.identifier == 'required_providers').at(0)?.value
-            if (requiredProviders) {
-                for (const [provider, value] of Object.entries(requiredProviders.attributes)) {
-                    if (!value.attributes?.source?.value) continue
-                    const requiredDefinition = {
-                        source: value.attributes?.source?.value,
-                        version: value.attributes?.version?.value
+            const terraformBlock = analyzed.filter(block => block.type == 'AttributeBlockDefinition' && block.value.identifier == 'terraform').at(0)?.value
+            if (terraformBlock) {
+                Settings.terraformBlock[parentpath].requiredVersion = terraformBlock.attributes.required_version?.value
+                const requiredProviders = terraformBlock.blockDefinitions?.filter(block => block.type == 'AttributeBlockDefinition' && block.value.identifier == 'required_providers').at(0)?.value
+                if (requiredProviders) {
+                    for (const [provider, value] of Object.entries(requiredProviders.attributes)) {
+                        if (!value.attributes?.source?.value) continue
+                        const requiredDefinition = {
+                            source: value.attributes?.source?.value,
+                            version: value.attributes?.version?.value
+                        }
+                        Settings.terraformBlock[parentpath].requiredProviders[provider] = requiredDefinition
                     }
-                    Settings.terraformBlock[parentpath].requiredProviders[provider] = requiredDefinition
                 }
             }
-
-            // return if nothing is defined
-            if (Settings.terraformBlock[parentpath].requiredVersion == null &&
-                Object.values(Settings.terraformBlock[parentpath].requiredProviders).length == 0)
-                return
 
             // Fetch API for providers and cache if its main thread
             if (Thread.isMainThread) {
@@ -161,8 +160,8 @@ function removeRequiredProvders(fsPath) {
 async function findRequiredProvider(fsPath, identifier) {
 
     //console.log(terraformBlock)
-    identifier = identifier.split('_')[0]
-    const segements = fsPath.split('\\')
+    providerShortName = identifier.split('_')[0]
+    const segements = fsPath.split(/[\/\\]+/)
 
     const targetProvider = {
         version: null,
@@ -170,13 +169,14 @@ async function findRequiredProvider(fsPath, identifier) {
     }
 
     while (segements.length > 0) {
-        const parentPath = segements.join('\\')
+        const parentPath = segements.join('/')
+
         if (parentPath in Settings.terraformBlock) {
 
             const requiredProviders = Settings.terraformBlock[parentPath].requiredProviders
-            if (identifier in requiredProviders) {
-                targetProvider.source = requiredProviders[identifier].source ?? targetProvider.source
-                targetProvider.version = requiredProviders[identifier].version ?? targetProvider.version
+            if (providerShortName in requiredProviders) {
+                targetProvider.source = requiredProviders[providerShortName].source ?? targetProvider.source
+                targetProvider.version = requiredProviders[providerShortName].version ?? targetProvider.version
             }
 
         }
