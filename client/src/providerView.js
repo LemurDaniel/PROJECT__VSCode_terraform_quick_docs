@@ -79,7 +79,7 @@ class ProviderView {
         else if (element instanceof Folder) {
             const item = new vscode.TreeItem(element.properties.label, Collapsed)
             if (null != element.properties.description)
-                item.description = element.properties.description.length > 0 ? `\\${element.properties.description}` : element.properties.description
+                item.description = element.properties.description.length > 0 ? `/${element.properties.description}` : element.properties.description
             else
                 item.description = element.name
 
@@ -108,39 +108,42 @@ class ProviderView {
         this.#onDidChangeTreeData.fire()
     }
 
-
-
-
-
+    containsPath(path, subpath) {
+        return path.replace(/[\/\\]+/g, '/').includes(subpath.replace(/[\/\\]+/g, '/'))
+    }
+    reducePath(path, start, end = undefined) {
+        return path.split(/[\/\\]+/).slice(start, end).join('/')
+    }
+    pathSegment(path, segment) {
+        return path.split(/[\/\\]+/)[segment]
+    }
 
     // returns topmost required_providers of configurations in all workspaces
     async getRootFolderElemets() {
 
         const terraformBlockAtPath = await this.#client.sendRequest('requiredprovider.get')
-
+        
         const rootFolder = new Folder()
         for (const [initialPath, terraform] of Object.entries(terraformBlockAtPath)) {
-
-            const workspaceFolder = vscode.workspace.workspaceFolders.filter(folder => initialPath.includes(folder.uri.fsPath)).at(0)
+            const workspaceFolder = vscode.workspace.workspaceFolders.filter(folder => this.containsPath(initialPath, folder.uri.fsPath))[0]
             if (null == workspaceFolder) continue
 
-            let pathArray = workspaceFolder.uri.fsPath.split('\\')
-            pathArray = pathArray.slice(0, pathArray.length - 1)
-            const reducedPath = initialPath.replace(pathArray.join('\\'), '')
+            // Remove path up until vscode workspace root folder
+            const workspacePath = this.reducePath(workspaceFolder.uri.fsPath, 0, -1)
+            const reducedPath = initialPath.replace(workspacePath, '')
 
             // When multiple folders in workspace, shows the foldername as treeitem name 
             if (vscode.workspace.workspaceFolders.length > 1) {
-                const pathArray = reducedPath.split('\\')
                 rootFolder.add(reducedPath, terraform, {
-                    label: pathArray[1],
-                    description: pathArray.slice(2).join('\\')
+                    label: this.pathSegment(1),
+                    description: this.reducePath(reducedPath, 2)
                 })
             }
             // When only one folder, omitts treeitem name
             else {
                 rootFolder.add(reducedPath, terraform, {
                     label: null,
-                    description: reducedPath.split(`\\`).slice(2).join('\\')
+                    description: this.reducePath(reducedPath, 2)
                 })
             }
         }

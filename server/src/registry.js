@@ -1,3 +1,4 @@
+const pathUtility = require('path')
 const https = require('https')
 const fs = require('fs')
 
@@ -88,14 +89,14 @@ class Registry {
         return response
     }
 
-    async getProvidersOutJson(path = `${__dirname}\\data\\providers.json`) {
+    async getProvidersOutJson(path = pathUtility.join(__dirname,'data','providers.json')) {
 
         const providers = await this.getProvidersFromApi()
         fs.writeFileSync(path, JSON.stringify(providers))
 
     }
 
-    async getProvidersFromJson(path = `${__dirname}\\data\\providers.json`) {
+    async getProvidersFromJson(path = pathUtility.join(__dirname,'data','providers.json')) {
 
         if (path in this.#cache)
             return Registry.additionalProviders
@@ -125,7 +126,7 @@ class Registry {
                 const configuredProvider = providersInConfiguration[data.source.toLowerCase()]
                 const defaultProvider = defaultProviders[data.source.toLowerCase()]
 
-                if (null != configuredProvider && fullPath.split('\\').length >= configuredProvider.segments) {
+                if (null != configuredProvider && fullPath.split(/[\/\\]+/).length >= configuredProvider.segments) {
                     continue
                 }
 
@@ -135,7 +136,7 @@ class Registry {
                     identifier: data.source,
                     version: data.version ?? configuredProvider?.version,
                     fsPath: fullPath,
-                    segments: fullPath.split('\\').length,
+                    segments: fullPath.split(/[\/\\]+/).length,
                     fromConfiguration: true,
                     fromSettings: defaultProvider?.fromSettings ?? false,
                     officialPartnerStatus: defaultProvider?.officialPartnerStatus ?? false,
