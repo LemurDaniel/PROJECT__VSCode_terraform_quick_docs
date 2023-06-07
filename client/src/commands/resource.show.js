@@ -1,7 +1,7 @@
 const vscode = require('vscode')
 const Provider = require('../provider')
 
-module.exports = async function command(context, client) {
+async function command(client, context) {
 
     try {
 
@@ -10,7 +10,7 @@ module.exports = async function command(context, client) {
         }
 
         let selectedProvider = context
-        if(context == null || !(context instanceof Provider)) {
+        if (context == null || !(context instanceof Provider)) {
             const providerOptions = await client.sendRequest('provider.list').then(
                 result => result.map(data => {
                     const option = {
@@ -18,11 +18,11 @@ module.exports = async function command(context, client) {
                         label: data.name,
                         description: data.identifier
                     }
-    
+
                     if (data.fromConfiguration) {
                         option.description = `${data.identifier} - (required_provider in Configuration)`
                     }
-    
+
                     return option
                 })
             )
@@ -62,3 +62,5 @@ module.exports = async function command(context, client) {
     }
 
 }
+
+module.exports = client => vscode.commands.registerCommand('terraform-quick-docs.resource.show', context => command(client, context))

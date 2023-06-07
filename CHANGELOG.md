@@ -4,6 +4,13 @@ All notable changes to the "terraform-quick-docs" extension will be documented i
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.0.24]
+
+### Improvments
+
+- Added documentations for local-exec, remote-exec, file-provsioners
+- Additional Documentation now also accesible via 'Terraform Provider'-View.
+  
 ## [0.0.23]
 
 ### Fix

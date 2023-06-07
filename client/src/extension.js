@@ -84,29 +84,10 @@ async function activate(context) {
 
 
     // Register Commands
-    const showResources = require('./commands/resource.show')
-    let disposable = vscode.commands.registerCommand('terraform-quick-docs.resource.show',
-        async context => await showResources(context, client)
-    )
-    context.subscriptions.push(disposable)
-
-    const showFunctions = require('./commands/functions.show')
-    disposable = vscode.commands.registerCommand('terraform-quick-docs.functions.show',
-        async () => await showFunctions(client)
-    )
-    context.subscriptions.push(disposable)
-
-    const listProviders = require('./commands/provider.list')
-    disposable = vscode.commands.registerCommand('terraform-quick-docs.providers.list',
-        async () => await listProviders(client)
-    )
-    context.subscriptions.push(disposable)
-
-    const docsShow = require('./commands/documentation.show')
-    disposable = vscode.commands.registerCommand('terraform-quick-docs.documentation.show',
-        async () => await docsShow(client)
-    )
-    context.subscriptions.push(disposable)
+    context.subscriptions.push(require('./commands/functions.show')(client))
+    context.subscriptions.push(require('./commands/provider.list')(client))
+    context.subscriptions.push(require('./commands/resource.show')(client))
+    context.subscriptions.push(require('./commands/documentation.show')(client))
 
 
     // Register View
