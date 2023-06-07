@@ -1,6 +1,6 @@
 const vscode = require('vscode')
 
-module.exports = async function command(client) {
+async function command(client) {
 
     try {
 
@@ -33,3 +33,5 @@ module.exports = async function command(client) {
     }
 
 }
+
+module.exports = client => vscode.commands.registerCommand('terraform-quick-docs.provider.list', () => command(client))

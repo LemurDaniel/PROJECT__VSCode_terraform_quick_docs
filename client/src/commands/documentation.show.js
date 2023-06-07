@@ -1,6 +1,6 @@
 const vscode = require('vscode')
 
-module.exports = async function command(client) {
+async function command(client) {
 
     try {
 
@@ -14,10 +14,12 @@ module.exports = async function command(client) {
                 })
             ))
             if (null == documentationResource) return
-        } while ("data" in documentationResource)
+            if (documentationResource.id == "documentation.functions")
+                return await vscode.commands.executeCommand('terraform-quick-docs.functions.show')
+        } while (null != documentationResource.data)
 
         await vscode.env.openExternal(
-            vscode.Uri.parse(`${documentationData.baseUrl}/${documentationResource.fullPath}`)
+            vscode.Uri.parse(`${documentationData.baseUrl}/${documentationResource.path}`)
         )
 
     } catch (exception) {
@@ -25,3 +27,7 @@ module.exports = async function command(client) {
     }
 
 }
+
+
+
+module.exports = client => vscode.commands.registerCommand('terraform-quick-docs.documentation.show', () => command(client))

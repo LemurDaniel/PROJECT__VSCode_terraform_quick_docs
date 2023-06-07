@@ -1,6 +1,6 @@
 const vscode = require('vscode')
 
-module.exports = async function command(client) {
+async function command(client) {
 
     try {
 
@@ -24,7 +24,7 @@ module.exports = async function command(client) {
 
 
         await vscode.env.openExternal(
-            vscode.Uri.parse(`${functionDocs.baseUrl}/${functionInfo.fullPath}`)
+            vscode.Uri.parse(`${functionDocs.baseUrl}/${functionInfo.path}`)
         )
 
     } catch (exception) {
@@ -32,3 +32,7 @@ module.exports = async function command(client) {
     }
 
 }
+
+
+
+module.exports = client => vscode.commands.registerCommand('terraform-quick-docs.functions.show', () => command(client))

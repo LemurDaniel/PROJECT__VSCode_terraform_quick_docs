@@ -5,15 +5,6 @@ const Folder = require('./folder')
 
 class ProviderView {
 
-    static Item = class Item {
-        constructor(label, description, data) {
-            this.label = label
-            this.description = description
-            this.data = data
-        }
-    }
-
-
     // Provider View Class
     static #instance
 
@@ -51,39 +42,20 @@ class ProviderView {
 
     async getTreeItem(element) {
 
-        const Collapsed = vscode.TreeItemCollapsibleState.Collapsed
-        const Expanded = vscode.TreeItemCollapsibleState.Expanded
-        const None = vscode.TreeItemCollapsibleState.None
-
-        if (element instanceof ProviderView.Item) {
-            const item = new vscode.TreeItem(element.label, None)
-            item.description = element.description
-            item.contextValue = "itemContext"
-
-            return item
+        if (element instanceof vscode.TreeItem) {
+            return element
         }
-        else if (element instanceof Provider) {
-            const item = new vscode.TreeItem(element.identifier, None)
-            item.contextValue = "providerContext"
-            if (element.definedVersion)
-                item.description = element.definedVersion
 
-            item.command = {
-                "title": "Open Resources",
-                "command": "terraform-quick-docs.resource.show",
-                "arguments": [element]
-            }
-
-            return item
-        }
         else if (element instanceof Folder) {
-            const item = new vscode.TreeItem(element.properties.label, Collapsed)
-            if (null != element.properties.description)
-                item.description = element.properties.description.length > 0 ? `/${element.properties.description}` : element.properties.description
-            else
-                item.description = element.name
-
+            const item = new vscode.TreeItem(element.properties.label)
+            item.collapsibleState = vscode.TreeItemCollapsibleState.Collapsed
             item.contextValue = "folderContext"
+            if (null == element.properties.description)
+                item.description = element.name
+            else if (element.properties.description.length > 0)
+                item.description = `/${element.properties.description}`
+            else
+                item.description = element.properties.description
 
             return item
         }
@@ -122,7 +94,7 @@ class ProviderView {
     async getRootFolderElemets() {
 
         const terraformBlockAtPath = await this.#client.sendRequest('requiredprovider.get')
-        
+
         const rootFolder = new Folder()
         for (const [initialPath, terraform] of Object.entries(terraformBlockAtPath)) {
             const workspaceFolder = vscode.workspace.workspaceFolders.filter(folder => this.containsPath(initialPath, folder.uri.fsPath))[0]
@@ -176,22 +148,37 @@ class ProviderView {
     // returns terraform version and providers at that path
     async getChildItemForFolderContent(content) {
 
-        let providerItems = Object.values(content[0].requiredProviders)
-        // Get provider data from api/cache and create instances of Provider-Class
-        providerItems = providerItems.map(requiredProvider =>
-            this.#client.sendRequest('provider.info', requiredProvider.source)
-                .then(providerInfo => {
-                    const provider = new Provider(providerInfo, this.#client)
-                    provider.definedVersion = requiredProvider.version
-                    return provider
-                })
-        )
-        providerItems = await Promise.all(providerItems)
-
+        const providerItems = []
         // Item for showing required terraform version
         if (content[0].requiredVersion) {
-            const item = new ProviderView.Item('terraform', content[0].requiredVersion)
-            providerItems = [item, ...providerItems]
+            const item = new vscode.TreeItem('terraform')
+            item.description = content[0].requiredVersion
+            item.collapsibleState = vscode.TreeItemCollapsibleState.None
+            item.command = {
+                "title": "Open Documentation",
+                "command": "terraform-quick-docs.documentation.show",
+                "arguments": null
+            }
+            providerItems.push(item)
+        }
+
+        // Get provider data from api/cache and create instances of Provider-Class
+        for (const { source, version } of Object.values(content[0].requiredProviders)) {
+            let providerInfo = await this.#client.sendRequest('provider.info', source)
+            providerInfo = new Provider(providerInfo, this.#client)
+
+            const item = new vscode.TreeItem(providerInfo.identifier)
+            item.collapsibleState = vscode.TreeItemCollapsibleState.None
+            item.contextValue = "providerContext"
+            item.description = version
+
+            item.command = {
+                "title": "Open Resources",
+                "command": "terraform-quick-docs.resource.show",
+                "arguments": [providerInfo]
+            }
+
+            providerItems.push(item)
         }
 
         return providerItems//.concat(element.folders)
