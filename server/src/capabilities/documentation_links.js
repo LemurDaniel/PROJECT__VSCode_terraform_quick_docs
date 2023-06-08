@@ -198,7 +198,7 @@ async function getLinkForPosition(document, position) {
                 position.character <= (inlineResource.index + inlineResource.at(0).length)
             if (!inRange) continue
 
-            const webUrl = `${Registry.instance.getFunctionsData().baseUrl}/${functionInfo.fullPath}`//.replace(/[^:][/]+/g, '/')
+            const webUrl = `${Registry.instance.getFunctionsData().baseUrl}/${functionInfo.path}`//.replace(/[^:][/]+/g, '/')
             return {
                 contents: `[**${functionInfo.syntax[0]}** Documentation](${webUrl})`
                 // contents: `[**${functionInfo.syntax[0]}**](${webUrl}) ${functionInfo.description.replace(/`[^`]+`/g, '')}`
