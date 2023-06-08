@@ -21,13 +21,13 @@
       "data": [
         {
           "path": "/terraform/language/functions",
-          "id": "functions.numeric_functions",
+          "id": "documentation.functions.numeric_functions",
           "title": "Numeric Functions",
           "description": null,
           "data": [
             {
               "path": "/terraform/language/functions/abs",
-              "id": "numeric_functions.abs",
+              "id": "documentation.functions.numeric_functions.abs",
               "title": "abs",
               "syntax": [
                 "abs(number)"
@@ -59,7 +59,7 @@
             },
             {
               "path": "/terraform/language/functions/ceil",
-              "id": "numeric_functions.ceil",
+              "id": "documentation.functions.numeric_functions.ceil",
               "title": "ceil",
               "syntax": [
                 "ceil(number)"
@@ -95,7 +95,7 @@
             },
             {
               "path": "/terraform/language/functions/floor",
-              "id": "numeric_functions.floor",
+              "id": "documentation.functions.numeric_functions.floor",
               "title": "floor",
               "syntax": [
                 "floor(number)"
@@ -131,7 +131,7 @@
             },
             {
               "path": "/terraform/language/functions/log",
-              "id": "numeric_functions.log",
+              "id": "documentation.functions.numeric_functions.log",
               "title": "log",
               "syntax": [
                 "log(number, base)"
@@ -175,7 +175,7 @@
             },
             {
               "path": "/terraform/language/functions/max",
-              "id": "numeric_functions.max",
+              "id": "documentation.functions.numeric_functions.max",
               "title": "max",
               "syntax": [
                 "max(...numbers)",
@@ -214,7 +214,7 @@
             },
             {
               "path": "/terraform/language/functions/min",
-              "id": "numeric_functions.min",
+              "id": "documentation.functions.numeric_functions.min",
               "title": "min",
               "syntax": [
                 "min(...numbers)",
@@ -253,7 +253,7 @@
             },
             {
               "path": "/terraform/language/functions/parseint",
-              "id": "numeric_functions.parseint",
+              "id": "documentation.functions.numeric_functions.parseint",
               "title": "parseint",
               "syntax": [
                 "min(string, base)"
@@ -314,7 +314,7 @@
             },
             {
               "path": "/terraform/language/functions/pow",
-              "id": "numeric_functions.pow",
+              "id": "documentation.functions.numeric_functions.pow",
               "title": "pow",
               "syntax": [
                 "pow(number, exponent)"
@@ -342,7 +342,7 @@
             },
             {
               "path": "/terraform/language/functions/signum",
-              "id": "numeric_functions.signum",
+              "id": "documentation.functions.numeric_functions.signum",
               "title": "signum",
               "syntax": [
                 "signum(number)"
@@ -375,13 +375,13 @@
         },
         {
           "path": "/terraform/language/functions",
-          "id": "functions.string_functions",
+          "id": "documentation.functions.string_functions",
           "title": "String Functions",
           "description": null,
           "data": [
             {
               "path": "/terraform/language/functions/chomp",
-              "id": "string_functions.chomp",
+              "id": "documentation.functions.string_functions.chomp",
               "title": "chomp",
               "syntax": [
                 "chomp(string)"
@@ -419,7 +419,7 @@
             },
             {
               "path": "/terraform/language/functions/endswith",
-              "id": "string_functions.endswith",
+              "id": "documentation.functions.string_functions.endswith",
               "title": "endswith",
               "syntax": [
                 "endswith(string, suffix)"
@@ -457,7 +457,7 @@
             },
             {
               "path": "/terraform/language/functions/format",
-              "id": "string_functions.format",
+              "id": "documentation.functions.string_functions.format",
               "title": "format",
               "syntax": [
                 "format(string, ...values)"
@@ -613,7 +613,7 @@
             },
             {
               "path": "/terraform/language/functions/formatlist",
-              "id": "string_functions.formatlist",
+              "id": "documentation.functions.string_functions.formatlist",
               "title": "formatlist",
               "syntax": [
                 "formatlist(string, ...[value, value])"
@@ -673,7 +673,7 @@
             },
             {
               "path": "/terraform/language/functions/indent",
-              "id": "string_functions.indent",
+              "id": "documentation.functions.string_functions.indent",
               "title": "indent",
               "syntax": [
                 "indent(num_spaces, string)"
@@ -715,7 +715,7 @@
             },
             {
               "path": "/terraform/language/functions/join",
-              "id": "string_functions.join",
+              "id": "documentation.functions.string_functions.join",
               "title": "join",
               "syntax": [
                 "join(seperator, list)"
@@ -757,7 +757,7 @@
             },
             {
               "path": "/terraform/language/functions/lower",
-              "id": "string_functions.lower",
+              "id": "documentation.functions.string_functions.lower",
               "title": "lower",
               "syntax": [
                 "lower(string)"
@@ -794,7 +794,7 @@
             },
             {
               "path": "/terraform/language/functions/regex",
-              "id": "string_functions.regex",
+              "id": "documentation.functions.string_functions.regex",
               "title": "regex",
               "syntax": [
                 "regex(pattern, string)"
@@ -966,7 +966,7 @@
             },
             {
               "path": "/terraform/language/functions/regexall",
-              "id": "string_functions.regexall",
+              "id": "documentation.functions.string_functions.regexall",
               "title": "regexall",
               "syntax": [
                 "regexall(pattern, string)"
@@ -1034,7 +1034,7 @@
             },
             {
               "path": "/terraform/language/functions/replace",
-              "id": "string_functions.replace",
+              "id": "documentation.functions.string_functions.replace",
               "title": "replace",
               "syntax": [
                 "replace(string, substring, replacement)"
@@ -1082,7 +1082,7 @@
             },
             {
               "path": "/terraform/language/functions/split",
-              "id": "string_functions.split",
+              "id": "documentation.functions.string_functions.split",
               "title": "split",
               "syntax": [
                 "split(separator, string)"
@@ -1132,7 +1132,7 @@
             },
             {
               "path": "/terraform/language/functions/startswith",
-              "id": "string_functions.startswith",
+              "id": "documentation.functions.string_functions.startswith",
               "title": "startswith",
               "syntax": [
                 "startswith(string, prefix)"
@@ -1170,7 +1170,7 @@
             },
             {
               "path": "/terraform/language/functions/strrev",
-              "id": "string_functions.strrev",
+              "id": "documentation.functions.string_functions.strrev",
               "title": "strrev",
               "syntax": [
                 "strrev(string)"
@@ -1207,7 +1207,7 @@
             },
             {
               "path": "/terraform/language/functions/substr",
-              "id": "string_functions.substr",
+              "id": "documentation.functions.string_functions.substr",
               "title": "substr",
               "syntax": [
                 "substr(string, offset, length)"
@@ -1264,7 +1264,7 @@
             },
             {
               "path": "/terraform/language/functions/title",
-              "id": "string_functions.title",
+              "id": "documentation.functions.string_functions.title",
               "title": "title",
               "syntax": [
                 "title(string)"
@@ -1299,7 +1299,7 @@
             },
             {
               "path": "/terraform/language/functions/trim",
-              "id": "string_functions.trim",
+              "id": "documentation.functions.string_functions.trim",
               "title": "trim",
               "syntax": [
                 "trim(string, characters)"
@@ -1350,7 +1350,7 @@
             },
             {
               "path": "/terraform/language/functions/trimprefix",
-              "id": "string_functions.trimprefix",
+              "id": "documentation.functions.string_functions.trimprefix",
               "title": "trimprefix",
               "syntax": [
                 "trimprefix(string, prefix)"
@@ -1390,7 +1390,7 @@
             },
             {
               "path": "/terraform/language/functions/trimsuffix",
-              "id": "string_functions.trimsuffix",
+              "id": "documentation.functions.string_functions.trimsuffix",
               "title": "trimsuffix",
               "syntax": [
                 "trimsuffix(string, suffix)"
@@ -1425,7 +1425,7 @@
             },
             {
               "path": "/terraform/language/functions/trimspace",
-              "id": "string_functions.trimspace",
+              "id": "documentation.functions.string_functions.trimspace",
               "title": "trimspace",
               "syntax": [
                 "trimspace(string)"
@@ -1463,7 +1463,7 @@
             },
             {
               "path": "/terraform/language/functions/upper",
-              "id": "string_functions.upper",
+              "id": "documentation.functions.string_functions.upper",
               "title": "upper",
               "syntax": [
                 "upper(string)"
@@ -1502,13 +1502,13 @@
         },
         {
           "path": "/terraform/language/functions",
-          "id": "functions.collection_functions",
+          "id": "documentation.functions.collection_functions",
           "title": "Collection Functions",
           "description": null,
           "data": [
             {
               "path": "/terraform/language/functions/alltrue",
-              "id": "collection_functions.alltrue",
+              "id": "documentation.functions.collection_functions.alltrue",
               "title": "alltrue",
               "syntax": [
                 "alltrue(list)"
@@ -1545,7 +1545,7 @@
             },
             {
               "path": "/terraform/language/functions/anytrue",
-              "id": "collection_functions.anytrue",
+              "id": "documentation.functions.collection_functions.anytrue",
               "title": "anytrue",
               "syntax": [
                 "anytrue(list)"
@@ -1586,7 +1586,7 @@
             },
             {
               "path": "/terraform/language/functions/chunklist",
-              "id": "collection_functions.chunklist",
+              "id": "documentation.functions.collection_functions.chunklist",
               "title": "chunklist",
               "syntax": [
                 "chunklist(list, chunk_size)"
@@ -1649,7 +1649,7 @@
             },
             {
               "path": "/terraform/language/functions/coalesce",
-              "id": "collection_functions.coalesce",
+              "id": "documentation.functions.collection_functions.coalesce",
               "title": "coalesce",
               "syntax": [
                 "coalesce(...values)",
@@ -1717,7 +1717,7 @@
             },
             {
               "path": "/terraform/language/functions/coalescelist",
-              "id": "collection_functions.coalescelist",
+              "id": "documentation.functions.collection_functions.coalescelist",
               "title": "coalescelist",
               "syntax": [
                 "coalescelist(...lists)"
@@ -1770,7 +1770,7 @@
             },
             {
               "path": "/terraform/language/functions/compact",
-              "id": "collection_functions.compact",
+              "id": "documentation.functions.collection_functions.compact",
               "title": "compact",
               "syntax": [
                 "compact(list)"
@@ -1801,7 +1801,7 @@
             },
             {
               "path": "/terraform/language/functions/concat",
-              "id": "collection_functions.concat",
+              "id": "documentation.functions.collection_functions.concat",
               "title": "concat",
               "syntax": [
                 "concat(list, ...lists)"
@@ -1832,7 +1832,7 @@
             },
             {
               "path": "/terraform/language/functions/contains",
-              "id": "collection_functions.contains",
+              "id": "documentation.functions.collection_functions.contains",
               "title": "contains",
               "syntax": [
                 "contains(list, value)"
@@ -1865,7 +1865,7 @@
             },
             {
               "path": "/terraform/language/functions/distinct",
-              "id": "collection_functions.distinct",
+              "id": "documentation.functions.collection_functions.distinct",
               "title": "distinct",
               "syntax": [
                 "distinct(list)"
@@ -1900,7 +1900,7 @@
             },
             {
               "path": "/terraform/language/functions/element",
-              "id": "collection_functions.element",
+              "id": "documentation.functions.collection_functions.element",
               "title": "element",
               "syntax": [
                 "element(list, index)"
@@ -1958,7 +1958,7 @@
             },
             {
               "path": "/terraform/language/functions/flatten",
-              "id": "collection_functions.flatten",
+              "id": "documentation.functions.collection_functions.flatten",
               "title": "flatten",
               "syntax": [
                 "flatten(list)"
@@ -2075,7 +2075,7 @@
             },
             {
               "path": "/terraform/language/functions/index_function",
-              "id": "collection_functions.index",
+              "id": "documentation.functions.collection_functions.index",
               "title": "index",
               "syntax": [
                 "index(list, value)"
@@ -2113,7 +2113,7 @@
             },
             {
               "path": "/terraform/language/functions/keys",
-              "id": "collection_functions.keys",
+              "id": "documentation.functions.collection_functions.keys",
               "title": "keys",
               "syntax": [
                 "keys(map)"
@@ -2150,7 +2150,7 @@
             },
             {
               "path": "/terraform/language/functions/length",
-              "id": "collection_functions.length",
+              "id": "documentation.functions.collection_functions.length",
               "title": "length",
               "syntax": [
                 "length(list|map|string)"
@@ -2200,7 +2200,7 @@
             },
             {
               "path": "/terraform/language/functions/list",
-              "id": "collection_functions.list",
+              "id": "documentation.functions.collection_functions.list",
               "title": "list",
               "syntax": [
                 "list(...values)"
@@ -2237,7 +2237,7 @@
             },
             {
               "path": "/terraform/language/functions/lookup",
-              "id": "collection_functions.lookup",
+              "id": "documentation.functions.collection_functions.lookup",
               "title": "lookup",
               "syntax": [
                 "lookup(map, key, default)"
@@ -2278,7 +2278,7 @@
             },
             {
               "path": "/terraform/language/functions/map",
-              "id": "collection_functions.map",
+              "id": "documentation.functions.collection_functions.map",
               "title": "map",
               "syntax": [
                 "map(...values)"
@@ -2318,7 +2318,7 @@
             },
             {
               "path": "/terraform/language/functions/matchkeys",
-              "id": "collection_functions.matchkeys",
+              "id": "documentation.functions.collection_functions.matchkeys",
               "title": "matchkeys",
               "syntax": [
                 "matchkeys(valuelist, keylist, searchset)"
@@ -2399,7 +2399,7 @@
             },
             {
               "path": "/terraform/language/functions/merge",
-              "id": "collection_functions.merge",
+              "id": "documentation.functions.collection_functions.merge",
               "title": "merge",
               "syntax": [
                 "merge(...maps|objects)"
@@ -2461,7 +2461,7 @@
             },
             {
               "path": "/terraform/language/functions/one",
-              "id": "collection_functions.one",
+              "id": "documentation.functions.collection_functions.one",
               "title": "one",
               "syntax": [
                 "one(list|set)"
@@ -2591,7 +2591,7 @@
             },
             {
               "path": "/terraform/language/functions/range",
-              "id": "collection_functions.range",
+              "id": "documentation.functions.collection_functions.range",
               "title": "range",
               "syntax": [
                 "range(start, limit, step)",
@@ -2743,7 +2743,7 @@
             },
             {
               "path": "/terraform/language/functions/reverse",
-              "id": "collection_functions.reverse",
+              "id": "documentation.functions.collection_functions.reverse",
               "title": "reverse",
               "syntax": [
                 "reverse(list)"
@@ -2778,7 +2778,7 @@
             },
             {
               "path": "/terraform/language/functions/setintersection",
-              "id": "collection_functions.setintersection",
+              "id": "documentation.functions.collection_functions.setintersection",
               "title": "setintersection",
               "syntax": [
                 "setintersection(...sets)"
@@ -2828,7 +2828,7 @@
             },
             {
               "path": "/terraform/language/functions/setproduct",
-              "id": "collection_functions.setproduct",
+              "id": "documentation.functions.collection_functions.setproduct",
               "title": "setproduct",
               "syntax": [
                 "setproduct(...sets)"
@@ -3120,7 +3120,7 @@
             },
             {
               "path": "/terraform/language/functions/setsubtract",
-              "id": "collection_functions.setsubtract",
+              "id": "documentation.functions.collection_functions.setsubtract",
               "title": "setsubtract",
               "syntax": [
                 "setsubtract(...sets)"
@@ -3173,7 +3173,7 @@
             },
             {
               "path": "/terraform/language/functions/setunion",
-              "id": "collection_functions.setunion",
+              "id": "documentation.functions.collection_functions.setunion",
               "title": "setunion",
               "syntax": [
                 "setunion(...sets)"
@@ -3226,7 +3226,7 @@
             },
             {
               "path": "/terraform/language/functions/slice",
-              "id": "collection_functions.slice",
+              "id": "documentation.functions.collection_functions.slice",
               "title": "slice",
               "syntax": [
                 "slice(list, startindex, endindex)"
@@ -3268,7 +3268,7 @@
             },
             {
               "path": "/terraform/language/functions/sort",
-              "id": "collection_functions.sort",
+              "id": "documentation.functions.collection_functions.sort",
               "title": "sort",
               "syntax": [
                 "sort(list)"
@@ -3305,7 +3305,7 @@
             },
             {
               "path": "/terraform/language/functions/sum",
-              "id": "collection_functions.sum",
+              "id": "documentation.functions.collection_functions.sum",
               "title": "sum",
               "syntax": [
                 "sum(list<number>)"
@@ -3333,7 +3333,7 @@
             },
             {
               "path": "/terraform/language/functions/transpose",
-              "id": "collection_functions.transpose",
+              "id": "documentation.functions.collection_functions.transpose",
               "title": "transpose",
               "syntax": [
                 "transpose(map)"
@@ -3373,7 +3373,7 @@
             },
             {
               "path": "/terraform/language/functions/values",
-              "id": "collection_functions.values",
+              "id": "documentation.functions.collection_functions.values",
               "title": "values",
               "syntax": [
                 "values(map)"
@@ -3412,7 +3412,7 @@
             },
             {
               "path": "/terraform/language/functions/zipmap",
-              "id": "collection_functions.zipmap",
+              "id": "documentation.functions.collection_functions.zipmap",
               "title": "zipmap",
               "syntax": [
                 "zipmap(keyslist, valueslist)"
@@ -3458,13 +3458,13 @@
         },
         {
           "path": "/terraform/language/functions",
-          "id": "functions.encoding_functions",
+          "id": "documentation.functions.encoding_functions",
           "title": "Encoding Functions",
           "description": null,
           "data": [
             {
               "path": "/terraform/language/functions/base64decode",
-              "id": "encoding_functions.base64decode",
+              "id": "documentation.functions.encoding_functions.base64decode",
               "title": "base64decode",
               "syntax": [
                 "base64decode(base64)"
@@ -3521,7 +3521,7 @@
             },
             {
               "path": "/terraform/language/functions/base64encode",
-              "id": "encoding_functions.base64encode",
+              "id": "documentation.functions.encoding_functions.base64encode",
               "title": "base64encode",
               "syntax": [
                 "base64encode(string)"
@@ -3580,7 +3580,7 @@
             },
             {
               "path": "/terraform/language/functions/base64gzip",
-              "id": "encoding_functions.base64gzip",
+              "id": "documentation.functions.encoding_functions.base64gzip",
               "title": "base64gzip",
               "syntax": [
                 "base64gzip(string)"
@@ -3622,7 +3622,7 @@
             },
             {
               "path": "/terraform/language/functions/csvdecode",
-              "id": "encoding_functions.csvdecode",
+              "id": "documentation.functions.encoding_functions.csvdecode",
               "title": "csvdecode",
               "syntax": [
                 "csvdecode(string)"
@@ -3728,7 +3728,7 @@
             },
             {
               "path": "/terraform/language/functions/jsondecode",
-              "id": "encoding_functions.jsondecode",
+              "id": "documentation.functions.encoding_functions.jsondecode",
               "title": "jsondecode",
               "syntax": [
                 "jsondecode(string)"
@@ -3785,7 +3785,7 @@
             },
             {
               "path": "/terraform/language/functions/jsonencode",
-              "id": "encoding_functions.jsonencode",
+              "id": "documentation.functions.encoding_functions.jsonencode",
               "title": "jsonencode",
               "syntax": [
                 "jsonencode(object)"
@@ -3846,7 +3846,7 @@
             },
             {
               "path": "/terraform/language/functions/textdecodebase64",
-              "id": "encoding_functions.textdecodebase64",
+              "id": "documentation.functions.encoding_functions.textdecodebase64",
               "title": "textdecodebase64",
               "syntax": [
                 "textdecodebase64(base64, encoding)"
@@ -3899,7 +3899,7 @@
             },
             {
               "path": "/terraform/language/functions/textencodebase64",
-              "id": "encoding_functions.textencodebase64",
+              "id": "documentation.functions.encoding_functions.textencodebase64",
               "title": "textencodebase64",
               "syntax": [
                 "textencodebase64(string, encoding)"
@@ -3961,7 +3961,7 @@
             },
             {
               "path": "/terraform/language/functions/urlencode",
-              "id": "encoding_functions.urlencode",
+              "id": "documentation.functions.encoding_functions.urlencode",
               "title": "urlencode",
               "syntax": [
                 "urlencode(string)"
@@ -4003,7 +4003,7 @@
             },
             {
               "path": "/terraform/language/functions/yamldecode",
-              "id": "encoding_functions.yamldecode",
+              "id": "documentation.functions.encoding_functions.yamldecode",
               "title": "yamldecode",
               "syntax": [
                 "yamldecode(string)"
@@ -4113,7 +4113,7 @@
             },
             {
               "path": "/terraform/language/functions/yamlencode",
-              "id": "encoding_functions.yamlencode",
+              "id": "documentation.functions.encoding_functions.yamlencode",
               "title": "yamlencode",
               "syntax": [
                 "yamlencode(object)"
@@ -4203,13 +4203,13 @@
         },
         {
           "path": "/terraform/language/functions",
-          "id": "functions.filesystem_functions",
+          "id": "documentation.functions.filesystem_functions",
           "title": "Filesystem Functions",
           "description": null,
           "data": [
             {
               "path": "/terraform/language/functions/abspath",
-              "id": "filesystem_functions.abspath",
+              "id": "documentation.functions.filesystem_functions.abspath",
               "title": "abspath",
               "syntax": [
                 "abspath(path)"
@@ -4243,7 +4243,7 @@
             },
             {
               "path": "/terraform/language/functions/dirname",
-              "id": "filesystem_functions.dirname",
+              "id": "documentation.functions.filesystem_functions.dirname",
               "title": "dirname",
               "syntax": [
                 "dirname(path)"
@@ -4293,7 +4293,7 @@
             },
             {
               "path": "/terraform/language/functions/pathexpand",
-              "id": "filesystem_functions.pathexpand",
+              "id": "documentation.functions.filesystem_functions.pathexpand",
               "title": "pathexpand",
               "syntax": [
                 "pathexpand(path)"
@@ -4358,7 +4358,7 @@
             },
             {
               "path": "/terraform/language/functions/basename",
-              "id": "filesystem_functions.basename",
+              "id": "documentation.functions.filesystem_functions.basename",
               "title": "basename",
               "syntax": [
                 "basename(path)"
@@ -4410,7 +4410,7 @@
             },
             {
               "path": "/terraform/language/functions/file",
-              "id": "filesystem_functions.file",
+              "id": "documentation.functions.filesystem_functions.file",
               "title": "file",
               "syntax": [
                 "file(path)"
@@ -4467,7 +4467,7 @@
             },
             {
               "path": "/terraform/language/functions/fileexists",
-              "id": "filesystem_functions.fileexists",
+              "id": "documentation.functions.filesystem_functions.fileexists",
               "title": "fileexists",
               "syntax": [
                 "fileexists(path)"
@@ -4512,7 +4512,7 @@
             },
             {
               "path": "/terraform/language/functions/fileset",
-              "id": "filesystem_functions.fileset",
+              "id": "documentation.functions.filesystem_functions.fileset",
               "title": "fileset",
               "syntax": [
                 "fileset(path, pattern)"
@@ -4600,7 +4600,7 @@
             },
             {
               "path": "/terraform/language/functions/filebase64",
-              "id": "filesystem_functions.filebase64",
+              "id": "documentation.functions.filesystem_functions.filebase64",
               "title": "filebase64",
               "syntax": [
                 "filebase64(path)"
@@ -4657,7 +4657,7 @@
             },
             {
               "path": "/terraform/language/functions/templatefile",
-              "id": "filesystem_functions.templatefile",
+              "id": "documentation.functions.filesystem_functions.templatefile",
               "title": "templatefile",
               "syntax": [
                 "templatefile(path)"
@@ -4820,13 +4820,13 @@
         },
         {
           "path": "/terraform/language/functions",
-          "id": "functions.date_and_time_functions",
+          "id": "documentation.functions.date_and_time_functions",
           "title": "Date and Time Functions",
           "description": null,
           "data": [
             {
               "path": "/terraform/language/functions/formatdate",
-              "id": "date_and_time_functions.formatdate",
+              "id": "documentation.functions.date_and_time_functions.formatdate",
               "title": "formatdate",
               "syntax": [
                 "formatdate(pattern, timestamp)"
@@ -4942,7 +4942,7 @@
             },
             {
               "path": "/terraform/language/functions/timeadd",
-              "id": "date_and_time_functions.timeadd",
+              "id": "documentation.functions.date_and_time_functions.timeadd",
               "title": "timeadd",
               "syntax": [
                 "timeadd(timestamp, duration)"
@@ -4991,7 +4991,7 @@
             },
             {
               "path": "/terraform/language/functions/timecmp",
-              "id": "date_and_time_functions.timecmp",
+              "id": "documentation.functions.date_and_time_functions.timecmp",
               "title": "timecmp",
               "syntax": [
                 "timecmp(timestamp, timestamp)"
@@ -5068,7 +5068,7 @@
             },
             {
               "path": "/terraform/language/functions/timestamp",
-              "id": "date_and_time_functions.timestamp",
+              "id": "documentation.functions.date_and_time_functions.timestamp",
               "title": "timestamp",
               "syntax": [
                 "timestamp()"
@@ -5122,13 +5122,13 @@
         },
         {
           "path": "/terraform/language/functions",
-          "id": "functions.hash_and_crypto_functions",
+          "id": "documentation.functions.hash_and_crypto_functions",
           "title": "Hash and Crypto Functions",
           "description": null,
           "data": [
             {
               "path": "/terraform/language/functions/base64sha256",
-              "id": "hash_and_crypto_functions.base64sha256",
+              "id": "documentation.functions.hash_and_crypto_functions.base64sha256",
               "title": "base64sha256",
               "syntax": [
                 "base64sha256(string)"
@@ -5170,7 +5170,7 @@
             },
             {
               "path": "/terraform/language/functions/base64sha512",
-              "id": "hash_and_crypto_functions.base64sha512",
+              "id": "documentation.functions.hash_and_crypto_functions.base64sha512",
               "title": "base64sha512",
               "syntax": [
                 "base64sha512(string)"
@@ -5212,7 +5212,7 @@
             },
             {
               "path": "/terraform/language/functions/bcrypt",
-              "id": "hash_and_crypto_functions.bcrypt",
+              "id": "documentation.functions.hash_and_crypto_functions.bcrypt",
               "title": "bcrypt",
               "syntax": [
                 "bcrypt(string, cost)"
@@ -5259,7 +5259,7 @@
             },
             {
               "path": "/terraform/language/functions/filebase64sha256",
-              "id": "hash_and_crypto_functions.filebase64sha256",
+              "id": "documentation.functions.hash_and_crypto_functions.filebase64sha256",
               "title": "filebase64sha256",
               "syntax": [
                 "filebase64sha256(path)"
@@ -5285,7 +5285,7 @@
             },
             {
               "path": "/terraform/language/functions/filebase64sha512",
-              "id": "hash_and_crypto_functions.filebase64sha512",
+              "id": "documentation.functions.hash_and_crypto_functions.filebase64sha512",
               "title": "filebase64sha512",
               "syntax": [
                 "filebase64sha512(path)"
@@ -5311,7 +5311,7 @@
             },
             {
               "path": "/terraform/language/functions/filemd5",
-              "id": "hash_and_crypto_functions.filemd5",
+              "id": "documentation.functions.hash_and_crypto_functions.filemd5",
               "title": "filemd5",
               "syntax": [
                 "filemd5(path)"
@@ -5337,7 +5337,7 @@
             },
             {
               "path": "/terraform/language/functions/filesha1",
-              "id": "hash_and_crypto_functions.filesha1",
+              "id": "documentation.functions.hash_and_crypto_functions.filesha1",
               "title": "filesha1",
               "syntax": [
                 "filesha1(path)"
@@ -5363,7 +5363,7 @@
             },
             {
               "path": "/terraform/language/functions/filesha256",
-              "id": "hash_and_crypto_functions.filesha256",
+              "id": "documentation.functions.hash_and_crypto_functions.filesha256",
               "title": "filesha256",
               "syntax": [
                 "filesha256(path)"
@@ -5389,7 +5389,7 @@
             },
             {
               "path": "/terraform/language/functions/filesha512",
-              "id": "hash_and_crypto_functions.filesha512",
+              "id": "documentation.functions.hash_and_crypto_functions.filesha512",
               "title": "filesha512",
               "syntax": [
                 "filesha512(path)"
@@ -5415,7 +5415,7 @@
             },
             {
               "path": "/terraform/language/functions/md5",
-              "id": "hash_and_crypto_functions.md5",
+              "id": "documentation.functions.hash_and_crypto_functions.md5",
               "title": "md5",
               "syntax": [
                 "md5(string)"
@@ -5457,7 +5457,7 @@
             },
             {
               "path": "/terraform/language/functions/rsadecrypt",
-              "id": "hash_and_crypto_functions.rsadecrypt",
+              "id": "documentation.functions.hash_and_crypto_functions.rsadecrypt",
               "title": "rsadecrypt",
               "syntax": [
                 "rsadecrypt(ciphertext, privatekey)"
@@ -5499,7 +5499,7 @@
             },
             {
               "path": "/terraform/language/functions/sha1",
-              "id": "hash_and_crypto_functions.sha1",
+              "id": "documentation.functions.hash_and_crypto_functions.sha1",
               "title": "sha1",
               "syntax": [
                 "rsadecrypt(string)"
@@ -5541,7 +5541,7 @@
             },
             {
               "path": "/terraform/language/functions/sha256",
-              "id": "hash_and_crypto_functions.sha256",
+              "id": "documentation.functions.hash_and_crypto_functions.sha256",
               "title": "sha256",
               "syntax": [
                 "sha256(string)"
@@ -5583,7 +5583,7 @@
             },
             {
               "path": "/terraform/language/functions/sha512",
-              "id": "hash_and_crypto_functions.sha512",
+              "id": "documentation.functions.hash_and_crypto_functions.sha512",
               "title": "sha512",
               "syntax": [
                 "sha512(string)"
@@ -5623,7 +5623,7 @@
             },
             {
               "path": "/terraform/language/functions/uuid",
-              "id": "hash_and_crypto_functions.uuid",
+              "id": "documentation.functions.hash_and_crypto_functions.uuid",
               "title": "uuid",
               "syntax": [
                 "uuid()"
@@ -5671,7 +5671,7 @@
             },
             {
               "path": "/terraform/language/functions/uuidv5",
-              "id": "hash_and_crypto_functions.uuidv5",
+              "id": "documentation.functions.hash_and_crypto_functions.uuidv5",
               "title": "uuidv5",
               "syntax": [
                 "uuidv5(namespace, name)"
@@ -5764,13 +5764,13 @@
         },
         {
           "path": "/terraform/language/functions",
-          "id": "functions.ip_network_functions",
+          "id": "documentation.functions.ip_network_functions",
           "title": "IP Network Functions",
           "description": null,
           "data": [
             {
               "path": "/terraform/language/functions/cidrhost",
-              "id": "ip_network_functions.cidrhost",
+              "id": "documentation.functions.ip_network_functions.cidrhost",
               "title": "cidrhost",
               "syntax": [
                 "cidrhost(prefix, hostnum)"
@@ -5835,7 +5835,7 @@
             },
             {
               "path": "/terraform/language/functions/cidrnetmask",
-              "id": "ip_network_functions.cidrnetmask",
+              "id": "documentation.functions.ip_network_functions.cidrnetmask",
               "title": "cidrnetmask",
               "syntax": [
                 "cidrnetmask(prefix)"
@@ -5882,7 +5882,7 @@
             },
             {
               "path": "/terraform/language/functions/cidrsubnet",
-              "id": "ip_network_functions.cidrsubnet",
+              "id": "documentation.functions.ip_network_functions.cidrsubnet",
               "title": "cidrsubnet",
               "syntax": [
                 "cidrsubnet(prefix, newbits, netnum)"
@@ -6064,7 +6064,7 @@
             },
             {
               "path": "/terraform/language/functions/cidrsubnets",
-              "id": "ip_network_functions.cidrsubnets",
+              "id": "documentation.functions.ip_network_functions.cidrsubnets",
               "title": "cidrsubnets",
               "syntax": [
                 "cidrsubnets(prefix, ...newbits)"
@@ -6181,13 +6181,13 @@
         },
         {
           "path": "/terraform/language/functions",
-          "id": "functions.type_conversion_functions",
+          "id": "documentation.functions.type_conversion_functions",
           "title": "Type Conversion Functions",
           "description": null,
           "data": [
             {
               "path": "/terraform/language/functions/can",
-              "id": "type_conversion_functions.can",
+              "id": "documentation.functions.type_conversion_functions.can",
               "title": "can",
               "syntax": [
                 "can(function(...args))"
@@ -6272,7 +6272,7 @@
             },
             {
               "path": "/terraform/language/functions/nonsensitive",
-              "id": "type_conversion_functions.nonsensitive",
+              "id": "documentation.functions.type_conversion_functions.nonsensitive",
               "title": "nonsensitive",
               "syntax": [
                 "nonsensitive(data)"
@@ -6411,7 +6411,7 @@
             },
             {
               "path": "/terraform/language/functions/sensitive",
-              "id": "type_conversion_functions.sensitive",
+              "id": "documentation.functions.type_conversion_functions.sensitive",
               "title": "sensitive",
               "syntax": [
                 "sensitive(data)"
@@ -6464,7 +6464,7 @@
             },
             {
               "path": "/terraform/language/functions/tobool",
-              "id": "type_conversion_functions.tobool",
+              "id": "documentation.functions.type_conversion_functions.tobool",
               "title": "tobool",
               "syntax": [
                 "tobool(value)"
@@ -6511,7 +6511,7 @@
             },
             {
               "path": "/terraform/language/functions/tolist",
-              "id": "type_conversion_functions.tolist",
+              "id": "documentation.functions.type_conversion_functions.tolist",
               "title": "tolist",
               "syntax": [
                 "tolist(list|set)"
@@ -6561,7 +6561,7 @@
             },
             {
               "path": "/terraform/language/functions/tomap",
-              "id": "type_conversion_functions.tomap",
+              "id": "documentation.functions.type_conversion_functions.tomap",
               "title": "tomap",
               "syntax": [
                 "tomap(object)"
@@ -6605,7 +6605,7 @@
             },
             {
               "path": "/terraform/language/functions/tonumber",
-              "id": "type_conversion_functions.tonumber",
+              "id": "documentation.functions.type_conversion_functions.tonumber",
               "title": "tonumber",
               "syntax": [
                 "tonumber(value)"
@@ -6647,7 +6647,7 @@
             },
             {
               "path": "/terraform/language/functions/toset",
-              "id": "type_conversion_functions.toset",
+              "id": "documentation.functions.type_conversion_functions.toset",
               "title": "toset",
               "syntax": [
                 "toset(list|set)"
@@ -6708,7 +6708,7 @@
             },
             {
               "path": "/terraform/language/functions/tostring",
-              "id": "type_conversion_functions.tostring",
+              "id": "documentation.functions.type_conversion_functions.tostring",
               "title": "tostring",
               "syntax": [
                 "tostring(value)"
@@ -6751,7 +6751,7 @@
             },
             {
               "path": "/terraform/language/functions/try",
-              "id": "type_conversion_functions.try",
+              "id": "documentation.functions.type_conversion_functions.try",
               "title": "try",
               "syntax": [
                 "try(expression, fallback)"
@@ -6873,7 +6873,7 @@
             },
             {
               "path": "/terraform/language/functions/type",
-              "id": "type_conversion_functions.type",
+              "id": "documentation.functions.type_conversion_functions.type",
               "title": "type",
               "syntax": [
                 "type(value)"
@@ -6976,77 +6976,77 @@
       "data": [
         {
           "path": "/terraform/language/settings/backends/local",
-          "id": "backends.local",
+          "id": "documentation.backends.local",
           "title": "local",
           "description": "the local backend stores state on the local filesystem, locks that state using system APIs, and performs operations locally.",
           "data": null
         },
         {
           "path": "/terraform/language/settings/backends/remote",
-          "id": "backends.remote",
+          "id": "documentation.backends.remote",
           "title": "remote",
           "description": "the remote backend is unique among all other Terraform backends because it can both store state snapshots and execute operations for Terraform Cloud's CLI-driven run workflow. It used to be called an \"enhanced\" backend.",
           "data": null
         },
         {
           "path": "/terraform/language/settings/backends/azurerm",
-          "id": "backends.azurerm",
+          "id": "documentation.backends.azurerm",
           "title": "azurerm",
           "description": "stores the state as a Blob with the given Key within the Blob Container within the Blob Storage Account.",
           "data": null
         },
         {
           "path": "/terraform/language/settings/backends/consul",
-          "id": "backends.consul",
+          "id": "documentation.backends.consul",
           "title": "consul",
           "description": "stores the state in the Consul KV store at a given path.",
           "data": null
         },
         {
           "path": "/terraform/language/settings/backends/cos",
-          "id": "backends.cos",
+          "id": "documentation.backends.cos",
           "title": "cos",
           "description": "stores the state as an object in a configurable prefix in a given bucket on Tencent Cloud Object Storage (COS).",
           "data": null
         },
         {
           "path": "/terraform/language/settings/backends/gcs",
-          "id": "backends.gcs",
+          "id": "documentation.backends.gcs",
           "title": "gcs",
           "description": "stores the state as an object in a configurable prefix in a pre-existing bucket on Google Cloud Storage (GCS). The bucket must exist prior to configuring the backend.",
           "data": null
         },
         {
           "path": "/terraform/language/settings/backends/http",
-          "id": "backends.http",
+          "id": "documentation.backends.http",
           "title": "http",
           "description": "stores the state using a simple REST client. State will be fetched via GET, updated via POST, and purged with DELETE. The method used for updating is configurable.",
           "data": null
         },
         {
           "path": "/terraform/language/settings/backends/kubernetes",
-          "id": "backends.kubernetes",
+          "id": "documentation.backends.kubernetes",
           "title": "Kubernetes",
           "description": "stores the state in a Kubernetes secret.",
           "data": null
         },
         {
           "path": "/terraform/language/settings/backends/oss",
-          "id": "backends.oss",
+          "id": "documentation.backends.oss",
           "title": "oss",
           "description": "stores the state as a given key in a given bucket on Stores Alibaba Cloud OSS.",
           "data": null
         },
         {
           "path": "/terraform/language/settings/backends/pg",
-          "id": "backends.pg",
+          "id": "documentation.backends.pg",
           "title": "pg",
           "description": "stores the state in a Postgres database version 10 or newer.",
           "data": null
         },
         {
           "path": "/terraform/language/settings/backends/s3",
-          "id": "backends.s3",
+          "id": "documentation.backends.s3",
           "title": "s3",
           "description": "stores the state as a given key in a given bucket on Amazon S3.",
           "data": null
@@ -7062,42 +7062,42 @@
       "data": [
         {
           "path": "/terraform/language/resources/provisioners/file",
-          "id": "provisioners.file_provisioner",
+          "id": "documentation.provisioners.file_provisioner",
           "title": "File Provisioner",
           "description": "copy file to remote destinations via ssh or winrm",
           "data": null
         },
         {
           "path": "/terraform/language/resources/provisioners/local-exec",
-          "id": "provisioners.local-exec_provisioner",
+          "id": "documentation.provisioners.local-exec_provisioner",
           "title": "Local-exec Provisioner",
           "description": "execute a script/command locally",
           "data": null
         },
         {
           "path": "/terraform/language/resources/provisioners/remote-exec",
-          "id": "provisioners.remote-exec_provisioner",
+          "id": "documentation.provisioners.remote-exec_provisioner",
           "title": "Remote-exec Provisioner",
           "description": "execute a command remotely via ssh or winrm",
           "data": null
         },
         {
           "path": "/terraform/language/resources/provisioners/syntax",
-          "id": "provisioners.provisioner_syntax",
+          "id": "documentation.provisioners.provisioner_syntax",
           "title": "Provisioner Syntax",
           "description": "basic syntax for declaring provisioners",
           "data": null
         },
         {
           "path": "/terraform/language/resources/provisioners/syntax",
-          "id": "provisioners.provisioner_connections",
+          "id": "documentation.provisioners.provisioner_connections",
           "title": "Provisioner Connections",
           "description": "required by file and remote-exec provisioners",
           "data": null
         },
         {
           "path": "/terraform/language/resources/provisioners/syntax",
-          "id": "provisioners.provisioner_without_a_resource",
+          "id": "documentation.provisioners.provisioner_without_a_resource",
           "title": "Provisioner without a Resource",
           "description": "execute provisioners without deploying a resource",
           "data": null
@@ -7113,84 +7113,84 @@
       "data": [
         {
           "path": "/terraform/language/expressions/type-constraints",
-          "id": "expressions.type_constraints",
+          "id": "documentation.expressions.type_constraints",
           "title": "Type Constraints",
           "description": "variable type constraints syntax",
           "data": null
         },
         {
           "path": "/terraform/language/expressions/version-constraints",
-          "id": "expressions.version_constraints",
+          "id": "documentation.expressions.version_constraints",
           "title": "Version Constraints",
           "description": "version constraint syntax",
           "data": null
         },
         {
           "path": "/terraform/language/expressions/splat",
-          "id": "expressions.splat_expressions",
+          "id": "documentation.expressions.splat_expressions",
           "title": "Splat Expressions",
           "description": "var.list[*].id - concise way of accessing list attributes as a list",
           "data": null
         },
         {
           "path": "/terraform/language/expressions/dynamic-blocks",
-          "id": "expressions.dynamic_blocks",
+          "id": "documentation.expressions.dynamic_blocks",
           "title": "Dynamic Blocks",
           "description": "dynamically create nested blocks on resources based on a list or map",
           "data": null
         },
         {
           "path": "/terraform/language/expressions/custom-conditions",
-          "id": "expressions.custom_condition_checks",
+          "id": "documentation.expressions.custom_condition_checks",
           "title": "Custom Condition Checks",
           "description": "custom conditions with error-messages on variables, resources, and data-sources",
           "data": null
         },
         {
           "path": "/terraform/language/expressions/strings",
-          "id": "expressions.strings_and_templates",
+          "id": "documentation.expressions.strings_and_templates",
           "title": "Strings and Templates",
           "description": "string interpolation and heredocs",
           "data": null
         },
         {
           "path": "/terraform/language/expressions/function-calls",
-          "id": "expressions.function_calls",
+          "id": "documentation.expressions.function_calls",
           "title": "Function Calls",
-          "description": "function calls with arguments or expanding syntax (...arg)",
+          "description": "function calls with arguments or expanding syntax: merge(list...)",
           "data": null
         },
         {
           "path": "/terraform/language/expressions/for",
-          "id": "expressions.for_expressions",
+          "id": "documentation.expressions.for_expressions",
           "title": "For Expressions",
           "description": "transforming lists and maps with a for-Loop",
           "data": null
         },
         {
           "path": "/terraform/language/expressions/conditionals",
-          "id": "expressions.conditional_expressions",
+          "id": "documentation.expressions.conditional_expressions",
           "title": "Conditional Expressions",
           "description": "conditional (ternary) operator",
           "data": null
         },
         {
           "path": "/terraform/language/expressions/operators",
-          "id": "expressions.operators",
+          "id": "documentation.expressions.operators",
           "title": "Operators",
           "description": "basic arithmetic, logical and comparison operators",
           "data": null
         },
         {
           "path": "/terraform/language/expressions/types",
-          "id": "expressions.types_and_values",
+          "id": "documentation.expressions.types_and_values",
           "title": "Types and Values",
           "description": "basic types recognized by terraform",
           "data": null
         },
         {
           "path": "/terraform/language/expressions/references",
-          "id": "expressions.references_to_values",
+          "id": "documentation.expressions.references_to_values",
           "title": "References to Values",
           "description": "basic terraform Syntax, Identifiers and Resource Addressing",
           "data": null
@@ -7206,42 +7206,42 @@
       "data": [
         {
           "path": "/terraform/language/meta-arguments/for_each",
-          "id": "meta_arguments.for_each",
+          "id": "documentation.meta_arguments.for_each",
           "title": "For Each",
           "description": "use a map or set to create several instances of a resource, data, module",
           "data": null
         },
         {
           "path": "/terraform/language/meta-arguments/count",
-          "id": "meta_arguments.count",
+          "id": "documentation.meta_arguments.count",
           "title": "Count",
           "description": "use a number to create n-instances of a resource, data, module",
           "data": null
         },
         {
           "path": "/terraform/language/meta-arguments/module-providers",
-          "id": "meta_arguments.module_provider",
+          "id": "documentation.meta_arguments.module_provider",
           "title": "Module Provider",
           "description": "override default provider or add more providers on module-call",
           "data": null
         },
         {
           "path": "/terraform/language/meta-arguments/resource-provider",
-          "id": "meta_arguments.resource_provider",
+          "id": "documentation.meta_arguments.resource_provider",
           "title": "Resource Provider",
           "description": "deploy a resource via a specfic provider",
           "data": null
         },
         {
           "path": "/terraform/language/meta-arguments/lifecycle",
-          "id": "meta_arguments.lifecycle",
+          "id": "documentation.meta_arguments.lifecycle",
           "title": "Lifecycle",
           "description": "use lifecycle arguments on resources, such as ignore_changes, etc.",
           "data": null
         },
         {
           "path": "/terraform/language/meta-arguments/depends_on",
-          "id": "meta_arguments.depends_on",
+          "id": "documentation.meta_arguments.depends_on",
           "title": "Depends on",
           "description": "make resources *explicitly* dependent on each other",
           "data": null
