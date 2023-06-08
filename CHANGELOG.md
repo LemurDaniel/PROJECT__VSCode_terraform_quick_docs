@@ -8,6 +8,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ### Fix
 
+- fix errors in documentation
+  
+## [0.0.25]
+
+### Fix
+
 - fix broken function links
 
 ## [0.0.24]
