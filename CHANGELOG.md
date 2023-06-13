@@ -4,6 +4,15 @@ All notable changes to the "terraform-quick-docs" extension will be documented i
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.0.28]
+
+### Feature
+
+- added documentation for new feature from terraform 1.5.0: Check Blocks
+- added documentation for new feature from terraform 1.5.0: Import Blocks
+- added documentation for new feature from terraform 1.5.0: Generate Configurations
+- add documentatio for Moved Blocks
+  
 ## [0.0.27]
 
 ### Feature
