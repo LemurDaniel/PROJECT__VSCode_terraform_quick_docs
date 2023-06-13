@@ -5088,7 +5088,7 @@
               "syntax": [
                 "plantimestamp()"
               ],
-              "description": "returns as a UTC timestamp string in RFC 3339 format, evaluated during the plan step.",
+              "description": "returns a UTC timestamp string in RFC 3339 format, evaluated during the plan step.",
               "full": [
                 "---",
                 "page_title: plantimestamp - Functions - Configuration Language",
@@ -5153,7 +5153,7 @@
               "syntax": [
                 "timestamp()"
               ],
-              "description": "returns as a UTC timestamp string in RFC 3339 format, evaluated during the apply step.",
+              "description": "returns a UTC timestamp string in RFC 3339 format, evaluated during the apply step.",
               "full": [
                 "---",
                 "page_title: timestamp - Functions - Configuration Language",
