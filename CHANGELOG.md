@@ -4,6 +4,13 @@ All notable changes to the "terraform-quick-docs" extension will be documented i
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.0.30]
+
+### Fix
+
+- Fix error with 'Terraform Providers'-View when using multiple root-folders in workspace
+  
+
 ## [0.0.29]
 
 ### Improvements
