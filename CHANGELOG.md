@@ -4,6 +4,13 @@ All notable changes to the "terraform-quick-docs" extension will be documented i
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.0.27]
+
+### Feature
+
+- added documentation for new function from terraform 1.5.0: strcontains
+- added documentation for new function from terraform 1.5.0: plantimestamp 
+
 ## [0.0.26]
 
 ### Fix
