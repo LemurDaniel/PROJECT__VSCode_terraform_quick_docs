@@ -107,7 +107,7 @@ class ProviderView {
             // When multiple folders in workspace, shows the foldername as treeitem name 
             if (vscode.workspace.workspaceFolders.length > 1) {
                 rootFolder.add(reducedPath, terraform, {
-                    label: this.pathSegment(1),
+                    label: this.pathSegment(reducedPath, 1),
                     description: this.reducePath(reducedPath, 2)
                 })
             }

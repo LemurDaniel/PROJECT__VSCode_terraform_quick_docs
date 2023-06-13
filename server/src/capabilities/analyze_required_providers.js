@@ -130,8 +130,9 @@ async function analyzeRequiredProviders(fsPath, recursive = true) {
             }
 
         } catch (exception) {
-            console.log(`failed ${parentpath}`)
+            console.log(`failed ${filepath}`)
             console.log(exception.message)
+            //console.log(exception)
             continue
         }
     }
