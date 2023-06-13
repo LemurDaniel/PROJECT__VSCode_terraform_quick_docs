@@ -21,16 +21,23 @@ function* readDirectory(fspath, recursive, recursiondepth = 0) {
         const fullPath = [fspath, filename].join('/')
         if (filename.includes('.')) {
             if (filename.split('.').at(-1) == 'tf')
-                yield ({
+                yield {
                     parentpath: fspath,
-                    filepath: fullPath
-                })
+                    filepath: fullPath,
+                    changeDirectory: false
+                }
             else
                 continue
         }
 
         const isDirectory = fs.statSync(fullPath).isDirectory()
         if (isDirectory && recursive) directoryQueue.push(fullPath)
+    }
+
+    yield {
+        parentpath: fspath,
+        filepath: null,
+        changeDirectory: true
     }
 
     for (const fullPath of directoryQueue) {
@@ -72,30 +79,43 @@ async function analyzeRequiredProviders(fsPath, recursive = true) {
     }
 
 
-
-
     // Executed by worked thread
+    const recalculatedBlocks = {}
     const blockAnalyzer = new BlockAnalyzer()
-    for (const { parentpath, filepath } of readDirectory(fsPath, recursive)) {
+    for (const { parentpath, filepath, changeDirectory } of readDirectory(fsPath, recursive)) {
 
-        const fileContent = fs.readFileSync(filepath, 'utf-8')
-        if (!fileContent.includes('required_providers') && !fileContent.includes('required_version')) continue
         try {
 
-            // analyze tf files for terraform blocl
+            if (changeDirectory && !Thread.isMainThread && recalculatedBlocks[parentpath]) {
+                Thread.parentPort.postMessage({
+                    parentpath: parentpath,
+                    requiredProviders: recalculatedBlocks[parentpath]
+                })
+            }
+
+            if (changeDirectory || null == filepath)
+                continue
+
+            const fileContent = fs.readFileSync(filepath, 'utf-8')
+            if (!fileContent.includes('terraform')) continue
+            if (!(parentpath in recalculatedBlocks)) {
+                recalculatedBlocks[parentpath] = {
+                    requiredVersion: null,
+                    requiredProviders: {}
+                }
+            }
+
+            // if (!fileContent.includes('required_providers') && !fileContent.includes('required_version')) continue
+
+            // analyze tf files for terraform block
             const analyzed = blockAnalyzer.analyze(fileContent)
             if (Thread.isMainThread) {
                 console.log(`analyzed '${filepath}'`)
             }
 
-            Settings.terraformBlock[parentpath] = {
-                requiredVersion: null,
-                requiredProviders: {}
-            }
-
             const terraformBlock = analyzed.filter(block => block.type == 'AttributeBlockDefinition' && block.value.identifier == 'terraform').at(0)?.value
             if (terraformBlock) {
-                Settings.terraformBlock[parentpath].requiredVersion = terraformBlock.attributes.required_version?.value
+                recalculatedBlocks[parentpath].requiredVersion = terraformBlock.attributes.required_version?.value
                 const requiredProviders = terraformBlock.blockDefinitions?.filter(block => block.type == 'AttributeBlockDefinition' && block.value.identifier == 'required_providers').at(0)?.value
                 if (requiredProviders) {
                     for (const [provider, value] of Object.entries(requiredProviders.attributes)) {
@@ -104,24 +124,9 @@ async function analyzeRequiredProviders(fsPath, recursive = true) {
                             source: value.attributes?.source?.value,
                             version: value.attributes?.version?.value
                         }
-                        Settings.terraformBlock[parentpath].requiredProviders[provider] = requiredDefinition
+                        recalculatedBlocks[parentpath].requiredProviders[provider] = requiredDefinition
                     }
                 }
-            }
-
-            // Fetch API for providers and cache if its main thread
-            if (Thread.isMainThread) {
-                await Settings.clientConnection.sendRequest('providerview.refresh', null)
-                await Promise.all(Object.values(Settings.terraformBlock[parentpath].requiredProviders).map(
-                    provider => Registry.instance.getProviderInfo(provider.source, provider.version).catch(error => console.log(error))
-                ))
-            }
-            // Inform main thread about results
-            else {
-                Thread.parentPort.postMessage({
-                    parentpath: parentpath,
-                    requiredProviders: Settings.terraformBlock[parentpath]
-                })
             }
 
         } catch (exception) {
@@ -131,11 +136,24 @@ async function analyzeRequiredProviders(fsPath, recursive = true) {
         }
     }
 
+    if (Thread.isMainThread) {
+        for (const [parentpath, terraformBlock] of Object.entries(recalculatedBlocks)) {
+            Settings.terraformBlock[parentpath] = terraformBlock
+            // Fetch API for providers and cache if its main thread
+            await Settings.clientConnection.sendRequest('providerview.refresh', null)
+            await Promise.all(Object.values(Settings.terraformBlock[parentpath].requiredProviders).map(
+                provider => Registry.instance.getProviderInfo(provider.source, provider.version).catch(error => console.log(error))
+            ))
+        }
+    }
+
     if (!Thread.isMainThread) Thread.parentPort.postMessage({ finished: true })
 
     return
 
 }
+
+
 
 if (!Thread.isMainThread) {
     // Listen to parent thread.
