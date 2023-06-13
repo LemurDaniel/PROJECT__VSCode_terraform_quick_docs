@@ -150,17 +150,16 @@ class ProviderView {
 
         const providerItems = []
         // Item for showing required terraform version
-        if (content[0].requiredVersion) {
-            const item = new vscode.TreeItem('terraform')
-            item.description = content[0].requiredVersion
-            item.collapsibleState = vscode.TreeItemCollapsibleState.None
-            item.command = {
-                "title": "Open Documentation",
-                "command": "terraform-quick-docs.documentation.show",
-                "arguments": null
-            }
-            providerItems.push(item)
+        const item = new vscode.TreeItem('terraform')
+        item.description = content[0].requiredVersion ?? ""
+        item.collapsibleState = vscode.TreeItemCollapsibleState.None
+        item.command = {
+            "title": "Open Documentation",
+            "command": "terraform-quick-docs.documentation.show",
+            "arguments": null
         }
+        providerItems.push(item)
+
 
         // Get provider data from api/cache and create instances of Provider-Class
         for (const { source, version } of Object.values(content[0].requiredProviders)) {
