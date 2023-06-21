@@ -19,6 +19,10 @@
 
 ![example-1](.resources/terraform-quick-docs-6.gif)
 
+#### `Additional overview of required providers:`
+
+![settings](.resources/terraform-quick-docs-9.jpg)
+
 #### `Commands Example:`
 
 ![example-2](.resources/terraform-quick-docs-7.gif)
@@ -26,10 +30,6 @@
 #### `Supports only Modules in the Terraform Registry:`
 
 ![example-3](.resources/terraform-quick-docs-3.gif)
-
-#### - `Additional overview of required providers:`
-
-![settings](.resources/terraform-quick-docs-9.jpg)
 
   
 ---

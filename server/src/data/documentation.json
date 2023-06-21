@@ -7135,10 +7135,189 @@
     },
     {
       "baseUrl": "https://developer.hashicorp.com",
+      "path": "/language/resources/provisioners",
+      "id": "documentation.provisioners",
+      "title": "Provisioners",
+      "description": "execute specific actions on a local or remote host",
+      "data": [
+        {
+          "path": "/terraform/language/resources/provisioners/file",
+          "id": "documentation.provisioners.file_provisioner",
+          "title": "File Provisioner",
+          "description": "copy file to remote destinations via ssh or winrm",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/resources/provisioners/local-exec",
+          "id": "documentation.provisioners.local-exec_provisioner",
+          "title": "Local-exec Provisioner",
+          "description": "execute a script/command locally",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/resources/provisioners/remote-exec",
+          "id": "documentation.provisioners.remote-exec_provisioner",
+          "title": "Remote-exec Provisioner",
+          "description": "execute a command remotely via ssh or winrm",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/resources/provisioners/syntax",
+          "id": "documentation.provisioners.provisioner_syntax",
+          "title": "Provisioner Syntax",
+          "description": "basic syntax for declaring provisioners",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/resources/provisioners/syntax",
+          "id": "documentation.provisioners.provisioner_connections",
+          "title": "Provisioner Connections",
+          "description": "required by file and remote-exec provisioners",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/resources/provisioners/syntax",
+          "id": "documentation.provisioners.provisioner_without_a_resource",
+          "title": "Provisioner without a Resource",
+          "description": "execute provisioners without deploying a resource",
+          "data": null
+        }
+      ]
+    },
+    {
+      "baseUrl": "https://developer.hashicorp.com",
+      "path": "/language/meta-arguments",
+      "id": "documentation.meta_arguments",
+      "title": "Configurations",
+      "description": "resources and meta-arguments",
+      "data": [
+        {
+          "path": "/terraform/language/import/generating-configuration",
+          "id": "documentation.expressions.generating-configuration",
+          "title": "Generate Configuration",
+          "description": "generate configurations via import-blocks",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/import",
+          "id": "documentation.expressions.import",
+          "title": "Import-Blocks",
+          "description": "import existing infrastructure into Terraform",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/modules/develop/refactoring",
+          "id": "documentation.expressions.refactoring",
+          "title": "Moved-Blocks",
+          "description": "rename and restructure configurations",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/checks",
+          "id": "documentation.expressions.checks",
+          "title": "Check-Blocks",
+          "description": "validate infrastructure outside of resource lifecycle-blocks",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/expressions/dynamic-blocks",
+          "id": "documentation.expressions.dynamic_blocks",
+          "title": "Dynamic-Blocks",
+          "description": "dynamically create nested blocks on resources based on a list or map",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/expressions/custom-conditions#input-variable-validation",
+          "id": "documentation.expressions.custom_condition_checks",
+          "title": "Validation-Blocks",
+          "description": "validate variables with custom checks",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/meta-arguments/lifecycle",
+          "id": "documentation.meta_arguments.lifecycle",
+          "title": "Lifecycle",
+          "description": "use lifecycle arguments on resources, such as ignore_changes, etc.",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/expressions/custom-conditions#preconditions-and-postconditions",
+          "id": "documentation.expressions.custom_condition_checks",
+          "title": "Lifecycle: Pre- and Postconditions",
+          "description": "validate infrastructure with custom checks",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/meta-arguments/lifecycle#ignore_changes",
+          "id": "documentation.meta_arguments.lifecycle",
+          "title": "Lifecycle: ignore_changes",
+          "description": "ignore attributes changed outside of terraform",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/meta-arguments/lifecycle#replace_triggered_by",
+          "id": "documentation.meta_arguments.lifecycle",
+          "title": "Lifecycle: replace_triggered_by",
+          "description": "trigger replacement by attribute or resource changes",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/meta-arguments/lifecycle#create_before_destroy",
+          "id": "documentation.meta_arguments.lifecycle",
+          "title": "Lifecycle: create_before_destroy",
+          "description": "change order to create new resource before destroy",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/meta-arguments/lifecycle#prevent_destroy",
+          "id": "documentation.meta_arguments.lifecycle",
+          "title": "Lifecycle: prevent_destroy",
+          "description": "prevent destruction in any case",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/meta-arguments/resource-provider",
+          "id": "documentation.meta_arguments.resource_provider",
+          "title": "Resource Provider",
+          "description": "deploy a resource via a specfic provider",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/meta-arguments/module-providers",
+          "id": "documentation.meta_arguments.module_provider",
+          "title": "Module Provider",
+          "description": "override default provider or add more providers on module-call",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/meta-arguments/depends_on",
+          "id": "documentation.meta_arguments.depends_on",
+          "title": "Depends on",
+          "description": "make resources *explicitly* dependent on each other",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/meta-arguments/for_each",
+          "id": "documentation.meta_arguments.for_each",
+          "title": "For Each",
+          "description": "use a map or set to create several instances of a resource, data, module",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/meta-arguments/count",
+          "id": "documentation.meta_arguments.count",
+          "title": "Count",
+          "description": "use a number to create n-instances of a resource, data, module",
+          "data": null
+        }
+      ]
+    },
+    {
+      "baseUrl": "https://developer.hashicorp.com",
       "path": "/terraform/language/expressions",
       "id": "documentation.expressions",
-      "title": "Expressions",
-      "description": "expressions in terraform",
+      "title": "Basics",
+      "description": "basic terraform language components",
       "data": [
         {
           "path": "/terraform/language/expressions/type-constraints",
@@ -7155,45 +7334,24 @@
           "data": null
         },
         {
-          "path": "/terraform/language/import/generating-configuration",
-          "id": "documentation.expressions.generating-configuration",
-          "title": "Generate Configuration",
-          "description": "can generate code for the resources you define in import blocks.",
+          "path": "/terraform/language/files/override",
+          "id": "documentation.expressions.splat_expressions",
+          "title": "Override Files",
+          "description": "partially override configurations",
           "data": null
         },
         {
-          "path": "/terraform/language/modules/develop/refactoring",
-          "id": "documentation.expressions.refactoring",
-          "title": "Moved Blocks",
-          "description": "Rename and restructure configurations with moved blocks.",
+          "path": "/terraform/cli/config/environment-variables",
+          "id": "documentation.expressions.splat_expressions",
+          "title": "Environment Variables",
+          "description": "common terraform environment variables",
           "data": null
         },
         {
-          "path": "/terraform/language/import",
-          "id": "documentation.expressions.import",
-          "title": "Import Blocks",
-          "description": "import existing infrastructure resources into Terraform.",
-          "data": null
-        },
-        {
-          "path": "/terraform/language/checks",
-          "id": "documentation.expressions.checks",
-          "title": "Check Blocks",
-          "description": "can validate your infrastructure outside the usual resource lifecycle.",
-          "data": null
-        },
-        {
-          "path": "/terraform/language/expressions/dynamic-blocks",
-          "id": "documentation.expressions.dynamic_blocks",
-          "title": "Dynamic Blocks",
-          "description": "dynamically create nested blocks on resources based on a list or map",
-          "data": null
-        },
-        {
-          "path": "/terraform/language/expressions/custom-conditions",
-          "id": "documentation.expressions.custom_condition_checks",
-          "title": "Custom Condition Checks",
-          "description": "custom conditions with error-messages on variables, resources, and data-sources",
+          "path": "/terraform/language/state/workspaces",
+          "id": "documentation.expressions.splat_expressions",
+          "title": "Terraform Workspaces",
+          "description": "manage states via workspaces",
           "data": null
         },
         {
@@ -7250,108 +7408,6 @@
           "id": "documentation.expressions.references_to_values",
           "title": "References to Values",
           "description": "basic terraform Syntax, Identifiers and Resource Addressing",
-          "data": null
-        }
-      ]
-    },
-    {
-      "baseUrl": "https://developer.hashicorp.com",
-      "path": "/language/resources/provisioners",
-      "id": "documentation.provisioners",
-      "title": "Provisioners",
-      "description": "execute specific actions on a local or remote host",
-      "data": [
-        {
-          "path": "/terraform/language/resources/provisioners/file",
-          "id": "documentation.provisioners.file_provisioner",
-          "title": "File Provisioner",
-          "description": "copy file to remote destinations via ssh or winrm",
-          "data": null
-        },
-        {
-          "path": "/terraform/language/resources/provisioners/local-exec",
-          "id": "documentation.provisioners.local-exec_provisioner",
-          "title": "Local-exec Provisioner",
-          "description": "execute a script/command locally",
-          "data": null
-        },
-        {
-          "path": "/terraform/language/resources/provisioners/remote-exec",
-          "id": "documentation.provisioners.remote-exec_provisioner",
-          "title": "Remote-exec Provisioner",
-          "description": "execute a command remotely via ssh or winrm",
-          "data": null
-        },
-        {
-          "path": "/terraform/language/resources/provisioners/syntax",
-          "id": "documentation.provisioners.provisioner_syntax",
-          "title": "Provisioner Syntax",
-          "description": "basic syntax for declaring provisioners",
-          "data": null
-        },
-        {
-          "path": "/terraform/language/resources/provisioners/syntax",
-          "id": "documentation.provisioners.provisioner_connections",
-          "title": "Provisioner Connections",
-          "description": "required by file and remote-exec provisioners",
-          "data": null
-        },
-        {
-          "path": "/terraform/language/resources/provisioners/syntax",
-          "id": "documentation.provisioners.provisioner_without_a_resource",
-          "title": "Provisioner without a Resource",
-          "description": "execute provisioners without deploying a resource",
-          "data": null
-        }
-      ]
-    },
-    {
-      "baseUrl": "https://developer.hashicorp.com",
-      "path": "/language/meta-arguments",
-      "id": "documentation.meta_arguments",
-      "title": "Meta Arguments",
-      "description": "resource meta-arguments",
-      "data": [
-        {
-          "path": "/terraform/language/meta-arguments/for_each",
-          "id": "documentation.meta_arguments.for_each",
-          "title": "For Each",
-          "description": "use a map or set to create several instances of a resource, data, module",
-          "data": null
-        },
-        {
-          "path": "/terraform/language/meta-arguments/count",
-          "id": "documentation.meta_arguments.count",
-          "title": "Count",
-          "description": "use a number to create n-instances of a resource, data, module",
-          "data": null
-        },
-        {
-          "path": "/terraform/language/meta-arguments/module-providers",
-          "id": "documentation.meta_arguments.module_provider",
-          "title": "Module Provider",
-          "description": "override default provider or add more providers on module-call",
-          "data": null
-        },
-        {
-          "path": "/terraform/language/meta-arguments/resource-provider",
-          "id": "documentation.meta_arguments.resource_provider",
-          "title": "Resource Provider",
-          "description": "deploy a resource via a specfic provider",
-          "data": null
-        },
-        {
-          "path": "/terraform/language/meta-arguments/lifecycle",
-          "id": "documentation.meta_arguments.lifecycle",
-          "title": "Lifecycle",
-          "description": "use lifecycle arguments on resources, such as ignore_changes, etc.",
-          "data": null
-        },
-        {
-          "path": "/terraform/language/meta-arguments/depends_on",
-          "id": "documentation.meta_arguments.depends_on",
-          "title": "Depends on",
-          "description": "make resources *explicitly* dependent on each other",
           "data": null
         }
       ]
