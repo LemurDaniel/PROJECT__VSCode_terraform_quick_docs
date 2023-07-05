@@ -13,6 +13,13 @@
       "data": null
     },
     {
+      "path": "/terraform/language/state/remote-state-data",
+      "id": "documentation.terraform_remote_state ",
+      "title": "terraform_remote_state",
+      "description": "built-in data-source",
+      "data": null
+    },
+    {
       "baseUrl": "https://developer.hashicorp.com",
       "path": "/terraform/language/functions",
       "id": "documentation.functions",
