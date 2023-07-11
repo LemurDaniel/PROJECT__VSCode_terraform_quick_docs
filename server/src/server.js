@@ -155,12 +155,22 @@ connection.onHover(async ({ textDocument, position }) => {
 ////// Methods for Client Calls
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
+connection.onRequest('provider.reload', async () => {
+    Settings.terraformBlock = {}
+
+    const folders = await connection.workspace.getWorkspaceFolders()
+    folders?.map(folder => connection.sendRequest('fspath.get', folder.uri)
+        .then(fsPath => analyzeRequiredProviders(fsPath, true))
+        .catch(error => console.log(error))
+    )
+})
 connection.onRequest('provider.list', async () => await Registry.instance.getProvidersInConfiguration())
 connection.onRequest('provider.info', async identifier => await Registry.instance.getProviderInfo(identifier).catch(err => ({ error: 'NOT FOUND' })))
 connection.onRequest('functions.data', () => Registry.instance.getFunctionsData())
 connection.onRequest('documentation.data', () => Registry.instance.getAllDocumentationData())
 connection.onRequest('resource.docs', resourceInfo => Registry.instance.getResourceDocs(resourceInfo))
 connection.onRequest('requiredprovider.get', () => Settings.terraformBlock)
+
 
 // Make the text document manager listen on the connection
 // for open, change and close text document events
