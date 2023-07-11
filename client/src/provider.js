@@ -31,6 +31,7 @@ class Provider {
             this.category = data.category
             this.subcategory = data.subcategory
             this.version = data.version
+            this.newstVersion = data
             this.docsUrl = data.docsUrl
 
             this.resourceInfo = data

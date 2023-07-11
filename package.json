@@ -10,7 +10,7 @@
     "type": "git",
     "url": "https://github.com/LemurDaniel/PROJECT__VSCode_terraform_quick_docs"
   },
-  "version": "0.0.32",
+  "version": "0.0.33",
   "engines": {
     "vscode": "^1.70.0"
   },
@@ -37,6 +37,25 @@
         }
       ]
     },
+    "menus": {
+      "view/title": [
+        {
+          "command": "terraform-quick-docs.resource.show",
+          "when": "view == terraform-quick-docs.view.providers",
+          "group": "navigation"
+        },
+        {
+          "command": "terraform-quick-docs.documentation.show",
+          "when": "view == terraform-quick-docs.view.providers",
+          "group": "navigation"
+        },
+        {
+          "command": "terraform-quick-docs.providers.reload",
+          "when": "view == terraform-quick-docs.view.providers",
+          "group": "navigation"
+        }
+      ]
+    },
     "commands": [
       {
         "command": "terraform-quick-docs.resource.show",
@@ -49,11 +68,17 @@
       },
       {
         "command": "terraform-quick-docs.documentation.show",
-        "title": "Terraform Quick Docs: Show additional Documentations"
+        "title": "Terraform Quick Docs: Show additional Documentations",
+        "icon": "$(three-bars)"
       },
       {
         "command": "terraform-quick-docs.providers.list",
         "title": "Terraform Quick Docs: Show supported Providers"
+      },
+      {
+        "command": "terraform-quick-docs.providers.reload",
+        "title": "Terraform Quick Docs: Refresh Provider View",
+        "icon": "$(sync)"
       }
     ],
     "languages": [],

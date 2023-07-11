@@ -4,6 +4,13 @@ All notable changes to the "terraform-quick-docs" extension will be documented i
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.0.33]
+
+### Improvements
+
+- Added buttons to ui
+- Button to refresh provider view
+  
 ## [0.0.32]
 
 ### Improvements
