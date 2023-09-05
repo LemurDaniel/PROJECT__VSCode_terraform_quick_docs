@@ -23,7 +23,7 @@
       "baseUrl": "https://developer.hashicorp.com",
       "path": "/terraform/cli/commands",
       "id": "documentation.cli",
-      "title": "Functions",
+      "title": "Terraform CLI",
       "description": "useful terraform cli commands",
       "data": [
         {
@@ -39,16 +39,16 @@
           "description": "provision infrastructure with terraform"
         },
         {
+          "path": "/terraform/cli/commands/force-unlock",
+          "id": "documentation.cli.force_unlock",
+          "title": "terraform force-unlock",
+          "description": "remove a terraform state lock"
+        },
+        {
           "path": "/terraform/language/v1.6.x/tests",
           "id": "documentation.cli.terraform_test",
           "title": "terraform test",
           "description": "validate functionality with terraform tests"
-        },
-        {
-          "path": "/terraform/cli/commands/force-unlock",
-          "id": "documentation.cli.force_unlock",
-          "title": "terraform force-unlock [LOCK-ID]",
-          "description": "remove a terraform state lock"
         },
         {
           "path": "/terraform/cli/commands/state/list",
@@ -59,19 +59,19 @@
         {
           "path": "/terraform/cli/commands/state/rm",
           "id": "documentation.cli.state_rm",
-          "title": "terraform state rm [resource_path]",
+          "title": "terraform state rm",
           "description": "remove resources from the state"
         },
         {
           "path": "/terraform/cli/commands/state/show",
           "id": "documentation.cli.state_show",
-          "title": "terraform state show [resource_path]",
+          "title": "terraform state show",
           "description": "show properties of a resource in the state"
         },
         {
           "path": "/terraform/cli/commands/state/push",
           "id": "documentation.cli.state_push",
-          "title": "terraform state push [filepath]",
+          "title": "terraform state push",
           "description": "overwrite the state with a local file"
         },
         {
@@ -81,16 +81,16 @@
           "description": "pull the terraform remote state"
         },
         {
+          "path": "/terraform/cli/commands/show",
+          "id": "documentation.cli.show",
+          "title": "terraform show -json .tfplan",
+          "description": "show the state or a plan as json"
+        },
+        {
           "path": "/terraform/cli/workspaces",
           "id": "documentation.cli.workspace",
           "title": "terraform workspace",
           "description": "manage different environments with workspaces"
-        },
-        {
-          "path": "/terraform/cli/commands/fmt",
-          "id": "documentation.cli.fmt",
-          "title": "terraform fmt",
-          "description": "format the configuration files"
         },
         {
           "path": "/terraform/cli/commands/console",
@@ -7151,7 +7151,7 @@
       "baseUrl": "https://developer.hashicorp.com",
       "path": "/language/meta-arguments",
       "id": "documentation.meta_arguments",
-      "title": "Configurations",
+      "title": "Configuration",
       "description": "resources and meta-arguments",
       "data": [
         {
@@ -7277,6 +7277,57 @@
     },
     {
       "baseUrl": "https://developer.hashicorp.com",
+      "path": "/language/resources/provisioners",
+      "id": "documentation.provisioners",
+      "title": "Provisioners",
+      "description": "execute specific actions on a local or remote host",
+      "data": [
+        {
+          "path": "/terraform/language/resources/provisioners/file",
+          "id": "documentation.provisioners.file_provisioner",
+          "title": "File Provisioner",
+          "description": "copy file to remote destinations via ssh or winrm",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/resources/provisioners/local-exec",
+          "id": "documentation.provisioners.local-exec_provisioner",
+          "title": "Local-exec Provisioner",
+          "description": "execute a script/command locally",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/resources/provisioners/remote-exec",
+          "id": "documentation.provisioners.remote-exec_provisioner",
+          "title": "Remote-exec Provisioner",
+          "description": "execute a command remotely via ssh or winrm",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/resources/provisioners/syntax",
+          "id": "documentation.provisioners.provisioner_syntax",
+          "title": "Provisioner Syntax",
+          "description": "basic syntax for declaring provisioners",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/resources/provisioners/syntax",
+          "id": "documentation.provisioners.provisioner_connections",
+          "title": "Provisioner Connections",
+          "description": "required by file and remote-exec provisioners",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/resources/provisioners/syntax",
+          "id": "documentation.provisioners.provisioner_without_a_resource",
+          "title": "Provisioner without a Resource",
+          "description": "execute provisioners without deploying a resource",
+          "data": null
+        }
+      ]
+    },
+    {
+      "baseUrl": "https://developer.hashicorp.com",
       "path": "/terraform/language/settings/backends/configuration",
       "id": "documentation.backends",
       "title": "Backends",
@@ -7357,57 +7408,6 @@
           "id": "documentation.backends.s3",
           "title": "s3",
           "description": "stores the state as a given key in a given bucket on Amazon S3.",
-          "data": null
-        }
-      ]
-    },
-    {
-      "baseUrl": "https://developer.hashicorp.com",
-      "path": "/language/resources/provisioners",
-      "id": "documentation.provisioners",
-      "title": "Provisioners",
-      "description": "execute specific actions on a local or remote host",
-      "data": [
-        {
-          "path": "/terraform/language/resources/provisioners/file",
-          "id": "documentation.provisioners.file_provisioner",
-          "title": "File Provisioner",
-          "description": "copy file to remote destinations via ssh or winrm",
-          "data": null
-        },
-        {
-          "path": "/terraform/language/resources/provisioners/local-exec",
-          "id": "documentation.provisioners.local-exec_provisioner",
-          "title": "Local-exec Provisioner",
-          "description": "execute a script/command locally",
-          "data": null
-        },
-        {
-          "path": "/terraform/language/resources/provisioners/remote-exec",
-          "id": "documentation.provisioners.remote-exec_provisioner",
-          "title": "Remote-exec Provisioner",
-          "description": "execute a command remotely via ssh or winrm",
-          "data": null
-        },
-        {
-          "path": "/terraform/language/resources/provisioners/syntax",
-          "id": "documentation.provisioners.provisioner_syntax",
-          "title": "Provisioner Syntax",
-          "description": "basic syntax for declaring provisioners",
-          "data": null
-        },
-        {
-          "path": "/terraform/language/resources/provisioners/syntax",
-          "id": "documentation.provisioners.provisioner_connections",
-          "title": "Provisioner Connections",
-          "description": "required by file and remote-exec provisioners",
-          "data": null
-        },
-        {
-          "path": "/terraform/language/resources/provisioners/syntax",
-          "id": "documentation.provisioners.provisioner_without_a_resource",
-          "title": "Provisioner without a Resource",
-          "description": "execute provisioners without deploying a resource",
           "data": null
         }
       ]

@@ -16,11 +16,11 @@ async function command(client, context) {
                     const option = {
                         identifier: data.identifier,
                         label: data.name,
-                        description: data.identifier
+                        description: data.identifier,
+                        iconPath: vscode.Uri.parse(data.logo)
                     }
-
                     if (data.fromConfiguration) {
-                        option.description = `${data.identifier} - (required_provider in Configuration)`
+                        option.description = `${data.identifier} (required in Configuration)`
                     }
 
                     return option

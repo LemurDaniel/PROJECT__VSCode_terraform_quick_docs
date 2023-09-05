@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ### Features
 
+- Display icons for offical and partner providers
 - Added further cli documentations
   
 ## [0.0.34]

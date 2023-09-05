@@ -72,10 +72,6 @@
         "icon": "$(three-bars)"
       },
       {
-        "command": "terraform-quick-docs.providers.list",
-        "title": "Terraform Quick Docs: Show supported Providers"
-      },
-      {
         "command": "terraform-quick-docs.providers.reload",
         "title": "Terraform Quick Docs: Refresh Provider View",
         "icon": "$(sync)"

@@ -1,4 +1,5 @@
 const pathUtility = require('path')
+const nodeUrl = require('node:url')
 const https = require('https')
 const fs = require('fs')
 
@@ -47,6 +48,33 @@ class Registry {
         this.#cache = {}
     }
 
+    request(options) {
+
+        const urlData = new nodeUrl.URL(options.url)
+        return new Promise((resolve, reject) => {
+            try {
+                const request = https.request({
+                    method: options.method ?? 'GET',
+                    port: 443,
+                    protocol: 'https:',
+                    host: urlData.host,
+                    path: urlData.pathname,
+                    headers: options.headers ?? {}
+                }, response => {
+                    let content = ''
+                    response.setEncoding(options.encoding ?? 'UTF-8')
+                        .on('data', e => content += e.toString())
+                        .on('end', e => resolve(content))
+                        .on('error', reject)
+                })
+                request.end()
+            } catch (exception) {
+                reject(exception)
+            }
+        })
+
+    }
+
     async get(api, additionalCacheInfo = '', ttl = Number.MAX_SAFE_INTEGER) {
 
         const path = `/${api}`.replace(/[\/]+/g, '/')
@@ -89,14 +117,14 @@ class Registry {
         return response
     }
 
-    async getProvidersOutJson(path = pathUtility.join(__dirname,'data','providers.json')) {
+    async getProvidersOutJson(path = pathUtility.join(__dirname, 'data', 'providers.json')) {
 
         const providers = await this.getProvidersFromApi()
         fs.writeFileSync(path, JSON.stringify(providers))
 
     }
 
-    async getProvidersFromJson(path = pathUtility.join(__dirname,'data','providers.json')) {
+    async getProvidersFromJson(path = pathUtility.join(__dirname, 'data', 'providers.json')) {
 
         if (path in this.#cache)
             return Registry.additionalProviders
@@ -131,9 +159,7 @@ class Registry {
                 }
 
                 providersInConfiguration[data.source.toLowerCase()] = {
-                    name: name,
-                    namespace: data.source.split('/')[0],
-                    identifier: data.source,
+                    ...defaultProvider,
                     version: data.version ?? configuredProvider?.version,
                     fsPath: fullPath,
                     segments: fullPath.split(/[\/\\]+/).length,
@@ -157,22 +183,46 @@ class Registry {
             "filter%5Btier%5D": "official%2Cpartner",
             "page%5Bnumber%5D": 1,
             "page%5Bsize%5D": "100",
-            "sort": '-downloads%2Ctier%2Cname' //"-featured%2Ctier%2Cname"
+            "sort": '-featured%2Ctier%2Cname' // '-downloads%2Ctier%2Cname' //"-featured%2Ctier%2Cname"
         }
 
-        let providers = Registry.additionalProviders.map(v => v)
         let response
+        let providers = []
 
         do {
             const queryString = Object.entries(query).map(([key, val]) => `${key}=${val}`).join('&')
             response = await this.get(`/v2/providers?${queryString}`)
 
-            const responseData = response.data.map(data => ({
-                name: data.attributes.name,
-                namespace: data.attributes.namespace,
-                identifier: data.attributes['full-name'],
-                tier: data.attributes.tier
-            }))
+            const responseData = new Array(response.data.length).fill(0)
+            for (let i = 0; i < responseData.length; i++) {
+                console.log(`processing ${response.data[i].attributes.name}`)
+                const data = response.data[i]
+
+                data.attributes['logo-url'] = data.attributes['logo-url'].replace('?3', '')
+                if (data.attributes['logo-url'].includes('azure.svg')) {
+                    data.attributes['logo-url'] = '/images/providers/azure.png'
+                }
+
+                const logoUrl = data.attributes['logo-url'].includes('http') ? data.attributes['logo-url'] : `https://${Registry.#endpoint}/${data.attributes['logo-url']}`
+                const logoData = await this.request({
+                    url: logoUrl,
+                    encoding: 'base64'
+                })
+                responseData[i] = {
+                    name: data.attributes.name,
+                    namespace: data.attributes.namespace,
+                    identifier: data.attributes['full-name'],
+                    tier: data.attributes.tier,
+                    source: data.attributes.source,
+                    logoUrl: logoUrl,
+                    logo: null
+                }
+
+                if (logoUrl.includes('svg'))
+                    responseData[i].logo = `data:image/svg+xml;base64,${logoData}`
+                else
+                    responseData[i].logo = `data:image/png;base64,${logoData}`
+            }
             providers = providers.concat(responseData)
 
             query['page%5Bnumber%5D'] = response.meta.pagination['next-page']
