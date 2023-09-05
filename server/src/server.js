@@ -122,8 +122,8 @@ connection.onInitialized(async () => {
             .then(fsPath => analyzeRequiredProviders(fsPath, true))
             .catch(error => console.log(error))
         )
-        
-        if(removed.length > 0) connection.sendRequest('projectview.refresh', null)
+
+        if (removed.length > 0) connection.sendRequest('projectview.refresh', null)
     })
 
 

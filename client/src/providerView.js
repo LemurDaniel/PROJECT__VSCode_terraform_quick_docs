@@ -148,11 +148,15 @@ class ProviderView {
     // returns terraform version and providers at that path
     async getChildItemForFolderContent(content) {
 
+        const providersList = await this.#client.sendRequest('provider.list', this.identifier)
+        const terraformProvider = providersList.filter(provider => provider.identifier == 'hashicorp/terraform')[0]
+
         const providerItems = []
         // Item for showing required terraform version
         const item = new vscode.TreeItem('terraform')
         item.description = content[0].requiredVersion ?? ""
         item.collapsibleState = vscode.TreeItemCollapsibleState.None
+        item.iconPath = vscode.Uri.parse(terraformProvider.logo)
         item.command = {
             "title": "Open Documentation",
             "command": "terraform-quick-docs.documentation.show",
@@ -170,6 +174,11 @@ class ProviderView {
             item.collapsibleState = vscode.TreeItemCollapsibleState.None
             item.contextValue = "providerContext"
             item.description = version
+            
+            const officialProvider = providersList.filter(provider => provider.identifier == providerInfo.identifier)
+            if(officialProvider.length > 0) {
+                item.iconPath = vscode.Uri.parse(officialProvider[0].logo)
+            }
 
             item.command = {
                 "title": "Open Resources",

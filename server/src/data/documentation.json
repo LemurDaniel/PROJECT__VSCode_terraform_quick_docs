@@ -20,10 +20,97 @@
       "data": null
     },
     {
-      "path": "/terraform/language/v1.6.x/tests",
-      "id": "documentation.terraform_test",
-      "title": "terraform test",
-      "description": "validate functionality with terraform tests"
+      "baseUrl": "https://developer.hashicorp.com",
+      "path": "/terraform/cli/commands",
+      "id": "documentation.cli",
+      "title": "Terraform CLI",
+      "description": "useful terraform cli commands",
+      "data": [
+        {
+          "path": "/terraform/cli/commands",
+          "id": "documentation.cli.overview",
+          "title": "Overview",
+          "description": "overview over all commands"
+        },
+        {
+          "path": "/terraform/cli/run",
+          "id": "documentation.cli.run",
+          "title": "terraform plan/apply/destroy",
+          "description": "provision infrastructure with terraform"
+        },
+        {
+          "path": "/terraform/cli/commands/force-unlock",
+          "id": "documentation.cli.force_unlock",
+          "title": "terraform force-unlock",
+          "description": "remove a terraform state lock"
+        },
+        {
+          "path": "/terraform/language/v1.6.x/tests",
+          "id": "documentation.cli.terraform_test",
+          "title": "terraform test",
+          "description": "validate functionality with terraform tests"
+        },
+        {
+          "path": "/terraform/cli/commands/state/list",
+          "id": "documentation.cli.state_list",
+          "title": "terraform state list",
+          "description": "list all resources in the state"
+        },
+        {
+          "path": "/terraform/cli/commands/state/rm",
+          "id": "documentation.cli.state_rm",
+          "title": "terraform state rm",
+          "description": "remove resources from the state"
+        },
+        {
+          "path": "/terraform/cli/commands/state/show",
+          "id": "documentation.cli.state_show",
+          "title": "terraform state show",
+          "description": "show properties of a resource in the state"
+        },
+        {
+          "path": "/terraform/cli/commands/state/push",
+          "id": "documentation.cli.state_push",
+          "title": "terraform state push",
+          "description": "overwrite the state with a local file"
+        },
+        {
+          "path": "/terraform/cli/commands/state/pull",
+          "id": "documentation.cli.state_pull",
+          "title": "terraform state pull",
+          "description": "pull the terraform remote state"
+        },
+        {
+          "path": "/terraform/cli/commands/show",
+          "id": "documentation.cli.show",
+          "title": "terraform show -json .tfplan",
+          "description": "show the state or a plan as json"
+        },
+        {
+          "path": "/terraform/cli/workspaces",
+          "id": "documentation.cli.workspace",
+          "title": "terraform workspace",
+          "description": "manage different environments with workspaces"
+        },
+        {
+          "path": "/terraform/cli/commands/console",
+          "id": "documentation.cli.console",
+          "title": "terraform console",
+          "description": "access the terraform console"
+        },
+        {
+          "path": "/terraform/cli/auth",
+          "id": "documentation.cli.auth",
+          "title": "terraform login",
+          "description": "authenticate to the terraform cloud"
+        },
+        {
+          "path": "/terraform/cli/config/config-file",
+          "id": "documentation.cli.config",
+          "title": "CLI Configuration",
+          "description": "configure the cli"
+        }
+      ]
     },
     {
       "baseUrl": "https://developer.hashicorp.com",
@@ -7062,146 +7149,9 @@
     },
     {
       "baseUrl": "https://developer.hashicorp.com",
-      "path": "/terraform/language/settings/backends/configuration",
-      "id": "documentation.backends",
-      "title": "Backends",
-      "description": "available terraform state backends",
-      "data": [
-        {
-          "path": "/terraform/language/settings/backends/local",
-          "id": "documentation.backends.local",
-          "title": "local",
-          "description": "the local backend stores state on the local filesystem, locks that state using system APIs, and performs operations locally.",
-          "data": null
-        },
-        {
-          "path": "/terraform/language/settings/backends/remote",
-          "id": "documentation.backends.remote",
-          "title": "remote",
-          "description": "the remote backend is unique among all other Terraform backends because it can both store state snapshots and execute operations for Terraform Cloud's CLI-driven run workflow. It used to be called an \"enhanced\" backend.",
-          "data": null
-        },
-        {
-          "path": "/terraform/language/settings/backends/azurerm",
-          "id": "documentation.backends.azurerm",
-          "title": "azurerm",
-          "description": "stores the state as a Blob with the given Key within the Blob Container within the Blob Storage Account.",
-          "data": null
-        },
-        {
-          "path": "/terraform/language/settings/backends/consul",
-          "id": "documentation.backends.consul",
-          "title": "consul",
-          "description": "stores the state in the Consul KV store at a given path.",
-          "data": null
-        },
-        {
-          "path": "/terraform/language/settings/backends/cos",
-          "id": "documentation.backends.cos",
-          "title": "cos",
-          "description": "stores the state as an object in a configurable prefix in a given bucket on Tencent Cloud Object Storage (COS).",
-          "data": null
-        },
-        {
-          "path": "/terraform/language/settings/backends/gcs",
-          "id": "documentation.backends.gcs",
-          "title": "gcs",
-          "description": "stores the state as an object in a configurable prefix in a pre-existing bucket on Google Cloud Storage (GCS). The bucket must exist prior to configuring the backend.",
-          "data": null
-        },
-        {
-          "path": "/terraform/language/settings/backends/http",
-          "id": "documentation.backends.http",
-          "title": "http",
-          "description": "stores the state using a simple REST client. State will be fetched via GET, updated via POST, and purged with DELETE. The method used for updating is configurable.",
-          "data": null
-        },
-        {
-          "path": "/terraform/language/settings/backends/kubernetes",
-          "id": "documentation.backends.kubernetes",
-          "title": "Kubernetes",
-          "description": "stores the state in a Kubernetes secret.",
-          "data": null
-        },
-        {
-          "path": "/terraform/language/settings/backends/oss",
-          "id": "documentation.backends.oss",
-          "title": "oss",
-          "description": "stores the state as a given key in a given bucket on Stores Alibaba Cloud OSS.",
-          "data": null
-        },
-        {
-          "path": "/terraform/language/settings/backends/pg",
-          "id": "documentation.backends.pg",
-          "title": "pg",
-          "description": "stores the state in a Postgres database version 10 or newer.",
-          "data": null
-        },
-        {
-          "path": "/terraform/language/settings/backends/s3",
-          "id": "documentation.backends.s3",
-          "title": "s3",
-          "description": "stores the state as a given key in a given bucket on Amazon S3.",
-          "data": null
-        }
-      ]
-    },
-    {
-      "baseUrl": "https://developer.hashicorp.com",
-      "path": "/language/resources/provisioners",
-      "id": "documentation.provisioners",
-      "title": "Provisioners",
-      "description": "execute specific actions on a local or remote host",
-      "data": [
-        {
-          "path": "/terraform/language/resources/provisioners/file",
-          "id": "documentation.provisioners.file_provisioner",
-          "title": "File Provisioner",
-          "description": "copy file to remote destinations via ssh or winrm",
-          "data": null
-        },
-        {
-          "path": "/terraform/language/resources/provisioners/local-exec",
-          "id": "documentation.provisioners.local-exec_provisioner",
-          "title": "Local-exec Provisioner",
-          "description": "execute a script/command locally",
-          "data": null
-        },
-        {
-          "path": "/terraform/language/resources/provisioners/remote-exec",
-          "id": "documentation.provisioners.remote-exec_provisioner",
-          "title": "Remote-exec Provisioner",
-          "description": "execute a command remotely via ssh or winrm",
-          "data": null
-        },
-        {
-          "path": "/terraform/language/resources/provisioners/syntax",
-          "id": "documentation.provisioners.provisioner_syntax",
-          "title": "Provisioner Syntax",
-          "description": "basic syntax for declaring provisioners",
-          "data": null
-        },
-        {
-          "path": "/terraform/language/resources/provisioners/syntax",
-          "id": "documentation.provisioners.provisioner_connections",
-          "title": "Provisioner Connections",
-          "description": "required by file and remote-exec provisioners",
-          "data": null
-        },
-        {
-          "path": "/terraform/language/resources/provisioners/syntax",
-          "id": "documentation.provisioners.provisioner_without_a_resource",
-          "title": "Provisioner without a Resource",
-          "description": "execute provisioners without deploying a resource",
-          "data": null
-        }
-      ]
-    },
-    {
-      "baseUrl": "https://developer.hashicorp.com",
       "path": "/language/meta-arguments",
       "id": "documentation.meta_arguments",
-      "title": "Configurations",
+      "title": "Configuration",
       "description": "resources and meta-arguments",
       "data": [
         {
@@ -7321,6 +7271,143 @@
           "id": "documentation.meta_arguments.count",
           "title": "Count",
           "description": "use a number to create n-instances of a resource, data, module",
+          "data": null
+        }
+      ]
+    },
+    {
+      "baseUrl": "https://developer.hashicorp.com",
+      "path": "/language/resources/provisioners",
+      "id": "documentation.provisioners",
+      "title": "Provisioners",
+      "description": "execute specific actions on a local or remote host",
+      "data": [
+        {
+          "path": "/terraform/language/resources/provisioners/file",
+          "id": "documentation.provisioners.file_provisioner",
+          "title": "File Provisioner",
+          "description": "copy file to remote destinations via ssh or winrm",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/resources/provisioners/local-exec",
+          "id": "documentation.provisioners.local-exec_provisioner",
+          "title": "Local-exec Provisioner",
+          "description": "execute a script/command locally",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/resources/provisioners/remote-exec",
+          "id": "documentation.provisioners.remote-exec_provisioner",
+          "title": "Remote-exec Provisioner",
+          "description": "execute a command remotely via ssh or winrm",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/resources/provisioners/syntax",
+          "id": "documentation.provisioners.provisioner_syntax",
+          "title": "Provisioner Syntax",
+          "description": "basic syntax for declaring provisioners",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/resources/provisioners/syntax",
+          "id": "documentation.provisioners.provisioner_connections",
+          "title": "Provisioner Connections",
+          "description": "required by file and remote-exec provisioners",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/resources/provisioners/syntax",
+          "id": "documentation.provisioners.provisioner_without_a_resource",
+          "title": "Provisioner without a Resource",
+          "description": "execute provisioners without deploying a resource",
+          "data": null
+        }
+      ]
+    },
+    {
+      "baseUrl": "https://developer.hashicorp.com",
+      "path": "/terraform/language/settings/backends/configuration",
+      "id": "documentation.backends",
+      "title": "Backends",
+      "description": "available terraform state backends",
+      "data": [
+        {
+          "path": "/terraform/language/settings/backends/local",
+          "id": "documentation.backends.local",
+          "title": "local",
+          "description": "the local backend stores state on the local filesystem, locks that state using system APIs, and performs operations locally.",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/settings/backends/remote",
+          "id": "documentation.backends.remote",
+          "title": "remote",
+          "description": "the remote backend is unique among all other Terraform backends because it can both store state snapshots and execute operations for Terraform Cloud's CLI-driven run workflow. It used to be called an \"enhanced\" backend.",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/settings/backends/azurerm",
+          "id": "documentation.backends.azurerm",
+          "title": "azurerm",
+          "description": "stores the state as a Blob with the given Key within the Blob Container within the Blob Storage Account.",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/settings/backends/consul",
+          "id": "documentation.backends.consul",
+          "title": "consul",
+          "description": "stores the state in the Consul KV store at a given path.",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/settings/backends/cos",
+          "id": "documentation.backends.cos",
+          "title": "cos",
+          "description": "stores the state as an object in a configurable prefix in a given bucket on Tencent Cloud Object Storage (COS).",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/settings/backends/gcs",
+          "id": "documentation.backends.gcs",
+          "title": "gcs",
+          "description": "stores the state as an object in a configurable prefix in a pre-existing bucket on Google Cloud Storage (GCS). The bucket must exist prior to configuring the backend.",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/settings/backends/http",
+          "id": "documentation.backends.http",
+          "title": "http",
+          "description": "stores the state using a simple REST client. State will be fetched via GET, updated via POST, and purged with DELETE. The method used for updating is configurable.",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/settings/backends/kubernetes",
+          "id": "documentation.backends.kubernetes",
+          "title": "Kubernetes",
+          "description": "stores the state in a Kubernetes secret.",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/settings/backends/oss",
+          "id": "documentation.backends.oss",
+          "title": "oss",
+          "description": "stores the state as a given key in a given bucket on Stores Alibaba Cloud OSS.",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/settings/backends/pg",
+          "id": "documentation.backends.pg",
+          "title": "pg",
+          "description": "stores the state in a Postgres database version 10 or newer.",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/settings/backends/s3",
+          "id": "documentation.backends.s3",
+          "title": "s3",
+          "description": "stores the state as a given key in a given bucket on Amazon S3.",
           "data": null
         }
       ]
