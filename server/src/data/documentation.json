@@ -20,6 +20,12 @@
       "data": null
     },
     {
+      "path": "/terraform/language/v1.6.x/tests",
+      "id": "documentation.terraform_test",
+      "title": "terraform test",
+      "description": "validate functionality with terraform tests"
+    },
+    {
       "baseUrl": "https://developer.hashicorp.com",
       "path": "/terraform/language/functions",
       "id": "documentation.functions",
