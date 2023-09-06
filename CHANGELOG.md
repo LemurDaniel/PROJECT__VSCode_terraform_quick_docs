@@ -4,6 +4,13 @@ All notable changes to the "terraform-quick-docs" extension will be documented i
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.0.36]
+
+### Features
+
+- Fix issue with triple resource entries, du to terraform mulit-language docs
+- Replaced all logos with a more compressed version
+
 ## [0.0.35]
 
 ### Features
