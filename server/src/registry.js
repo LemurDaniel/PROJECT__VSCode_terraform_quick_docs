@@ -193,8 +193,8 @@ class Registry {
             const queryString = Object.entries(query).map(([key, val]) => `${key}=${val}`).join('&')
             response = await this.get(`/v2/providers?${queryString}`)
 
-            const responseData = new Array(response.data.length).fill(0)
-            for (let i = 0; i < responseData.length; i++) {
+            const responseData = []
+            for (let i = 0; i < response.data.length; i++) {
                 console.log(`processing ${response.data[i].attributes.name}`)
                 const data = response.data[i]
 
@@ -208,20 +208,21 @@ class Registry {
                     url: logoUrl,
                     encoding: 'base64'
                 })
-                responseData[i] = {
+                responseData.push({
                     name: data.attributes.name,
                     namespace: data.attributes.namespace,
                     identifier: data.attributes['full-name'],
                     tier: data.attributes.tier,
                     source: data.attributes.source,
                     logoUrl: logoUrl,
-                    logo: null
-                }
+                    logoEncoding: null,
+                    logoBase64: logoData
+                })
 
                 if (logoUrl.includes('svg'))
-                    responseData[i].logo = `data:image/svg+xml;base64,${logoData}`
+                    responseData[i].logoEncoding = `data:image/svg+xml;base64,`
                 else
-                    responseData[i].logo = `data:image/png;base64,${logoData}`
+                    responseData[i].logoEncoding = `data:image/png;base64,`
             }
             providers = providers.concat(responseData)
 
@@ -268,14 +269,15 @@ class Registry {
             .replace('{{provider}}', providerInfo.name)
             .replace('{{version}}', providerInfo.version)
 
-        providerInfo.docs = providerInfo.docs.map(
-            resource => ({
+        const uniqueResources = {}
+        providerInfo.docs.forEach(
+            resource => uniqueResources[resource.slug ?? resource.title] = ({
                 ...resource,
                 providerVersion: providerInfo.version,
                 docsUrl: resource.category == 'overview' ? `${providerInfo.docsUrl}/${resource.category}` : `${providerInfo.docsUrl}/${resource.category}/${resource.slug ?? resource.title}`
             })
         )
-
+        providerInfo.docs = Object.values(uniqueResources)
         return providerInfo
     }
 
