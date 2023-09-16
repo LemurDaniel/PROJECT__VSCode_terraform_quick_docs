@@ -1,4 +1,4 @@
-name: Publish to Marketplace
+name: Package or Publish to Marketplace
 
 on:
   workflow_dispatch:
