@@ -1,0 +1,21 @@
+name: Query Terraform Providers
+
+on:
+  schedule:
+    - cron:  '0 0 * * 0'
+  workflow_dispatch:
+  push: 
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+          
+      - uses: actions/github-script@v6
+        with:
+            script: |
+                const providerCheck = require('./.github/providerCheck.js')
+                await providerCheck(github, context, core)
