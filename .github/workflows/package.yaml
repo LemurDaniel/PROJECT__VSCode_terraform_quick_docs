@@ -4,8 +4,22 @@ on:
   workflow_dispatch:
   push:
     branches:
-     - fix_sharp_installing_issue
-    
+      - master
+    paths:
+      - "server/**"
+      - "client/**"
+      - "README.md"
+      - "CHANGELOG.md"
+      - "package.json"
+  pull_request:
+    branches:
+      - master
+
+
+env:
+  PUBLISHER: LemurDaniel
+  PAT: ${{ secrets.PUBLISH_PAT }}
+
 
 jobs:
   build:
@@ -31,15 +45,22 @@ jobs:
           npm rebuild --prefix ./server --platform=darwin --arch=arm64 sharp
 
       - name: Package extension
+        if: github.event_name == 'pull_request'
         run: |
           npm install -g vsce
           vsce package
 
       - uses: actions/upload-artifact@v3
+        if: github.event_name == 'pull_request'
         with:
-          name: Upload Package
+          name: Upload Extension package
           path: |
             ./*.vsix
             ./server/node_modules/sharp
           
+      - name: Package extension to Marketplace
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        run: |
+          npm install -g vsce
+          vsce publish --pat ${{ env.PAT }}
     
