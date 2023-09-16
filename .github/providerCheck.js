@@ -24,7 +24,7 @@ module.exports = async (github, context, core) => {
 
 
   const addedProviders = providers.filter(provider => !(provider.identifier in providersJsonMap))
-  const deletedProviders = providersJsonMap.filter(provider => !(provider.identifier in providersMap))
+  const deletedProviders = providersJson.filter(provider => !(provider.identifier in providersMap))
 
   if (addedProviders.length > 0 || deletedProviders.length > 0) {
     console.log('Changes in offical/partner providers detected!')
