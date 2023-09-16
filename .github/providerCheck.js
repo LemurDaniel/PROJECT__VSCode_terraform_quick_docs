@@ -1,6 +1,7 @@
 
 module.exports = async (github, context, core) => {
 
+  console.log(process.cwd())
   const fs = require('fs')
   const Registry = require('./server/src/registry')
 
