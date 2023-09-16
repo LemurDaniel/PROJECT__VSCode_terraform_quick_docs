@@ -60,13 +60,14 @@ class Provider {
         this.namespace = data.namespace
         this.identifier = data.identifier
         this.fromConfiguration = data.fromConfiguration
-        this.fromSettings = data.fromSettings
-        this.officialPartnerStatus = data.officialPartnerStatus
+        this.logoData = data.logoData ?? ""
         this.tier = data.tier
+        // this.docs = data.docs.map(data => new Provider.Resource(data, this))
 
         this.client = client
     }
 
+    /*
     async getSubCategories() {
         const resources = await this.getProviderResources()
         const subcategories = [...new Set(resources.map(resource => resource.subcategory))]
@@ -85,9 +86,10 @@ class Provider {
     }
 
     async getProviderResources() {
-        const result = await this.client.sendRequest('provider.info', this.identifier)
-        return result.docs.map(data => new Provider.Resource(data, this))
+        // const result = await this.client.sendRequest('provider.info', this.identifier)
+        return this.docs.map(data => new Provider.Resource(data, this))
     }
+    */
 
 }
 

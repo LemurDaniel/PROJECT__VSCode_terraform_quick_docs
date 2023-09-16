@@ -1,6 +1,7 @@
 const pathUtility = require('path')
 const nodeUrl = require('node:url')
 const https = require('https')
+const sharp = require('sharp')
 const fs = require('fs')
 
 const Settings = require('./settings')
@@ -22,18 +23,6 @@ class Registry {
             Registry.#instance = new Registry()
         }
         return Registry.#instance
-    }
-
-    static #additionalProviders = []
-    static get additionalProviders() {
-        return Registry.#additionalProviders
-    }
-    static set additionalProviders(value) {
-        Registry.#additionalProviders = (value ?? []).map(entry => ({
-            name: entry.split('/')[1],
-            namespace: entry.split('/')[0],
-            identifier: entry
-        }))
     }
 
 
@@ -127,14 +116,9 @@ class Registry {
     async getProvidersFromJson(path = pathUtility.join(__dirname, 'data', 'providers.json')) {
 
         if (path in this.#cache)
-            return Registry.additionalProviders
-                .map(provider => ({ ...provider, fromSettings: true }))
-                .concat(this.#cache[path])
+            return this.#cache[path]
 
         this.#cache[path] = JSON.parse(fs.readFileSync(path))
-            .map(provider => ({
-                ...provider, officialPartnerStatus: true,
-            }))
 
         return await this.getProvidersFromJson(path)
 
@@ -152,21 +136,22 @@ class Registry {
             for (const [name, data] of Object.entries(terraform.requiredProviders)) {
 
                 const configuredProvider = providersInConfiguration[data.source.toLowerCase()]
-                const defaultProvider = defaultProviders[data.source.toLowerCase()]
+                let providerInfo = defaultProviders[data.source.toLowerCase()]
 
                 if (null != configuredProvider && fullPath.split(/[\/\\]+/).length >= configuredProvider.segments) {
                     continue
                 }
 
+                if (providerInfo == null) {
+                    providerInfo = await this.getProviderInfo(data.source.toLowerCase())
+                }
+
                 providersInConfiguration[data.source.toLowerCase()] = {
-                    ...defaultProvider,
+                    ...providerInfo,
                     version: data.version ?? configuredProvider?.version,
                     fsPath: fullPath,
                     segments: fullPath.split(/[\/\\]+/).length,
-                    fromConfiguration: true,
-                    fromSettings: defaultProvider?.fromSettings ?? false,
-                    officialPartnerStatus: defaultProvider?.officialPartnerStatus ?? false,
-                    tier: defaultProvider?.tier
+                    fromConfiguration: true
                 }
             }
 
@@ -177,7 +162,61 @@ class Registry {
 
     }
 
-    async getProvidersFromApi() {
+    async getBase64Logo(logoUrl, size = 50) {
+
+        const logoData = {
+            url: logoUrl,
+            encoding: null,
+            base64: null
+        }
+
+        if (null == logoUrl) {
+            return logoData
+        }
+
+        if (null != Settings.clientConnection) {
+            const cache = await Settings.clientConnection.sendRequest('cache.fetch', logoUrl)
+            if (null != cache) return cache
+        }
+
+        try {
+            logoData.url = logoData.url.replace('?3', '')
+            if (logoData.url.includes('azure.svg')) {
+                logoData.url = '/images/providers/azure.png'
+            }
+            logoData.url = logoData.url.includes('http') ? logoData.url : `https://${Registry.#endpoint}/${logoData.url}`
+
+            logoData.base64 = await this.request({
+                url: logoData.url,
+                encoding: 'base64'
+            })
+
+            const buffer = Buffer.from(logoData.base64, 'base64')
+            const compressed = await sharp(buffer).resize(size, size).png().toBuffer()
+            logoData.base64 = compressed.toString('base64')
+            logoData.encoding = "data:image/png;base64,"
+
+            //if (logoData.url.includes('svg'))
+            //    logoData.logoEncoding = `data:image/svg+xml;base64,`
+            //else
+            //    logoData.logoEncoding = `data:image/png;base64,`
+
+            if (null != Settings.clientConnection) {
+                Settings.clientConnection.sendRequest('cache.set', {
+                    cachePath: logoUrl,
+                    data: logoData,
+                    ttl: Number.MAX_SAFE_INTEGER
+                })
+            }
+
+        } catch (err) {
+            console.log(err)
+        }
+
+        return logoData
+    }
+
+    async getProvidersFromApi(downloadLogo = true) {
 
         const query = {
             "filter%5Btier%5D": "official%2Cpartner",
@@ -196,33 +235,20 @@ class Registry {
             const responseData = []
             for (let i = 0; i < response.data.length; i++) {
                 console.log(`processing ${response.data[i].attributes.name}`)
-                const data = response.data[i]
-
-                data.attributes['logo-url'] = data.attributes['logo-url'].replace('?3', '')
-                if (data.attributes['logo-url'].includes('azure.svg')) {
-                    data.attributes['logo-url'] = '/images/providers/azure.png'
+                let data = {
+                    name: response.data[i].attributes.name,
+                    namespace: response.data[i].attributes.namespace,
+                    identifier: response.data[i].attributes['full-name'],
+                    tier: response.data[i].attributes.tier,
+                    source: response.data[i].attributes.source
                 }
 
-                const logoUrl = data.attributes['logo-url'].includes('http') ? data.attributes['logo-url'] : `https://${Registry.#endpoint}/${data.attributes['logo-url']}`
-                const logoData = await this.request({
-                    url: logoUrl,
-                    encoding: 'base64'
-                })
-                responseData.push({
-                    name: data.attributes.name,
-                    namespace: data.attributes.namespace,
-                    identifier: data.attributes['full-name'],
-                    tier: data.attributes.tier,
-                    source: data.attributes.source,
-                    logoUrl: logoUrl,
-                    logoEncoding: null,
-                    logoBase64: logoData
-                })
+                if (downloadLogo) {
+                    const logoData = await this.getBase64Logo(response.data[i].attributes['logo-url'])
+                    data = { ...data, logoData }
+                }
 
-                if (logoUrl.includes('svg'))
-                    responseData[i].logoEncoding = `data:image/svg+xml;base64,`
-                else
-                    responseData[i].logoEncoding = `data:image/png;base64,`
+                responseData.push(data)
             }
             providers = providers.concat(responseData)
 
@@ -278,6 +304,14 @@ class Registry {
             })
         )
         providerInfo.docs = Object.values(uniqueResources)
+        if (providerInfo.tier == 'official' || providerInfo.tier == 'partner') {
+            const providerDataJson = await this.getProvidersFromJson()
+            providerInfo.logoData = providerDataJson.filter(provider => provider.identifier == providerInfo.identifier)[0].logoData
+        }
+        else {
+            providerInfo.logoData = await this.getBase64Logo(providerInfo.logo_url)
+        }
+
         return providerInfo
     }
 

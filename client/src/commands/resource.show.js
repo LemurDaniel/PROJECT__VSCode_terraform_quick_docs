@@ -5,6 +5,9 @@ async function command(client, context) {
 
     try {
 
+        //////////////////////////////////////////////////////////////////
+        ////// Show providers
+
         if (context instanceof Provider.Resource) {
             return await vscode.env.openExternal(vscode.Uri.parse(context.docsUrl))
         }
@@ -12,21 +15,51 @@ async function command(client, context) {
         // select provider if context is null
         let selectedProvider = context
         if (context == null || !(context instanceof Provider)) {
-            const providerOptions = await client.sendRequest('provider.list').then(
-                result => result.map(data => {
-                    const option = {
-                        identifier: data.identifier,
-                        label: data.name,
-                        description: data.identifier,
-                        iconPath: vscode.Uri.parse(`${data.logoEncoding}${data.logoBase64}`)
-                    }
-                    if (data.fromConfiguration) {
-                        option.description = `${data.identifier} (required in Configuration)`
-                    }
 
-                    return option
+            const providersList = await client.sendRequest('provider.list').then(
+                result => result.sort((a, b) => {
+                    if (a.fromConfiguration && b.fromConfiguration) return 0
+                    else if (a.fromConfiguration && !b.fromConfiguration) return -1
+                    else return 1
                 })
             )
+
+            const providerOptions = []
+
+            // Only show the sperators when there are required_providers defined.
+            let seperatorIsSet = false
+            let requiredProvidersDefined = providersList[0].fromConfiguration
+            if (requiredProvidersDefined) {
+                providerOptions.push({
+                    label: "Terraform Required Providers",
+                    kind: vscode.QuickPickItemKind.Separator
+                })
+            }
+            for (const providerData of providersList) {
+
+                if (requiredProvidersDefined && !providerData.fromConfiguration && !seperatorIsSet) {
+                    seperatorIsSet = true
+                    providerOptions.push({
+                        label: "Offical and Partner Providers",
+                        kind: vscode.QuickPickItemKind.Separator
+                    })
+                }
+
+                const option = {
+                    identifier: providerData.identifier,
+                    label: providerData.name,
+                    description: providerData.identifier,
+                    iconPath: null
+                }
+
+                if (providerData.logoData) {
+                    option.iconPath = vscode.Uri.parse(`${providerData.logoData.encoding}${providerData.logoData.base64}`)
+                }
+
+                providerOptions.push(option)
+            }
+
+
             selectedProvider = await vscode.window.showQuickPick(providerOptions, {
                 title: "Choose a Provider"
             })
@@ -34,7 +67,9 @@ async function command(client, context) {
         }
 
 
-        // display resources in defined order
+        //////////////////////////////////////////////////////////////////
+        ////// Show Resources in provider
+
         const sortOrder = ['overview', 'guides', 'resources', 'data-sources']
         const displayNames = ['Overview', 'Guide', 'Resource', 'Data']
         const info = await client.sendRequest('provider.info', selectedProvider.identifier)
@@ -64,7 +99,6 @@ async function command(client, context) {
             })
         })
 
-        // show quick pick selection
         const resource = await vscode.window.showQuickPick(resourceOptions, {
             title: `Choose from ${selectedProvider.identifier}`
         })
