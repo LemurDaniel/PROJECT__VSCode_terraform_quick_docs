@@ -1,4 +1,4 @@
-name: Node.js CI
+name: Publish to Marketplace
 
 on:
   workflow_dispatch:
