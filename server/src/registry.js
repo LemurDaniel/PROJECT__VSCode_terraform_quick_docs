@@ -164,15 +164,19 @@ class Registry {
 
     async getBase64Logo(logoUrl, size = 50) {
 
-        if (null != Settings.clientConnection) {
-            const cache = await Settings.clientConnection.sendRequest('cache.fetch', logoUrl)
-            if (null != cache) return cache
-        }
-
         const logoData = {
             url: logoUrl,
             encoding: null,
             base64: null
+        }
+
+        if (null == logoUrl) {
+            return logoData
+        }
+
+        if (null != Settings.clientConnection) {
+            const cache = await Settings.clientConnection.sendRequest('cache.fetch', logoUrl)
+            if (null != cache) return cache
         }
 
         try {
@@ -188,7 +192,7 @@ class Registry {
             })
 
             const buffer = Buffer.from(logoData.base64, 'base64')
-            const compressed = await sharp(buffer).resize(50, 50).png().toBuffer()
+            const compressed = await sharp(buffer).resize(size, size).png().toBuffer()
             logoData.base64 = compressed.toString('base64')
             logoData.encoding = "data:image/png;base64,"
 
@@ -300,7 +304,6 @@ class Registry {
             })
         )
         providerInfo.docs = Object.values(uniqueResources)
-
         if (providerInfo.tier == 'official' || providerInfo.tier == 'partner') {
             const providerDataJson = await this.getProvidersFromJson()
             providerInfo.logoData = providerDataJson.filter(provider => provider.identifier == providerInfo.identifier)[0].logoData
