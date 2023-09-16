@@ -29,7 +29,7 @@ module.exports = async (github, context, core) => {
   if (addedProviders.length > 0 || deletedProviders.length > 0) {
     console.log('Changes in offical/partner providers detected!')
 
-    await github.rest.issue.create({
+    await github.rest.issues.create({
       owner: context.repo.owner,
       repo: context.repo.repo,
       title: "(Automated) Terraform official/partner provider changes detected.",
