@@ -13,9 +13,6 @@ module.exports = async (github, context, core) => {
   const providersMap = providers.map(provider => ({ [provider.identifier]: provider })).reduce((accumulator, provider) => ({ ...accumulator, ...provider }), {})
   const providersJsonMap = providersJson.map(provider => ({ [provider.identifier]: provider })).reduce((accumulator, provider) => ({ ...accumulator, ...provider }), {})
 
-  delete providersJsonMap['hashicorp/azurerm']
-  delete providersMap['hashicorp/azurerm']
-
   const addedProviders = providers.filter(provider => !(provider.identifier in providersJsonMap))
   const deletedProviders = providersJson.filter(provider => !(provider.identifier in providersMap))
 
@@ -25,11 +22,11 @@ module.exports = async (github, context, core) => {
     await github.rest.issues.create({
       owner: context.repo.owner,
       repo: context.repo.repo,
-      title: "(Automated) (TEST) Terraform official/partner provider changes detected.",
+      title: "(Automated) Terraform official/partner provider changes detected.",
       body: [
         "## The following provider changes have been detected: ",
-        addedProviders.map(provider => `- Added '${provider.identifier}'`),
-        deletedProviders.map(provider => `- Deleted '${provider.identifier}'`)
+        addedProviders.map(provider => `- Added '${provider.identifier}' as an '${provider.tier}'-Provider`),
+        deletedProviders.map(provider => `- Deleted '${provider.identifier} as an '${provider.tier}'-Provider'`)
       ].flat().join('\n')
     })
 
