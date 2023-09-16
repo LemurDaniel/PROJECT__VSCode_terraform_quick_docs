@@ -7,7 +7,7 @@ module.exports = async (github, context, core) => {
   const fs = require('fs')
   const Registry = require(`${__dirname}/../server/src/registry.js`)
 
-  const providers = await Registry.getProvidersFromAPI()
+  const providers = await Registry.instance.getProvidersFromApi()
   const providersJson = JSON.parse(fs.readFileSync("./server/src/data/providers.json"))
 
   const providersMap = providers.map(provider => ({ [provider.identifier]: provider })).reduce((accumulator, provider) => ({ ...accumulator, ...provider }), {})
