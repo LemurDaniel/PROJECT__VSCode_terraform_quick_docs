@@ -25,8 +25,8 @@ module.exports = async (github, context, core) => {
       title: "(Automated) Terraform official/partner provider changes detected.",
       body: [
         "## The following provider changes have been detected: ",
-        addedProviders.map(provider => `- Added '${provider.identifier}' as an '${provider.tier}'-Provider`),
-        deletedProviders.map(provider => `- Deleted '${provider.identifier} as an '${provider.tier}'-Provider'`)
+        addedProviders.map(provider => `- Added '${provider.identifier}' as a(n) '${provider.tier}'-Provider`),
+        deletedProviders.map(provider => `- Deleted '${provider.identifier} as a(n) '${provider.tier}'-Provider'`)
       ].flat().join('\n')
     })
 
