@@ -3,7 +3,7 @@ module.exports = async (github, context, core) => {
 
   console.log(process.cwd())
   const fs = require('fs')
-  const Registry = require('./server/src/registry')
+  const Registry = require('./server/src/registry.js')
 
   const providers = await Registry.getProvidersFromAPI()
   const providersJson = JSON.parse(fs.readFileSync("./server/src/data/providers.json"))
