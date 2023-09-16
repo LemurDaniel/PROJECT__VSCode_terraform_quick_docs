@@ -28,8 +28,10 @@ jobs:
           npm install --prefix ./server --platform=win32
           npm install --prefix ./server --platform=darwin
 
-      - name: Publish extension
-        run: vsce package
+      - name: Package extension
+        run: |
+          npm install -g vsce
+          vsce package
 
       - uses: actions/upload-artifact@v3
         with:
