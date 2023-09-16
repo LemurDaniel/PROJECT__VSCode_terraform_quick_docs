@@ -1,7 +1,6 @@
 const pathUtility = require('path')
 const nodeUrl = require('node:url')
 const https = require('https')
-const sharp = require('sharp')
 const fs = require('fs')
 
 const Settings = require('./settings')
@@ -170,6 +169,9 @@ class Registry {
             base64: null
         }
 
+        // Temporary because sharp keeps crashing
+        return logoData
+
         if (null == logoUrl) {
             return logoData
         }
@@ -180,6 +182,8 @@ class Registry {
         }
 
         try {
+            const sharp = require('sharp')
+
             logoData.url = logoData.url.replace('?3', '')
             if (logoData.url.includes('azure.svg')) {
                 logoData.url = '/images/providers/azure.png'

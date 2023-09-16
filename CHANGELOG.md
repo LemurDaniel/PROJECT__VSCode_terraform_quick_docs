@@ -4,6 +4,12 @@ All notable changes to the "terraform-quick-docs" extension will be documented i
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.0.40]
+
+### Fix
+
+- Temporarily disable logo support for non-offical providers, due to crashes
+  
 ## [0.0.39]
 
 ### Fix
