@@ -7,7 +7,8 @@ on:
   push: 
 
 jobs:
-  build:
+  check:
+    name: Check Terraform Providers
 
     runs-on: ubuntu-latest
 
