@@ -56,7 +56,6 @@ jobs:
           name: Upload Extension package
           path: |
             ./*.vsix
-            ./server/node_modules/sharp
           
       - name: Package extension to Marketplace
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
