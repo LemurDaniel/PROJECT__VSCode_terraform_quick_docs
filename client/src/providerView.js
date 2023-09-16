@@ -156,7 +156,7 @@ class ProviderView {
         const item = new vscode.TreeItem('terraform')
         item.description = content[0].requiredVersion ?? ""
         item.collapsibleState = vscode.TreeItemCollapsibleState.None
-        item.iconPath = vscode.Uri.parse(`${terraformProvider.logoEncoding}${terraformProvider.logoBase64}`)
+        item.iconPath = vscode.Uri.parse(`${terraformProvider.logoData.encoding}${terraformProvider.logoData.base64}`)
         item.command = {
             "title": "Open Documentation",
             "command": "terraform-quick-docs.documentation.show",
@@ -174,10 +174,9 @@ class ProviderView {
             item.collapsibleState = vscode.TreeItemCollapsibleState.None
             item.contextValue = "providerContext"
             item.description = version
-            
-            const officialProvider = providersList.filter(provider => provider.identifier == providerInfo.identifier)
-            if(officialProvider.length > 0) {
-                item.iconPath = vscode.Uri.parse(`${officialProvider[0].logoEncoding}${officialProvider[0].logoBase64}`)
+
+            if (providerInfo.logoData.base64) {
+                item.iconPath = vscode.Uri.parse(`${providerInfo.logoData.encoding}${providerInfo.logoData.base64}`)
             }
 
             item.command = {

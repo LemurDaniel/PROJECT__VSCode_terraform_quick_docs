@@ -6,6 +6,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [0.0.37]
 
+### Features
+
+- Add logo support for non-offical providers
+- 
+## [0.0.37]
+
 ### Updates
 
 - Add new partner-provider 'kestra-io/kestra'
