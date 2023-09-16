@@ -16,6 +16,7 @@ class Registry {
 
     static #instance = null
     static #endpoint = "registry.terraform.io"
+    static #enableSharp = true
 
     static get instance() {
         if (null == Registry.#instance) {
@@ -169,10 +170,7 @@ class Registry {
             base64: null
         }
 
-        // Temporary because sharp keeps crashing
-        return logoData
-
-        if (null == logoUrl) {
+        if (null == logoUrl || !Registry.#enableSharp) {
             return logoData
         }
 
@@ -214,6 +212,9 @@ class Registry {
             }
 
         } catch (err) {
+            if (err.message.includes('Something went wrong installing the "sharp" module')) {
+                Registry.#enableSharp = false
+            }
             console.log(err)
         }
 
