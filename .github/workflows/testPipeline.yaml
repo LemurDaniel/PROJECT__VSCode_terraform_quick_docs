@@ -25,10 +25,9 @@ jobs:
         run: | 
           npm install
           npm install --prefix ./server sharp --platform=win32 --arch x64
-          npm rebuild --prefix ./server sharp --platform=darwin --arch x64
-          // npm rebuild --prefix ./server sharp --platform=darwin --arch arm64
           npm rebuild --prefix ./server sharp --platform=linux --arch x64
           npm rebuild --prefix ./server sharp --platform=linux --arch arm64
+          npm rebuild --prefix ./server sharp --platform=darwin --arch arm64
 
       - name: Package extension
         run: |
