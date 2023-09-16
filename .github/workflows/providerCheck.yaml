@@ -17,6 +17,7 @@ jobs:
           
       - uses: actions/github-script@v6
         with:
+            github-token: ${{ secrets.API_TOKEN_GITHUB }}
             script: |
                 const providerCheck = require('./.github/providerCheck.js')
                 await providerCheck(github, context, core)
