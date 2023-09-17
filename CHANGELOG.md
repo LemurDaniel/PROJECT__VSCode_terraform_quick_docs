@@ -4,6 +4,14 @@ All notable changes to the "terraform-quick-docs" extension will be documented i
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.0.41]
+
+### Fix
+
+- Sharp installation issues
+- Error handling for sharp
+
+
 ## [0.0.40]
 
 ### Fix

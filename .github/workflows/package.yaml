@@ -1,0 +1,65 @@
+name: Package or Publish to Marketplace
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+    paths:
+      - "server/**"
+      - "client/**"
+      - "README.md"
+      - "CHANGELOG.md"
+      - "package.json"
+  pull_request:
+    branches:
+      - master
+
+
+env:
+  PUBLISHER: LemurDaniel
+  PAT: ${{ secrets.PUBLISH_PAT }}
+
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+          
+      
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '16.x'
+  
+      - name: Install dependencies
+        run: | 
+          npm install 
+          npm rebuild --prefix ./server --platform=win32  --arch=x64   sharp
+          npm rebuild --prefix ./server --platform=linux  --arch=x64   sharp
+          npm rebuild --prefix ./server --platform=linux  --arch=arm64 sharp
+          npm rebuild --prefix ./server --platform=darwin --arch=x64   sharp
+          npm rebuild --prefix ./server --platform=darwin --arch=arm64 sharp
+
+      - name: Package extension
+        if: github.event_name == 'pull_request'
+        run: |
+          npm install -g vsce
+          vsce package
+
+      - uses: actions/upload-artifact@v3
+        if: github.event_name == 'pull_request'
+        with:
+          name: Upload Extension package
+          path: |
+            ./*.vsix
+          
+      - name: Package extension to Marketplace
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        run: |
+          npm install -g vsce
+          vsce publish --pat ${{ env.PAT }}
+    
