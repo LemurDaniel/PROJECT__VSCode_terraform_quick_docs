@@ -37,7 +37,7 @@ async function command(client, context) {
             }
             for (const providerData of providersList) {
 
-                if (requiredProvidersDefined && !providerData.fromConfiguration && !seperatorIsSet) {
+                if (!providerData.fromConfiguration && !seperatorIsSet) {
                     seperatorIsSet = true
                     providerOptions.push({
                         label: "Offical and Partner Providers",
