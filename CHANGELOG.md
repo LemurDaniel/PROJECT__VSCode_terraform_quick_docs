@@ -6,6 +6,13 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [0.0.41]
 
+### Update
+
+- Add new partner-provider 'barracudanetworks/barracudawaf'
+  
+
+## [0.0.41]
+
 ### Fix
 
 - Sharp installation issues
