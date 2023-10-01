@@ -4,11 +4,21 @@ All notable changes to the "terraform-quick-docs" extension will be documented i
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## [0.0.41]
+
+## [0.0.43]
 
 ### Update
 
-- Add new partner-provider 'barracudanetworks/barracudawaf'
+- Add new partner-provider [dell/powerscale](https://registry.terraform.io/providers/dell/powerscale/latest/docs)
+- Add new partner-provider [dell/redfish](https://registry.terraform.io/providers/dell/redfish/latest/docs)REST APIs
+- Add new partner-provider [vantage-sh/vantage](https://registry.terraform.io/providers/vantage-sh/vantage/latest/docs)
+
+  
+## [0.0.42]
+
+### Update
+
+- Add new partner-provider ['barracudanetworks/barracudawaf'](https://registry.terraform.io/providers/barracudanetworks/barracudawaf/latest/docs)
   
 
 ## [0.0.41]

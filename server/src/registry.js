@@ -388,12 +388,12 @@ class Registry {
         return this.getFunctionsData().data.map(category => category.data).flat()
     }
     getFunctionsData() {
-        if ("functionData" in this.#cache) return this.#cache["functionData"]
-        this.#cache["functionData"] = this.getAllDocumentationData().data.filter(docs => docs.title.toLowerCase() == 'functions')[0]
-        return this.getFunctionsData()
+        return this.getAllDocumentationData().data.filter(docs => docs.title?.toLowerCase() == 'functions')[0]
     }
     getAllDocumentationData() {
-        return JSON.parse(fs.readFileSync(`${__dirname}/data/documentation.json`))
+        if ("documentation" in this.#cache) return this.#cache["documentation"]
+        this.#cache["documentation"] = JSON.parse(fs.readFileSync(`${__dirname}/data/documentation.json`))
+        return this.getAllDocumentationData()
     }
 }
 

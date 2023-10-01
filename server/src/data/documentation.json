@@ -6,6 +6,9 @@
   "description": null,
   "data": [
     {
+      "seperator": "Built-In Resources"
+    },
+    {
       "path": "/terraform/language/resources/terraform-data",
       "id": "documentation.terraform_data",
       "title": "terraform_data",
@@ -18,6 +21,9 @@
       "title": "terraform_remote_state",
       "description": "built-in data-source",
       "data": null
+    },
+    {
+      "seperator": "Documentations"
     },
     {
       "baseUrl": "https://developer.hashicorp.com",
@@ -33,10 +39,25 @@
           "description": "overview over all commands"
         },
         {
-          "path": "/terraform/cli/run",
-          "id": "documentation.cli.run",
-          "title": "terraform plan/apply/destroy",
+          "seperator": "Infrastructure Provisioning"
+        },
+        {
+          "path": "/terraform/cli/commands/plan",
+          "id": "documentation.cli.plan",
+          "title": "terraform plan",
+          "description": "plan infrastructure with terraform"
+        },
+        {
+          "path": "/terraform/cli/commands/apply",
+          "id": "documentation.cli.apply",
+          "title": "terraform apply",
           "description": "provision infrastructure with terraform"
+        },
+        {
+          "path": "/terraform/cli/commands/destroy",
+          "id": "documentation.cli.destroy",
+          "title": "terraform destroy",
+          "description": "destroy infrastructure with terraform"
         },
         {
           "path": "/terraform/cli/commands/force-unlock",
@@ -45,10 +66,19 @@
           "description": "remove a terraform state lock"
         },
         {
+          "path": "/terraform/cli/commands/console",
+          "id": "documentation.cli.console",
+          "title": "terraform console",
+          "description": "access the terraform console"
+        },
+        {
           "path": "/terraform/language/v1.6.x/tests",
           "id": "documentation.cli.terraform_test",
           "title": "terraform test",
           "description": "validate functionality with terraform tests"
+        },
+        {
+          "seperator": "State Management"
         },
         {
           "path": "/terraform/cli/commands/state/list",
@@ -81,22 +111,13 @@
           "description": "pull the terraform remote state"
         },
         {
-          "path": "/terraform/cli/commands/show",
-          "id": "documentation.cli.show",
-          "title": "terraform show -json .tfplan",
-          "description": "show the state or a plan as json"
+          "seperator": "Other Commands"
         },
         {
           "path": "/terraform/cli/workspaces",
           "id": "documentation.cli.workspace",
           "title": "terraform workspace",
           "description": "manage different environments with workspaces"
-        },
-        {
-          "path": "/terraform/cli/commands/console",
-          "id": "documentation.cli.console",
-          "title": "terraform console",
-          "description": "access the terraform console"
         },
         {
           "path": "/terraform/cli/auth",
@@ -7155,6 +7176,9 @@
       "description": "resources and meta-arguments",
       "data": [
         {
+          "seperator": "Configuration Blocks"
+        },
+        {
           "path": "/terraform/language/import/generating-configuration",
           "id": "documentation.expressions.generating-configuration",
           "title": "Generate Configuration",
@@ -7195,6 +7219,9 @@
           "title": "Validation-Blocks",
           "description": "validate variables with custom checks",
           "data": null
+        },
+        {
+          "seperator": "Lifecycle"
         },
         {
           "path": "/terraform/language/meta-arguments/lifecycle",
@@ -7239,6 +7266,9 @@
           "data": null
         },
         {
+          "seperator": "Provider Configurations"
+        },
+        {
           "path": "/terraform/language/meta-arguments/resource-provider",
           "id": "documentation.meta_arguments.resource_provider",
           "title": "Resource Provider",
@@ -7251,6 +7281,9 @@
           "title": "Module Provider",
           "description": "override default provider or add more providers on module-call",
           "data": null
+        },
+        {
+          "seperator": "Meta Arguments"
         },
         {
           "path": "/terraform/language/meta-arguments/depends_on",
