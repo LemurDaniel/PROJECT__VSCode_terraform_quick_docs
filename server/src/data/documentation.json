@@ -7221,47 +7221,6 @@
           "data": null
         },
         {
-          "seperator": "Provider Configurations"
-        },
-        {
-          "path": "/terraform/language/meta-arguments/resource-provider",
-          "id": "documentation.meta_arguments.resource_provider",
-          "title": "Resource Provider",
-          "description": "deploy a resource via a specfic provider",
-          "data": null
-        },
-        {
-          "path": "/terraform/language/meta-arguments/module-providers",
-          "id": "documentation.meta_arguments.module_provider",
-          "title": "Module Provider",
-          "description": "override default provider or add more providers on module-call",
-          "data": null
-        },
-        {
-          "seperator": "Meta Arguments"
-        },
-        {
-          "path": "/terraform/language/meta-arguments/depends_on",
-          "id": "documentation.meta_arguments.depends_on",
-          "title": "Depends on",
-          "description": "make resources *explicitly* dependent on each other",
-          "data": null
-        },
-        {
-          "path": "/terraform/language/meta-arguments/for_each",
-          "id": "documentation.meta_arguments.for_each",
-          "title": "For Each",
-          "description": "use a map or set to create several instances of a resource, data, module",
-          "data": null
-        },
-        {
-          "path": "/terraform/language/meta-arguments/count",
-          "id": "documentation.meta_arguments.count",
-          "title": "Count",
-          "description": "use a number to create n-instances of a resource, data, module",
-          "data": null
-        },
-        {
           "seperator": "Lifecycle"
         },
         {
@@ -7304,6 +7263,47 @@
           "id": "documentation.meta_arguments.lifecycle",
           "title": "Lifecycle: prevent_destroy",
           "description": "prevent destruction in any case",
+          "data": null
+        },
+        {
+          "seperator": "Provider Configurations"
+        },
+        {
+          "path": "/terraform/language/meta-arguments/resource-provider",
+          "id": "documentation.meta_arguments.resource_provider",
+          "title": "Resource Provider",
+          "description": "deploy a resource via a specfic provider",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/meta-arguments/module-providers",
+          "id": "documentation.meta_arguments.module_provider",
+          "title": "Module Provider",
+          "description": "override default provider or add more providers on module-call",
+          "data": null
+        },
+        {
+          "seperator": "Meta Arguments"
+        },
+        {
+          "path": "/terraform/language/meta-arguments/depends_on",
+          "id": "documentation.meta_arguments.depends_on",
+          "title": "Depends on",
+          "description": "make resources *explicitly* dependent on each other",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/meta-arguments/for_each",
+          "id": "documentation.meta_arguments.for_each",
+          "title": "For Each",
+          "description": "use a map or set to create several instances of a resource, data, module",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/meta-arguments/count",
+          "id": "documentation.meta_arguments.count",
+          "title": "Count",
+          "description": "use a number to create n-instances of a resource, data, module",
           "data": null
         }
       ]
