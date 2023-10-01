@@ -7,15 +7,26 @@ async function command(client) {
         const documentationData = await client.sendRequest('documentation.data')
         let documentationResource = documentationData
         do {
-            documentationResource = await vscode.window.showQuickPick(documentationResource.data.map(
-                category => ({
-                    label: category.title,
-                    ...category
+            const documentationOptions = documentationResource.data.map(
+                category => {
+                    if (category.seperator) {
+                        return {
+                            label: category.seperator,
+                            kind: vscode.QuickPickItemKind.Separator
+                        }
+                    } else {
+                        return {
+                            label: category.title,
+                            ...category
+                        }
+                    }
                 })
-            ))
+            documentationResource = await vscode.window.showQuickPick(documentationOptions)
+
             if (null == documentationResource) return
             if (documentationResource.id == "documentation.functions")
                 return await vscode.commands.executeCommand('terraform-quick-docs.functions.show')
+
         } while (null != documentationResource.data)
 
         await vscode.env.openExternal(
