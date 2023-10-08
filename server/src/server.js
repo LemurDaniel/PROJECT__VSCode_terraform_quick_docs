@@ -165,7 +165,12 @@ connection.onRequest('provider.reload', async () => {
     )
 })
 connection.onRequest('provider.list', async () => await Registry.instance.getProvidersInConfiguration())
-connection.onRequest('provider.info', async identifier => await Registry.instance.getProviderInfo(identifier).catch(err => ({ error: 'NOT FOUND' })))
+connection.onRequest('provider.info', async identifier =>
+    await Registry.instance.getProviderInfo(identifier).catch(err =>
+        err instanceof Registry.ProviderNotFoundError ? err.providerData : err
+    )
+)
+
 connection.onRequest('functions.data', () => Registry.instance.getFunctionsData())
 connection.onRequest('documentation.data', () => Registry.instance.getAllDocumentationData())
 connection.onRequest('resource.docs', resourceInfo => Registry.instance.getResourceDocs(resourceInfo))

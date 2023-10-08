@@ -56,12 +56,14 @@ class Provider {
     }
 
     constructor(data, client) {
+        this.error = data.error ?? {}
+        this.tier = data.tier
         this.name = data.name
+        this.logoData = data.logoData ?? ""
         this.namespace = data.namespace
         this.identifier = data.identifier
         this.fromConfiguration = data.fromConfiguration
-        this.logoData = data.logoData ?? ""
-        this.tier = data.tier
+
         // this.docs = data.docs.map(data => new Provider.Resource(data, this))
 
         this.client = client

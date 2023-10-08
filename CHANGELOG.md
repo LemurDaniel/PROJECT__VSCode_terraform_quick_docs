@@ -4,8 +4,14 @@ All notable changes to the "terraform-quick-docs" extension will be documented i
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.0.45]
 
-## [0.0.43]
+### Improvement
+
+- Add error handling for misspelled required providers
+
+
+## [0.0.44]
 
 ### Update
 

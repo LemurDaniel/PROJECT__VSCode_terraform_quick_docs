@@ -7,6 +7,27 @@ const Settings = require('./settings')
 
 class Registry {
 
+    static ProviderNotFoundError = class ProviderNotFoundError extends Error {
+        constructor(data) {
+            super(`Provider '${data.identifier}' was not Found!`)
+            this.providerData = {
+                ...data,
+                error: {
+                    providerNotFound: true
+                }
+            }
+        }
+    }
+
+    static ResourceNotFoundError = class ResourceNotFoundError extends Error {
+        constructor(message, data) {
+            super(message)
+            this.data = data
+        }
+    }
+
+
+
     static #builtinResource = {
         "terraform_data": {
             isBuiltin: true,
@@ -106,13 +127,9 @@ class Registry {
         return response
     }
 
-    async getProvidersOutJson(path = pathUtility.join(__dirname, 'data', 'providers.json')) {
 
-        const providers = await this.getProvidersFromApi()
-        fs.writeFileSync(path, JSON.stringify(providers))
 
-    }
-
+    // Read official and partner providers from json
     async getProvidersFromJson(path = pathUtility.join(__dirname, 'data', 'providers.json')) {
 
         if (path in this.#cache)
@@ -124,37 +141,56 @@ class Registry {
 
     }
 
+    // Get all providers in configuration and partner/official providers
     async getProvidersInConfiguration() {
 
         const defaultProviders = {}
         let providersList = await this.getProvidersFromJson()
-        providersList.forEach(provider => defaultProviders[provider.identifier.toLowerCase()] = provider)
+        providersList.forEach(
+            provider => defaultProviders[provider.identifier.toLowerCase()] = provider
+        )
 
         const providersInConfiguration = {}
         for (const [fullPath, terraform] of Object.entries(Settings.terraformBlock)) {
 
             for (const [name, data] of Object.entries(terraform.requiredProviders)) {
 
-                const configuredProvider = providersInConfiguration[data.source.toLowerCase()]
-                let providerInfo = defaultProviders[data.source.toLowerCase()]
-
-                if (null != configuredProvider && fullPath.split(/[\/\\]+/).length >= configuredProvider.segments) {
+                const providerSource = data.source.toLowerCase()
+                const fsPathSegments = fullPath.split(/[\/\\]+/).length
+                const configuredProvider = providersInConfiguration[providerSource]
+                if (null != configuredProvider && fsPathSegments >= configuredProvider.segments) {
                     continue
                 }
 
-                if (providerInfo == null) {
-                    providerInfo = await this.getProviderInfo(data.source.toLowerCase())
-                }
 
-                providersInConfiguration[data.source.toLowerCase()] = {
-                    ...providerInfo,
+                const configurationDataBlock = {
+                    name: providerSource.split(/[\/]+/)[1],
+                    identifier: providerSource,
+                    namespace: providerSource.split(/[\/]+/)[0],
                     version: data.version ?? configuredProvider?.version,
                     fsPath: fullPath,
-                    segments: fullPath.split(/[\/\\]+/).length,
-                    fromConfiguration: true
+                    segments: fsPathSegments,
+                    fromConfiguration: true,
+                    providerNotFoundError: false
+                }
+
+                try {
+
+                    const providerInfo = defaultProviders[providerSource] ?? (await this.getProviderInfo(providerSource))
+                    providersInConfiguration[providerSource] = {
+                        ...providerInfo,
+                        ...configurationDataBlock
+                    }
+
+                } catch (error) {
+                    if (error instanceof Registry.ProviderNotFoundError) {
+                        configurationDataBlock.providerNotFoundError = true
+                        providersInConfiguration[providerSource] = configurationDataBlock
+                    } else {
+                        throw error
+                    }
                 }
             }
-
         }
 
         providersList = providersList.filter(provider => !(provider.identifier.toLowerCase() in providersInConfiguration))
@@ -295,7 +331,11 @@ class Registry {
         const providerInfo = await this.get(endpoint, 'provider', 12 * 60 * 60)
 
         if (null == providerInfo || providerInfo.errors?.at(0)?.toLowerCase() == 'not found') {
-            throw new Error(`Not Found: ${identifier}`, endpoint)
+            throw new Registry.ProviderNotFoundError({
+                identifier: identifier,
+                namespace: identifier.split(/[\/]+/)[0],
+                name: identifier.split(/[\/]+/)[1]
+            })
         }
 
         providerInfo['identifier'] = identifier
@@ -335,7 +375,11 @@ class Registry {
         )
 
         if (null == providerData)
-            throw new Error(`'${providerName}' not Found!`)
+            throw new Registry.ProviderNotFoundError({
+                identifier: providerName,
+                namespace: null,
+                name: providerName
+            })
 
 
         console.log(`Found Provider: ${providerData.identifier}`)
@@ -362,7 +406,7 @@ class Registry {
         )[0]
 
         if (null == resourceInfo)
-            throw new Error(`'${resourceName}' not Found!`)
+            throw new Registry.ResourceNotFoundError(`'${resourceName}' not Found!`)
 
         console.log(`Found ResourceName: ${resourceInfo.title}`)
         return { resourceInfo: resourceInfo, providerInfo: providerInfo }

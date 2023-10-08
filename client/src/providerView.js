@@ -170,12 +170,15 @@ class ProviderView {
             let providerInfo = await this.#client.sendRequest('provider.info', source)
             providerInfo = new Provider(providerInfo, this.#client)
 
-            const item = new vscode.TreeItem(providerInfo.identifier)
+            const item = new vscode.TreeItem(providerInfo.identifier ?? source)
             item.collapsibleState = vscode.TreeItemCollapsibleState.None
             item.contextValue = "providerContext"
             item.description = version
 
-            if (providerInfo.logoData.base64) {
+            if (providerInfo.error.providerNotFound) {
+                item.iconPath = new vscode.ThemeIcon('warning', new vscode.ThemeColor('debugConsole.warningForeground'))
+            }
+            else if (providerInfo.logoData.base64) {
                 item.iconPath = vscode.Uri.parse(`${providerInfo.logoData.encoding}${providerInfo.logoData.base64}`)
             }
 

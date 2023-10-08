@@ -1,6 +1,27 @@
 const vscode = require('vscode')
 const Provider = require('../provider')
 
+
+function createProviderOption(providerData) {
+
+    option = {
+        identifier: providerData.identifier,
+        label: providerData.name,
+        description: providerData.identifier,
+        iconPath: null
+    }
+
+    if (providerData.providerNotFoundError) {
+        option.iconPath = new vscode.ThemeIcon('warning', new vscode.ThemeColor('debugConsole.warningForeground'))
+    }
+    else if (providerData.logoData) {
+        option.iconPath = vscode.Uri.parse(`${providerData.logoData.encoding}${providerData.logoData.base64}`)
+    }
+
+    return option
+}
+
+
 async function command(client, context) {
 
     try {
@@ -27,37 +48,32 @@ async function command(client, context) {
             const providerOptions = []
 
             // Only show the sperators when there are required_providers defined.
-            let seperatorIsSet = false
-            let requiredProvidersDefined = providersList[0].fromConfiguration
-            if (requiredProvidersDefined) {
+            const requiredProviders = providersList.filter(provider => provider.fromConfiguration)
+            const remainingProviders = providersList.filter(provider => !provider.fromConfiguration)
+
+            if (remainingProviders.length > 0) {
                 providerOptions.push({
                     label: "Terraform Required Providers",
                     kind: vscode.QuickPickItemKind.Separator
                 })
+                for (const providerData of requiredProviders) {
+                    providerOptions.push(
+                        createProviderOption(providerData)
+                    )
+                }
             }
-            for (const providerData of providersList) {
 
-                if (!providerData.fromConfiguration && !seperatorIsSet) {
-                    seperatorIsSet = true
-                    providerOptions.push({
-                        label: "Offical and Partner Providers",
-                        kind: vscode.QuickPickItemKind.Separator
-                    })
-                }
 
-                const option = {
-                    identifier: providerData.identifier,
-                    label: providerData.name,
-                    description: providerData.identifier,
-                    iconPath: null
-                }
-
-                if (providerData.logoData) {
-                    option.iconPath = vscode.Uri.parse(`${providerData.logoData.encoding}${providerData.logoData.base64}`)
-                }
-
-                providerOptions.push(option)
+            providerOptions.push({
+                label: "Offical and Partner Providers",
+                kind: vscode.QuickPickItemKind.Separator
+            })
+            for (const providerData of remainingProviders) {
+                providerOptions.push(
+                    createProviderOption(providerData)
+                )
             }
+
 
 
             selectedProvider = await vscode.window.showQuickPick(providerOptions, {
@@ -72,14 +88,16 @@ async function command(client, context) {
 
         const sortOrder = ['overview', 'guides', 'resources', 'data-sources']
         const displayNames = ['Overview', 'Guide', 'Resource', 'Data']
-        const info = await client.sendRequest('provider.info', selectedProvider.identifier)
-        if (info.error == 'NOT FOUND')
-            throw new Error(`'${selectedProvider.identifier}' was not found!`)
+        const providerInfo = await client.sendRequest('provider.info', selectedProvider.identifier)
+
+        if(providerInfo.error?.providerNotFound) {
+            throw new Error(`'${providerInfo.identifier}' was not found! Please check the spelling!`)
+        }
 
         let currentSection = -1
         const resourceOptions = []
 
-        info.docs.sort((a, b) => {
+        providerInfo.docs.sort((a, b) => {
             if (sortOrder.indexOf(a.category) > sortOrder.indexOf(b.category)) return 1
             else if (sortOrder.indexOf(a.category) < sortOrder.indexOf(b.category)) return -1
             else return 0
