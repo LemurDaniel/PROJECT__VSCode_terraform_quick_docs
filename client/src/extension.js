@@ -85,7 +85,6 @@ async function activate(context) {
 
     // Register Commands
     context.subscriptions.push(require('./commands/functions.show')(client))
-    context.subscriptions.push(require('./commands/provider.list')(client))
     context.subscriptions.push(require('./commands/provider.reload')(client))
     context.subscriptions.push(require('./commands/resource.show')(client))
     context.subscriptions.push(require('./commands/documentation.show')(client))
