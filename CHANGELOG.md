@@ -9,8 +9,17 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ### Update
 
+- Add new partner-provider [cloudera/cdp](https://registry.terraform.io/providers/cloudera/cdp/latest/docs)
+- Add new partner-provider [CiscoDevNet/ise](https://registry.terraform.io/providers/CiscoDevNet/ise/latest/docs)
+- Add new partner-provider [Venafi/venafi-token](https://registry.terraform.io/providers/venafi/venafi-token/latest/docs)
+
+
+## [0.0.43]
+
+### Update
+
 - Add new partner-provider [dell/powerscale](https://registry.terraform.io/providers/dell/powerscale/latest/docs)
-- Add new partner-provider [dell/redfish](https://registry.terraform.io/providers/dell/redfish/latest/docs)REST APIs
+- Add new partner-provider [dell/redfish](https://registry.terraform.io/providers/dell/redfish/latest/docs)
 - Add new partner-provider [vantage-sh/vantage](https://registry.terraform.io/providers/vantage-sh/vantage/latest/docs)
 
   
