@@ -344,15 +344,16 @@ class Registry {
             .replace('{{provider}}', providerInfo.name)
             .replace('{{version}}', providerInfo.version)
 
-        const uniqueResources = {}
-        providerInfo.docs.forEach(
-            resource => uniqueResources[resource.slug ?? resource.title] = ({
+        providerInfo.docs = providerInfo.docs.map(
+            resource => ({
                 ...resource,
                 providerVersion: providerInfo.version,
-                docsUrl: resource.category == 'overview' ? `${providerInfo.docsUrl}/${resource.category}` : `${providerInfo.docsUrl}/${resource.category}/${resource.slug ?? resource.title}`
+                docsUrl: resource.category == 'overview' ?
+                    `${providerInfo.docsUrl}/${resource.category}` :
+                    `${providerInfo.docsUrl}/${resource.category}/${resource.slug ?? resource.title}`
             })
         )
-        providerInfo.docs = Object.values(uniqueResources)
+
         if (providerInfo.tier == 'official' || providerInfo.tier == 'partner') {
             const providerDataJson = await this.getProvidersFromJson()
             providerInfo.logoData = providerDataJson.filter(provider => provider.identifier == providerInfo.identifier)[0].logoData
@@ -402,7 +403,7 @@ class Registry {
 
         const providerInfo = await this.findProviderInfo(resourceIdentifier)
         const resourceInfo = providerInfo.docs.filter(
-            resource => (resource.title == resourceName || resource.title == secondaryName) && resource.category == resourceCategory
+            resource => (resource.title == resourceName || resource.title == secondaryName) && resource.category == "data-sources" //resourceCategory
         )[0]
 
         if (null == resourceInfo)

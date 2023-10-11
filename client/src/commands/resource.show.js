@@ -97,12 +97,17 @@ async function command(client, context) {
         let currentSection = -1
         const resourceOptions = []
 
-        providerInfo.docs.sort((a, b) => {
+        // This is to prevent multiple entries of the same resource/data due to terraform multi-language-documentations.
+        const uniqueElements = {}
+        providerInfo.docs.forEach(
+            doc => uniqueElements[`${doc.category}-${doc.title}`] = doc
+        )
+        
+        Object.values(uniqueElements).sort((a, b) => {
             if (sortOrder.indexOf(a.category) > sortOrder.indexOf(b.category)) return 1
             else if (sortOrder.indexOf(a.category) < sortOrder.indexOf(b.category)) return -1
             else return 0
         }).forEach(resource => {
-
             if (resource.category != sortOrder[currentSection]) {
                 resourceOptions.push({
                     label: displayNames[++currentSection],
@@ -113,7 +118,7 @@ async function command(client, context) {
             resourceOptions.push({
                 ...resource,
                 label: resource.title,
-                description: displayNames[currentSection] //`${displayNames[currentSection]} ${resource.subcategory}`
+                description: displayNames[currentSection]
             })
         })
 
