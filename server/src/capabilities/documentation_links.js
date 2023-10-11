@@ -21,28 +21,42 @@ async function handleProviderResource(document, identifier, category) {
 
     const fsPath = await Settings.clientConnection.sendRequest('fspath.get', document.uri)
     const requiredProvider = await findRequiredProvider(fsPath, identifier)
-    console.log(requiredProvider)
+    console.log('Required Provider: ', JSON.stringify(requiredProvider))
 
     let resourceInfo = null
     if (requiredProvider && requiredProvider.source) {
-        const providerInfo = await Registry.instance.getProviderInfo(requiredProvider.source, requiredProvider.version).catch(error => console.log(error))
-        resourceInfo = Registry.instance.getProviderResource(providerInfo, identifier, category)
-        console.log(`via required_providers | Found ${requiredProvider.version} | Ignoring Version: ${Settings.ignoreVersion}`)
+        console.log('Searching via required_providers: ')
+        console.log(`Found ${requiredProvider.version} | Ignoring Version: ${Settings.ignoreVersion}`)
+
+        resourceInfo = await Registry.instance.getProviderInfo(requiredProvider.source, requiredProvider.version)
+            .then(providerInfo =>
+                Registry.instance.getProviderResource(providerInfo, identifier, category)
+            )
+            .catch(error => console.log(error))
+
         console.log(JSON.stringify(resourceInfo))
         console.log(`---------------------------------`)
     }
     else {
-        const result = await Registry.instance.findProviderResource(identifier, category)
-        resourceInfo = result.resourceInfo
-        console.log(`via findProviderResource`)
-        console.log(JSON.stringify(resourceInfo))
-        console.log(`---------------------------------`)
+        console.log('Searching in official/partner Providers: ')
+
+        resourceInfo = await Registry.instance.findProviderResource(identifier, category)
+            .then(result => result.resourceInfo).catch(error => console.log(error))
     }
+
+    if (resourceInfo == null) {
+        console.log('Not Found!')
+        console.log(`---------------------------------`)
+        return null
+    }
+
+    console.log(JSON.stringify(resourceInfo))
+    console.log(`---------------------------------`)
 
     let content = null
     if (resourceInfo.isBuiltin)
         content = `[**${identifier}**](${resourceInfo.docsUrl})`
-    else
+    else if (resourceInfo != null)
         content = `[**Terraform Registry**](${resourceInfo.docsUrl})`
 
     return {
