@@ -4,6 +4,14 @@ All notable changes to the "terraform-quick-docs" extension will be documented i
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+
+## [0.0.47]
+
+### Update
+
+- Add new partner-provider [PaloAltoNetworks/prismacloud-waas](https://registry.terraform.io/providers/PaloAltoNetworks/prismacloud/latest)
+
+
 ## [0.0.46]
 
 ### Fix
