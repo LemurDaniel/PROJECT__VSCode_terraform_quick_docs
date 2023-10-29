@@ -4,6 +4,12 @@ All notable changes to the "terraform-quick-docs" extension will be documented i
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.0.48]
+
+### Update
+
+- Add new partner-provider [Azure/modtm](https://registry.terraform.io/providers/Azure/modtm/latest)
+  
 
 ## [0.0.47]
 
