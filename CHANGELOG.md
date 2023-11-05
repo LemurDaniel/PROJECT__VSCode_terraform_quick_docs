@@ -4,6 +4,14 @@ All notable changes to the "terraform-quick-docs" extension will be documented i
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.0.49]
+
+### Update
+
+- Add new partner-provider  [accuknox/accuknox](https://registry.terraform.io/providers/accuknox/accuknox/latest)
+- Add new partner-provider  [citrix/citrix](https://registry.terraform.io/providers/citrix/citrix/latest)
+- Add new partner-provider  [PrefectHQ/prefect](https://registry.terraform.io/providers/PrefectHQ/prefect/latest)
+
 ## [0.0.48]
 
 ### Update
