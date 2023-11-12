@@ -7179,28 +7179,28 @@
           "seperator": "Basic Building Blocks"
         },
         {
-          "path": "https://developer.hashicorp.com/terraform/language/settings",
+          "path": "/terraform/language/settings",
           "id": "documentation.configuration.terraform-block",
           "title": "Terraform-block",
           "description": "the base building-block for any terraform configuration",
           "data": null
         },
         {
-          "path": "https://developer.hashicorp.com/terraform/language/providers/configuration",
+          "path": "/terraform/language/providers/configuration",
           "id": "documentation.configuration.provider-blocks",
           "title": "Provider-blocks",
           "description": "declare and configure providers",
           "data": null
         },
         {
-          "path": "https://developer.hashicorp.com/terraform/language/resources/syntax",
+          "path": "/terraform/language/resources/syntax",
           "id": "documentation.configuration.resource-blocks",
           "title": "Resource-blocks",
           "description": "declare and deploy provider resources",
           "data": null
         },
         {
-          "path": "https://developer.hashicorp.com/terraform/language/data-sources",
+          "path": "/terraform/language/data-sources",
           "id": "documentation.configuration.data-blocks",
           "title": "Data-blocks",
           "description": "get information from existing infrastructure",
@@ -7214,21 +7214,21 @@
           "data": null
         },
         {
-          "path": "https://developer.hashicorp.com/terraform/language/values/variables",
+          "path": "/terraform/language/values/variables",
           "id": "documentation.configuration.variable-blocks",
           "title": "Variable-blocks",
           "description": "parameterize configurations and modules",
           "data": null
         },
         {
-          "path": "https://developer.hashicorp.com/terraform/language/values/outputs",
+          "path": "/terraform/language/values/outputs",
           "id": "documentation.configuration.output-blocks",
           "title": "Output-blocks",
           "description": "declare outputs for configurations and modules",
           "data": null
         },
         {
-          "path": "https://developer.hashicorp.com/terraform/language/values/locals",
+          "path": "/terraform/language/values/locals",
           "id": "documentation.configuration.local-blocks",
           "title": "Local-blocks",
           "description": "declare and transform values with functions in locals",
@@ -7252,17 +7252,17 @@
           "data": null
         },
         {
-          "path": "/terraform/language/import",
-          "id": "documentation.configuration.import",
-          "title": "Import-Blocks",
-          "description": "import existing infrastructure",
-          "data": null
-        },
-        {
           "path": "/terraform/language/import/generating-configuration",
           "id": "documentation.configuration.generating-configuration",
           "title": "Generate Configuration",
           "description": "generate configurations from Import-blocks",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/import",
+          "id": "documentation.configuration.import",
+          "title": "Import-Blocks",
+          "description": "import existing infrastructure",
           "data": null
         },
         {
