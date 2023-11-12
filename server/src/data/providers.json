@@ -1764,6 +1764,18 @@
         }
     },
     {
+        "name": "for-vmware-nsxt-virtual-private-cloud",
+        "namespace": "vmware",
+        "identifier": "vmware/for-vmware-nsxt-virtual-private-cloud",
+        "tier": "partner",
+        "source": "https://github.com/vmware/terraform-provider-for-vmware-nsxt-virtual-private-cloud",
+        "logoData": {
+            "url": "https://avatars3.githubusercontent.com/vmware",
+            "encoding": "data:image/png;base64,",
+            "base64": "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"
+        }
+    },
+    {
         "name": "fusion",
         "namespace": "PureStorage-OpenConnect",
         "identifier": "PureStorage-OpenConnect/fusion",
@@ -2532,6 +2544,18 @@
         }
     },
     {
+        "name": "netapp-ontap",
+        "namespace": "NetApp",
+        "identifier": "NetApp/netapp-ontap",
+        "tier": "partner",
+        "source": "https://github.com/NetApp/terraform-provider-netapp-ontap",
+        "logoData": {
+            "url": "https://avatars3.githubusercontent.com/NetApp",
+            "encoding": "data:image/png;base64,",
+            "base64": "iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAACXBIWXMAAAsTAAALEwEAmpwYAAABnElEQVR4nO2Yz46CMBCHxwKeuJKYeNo1voTinyYgxpvyBibqhRs+j3cfTdb4AkJnkzYSdQ1IVsDsznfqoUy//IAyFIAgiOpoSJ6aqmlas9k0DEOrCsbY6/RfB5PkrGuaZrfb/ZR8lE+n0zFNMysOFeZwODydTofDIYqir5KJouh4PHLO1cOTpeV5HiIKIbBkhAQRPc8DAF3Xs7Rc10XEJElEySQSRHQcJz8tpVVlWg5p5UNpFeG/piUuC7yRlpA7UDr/ekOqRyvJXPvatTotISfsdrsgCMIw3G634YUgCPb7fW6RUrTO5zMizmazu4pqvFwu69GK4xgRfd8HANUzqrbJMAwA2Gw2dWotFgtVMe2WVPXVavUWWnBB9SekdQulxejZQnoTgTaIx8S0nbI/8vGZz+d3/+lqvF6v6/9U61daqnohLdd187Umk0nRfkv/oVXoJk6n0ywthWVZnHM7j16vxzlvtVrqsC69XI3b7fZ4PLZtu9/vZxQZDAaj0ciyrDSU18AkD1P/ZZEHNAoCt9c+XyH/bJIgCAJu+QYjnOiXnWfB8QAAAABJRU5ErkJggg=="
+        }
+    },
+    {
         "name": "netooze",
         "namespace": "netooze",
         "identifier": "netooze/netooze",
@@ -2669,6 +2693,18 @@
         "identifier": "vmware/nsxt",
         "tier": "partner",
         "source": "https://github.com/vmware/terraform-provider-nsxt",
+        "logoData": {
+            "url": "https://avatars3.githubusercontent.com/vmware",
+            "encoding": "data:image/png;base64,",
+            "base64": "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"
+        }
+    },
+    {
+        "name": "nsxt-virtual-private-cloud",
+        "namespace": "vmware",
+        "identifier": "vmware/nsxt-virtual-private-cloud",
+        "tier": "partner",
+        "source": "https://github.com/vmware/terraform-provider-nsxt-virtual-private-cloud",
         "logoData": {
             "url": "https://avatars3.githubusercontent.com/vmware",
             "encoding": "data:image/png;base64,",
