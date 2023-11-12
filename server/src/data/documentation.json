@@ -7171,53 +7171,112 @@
     {
       "baseUrl": "https://developer.hashicorp.com",
       "path": "/language/meta-arguments",
-      "id": "documentation.meta_arguments",
+      "id": "documentation.configuration",
       "title": "Configuration",
-      "description": "resources and meta-arguments",
+      "description": "terraform configurations",
       "data": [
         {
-          "seperator": "Configuration Blocks"
+          "seperator": "Basic Building Blocks"
         },
         {
-          "path": "/terraform/language/import/generating-configuration",
-          "id": "documentation.expressions.generating-configuration",
-          "title": "Generate Configuration",
-          "description": "generate configurations via import-blocks",
+          "path": "https://developer.hashicorp.com/terraform/language/settings",
+          "id": "documentation.configuration.terraform-block",
+          "title": "Terraform-block",
+          "description": "the base building-block for any terraform configuration",
           "data": null
         },
         {
-          "path": "/terraform/language/import",
-          "id": "documentation.expressions.import",
-          "title": "Import-Blocks",
-          "description": "import existing infrastructure into Terraform",
+          "path": "https://developer.hashicorp.com/terraform/language/providers/configuration",
+          "id": "documentation.configuration.provider-blocks",
+          "title": "Provider-blocks",
+          "description": "declare and configure providers",
+          "data": null
+        },
+        {
+          "path": "https://developer.hashicorp.com/terraform/language/resources/syntax",
+          "id": "documentation.configuration.resource-blocks",
+          "title": "Resource-blocks",
+          "description": "declare and deploy provider resources",
+          "data": null
+        },
+        {
+          "path": "https://developer.hashicorp.com/terraform/language/data-sources",
+          "id": "documentation.configuration.data-blocks",
+          "title": "Data-blocks",
+          "description": "get information from existing infrastructure",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/modules/syntax",
+          "id": "documentation.configuration.module-blocks",
+          "title": "Module-blocks",
+          "description": "reuse and structure configurations",
+          "data": null
+        },
+        {
+          "path": "https://developer.hashicorp.com/terraform/language/values/variables",
+          "id": "documentation.configuration.variable-blocks",
+          "title": "Variable-blocks",
+          "description": "parameterize configurations and modules",
+          "data": null
+        },
+        {
+          "path": "https://developer.hashicorp.com/terraform/language/values/outputs",
+          "id": "documentation.configuration.output-blocks",
+          "title": "Output-blocks",
+          "description": "declare outputs for configurations and modules",
+          "data": null
+        },
+        {
+          "path": "https://developer.hashicorp.com/terraform/language/values/locals",
+          "id": "documentation.configuration.local-blocks",
+          "title": "Local-blocks",
+          "description": "declare and transform values with functions in locals",
+          "data": null
+        },
+        {
+          "seperator": "Advanced Blocks"
+        },
+        {
+          "path": "/terraform/language/expressions/dynamic-blocks",
+          "id": "documentation.configuration.dynamic_blocks",
+          "title": "Dynamic-Blocks",
+          "description": "dynamically create nested blocks on resources",
           "data": null
         },
         {
           "path": "/terraform/language/modules/develop/refactoring",
-          "id": "documentation.expressions.refactoring",
+          "id": "documentation.configuration.refactoring",
           "title": "Moved-Blocks",
           "description": "rename and restructure configurations",
           "data": null
         },
         {
-          "path": "/terraform/language/checks",
-          "id": "documentation.expressions.checks",
-          "title": "Check-Blocks",
-          "description": "validate infrastructure outside of resource lifecycle-blocks",
+          "path": "/terraform/language/import",
+          "id": "documentation.configuration.import",
+          "title": "Import-Blocks",
+          "description": "import existing infrastructure",
           "data": null
         },
         {
-          "path": "/terraform/language/expressions/dynamic-blocks",
-          "id": "documentation.expressions.dynamic_blocks",
-          "title": "Dynamic-Blocks",
-          "description": "dynamically create nested blocks on resources based on a list or map",
+          "path": "/terraform/language/import/generating-configuration",
+          "id": "documentation.configuration.generating-configuration",
+          "title": "Generate Configuration",
+          "description": "generate configurations from Import-blocks",
           "data": null
         },
         {
           "path": "/terraform/language/expressions/custom-conditions#input-variable-validation",
-          "id": "documentation.expressions.custom_condition_checks",
+          "id": "documentation.configuration.custom_condition_checks",
           "title": "Validation-Blocks",
           "description": "validate variables with custom checks",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/checks",
+          "id": "documentation.configuration.checks",
+          "title": "Check-Blocks",
+          "description": "validate infrastructure outside of resource lifecycle-blocks",
           "data": null
         },
         {
@@ -7232,7 +7291,7 @@
         },
         {
           "path": "/terraform/language/expressions/custom-conditions#preconditions-and-postconditions",
-          "id": "documentation.expressions.custom_condition_checks",
+          "id": "documentation.meta_arguments.custom_condition_checks",
           "title": "Lifecycle: Pre- and Postconditions",
           "description": "validate infrastructure with custom checks",
           "data": null
