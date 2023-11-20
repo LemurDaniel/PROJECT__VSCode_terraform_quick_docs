@@ -4,6 +4,11 @@ All notable changes to the "terraform-quick-docs" extension will be documented i
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.0.51]
+
+### Improvements
+
+- Removed fly-apps/fly partner status
 
 ## [0.0.50]
 
