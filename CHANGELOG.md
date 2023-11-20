@@ -4,6 +4,27 @@ All notable changes to the "terraform-quick-docs" extension will be documented i
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+
+## [0.0.51]
+
+### Improvements
+
+- Removed fly-apps/fly partner status
+
+
+## [0.0.50]
+
+### Improvements
+
+- Added documentation links to all basic-blocks for any new-comers, such as variables, outputs, resources, etc.
+
+### Update
+
+- Add new partner-provider [vmware/for-vmware-nsxt-virtual-private-cloud](https://registry.terraform.io/providers/vmware/for-vmware-nsxt-virtual-private-cloud/latest/docs)
+- Add new partner-provider [vmware/nsxt-virtual-private-cloud](https://registry.terraform.io/providers/vmware/nsxt-virtual-private-cloud/latest/docs)
+- Add new partner-provider [NetApp/netapp-ontap](https://registry.terraform.io/providers/netapp/netapp-ontap/latest/docs)
+
+
 ## [0.0.49]
 
 ### Update
