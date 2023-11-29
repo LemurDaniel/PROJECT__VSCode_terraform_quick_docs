@@ -35,6 +35,8 @@ module.exports = async (github, context, core) => {
     ].flat().join('\n')
   })
 
+  console.log(issue)
+
   return issue.number
 
 }
