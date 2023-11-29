@@ -10,7 +10,7 @@ module.exports = async (github, context, core) => {
     changelog: `${__dirname}/../CHANGELOG.md`
   }
 
-  const providers = await registry.instance.getProvidersFromApi()
+  const providers = await Registry.instance.getProvidersFromApi()
   fs.writeFileSync(filePaths.providerJson, JSON.stringify(providers), 'UTF-8')
 
 
