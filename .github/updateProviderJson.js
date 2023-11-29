@@ -37,18 +37,12 @@ module.exports = async (github, context, core) => {
     '### Update',
     ''
   ].concat(
-    addedProviders.map(entry => {
-      `- Add new ${entry.tier}-provider [${entry.identifier}](${entry.source})`
-    })
+    addedProviders.map(entry => `- Add new ${entry.tier}-provider [${entry.identifier}](${entry.source})`)
   ).concat(
-    deletedProviders.map(entry => {
-      `- Deleted ${entry.tier}-provider [${entry.identifier}](${entry.source})`
-    })
+    deletedProviders.map(entry => `- Deleted ${entry.tier}-provider [${entry.identifier}](${entry.source})`)
   )
 
   console.log(changeLog)
-  console.log(addedProviders)
-  console.log(deletedProviders)
 
   changeLog = changeLog.join('\n') + "\n\n" + fs.readFileSync(filePaths.changelog, 'UTF-8')
 
