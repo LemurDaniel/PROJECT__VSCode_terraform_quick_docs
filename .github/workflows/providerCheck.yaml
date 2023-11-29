@@ -83,7 +83,7 @@ jobs:
 
               console.log(pull)
 
-              const merge = octokit.rest.pulls.merge({
+              const merge = await github.rest.pulls.merge({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 pull_number: pull.data.number,
