@@ -37,7 +37,7 @@ module.exports = async (github, context, core) => {
 
   console.log(issue)
 
-  return issue.number
+  return issue.data.number
 
 }
 
