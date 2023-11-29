@@ -77,9 +77,11 @@ jobs:
               const pull = await github.rest.pulls.create({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                issue: process.env.ISSUE_NUMBER,
+                issue: parseInt(process.env.ISSUE_NUMBER),
                 head: `${process.env.BRANCH_NAME}`,
                 base: 'master'
               })
 
               console.log(pull)
+
+              console.log(pull.data.id)
