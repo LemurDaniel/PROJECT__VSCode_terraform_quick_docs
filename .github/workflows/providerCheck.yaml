@@ -56,6 +56,9 @@ jobs:
       - name: Push changes
         if: steps.provider_check.outputs.result != null
         run: |
+          git config --global user.email "landau.daniel.1998@gmail.com"
+          git config --global user.name "LemurDaniel"
+
           git add -A
           git commit -m "automatic_provider_changes_updates"
           git push
