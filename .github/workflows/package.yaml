@@ -11,9 +11,9 @@ on:
       - "README.md"
       - "CHANGELOG.md"
       - "package.json"
-  pull_request:
-    branches:
-      - master
+  # pull_request:
+  #   branches:
+  #     - master
 
 
 env:
