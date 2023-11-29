@@ -1,3 +1,10 @@
+## [0.0.52]
+
+### Update
+
+- Add new partner-provider [jfrog/platform](https://github.com/jfrog/terraform-provider-platform)
+- Deleted partner-provider [vmware/for-vmware-nsxt-virtual-private-cloud](https://github.com/vmware/terraform-provider-for-vmware-nsxt-virtual-private-cloud)
+
 
 ## [0.0.51]
 
