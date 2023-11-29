@@ -11,22 +11,44 @@ module.exports = async (github, context, core) => {
   }
 
   const providers = await Registry.instance.getProvidersFromApi()
+  const providersOld = JSON.parse(fs.readFileSync(filePaths.providerJson, 'UTF-8'))
+
+  const providersMap = providers.map(provider => ({ [provider.identifier]: provider })).reduce((accumulator, provider) => ({ ...accumulator, ...provider }), {})
+  const providersOldMap = providersOld.map(provider => ({ [provider.identifier]: provider })).reduce((accumulator, provider) => ({ ...accumulator, ...provider }), {})
+  const addedProviders = providers.filter(provider => !(provider.identifier in providersOldMap))
+  const deletedProviders = providersOld.filter(provider => !(provider.identifier in providersMap))
+
+
+
   fs.writeFileSync(filePaths.providerJson, JSON.stringify(providers, null, 2), 'UTF-8')
 
 
-
   const packageJson = JSON.parse(
-    fs.readFileSync(filePaths.packageJson, 'utf-8')
+    fs.readFileSync(filePaths.packageJson, 'UTF-8')
   )
   const count = parseInt(packageJson.version.split('.')[2]) + 1
   packageJson.version = `0.0.${count}`
-
-  fs.writeFileSync(filePaths.packageJson, JSON.stringify(packageJson, null, 4), 'utf-8')
-
+  fs.writeFileSync(filePaths.packageJson, JSON.stringify(packageJson, null, 4), 'UTF-8')
 
 
-  const changeLog = fs.readFileSync(filePaths.changelog, 'utf-8')
-  fs.writeFileSync(filePaths.changelog, changeLog, 'utf-8')
+  let changeLog = [
+    `## [${packageJson.version}]`,
+    '',
+    '### Update',
+    ''
+  ].concat(
+    addedProviders.map(entry => {
+      `- Add new ${entry.tier}-provider [${entry.identifier}](${entry.source})`
+    })
+  ).concat(
+    deletedProviders.map(entry => {
+      `- Deleted ${entry.tier}-provider [${entry.identifier}](${entry.source})`
+    })
+  )
+
+  changeLog = changeLog.join('\n') + "\n\n" + fs.readFileSync(filePaths.changelog, 'UTF-8')
+
+  fs.writeFileSync(filePaths.changelog, changeLog, 'UTF-8')
 
 }
 

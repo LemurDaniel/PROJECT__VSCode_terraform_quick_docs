@@ -41,6 +41,7 @@ jobs:
       - name: Install dependencies
         if: steps.provider_check.outputs.result != null
         run: | 
+          npm install
           npm install -g sharp
           
       - uses: actions/github-script@v6
