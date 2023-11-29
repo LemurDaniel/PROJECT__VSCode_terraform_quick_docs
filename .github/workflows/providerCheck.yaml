@@ -34,7 +34,7 @@ jobs:
         env: 
           ISSUE_NUMBER: ${{ steps.provider_check.outputs.result }}
         run: |
-          BRANCH=="$ISSUE_NUMBER""_automated_terraform_official_provider_changes_detected"
+          BRANCH="$ISSUE_NUMBER""_automated_terraform_official_provider_changes_detected"
           git checkout -B "$BRANCH"
           echo "branch_name=$BRANCH" >> "$GITHUB_OUTPUT"
       
@@ -55,13 +55,15 @@ jobs:
           
       - name: Push changes
         if: steps.provider_check.outputs.result != null
+        env:
+          BRANCH_NAME: ${{ steps.create_branch.outputs.branch_name }}
         run: |
           git config --global user.email "landau.daniel.1998@gmail.com"
           git config --global user.name "LemurDaniel"
 
           git add -A
           git commit -m "automatic_provider_changes_updates"
-          git push
+          git push  --set-upstream origin "$BRANCH_NAME"
 
       - uses: actions/github-script@v6
         name: Create Pull-Request
