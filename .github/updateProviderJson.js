@@ -46,6 +46,10 @@ module.exports = async (github, context, core) => {
     })
   )
 
+  console.log(changeLog)
+  console.log(addedProviders)
+  console.log(deletedProviders)
+
   changeLog = changeLog.join('\n') + "\n\n" + fs.readFileSync(filePaths.changelog, 'UTF-8')
 
   fs.writeFileSync(filePaths.changelog, changeLog, 'UTF-8')
