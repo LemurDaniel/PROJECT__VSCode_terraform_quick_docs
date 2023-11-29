@@ -11,7 +11,7 @@ module.exports = async (github, context, core) => {
   }
 
   const providers = await Registry.instance.getProvidersFromApi()
-  fs.writeFileSync(filePaths.providerJson, JSON.stringify(providers, null, 4), 'UTF-8')
+  fs.writeFileSync(filePaths.providerJson, JSON.stringify(providers, null, 2), 'UTF-8')
 
 
 
