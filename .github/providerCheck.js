@@ -1,6 +1,8 @@
 
 module.exports = async (github, context, core) => {
 
+  return ''
+
   console.log(process.cwd())
   console.log(__dirname)
   console.log(`${__dirname}/../server/src/registry.js`)
@@ -20,7 +22,7 @@ module.exports = async (github, context, core) => {
 
   if (addedProviders.length == 0 && deletedProviders.length == 0) {
     console.log('No changes have been detected.')
-    return null
+    return ''
   }
 
   console.log('Changes in offical/partner providers detected!')
@@ -37,8 +39,6 @@ module.exports = async (github, context, core) => {
 
   console.log(issue)
 
-
-  return null
   return issue.data.number
 
 }
