@@ -1,8 +1,6 @@
 
 module.exports = async (github, context, core) => {
 
-  return ''
-
   console.log(process.cwd())
   console.log(__dirname)
   console.log(`${__dirname}/../server/src/registry.js`)

@@ -8,12 +8,13 @@ on:
     paths:
       - "server/**"
       - "client/**"
-      - "README.md"
-      - "CHANGELOG.md"
       - "package.json"
-  # pull_request:
-  #   branches:
-  #     - master
+  pull_request:
+    branches:
+      - master
+    paths:
+      - "server/**"
+      - "client/**"
 
 
 env:
