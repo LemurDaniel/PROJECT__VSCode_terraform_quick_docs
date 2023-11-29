@@ -11,7 +11,7 @@ module.exports = async (github, context, core) => {
   }
 
   const providers = await Registry.instance.getProvidersFromApi()
-  fs.writeFileSync(filePaths.providerJson, JSON.stringify(providers), 'UTF-8')
+  fs.writeFileSync(filePaths.providerJson, JSON.stringify(providers, null, 4), 'UTF-8')
 
 
 
@@ -21,7 +21,7 @@ module.exports = async (github, context, core) => {
   const count = parseInt(packageJson.version.split('.')[2]) + 1
   packageJson.version = `0.0.${count}`
 
-  fs.writeFileSync(filePaths.packageJson, JSON.stringify(packageJson), 'utf-8')
+  fs.writeFileSync(filePaths.packageJson, JSON.stringify(packageJson, null, 4), 'utf-8')
 
 
 
