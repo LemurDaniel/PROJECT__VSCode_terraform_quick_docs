@@ -1,125 +1,125 @@
 {
-  "name": "terraform-quick-docs",
-  "displayName": "Terraform Quick Docs",
-  "description": "Access Terraform Provider and Function Documentations by hovering over Resources.",
-  "author": "LemurDaniel",
-  "publisher": "LemurDaniel",
-  "license": "GPL-3.0",
-  "icon": ".resources/simple_logo.png",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/LemurDaniel/PROJECT__VSCode_terraform_quick_docs"
-  },
-  "version": "0.0.51",
-  "engines": {
-    "vscode": "^1.70.0"
-  },
-  "categories": [
-    "Other"
-  ],
-  "keywords": [
-    "terraform",
-    "documentation",
-    "tf",
-    "hcl",
-    "devops"
-  ],
-  "activationEvents": [
-    "workspaceContains:**/*.tf"
-  ],
-  "main": "./client/src/extension.js",
-  "contributes": {
-    "views": {
-      "explorer": [
-        {
-          "id": "terraform-quick-docs.view.providers",
-          "name": "Terraform Providers"
-        }
-      ]
+    "name": "terraform-quick-docs",
+    "displayName": "Terraform Quick Docs",
+    "description": "Access Terraform Provider and Function Documentations by hovering over Resources.",
+    "author": "LemurDaniel",
+    "publisher": "LemurDaniel",
+    "license": "GPL-3.0",
+    "icon": ".resources/simple_logo.png",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/LemurDaniel/PROJECT__VSCode_terraform_quick_docs"
     },
-    "menus": {
-      "view/title": [
-        {
-          "command": "terraform-quick-docs.resource.show",
-          "when": "view == terraform-quick-docs.view.providers",
-          "group": "navigation"
-        },
-        {
-          "command": "terraform-quick-docs.documentation.show",
-          "when": "view == terraform-quick-docs.view.providers",
-          "group": "navigation"
-        },
-        {
-          "command": "terraform-quick-docs.providers.reload",
-          "when": "view == terraform-quick-docs.view.providers",
-          "group": "navigation"
-        }
-      ]
+    "version": "0.0.52",
+    "engines": {
+        "vscode": "^1.70.0"
     },
-    "commands": [
-      {
-        "command": "terraform-quick-docs.resource.show",
-        "title": "Terraform Quick Docs: Show Resource Documentation",
-        "icon": "$(globe)"
-      },
-      {
-        "command": "terraform-quick-docs.functions.show",
-        "title": "Terraform Quick Docs: Show Function Documentation"
-      },
-      {
-        "command": "terraform-quick-docs.documentation.show",
-        "title": "Terraform Quick Docs: Show additional Documentations",
-        "icon": "$(three-bars)"
-      },
-      {
-        "command": "terraform-quick-docs.providers.reload",
-        "title": "Terraform Quick Docs: Refresh Provider View",
-        "icon": "$(sync)"
-      }
+    "categories": [
+        "Other"
     ],
-    "languages": [],
-    "configuration": {
-      "title": "Terraform Quick Docs",
-      "properties": {
-        "terraform-quick-docs.alwaysOpenLatestVersion": {
-          "order": 0,
-          "type": "boolean",
-          "default": true,
-          "description": "If set to true, will ignore any versions in 'required_providers' and always open the latest version"
+    "keywords": [
+        "terraform",
+        "documentation",
+        "tf",
+        "hcl",
+        "devops"
+    ],
+    "activationEvents": [
+        "workspaceContains:**/*.tf"
+    ],
+    "main": "./client/src/extension.js",
+    "contributes": {
+        "views": {
+            "explorer": [
+                {
+                    "id": "terraform-quick-docs.view.providers",
+                    "name": "Terraform Providers"
+                }
+            ]
         },
-        "terraform-quick-docs.supportOtherModuleSource": {
-          "order": 1,
-          "type": "boolean",
-          "default": true,
-          "description": "If set to true, will also show hoverlinks for other module sources like github.com, bitbucket, etc."
+        "menus": {
+            "view/title": [
+                {
+                    "command": "terraform-quick-docs.resource.show",
+                    "when": "view == terraform-quick-docs.view.providers",
+                    "group": "navigation"
+                },
+                {
+                    "command": "terraform-quick-docs.documentation.show",
+                    "when": "view == terraform-quick-docs.view.providers",
+                    "group": "navigation"
+                },
+                {
+                    "command": "terraform-quick-docs.providers.reload",
+                    "when": "view == terraform-quick-docs.view.providers",
+                    "group": "navigation"
+                }
+            ]
         },
-        "terraform-quick-docs.recursionDepth": {
-          "order": 2,
-          "type": "number",
-          "default": 10,
-          "description": "Max Recursion Depth when anaylzing terraform configurations"
+        "commands": [
+            {
+                "command": "terraform-quick-docs.resource.show",
+                "title": "Terraform Quick Docs: Show Resource Documentation",
+                "icon": "$(globe)"
+            },
+            {
+                "command": "terraform-quick-docs.functions.show",
+                "title": "Terraform Quick Docs: Show Function Documentation"
+            },
+            {
+                "command": "terraform-quick-docs.documentation.show",
+                "title": "Terraform Quick Docs: Show additional Documentations",
+                "icon": "$(three-bars)"
+            },
+            {
+                "command": "terraform-quick-docs.providers.reload",
+                "title": "Terraform Quick Docs: Refresh Provider View",
+                "icon": "$(sync)"
+            }
+        ],
+        "languages": [],
+        "configuration": {
+            "title": "Terraform Quick Docs",
+            "properties": {
+                "terraform-quick-docs.alwaysOpenLatestVersion": {
+                    "order": 0,
+                    "type": "boolean",
+                    "default": true,
+                    "description": "If set to true, will ignore any versions in 'required_providers' and always open the latest version"
+                },
+                "terraform-quick-docs.supportOtherModuleSource": {
+                    "order": 1,
+                    "type": "boolean",
+                    "default": true,
+                    "description": "If set to true, will also show hoverlinks for other module sources like github.com, bitbucket, etc."
+                },
+                "terraform-quick-docs.recursionDepth": {
+                    "order": 2,
+                    "type": "number",
+                    "default": 10,
+                    "description": "Max Recursion Depth when anaylzing terraform configurations"
+                }
+            }
         }
-      }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run package",
+        "webpack": "webpack --mode development",
+        "webpack-dev": "webpack --mode development --watch",
+        "package": "webpack --mode production --devtool hidden-source-map",
+        "lint": "eslint ./client/src ./server/src --ext .js",
+        "postinstall": "cd client && npm install && cd ../server && npm install && cd ..",
+        "test": "sh ./scripts/e2e.sh"
+    },
+    "devDependencies": {
+        "@types/mocha": "^9.1.0",
+        "@types/node": "^16.11.7",
+        "@typescript-eslint/eslint-plugin": "^5.54.0",
+        "@typescript-eslint/parser": "^5.54.0",
+        "eslint": "^8.35.0",
+        "mocha": "^9.2.1",
+        "path": "^0.12.7",
+        "webpack": "^5.81.0",
+        "webpack-cli": "^5.0.2"
     }
-  },
-  "scripts": {
-    "vscode:prepublish": "npm run package",
-    "webpack": "webpack --mode development",
-    "webpack-dev": "webpack --mode development --watch",
-    "package": "webpack --mode production --devtool hidden-source-map",
-    "lint": "eslint ./client/src ./server/src --ext .js",
-    "postinstall": "cd client && npm install && cd ../server && npm install && cd ..",
-    "test": "sh ./scripts/e2e.sh"
-  },
-  "devDependencies": {
-    "@types/mocha": "^9.1.0",
-    "@types/node": "^16.11.7",
-    "@typescript-eslint/eslint-plugin": "^5.54.0",
-    "@typescript-eslint/parser": "^5.54.0",
-    "eslint": "^8.35.0",
-    "mocha": "^9.2.1",
-    "path": "^0.12.7",
-    "webpack": "^5.81.0",
-    "webpack-cli": "^5.0.2"
-  }
 }
