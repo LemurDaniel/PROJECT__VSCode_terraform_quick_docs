@@ -20,7 +20,7 @@ module.exports = async (github, context, core) => {
 
   if (addedProviders.length == 0 && deletedProviders.length == 0) {
     console.log('No changes have been detected.')
-    return nullss
+    return null
   }
 
   console.log('Changes in offical/partner providers detected!')
@@ -37,6 +37,8 @@ module.exports = async (github, context, core) => {
 
   console.log(issue)
 
+
+  return null
   return issue.data.number
 
 }
