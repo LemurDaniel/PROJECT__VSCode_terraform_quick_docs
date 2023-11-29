@@ -4,6 +4,8 @@ on:
   schedule:
     - cron:  '0 0 * * 0'
   workflow_dispatch:
+  pull_request:
+    branches: [master]
 
 jobs:
   check:
@@ -13,10 +15,73 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-          
+
       - uses: actions/github-script@v6
+        name: Query provider changes
+        id: provider_check
         with:
-            github-token: ${{ secrets.API_TOKEN_GITHUB }}
+            github-token: ${{ github.TOKEN }}
+            result-encoding: string
             script: |
                 const providerCheck = require('./.github/providerCheck.js')
-                await providerCheck(github, context, core)
+                return await providerCheck(github, context, core)
+
+
+
+      - name: Create Branch
+        id: create_branch
+        if: steps.provider_check.outputs.result != null
+        env: 
+          ISSUE_NUMBER: ${{ steps.provider_check.outputs.result }}
+        run: |
+          BRANCH="$ISSUE_NUMBER""_automated_terraform_official_provider_changes_detected"
+          git checkout -B "$BRANCH"
+          echo "branch_name=$BRANCH" >> "$GITHUB_OUTPUT"
+      
+      - name: Install dependencies
+        if: steps.provider_check.outputs.result != null
+        run: | 
+          npm install -g sharp
+          
+      - uses: actions/github-script@v6
+        name: Update provider.json
+        if: steps.provider_check.outputs.result != null
+        with:
+            github-token: ${{ github.TOKEN }}
+            result-encoding: string
+            script: |
+              const updateProviderJson = require('./.github/updateProviderJson.js')
+              return await updateProviderJson(github, context, core)
+          
+      - name: Push changes
+        if: steps.provider_check.outputs.result != null
+        env:
+          BRANCH_NAME: ${{ steps.create_branch.outputs.branch_name }}
+        run: |
+          git config --global user.email "landau.daniel.1998@gmail.com"
+          git config --global user.name "LemurDaniel"
+
+          git add -A
+          git commit -m "automatic_provider_changes_updates"
+          git push  --set-upstream origin "$BRANCH_NAME"
+
+      - uses: actions/github-script@v6
+        name: Create Pull-Request
+        if: steps.provider_check.outputs.result != null
+        env:
+          ISSUE_NUMBER: ${{ steps.provider_check.outputs.result }}
+          BRANCH_NAME: ${{ steps.create_branch.outputs.branch_name }}
+        with:
+            github-token: ${{ github.TOKEN }}
+            script: |
+              const pull = await github.rest.pulls.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue: parseInt(process.env.ISSUE_NUMBER),
+                head: `${process.env.BRANCH_NAME}`,
+                base: 'master'
+              })
+
+              console.log(pull)
+
+              console.log(pull.data.id)
