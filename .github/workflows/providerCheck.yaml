@@ -57,7 +57,7 @@ jobs:
         if: steps.provider_check.outputs.result != null
         run: |
           git add -A
-          git commit -C "automatic_provider_changes_updates"
+          git commit -m "automatic_provider_changes_updates"
           git push
 
       - uses: actions/github-script@v6
