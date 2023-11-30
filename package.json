@@ -10,7 +10,7 @@
         "type": "git",
         "url": "https://github.com/LemurDaniel/PROJECT__VSCode_terraform_quick_docs"
     },
-    "version": "0.0.52",
+    "version": "0.0.53",
     "engines": {
         "vscode": "^1.70.0"
     },

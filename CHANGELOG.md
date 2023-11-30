@@ -1,3 +1,9 @@
+## [0.0.53]
+
+### Update
+
+- Deleted official-provider [hashicorp/terraform](https://github.com/hashicorp/terraform-provider-terraform)
+
 ## [0.0.52]
 
 ### Update
