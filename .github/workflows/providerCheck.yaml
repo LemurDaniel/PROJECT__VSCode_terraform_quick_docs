@@ -95,16 +95,13 @@ jobs:
       - uses: actions/github-script@v6
         name: Dispatch deployment workflow
         if: steps.provider_check.outputs.result != ''
-        env:
-          ISSUE_NUMBER: ${{ steps.provider_check.outputs.result }}
-          BRANCH_NAME: ${{ steps.create_branch.outputs.branch_name }}
         with:
             script: |
               const dispatch = await github.rest.actions.createWorkflowDispatch({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                workflow_id: "package.yaml",
-                ref: master,
+                workflow_id: 'package.yaml',
+                ref: 'master'
               })
 
               console.log(dispatch)
