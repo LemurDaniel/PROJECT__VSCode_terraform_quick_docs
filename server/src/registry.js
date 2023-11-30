@@ -26,12 +26,14 @@ class Registry {
         }
     }
 
-
-
     static #builtinResource = {
         "terraform_data": {
             isBuiltin: true,
             docsUrl: "https://developer.hashicorp.com/terraform/language/resources/terraform-data"
+        },
+        "terraform_remote_state": {
+            isBuiltin: true,
+            docsUrl: "https://developer.hashicorp.com/terraform/language/state/remote-state-data"
         }
     }
 

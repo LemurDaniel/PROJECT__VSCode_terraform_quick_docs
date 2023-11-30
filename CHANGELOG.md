@@ -1,3 +1,12 @@
+
+## [0.0.54]
+
+### Update
+
+- Added documentation link for built-in: terraform_remote_state
+
+
+
 ## [0.0.53]
 
 ### Update
