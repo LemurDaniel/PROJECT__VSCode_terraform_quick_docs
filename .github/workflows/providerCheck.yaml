@@ -105,3 +105,10 @@ jobs:
               })
 
               console.log(dispatch)
+              
+      - name: Delete Branch
+        if: steps.provider_check.outputs.result != ''
+        env: 
+          BRANCH_NAME: ${{ steps.create_branch.outputs.branch_name }}
+        run: |
+          git push origin --delete "$BRANCH_NAME"
