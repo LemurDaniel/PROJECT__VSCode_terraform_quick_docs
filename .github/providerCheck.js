@@ -16,7 +16,7 @@ module.exports = async (github, context, core) => {
   const providersJsonMap = providersJson.map(provider => ({ [provider.identifier]: provider })).reduce((accumulator, provider) => ({ ...accumulator, ...provider }), {})
 
   const addedProviders = providers.filter(provider => !(provider.identifier in providersJsonMap))
-  const deletedProviders = providersJson.filter(provider => !(provider.identifier in providersMap))
+  const deletedProviders = [] // providersJson.filter(provider => !(provider.identifier in providersMap))
 
   if (addedProviders.length == 0 && deletedProviders.length == 0) {
     console.log('No changes have been detected.')
