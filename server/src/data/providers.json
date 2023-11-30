@@ -360,6 +360,18 @@
     }
   },
   {
+    "name": "terraform",
+    "namespace": "hashicorp",
+    "identifier": "hashicorp/terraform",
+    "tier": "official",
+    "source": "https://github.com/hashicorp/terraform-provider-terraform",
+    "logoData": {
+      "url": "https://registry.terraform.io//images/providers/terraform.svg",
+      "encoding": "data:image/png;base64,",
+      "base64": "iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAACqklEQVR4nO2ZT2jTUBzHMx2CitPD2EFRcEg1GQxEJu3eSyOi6GE3CQiT2ialJ2FH8bQdhzePg50KLiEnYd48eHIeBP8dFE/SvMQi1IuCQ8HG31uWLWr/JEvkJfA+8OihIe/7afp+7/daQeBwOBxOVtGwc7Mut0+zzpEYDZNVkPmhIefB/MXOGOs8e2ZbxKOjhpxPNUwai4K3j3Wu2IRFdoSw80LHLmKdLRa9RPxBuiBkNZB7inXGSPQXCb5u5FsVkXuLijfKOutAhokE41apPVEt2TNpzasoT0fL4tr5tO4XSwSezge4/kkdtaaSzClLa5eRZLzFkrmalsceRLaKwU94XWko7nicuYqSdQbCWzC87cFWJFTdvmiILKiqt3/QHFenm4eRaCwhydwMSWRHJFQQ3lVl+9q/d/dG0DmzAhLtvwTSF6khV4ddfTOJyM5AZL2GW5P0vqUpcwZLxkYfgfRFKFXZOQm7ejOxiL//vFcKD8dBojtEIn2RAB2RSxDmdRIRek1pujkRQeL/iVBonwVhKvDJfs61SMBt5eMxqErLGu2M8ywSUMdOAdbP49yL7OKNwBN6nqYI7Cv3GYgIwtwF9xCsnbtwZvmaUMSFqtaAFcnm3OPvE86cNts6TlsUEPoVT8T4jkVzefbsoyNMBAJ214jfONJuGOSeRRFBorkuF6xs/DYQXuxbjSOc82l107GjgpDdSwTWwUtZNMuss/9B76pFOrRxnL/eGYP3l6DCvfFFjA70WAuqYA1sKJkwuPySV5psl2mZliTrwJVJ6yjrvH2J1ms5K6xzDiXqhsg651C4SNbgIllDk8kNaEtauRehqEX74KDGMTciAZWifcI/55NurkUCaOMIT2cj9yI+cOii53zktHMu4kP/8dKRe4d1Dg6Hw+Gkwm8o6I37BCc6WAAAAABJRU5ErkJggg=="
+    }
+  },
+  {
     "name": "tfe",
     "namespace": "hashicorp",
     "identifier": "hashicorp/tfe",
