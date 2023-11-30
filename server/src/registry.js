@@ -405,7 +405,7 @@ class Registry {
 
         const providerInfo = await this.findProviderInfo(resourceIdentifier)
         const resourceInfo = providerInfo.docs.filter(
-            resource => (resource.title == resourceName || resource.title == secondaryName) && resource.category == "data-sources" //resourceCategory
+            resource => (resource.title == resourceName || resource.title == secondaryName) && resource.category == resourceCategory
         )[0]
 
         if (null == resourceInfo)

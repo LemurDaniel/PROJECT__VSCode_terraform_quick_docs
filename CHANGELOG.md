@@ -1,10 +1,17 @@
 
+## [0.0.55]
+
+## Fix
+
+- Fix error because of harcoded value
+
+
+
 ## [0.0.54]
 
 ### Update
 
 - Added documentation link for built-in: terraform_remote_state
-
 
 
 ## [0.0.53]
