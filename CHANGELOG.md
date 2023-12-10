@@ -1,3 +1,9 @@
+## [0.0.56]
+
+### Update
+
+- Add new partner-provider [CiscoDevNet/catalystcenter](https://github.com/CiscoDevNet/terraform-provider-catalystcenter)
+
 
 ## [0.0.55]
 
