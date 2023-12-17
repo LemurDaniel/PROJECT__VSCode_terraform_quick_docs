@@ -1,3 +1,10 @@
+## [0.0.57]
+
+### Update
+
+- Add new partner-provider [couchbasecloud/couchbase-capella](https://github.com/couchbasecloud/terraform-provider-couchbase-capella)
+- Add new partner-provider [mondoohq/mondoo](https://github.com/mondoohq/terraform-provider-mondoo)
+
 ## [0.0.56]
 
 ### Update
