@@ -171,6 +171,7 @@ connection.onRequest('provider.info', async identifier =>
     )
 )
 
+connection.onRequest('terraform.logo', () => Registry.instance.getTerraformLogoData())
 connection.onRequest('functions.data', () => Registry.instance.getFunctionsData())
 connection.onRequest('documentation.data', () => Registry.instance.getAllDocumentationData())
 connection.onRequest('resource.docs', resourceInfo => Registry.instance.getResourceDocs(resourceInfo))

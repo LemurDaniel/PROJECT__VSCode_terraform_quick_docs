@@ -430,7 +430,9 @@ class Registry {
 
 
 
-
+    getTerraformLogoData() {
+        return JSON.parse(fs.readFileSync(`${__dirname}/data/terraform.logo.json`))
+    }
     getFunctionsFlat() {
         return this.getFunctionsData().data.map(category => category.data).flat()
     }
