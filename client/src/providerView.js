@@ -149,14 +149,14 @@ class ProviderView {
     async getChildItemForFolderContent(content) {
 
         const providersList = await this.#client.sendRequest('provider.list', this.identifier)
-        const terraformProvider = providersList.filter(provider => provider.identifier == 'hashicorp/terraform')[0]
+        const terraformLogo = await this.#client.sendRequest('terraform.logo')
 
         const providerItems = []
         // Item for showing required terraform version
         const item = new vscode.TreeItem('terraform')
         item.description = content[0].requiredVersion ?? ""
         item.collapsibleState = vscode.TreeItemCollapsibleState.None
-        item.iconPath = vscode.Uri.parse(`${terraformProvider.logoData.encoding}${terraformProvider.logoData.base64}`)
+        item.iconPath = vscode.Uri.parse(`${terraformLogo.encoding}${terraformLogo.base64}`)
         item.command = {
             "title": "Open Documentation",
             "command": "terraform-quick-docs.documentation.show",
@@ -168,7 +168,10 @@ class ProviderView {
         // Get provider data from api/cache and create instances of Provider-Class
         for (const { source, version } of Object.values(content[0].requiredProviders)) {
             let providerInfo = await this.#client.sendRequest('provider.info', source)
+
+
             providerInfo = new Provider(providerInfo, this.#client)
+            
 
             const item = new vscode.TreeItem(providerInfo.identifier ?? source)
             item.collapsibleState = vscode.TreeItemCollapsibleState.None
