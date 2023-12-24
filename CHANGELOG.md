@@ -1,3 +1,10 @@
+## [0.0.59]
+
+### Update
+
+- Add new partner-provider [pingidentity/pingdirectory](https://github.com/pingidentity/terraform-provider-pingdirectory)
+- Add new partner-provider [pingidentity/pingfederate](https://github.com/pingidentity/terraform-provider-pingfederate)
+
 
 ## [0.0.58]
 
