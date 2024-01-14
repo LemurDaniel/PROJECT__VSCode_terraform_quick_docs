@@ -1,3 +1,10 @@
+## [0.0.60]
+
+### Update
+
+- Add new partner-provider [chainguard-dev/chainguard](https://github.com/chainguard-dev/terraform-provider-chainguard)
+- Add new partner-provider [chainguard-dev/imagetest](https://github.com/chainguard-dev/terraform-provider-imagetest)
+
 ## [0.0.59]
 
 ### Update
