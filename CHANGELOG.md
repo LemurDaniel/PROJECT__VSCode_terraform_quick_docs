@@ -1,3 +1,12 @@
+## [0.0.61]
+
+### Update
+
+- Add new partner-provider [genesiscloud/genesiscloud](https://github.com/genesiscloud/terraform-provider-genesiscloud)
+- Add new partner-provider [hundio/hund](https://github.com/hundio/terraform-provider-hund)
+- Add new partner-provider [PaloAltoNetworks/scm](https://github.com/PaloAltoNetworks/terraform-provider-scm)
+- Add new partner-provider [squaredup/squaredup](https://github.com/squaredup/terraform-provider-squaredup)
+
 ## [0.0.60]
 
 ### Update
