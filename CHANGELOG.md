@@ -1,3 +1,12 @@
+## [0.0.62]
+
+### Update
+
+- Add changes from terraform 1.7
+    - Add Removed-Blocks to documentation
+    - Add Moved-Blocks with for_each to documentation
+    - Add terraform console -plan option to documentation
+
 ## [0.0.61]
 
 ### Update

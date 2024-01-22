@@ -63,16 +63,22 @@
           "path": "/terraform/cli/commands/force-unlock",
           "id": "documentation.cli.force_unlock",
           "title": "terraform force-unlock",
-          "description": "remove a terraform state lock"
+          "description": "remove a terraform state lock with the CLI"
         },
         {
           "path": "/terraform/cli/commands/console",
           "id": "documentation.cli.console",
           "title": "terraform console",
-          "description": "access the terraform console"
+          "description": "evaluate expressions against the current state"
         },
         {
-          "path": "/terraform/language/v1.6.x/tests",
+          "path": "/terraform/cli/commands/console#evaluation-against-a-plan",
+          "id": "documentation.cli.console.plan",
+          "title": "terraform console -plan",
+          "description": "evaluate expressions against a planned state"
+        },
+        {
+          "path": "/terraform/language/tests",
           "id": "documentation.cli.terraform_test",
           "title": "terraform test",
           "description": "validate functionality with terraform tests"
@@ -7245,24 +7251,17 @@
           "data": null
         },
         {
-          "path": "/terraform/language/modules/develop/refactoring",
+          "path": "/terraform/language/modules/develop/refactoring#moved-block-syntax",
           "id": "documentation.configuration.refactoring",
           "title": "Moved-Blocks",
           "description": "rename and restructure configurations",
           "data": null
         },
         {
-          "path": "/terraform/language/import/generating-configuration",
-          "id": "documentation.configuration.generating-configuration",
-          "title": "Generate Configuration",
-          "description": "generate configurations from Import-blocks",
-          "data": null
-        },
-        {
-          "path": "/terraform/language/import",
-          "id": "documentation.configuration.import",
-          "title": "Import-Blocks",
-          "description": "import existing infrastructure",
+          "path": "/terraform/language/resources/syntax#removing-resources",
+          "id": "documentation.configuration.refactoring",
+          "title": "Removed-Blocks",
+          "description": "remove resources from state without destroying infrastructure",
           "data": null
         },
         {
@@ -7277,6 +7276,27 @@
           "id": "documentation.configuration.checks",
           "title": "Check-Blocks",
           "description": "validate infrastructure outside of resource lifecycle-blocks",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/import",
+          "id": "documentation.configuration.import",
+          "title": "Import-Blocks",
+          "description": "import existing infrastructure",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/import#import-multiple-instances-with-for_each",
+          "id": "documentation.configuration.import.for_each",
+          "title": "Import-Blocks - For Each",
+          "description": "import existing infrastructure with for each loops",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/import/generating-configuration",
+          "id": "documentation.configuration.generating-configuration",
+          "title": "Generate Configuration",
+          "description": "automatically generate configurations from Import-blocks",
           "data": null
         },
         {
