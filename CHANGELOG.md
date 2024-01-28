@@ -1,3 +1,10 @@
+## [0.0.63]
+
+### Update
+
+- Add new partner-provider [CiscoDevNet/ciscomcd](https://github.com/CiscoDevNet/terraform-provider-ciscomcd)
+- Add new partner-provider [CiscoDevNet/secureworkload](https://github.com/CiscoDevNet/terraform-provider-secureworkload)
+
 ## [0.0.62]
 
 ### Update
