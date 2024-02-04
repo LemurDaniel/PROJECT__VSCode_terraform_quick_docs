@@ -1,3 +1,11 @@
+## [0.0.65]
+
+### Update
+
+- Add new partner-provider [dell/apex](https://github.com/dell/terraform-provider-apex)
+- Add new partner-provider [Traceableai/awsapigateway](https://github.com/Traceableai/terraform-provider-awsapigateway)
+- Add new partner-provider [Traceableai/lambdabased](https://github.com/Traceableai/terraform-provider-lambdabased)
+
 ## [0.0.64]
 
 ### Improvements
