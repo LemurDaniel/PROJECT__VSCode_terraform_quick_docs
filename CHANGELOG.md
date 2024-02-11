@@ -1,3 +1,11 @@
+## [0.0.66]
+
+### Update
+
+- Add new partner-provider [castai/castai](https://github.com/CastAI/terraform-provider-castai)
+- Add new partner-provider [Keeper-Security/keeper](https://github.com/Keeper-Security/terraform-provider-keeper)
+- Add new partner-provider [nhn-cloud/nhncloud](https://github.com/nhn-cloud/terraform-provider-nhncloud)
+
 ## [0.0.65]
 
 ### Update
