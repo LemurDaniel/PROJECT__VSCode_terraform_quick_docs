@@ -1,3 +1,9 @@
+## [0.0.67]
+
+### Update
+
+- Add new partner-provider [streamkap-com/streamkap](https://github.com/streamkap-com/terraform-provider-streamkap)
+
 ## [0.0.66]
 
 ### Update
