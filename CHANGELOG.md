@@ -1,3 +1,15 @@
+## [0.0.68]
+
+### Update
+
+- Add documentation for:
+    - function [issensitive()](https://developer.hashicorp.com/terraform/language/v1.8.x/functions/issensitive)
+    - core provider function [provider::terraform::tfvarsdecode()](https://developer.hashicorp.com/terraform/language/v1.8.x/functions/terraform-tfvarsdecode)
+    - core provider function [provider::terraform::tfvarsencode()](https://developer.hashicorp.com/terraform/language/v1.8.x/functions/terraform-tfvarsdecode)
+    - core provider function [provider::terraform::exprencode()](https://developer.hashicorp.com/terraform/language/v1.8.x/functions/terraform-exprencode)
+    - terraform provider functions [github](https://github.com/hashicorp/terraform/pull/34394)
+
+
 ## [0.0.67]
 
 ### Update

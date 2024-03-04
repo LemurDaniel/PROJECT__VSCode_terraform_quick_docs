@@ -148,6 +148,44 @@
       "data": [
         {
           "path": "/terraform/language/functions",
+          "id": "documentation.functions.core_provider_functions",
+          "title": "Core Provider Functions",
+          "description": null,
+          "data": [
+            {
+              "path": "/terraform/language/v1.8.x/functions/terraform-tfvarsdecode",
+              "id": "documentation.functions.core_provider_functions.tfvarsdecode",
+              "title": "tfvarsdecode",
+              "syntax": [
+                "provider::terraform::tfvarsdecode(string)"
+              ],
+              "description": "converts content from a .tfvars-file into a valid terraform object.",
+              "full": []
+            },
+            {
+              "path": "/terraform/language/v1.8.x/functions/terraform-tfvarsencode",
+              "id": "documentation.functions.core_provider_functions.tfvarsencode",
+              "title": "tfvarsencode",
+              "syntax": [
+                "provider::terraform::tfvarsencode(string)"
+              ],
+              "description": "converts an object into a string with valid syntax for .tfvars-files",
+              "full": []
+            },
+            {
+              "path": "/terraform/language/v1.8.x/functions/terraform-exprencode",
+              "id": "documentation.functions.core_provider_functions.exprencode",
+              "title": "exprencode",
+              "syntax": [
+                "provider::terraform::exprencode(string)"
+              ],
+              "description": "produces a string containing Terraform language expression syntax.",
+              "full": []
+            }
+          ]
+        },
+        {
+          "path": "/terraform/language/functions",
           "id": "documentation.functions.numeric_functions",
           "title": "Numeric Functions",
           "description": null,
@@ -6475,6 +6513,44 @@
                 "",
                 "* [`try`](/terraform/language/functions/try), which tries evaluating a sequence of expressions and",
                 "  returns the result of the first one that succeeds."
+              ]
+            },
+            {
+              "path": "/terraform/language/v1.8.x/functions/issensitive",
+              "id": "documentation.functions.type_conversion_functions.issensitive",
+              "title": "issensitive",
+              "syntax": [
+                "issensitive(data)"
+              ],
+              "description": "takes any value and returns true if terraform treats it as sensitive.",
+              "full": [
+                "---",
+                "page_title: issensitive - Functions - Configuration Language",
+                "description: The issensitive function true if the value passed is marked as sensitive",
+                "---",
+                "",
+                "# `issensitive` Function",
+                "",
+                "-> **Note:** This function is only available in Terraform v1.8 and later.",
+                "",
+                "`issensitive` takes any value and returns true if Terraform",
+                "treats it as sensitive, with the same meaning and behavior as for",
+                "[sensitive input variables](/terraform/language/values/variables#suppressing-values-in-cli-output).",
+                "",
+                "If a value not marked as sensitive is passed the function returns false.",
+                "",
+                "See [`sensitive`](/terraform/language/functions/sensitive), [`nonsensitive`](/terraform/language/functions/nonsensitive), and [sensitive input variables](/terraform/language/values/variables#suppressing-values-in-cli-output) for more information on sensitive values.",
+                "",
+                "## Examples",
+                "",
+                "```",
+                "> issensitive(sensitive(\"secret\"))",
+                "true",
+                "> issensitive(\"hello\")",
+                "false",
+                "> sensitive(var.my-var-with-sensitive-set-to-true)",
+                "true",
+                "```"
               ]
             },
             {
