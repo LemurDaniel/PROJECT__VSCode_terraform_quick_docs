@@ -1,3 +1,9 @@
+## [0.0.68]
+
+### Update
+
+- Add new partner-provider [temporalio/temporalcloud](https://github.com/temporalio/terraform-provider-temporalcloud)
+
 ## [0.0.67]
 
 ### Update
