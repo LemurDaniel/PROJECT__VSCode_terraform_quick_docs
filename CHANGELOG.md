@@ -1,3 +1,11 @@
+## [0.0.69]
+
+### Update
+
+- Add new partner-provider [F5Networks/bigipnext](https://github.com/F5Networks/terraform-provider-bigipnext)
+- Add new partner-provider [splunk/qbec](https://github.com/splunk/terraform-provider-qbec)
+- Add new partner-provider [splunk/scp](https://github.com/splunk/terraform-provider-scp)
+
 ## [0.0.68]
 
 ### Update
