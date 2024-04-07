@@ -3108,6 +3108,18 @@
     }
   },
   {
+    "name": "pinecone",
+    "namespace": "pinecone-io",
+    "identifier": "pinecone-io/pinecone",
+    "tier": "partner",
+    "source": "https://github.com/pinecone-io/terraform-provider-pinecone",
+    "logoData": {
+      "url": "https://avatars3.githubusercontent.com/pinecone-io",
+      "encoding": "data:image/png;base64,",
+      "base64": "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"
+    }
+  },
+  {
     "name": "pingdirectory",
     "namespace": "pingidentity",
     "identifier": "pingidentity/pingdirectory",
