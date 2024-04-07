@@ -1,3 +1,9 @@
+## [0.0.70]
+
+### Update
+
+- Add new partner-provider [pinecone-io/pinecone](https://github.com/pinecone-io/terraform-provider-pinecone)
+
 ## [0.0.69]
 
 ### Update
