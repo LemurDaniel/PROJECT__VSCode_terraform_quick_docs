@@ -1,3 +1,12 @@
+## [0.0.71]
+
+### Update
+
+- Add new partner-provider [grafana/grafana-adaptive-metrics](https://github.com/grafana/terraform-provider-grafana-adaptive-metrics)
+- Add new partner-provider [grafana/schemas](https://github.com/grafana/terraform-provider-schemas)
+- Add new partner-provider [zilliztech/zillizcloud](https://github.com/zilliztech/terraform-provider-zillizcloud)
+- Deleted official-provider [hashicorp/waypoint](https://github.com/hashicorp/terraform-provider-waypoint)
+
 ## [0.0.70]
 
 ### Update
