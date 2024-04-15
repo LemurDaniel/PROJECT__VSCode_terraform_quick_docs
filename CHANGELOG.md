@@ -1,14 +1,32 @@
+
+## [0.0.71]
+
+### Update
+
+- Add new partner-provider [grafana/grafana-adaptive-metrics](https://github.com/grafana/terraform-provider-grafana-adaptive-metrics)
+- Add new partner-provider [grafana/schemas](https://github.com/grafana/terraform-provider-schemas)
+- Add new partner-provider [zilliztech/zillizcloud](https://github.com/zilliztech/terraform-provider-zillizcloud)
+- Deleted official-provider [hashicorp/waypoint](https://github.com/hashicorp/terraform-provider-waypoint)
+
+## [0.0.70]
+
+### Update
+
+- Add new partner-provider [pinecone-io/pinecone](https://github.com/pinecone-io/terraform-provider-pinecone)
+
+## [0.0.69]
+
+### Update
+
+- Add new partner-provider [F5Networks/bigipnext](https://github.com/F5Networks/terraform-provider-bigipnext)
+- Add new partner-provider [splunk/qbec](https://github.com/splunk/terraform-provider-qbec)
+- Add new partner-provider [splunk/scp](https://github.com/splunk/terraform-provider-scp)
+
 ## [0.0.68]
 
 ### Update
 
-- Add documentation for:
-    - function [issensitive()](https://developer.hashicorp.com/terraform/language/v1.8.x/functions/issensitive)
-    - core provider function [provider::terraform::tfvarsdecode()](https://developer.hashicorp.com/terraform/language/v1.8.x/functions/terraform-tfvarsdecode)
-    - core provider function [provider::terraform::tfvarsencode()](https://developer.hashicorp.com/terraform/language/v1.8.x/functions/terraform-tfvarsdecode)
-    - core provider function [provider::terraform::exprencode()](https://developer.hashicorp.com/terraform/language/v1.8.x/functions/terraform-exprencode)
-    - terraform provider functions [github](https://github.com/hashicorp/terraform/pull/34394)
-
+- Add new partner-provider [temporalio/temporalcloud](https://github.com/temporalio/terraform-provider-temporalcloud)
 
 ## [0.0.67]
 
