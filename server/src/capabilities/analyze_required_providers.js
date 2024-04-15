@@ -176,10 +176,8 @@ function removeRequiredProvders(fsPath) {
 }
 
 // Find required provider definition based on filepath going upwards to parent directories
-async function findRequiredProvider(fsPath, identifier) {
+async function findRequiredProvider(fsPath, providerShortName) {
 
-    //console.log(terraformBlock)
-    providerShortName = identifier.split('_')[0]
     const segements = fsPath.split(/[\/\\]+/)
 
     const targetProvider = {
