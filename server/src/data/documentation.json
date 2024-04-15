@@ -153,7 +153,7 @@
           "description": null,
           "data": [
             {
-              "path": "/terraform/language/v1.8.x/functions/terraform-tfvarsdecode",
+              "path": "/terraform/language/functions/terraform-decode_tfvars",
               "id": "documentation.functions.core_provider_functions.tfvarsdecode",
               "title": "tfvarsdecode",
               "syntax": [
@@ -163,7 +163,7 @@
               "full": []
             },
             {
-              "path": "/terraform/language/v1.8.x/functions/terraform-tfvarsencode",
+              "path": "/terraform/language/functions/terraform-encode_tfvars",
               "id": "documentation.functions.core_provider_functions.tfvarsencode",
               "title": "tfvarsencode",
               "syntax": [
@@ -173,7 +173,7 @@
               "full": []
             },
             {
-              "path": "/terraform/language/v1.8.x/functions/terraform-exprencode",
+              "path": "/terraform/language/functions/terraform-encode_expr",
               "id": "documentation.functions.core_provider_functions.exprencode",
               "title": "exprencode",
               "syntax": [
@@ -6516,7 +6516,7 @@
               ]
             },
             {
-              "path": "/terraform/language/v1.8.x/functions/issensitive",
+              "path": "/terraform/language/functions/issensitive",
               "id": "documentation.functions.type_conversion_functions.issensitive",
               "title": "issensitive",
               "syntax": [

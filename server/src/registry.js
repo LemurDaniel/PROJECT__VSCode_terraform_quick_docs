@@ -37,6 +37,23 @@ class Registry {
         }
     }
 
+    static #builtInProviderFunctions = {
+        "terraform::encode_tfvars": {
+            isBuiltin: true,
+            docsUrl: "https://developer.hashicorp.com/terraform/language/functions/terraform-encode_tfvars"
+        },
+        "terraform::decode_tfvars": {
+            isBuiltin: true,
+            docsUrl: "https://developer.hashicorp.com/terraform/language/functions/terraform-decode_tfvars"
+        },
+        "terraform::encode_expr": {
+            isBuiltin: true,
+            docsUrl: "https://developer.hashicorp.com/terraform/language/functions/terraform-encode_expr"
+        }
+    }
+
+
+
     static #instance = null
     static #endpoint = "registry.terraform.io"
     static #enableSharp = true
@@ -52,7 +69,8 @@ class Registry {
     // Datatypes for getting resource or data-source
     static TYPES = {
         data: 'data-sources',
-        resource: 'resources'
+        resource: 'resources',
+        function: 'function'
     }
 
     #cache
@@ -397,7 +415,15 @@ class Registry {
     async findProviderResource(resourceIdentifier, resourceCategory) {
 
         if (resourceIdentifier in Registry.#builtinResource) {
-            return { resourceInfo: Registry.#builtinResource[resourceIdentifier], providerInfo: null }
+            return {
+                resourceInfo: Registry.#builtinResource[resourceIdentifier],
+                providerInfo: null
+            }
+        } else if (resourceIdentifier in Registry.#builtInProviderFunctions) {
+            return {
+                resourceInfo: Registry.#builtInProviderFunctions[resourceIdentifier],
+                providerInfo: null
+            }
         }
 
         const resourceName = resourceIdentifier

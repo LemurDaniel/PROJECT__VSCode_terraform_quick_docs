@@ -19,9 +19,12 @@ async function handleProviderResource(document, identifier, category) {
     console.log(`Search Identifier: ${identifier}`)
     console.log(`Search Category: ${category}`)
 
+    const providerName = identifier.replace('::', '_').split('_')[0]
+
     const fsPath = await Settings.clientConnection.sendRequest('fspath.get', document.uri)
-    const requiredProvider = await findRequiredProvider(fsPath, identifier)
+    const requiredProvider = await findRequiredProvider(fsPath, providerName)
     console.log('Required Provider: ', JSON.stringify(requiredProvider))
+
 
     let resourceInfo = null
     if (requiredProvider && requiredProvider.source) {
@@ -49,6 +52,8 @@ async function handleProviderResource(document, identifier, category) {
         console.log(`---------------------------------`)
         return null
     }
+
+
 
     console.log(JSON.stringify(resourceInfo))
     console.log(`---------------------------------`)
@@ -181,6 +186,17 @@ async function getLinkForPosition(document, position) {
         return await handleProviderResource(document, identifier, Registry.TYPES['data'])
     } else if (isModuleDefinition) {
         return await handleProviderModule(document, position)
+    }
+
+    // Inline Provider Function matches
+    for (const inlineProviderFunction of fullLine.matchAll(/provider::[a-z0-9_]+::[a-z0-9_]+\(/gi)) {
+        const inRange = position.character >= inlineProviderFunction.index &&
+            position.character <= (inlineProviderFunction.index + inlineProviderFunction.at(0).length)
+
+        if (!inRange) continue
+
+        const identifier = inlineProviderFunction.at(0).replace('provider::', '').replace('(', '')
+        return await handleProviderResource(document, identifier, Registry.TYPES['function'])
     }
 
     // Inline datasource matches
