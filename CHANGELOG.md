@@ -1,3 +1,10 @@
+## [0.0.73]
+
+### Update
+
+- Add new partner-provider [netscaler/netscalersdx](https://github.com/netscaler/terraform-provider-netscalersdx)
+- Add new partner-provider [microsoft/power-platform](https://github.com/microsoft/terraform-provider-power-platform)
+
 ## [0.0.72]
 
 ### Update
