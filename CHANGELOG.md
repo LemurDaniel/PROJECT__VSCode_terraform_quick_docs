@@ -1,3 +1,12 @@
+## [0.0.74]
+
+### Update
+
+- Add new partner-provider [cisco-open/appd](https://github.com/cisco-open/terraform-provider-appd)
+- Add new partner-provider [cisco-open/dcloud](https://github.com/cisco-open/terraform-provider-dcloud)
+- Add new partner-provider [cisco-open/meraki](https://github.com/cisco-open/terraform-provider-meraki)
+- Add new partner-provider [cisco-open/observability](https://github.com/cisco-open/terraform-provider-observability)
+
 ## [0.0.73]
 
 ### Update
