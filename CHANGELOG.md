@@ -1,3 +1,9 @@
+## [0.0.75]
+
+### Update
+
+- Add new partner-provider [astronomer/astro](https://github.com/astronomer/terraform-provider-astro)
+
 ## [0.0.74]
 
 ### Update
