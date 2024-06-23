@@ -1,3 +1,9 @@
+## [0.0.77]
+
+### Improvements:
+
+- Add logical groupings to Function-Documentation.
+
 ## [0.0.76]
 
 ### Update
