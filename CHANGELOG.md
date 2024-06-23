@@ -1,3 +1,10 @@
+## [0.0.76]
+
+### Update
+
+- Add new partner-provider [tessell-cloud/tessell](https://github.com/tessell-cloud/terraform-provider-tessell)
+- Deleted partner-provider [ScpDevTerra/scp](https://github.com/ScpDevTerra/terraform-provider-scp)
+
 ## [0.0.75]
 
 ### Update
