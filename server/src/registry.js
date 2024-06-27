@@ -305,12 +305,12 @@ class Registry {
                     namespace: response.data[i].attributes.namespace,
                     identifier: response.data[i].attributes['full-name'],
                     tier: response.data[i].attributes.tier,
-                    source: response.data[i].attributes.source
+                    source: response.data[i].attributes.source,
+                    logoData: null
                 }
 
                 if (downloadLogo) {
-                    const logoData = await this.getBase64Logo(response.data[i].attributes['logo-url'])
-                    data = { ...data, logoData }
+                    data.logoData = await this.getBase64Logo(response.data[i].attributes['logo-url'])
                 }
 
                 responseData.push(data)
@@ -376,7 +376,9 @@ class Registry {
 
         if (providerInfo.tier == 'official' || providerInfo.tier == 'partner') {
             const providerDataJson = await this.getProvidersFromJson()
-            providerInfo.logoData = providerDataJson.filter(provider => provider.identifier == providerInfo.identifier)[0].logoData
+            providerInfo.logoData = providerDataJson.filter(
+                provider => provider.identifier.toUpperCase() == providerInfo.identifier.toUpperCase()
+            ).at(0)?.logoData
         }
         else {
             providerInfo.logoData = await this.getBase64Logo(providerInfo.logo_url)
