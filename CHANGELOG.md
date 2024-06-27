@@ -1,3 +1,9 @@
+## [0.0.78]
+
+### Fix
+
+- Fix error on missing provider image
+
 ## [0.0.77]
 
 ### Improvements:
