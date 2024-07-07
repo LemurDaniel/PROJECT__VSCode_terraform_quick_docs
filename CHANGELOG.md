@@ -1,3 +1,10 @@
+## [0.0.79]
+
+### Update
+
+- Add new partner-provider [keyfactor-pub/ejbca](https://github.com/keyfactor-pub/terraform-provider-ejbca)
+- Add new partner-provider [StyraInc/styra](https://github.com/StyraInc/terraform-provider-styra)
+
 ## [0.0.78]
 
 ### Fix
