@@ -1,3 +1,11 @@
+## [0.0.80]
+
+### Update
+
+- Add new partner-provider [incident-io/incident](https://github.com/incident-io/terraform-provider-incident)
+- Add new partner-provider [PaloAltoNetworks/prismasdwan](https://github.com/PaloAltoNetworks/terraform-provider-prismasdwan)
+- Add new partner-provider [JetBrains/teamcity](https://github.com/JetBrains/terraform-provider-teamcity)
+
 ## [0.0.79]
 
 ### Update
