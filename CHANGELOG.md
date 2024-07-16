@@ -1,3 +1,9 @@
+## [0.0.83]
+
+### Fix
+
+- Fix thing in terraform cloud documentation
+
 ## [0.0.82]
 
 ### Update
