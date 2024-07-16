@@ -1765,7 +1765,7 @@
           "path": "/terraform/cli/cloud/settings#the-cloud-block",
           "id": "documentation.backends.terraform_cloud",
           "title": "Terraform Cloud",
-          "description": "special backend. (Use Terraform Cloud instead)",
+          "description": "stores state in the terraform cloud.",
           "data": null
         },
         {
