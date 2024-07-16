@@ -1742,6 +1742,99 @@
     },
     {
       "baseUrl": "https://developer.hashicorp.com",
+      "path": "/terraform/language/settings/backends/configuration",
+      "id": "documentation.backends",
+      "title": "Backends",
+      "description": "available terraform state backends",
+      "data": [
+        {
+          "path": "/terraform/language/settings/backends/local",
+          "id": "documentation.backends.local",
+          "title": "local",
+          "description": "storage the state locally.",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/settings/backends/remote",
+          "id": "documentation.backends.remote",
+          "title": "remote",
+          "description": "special backend. (HashiCorp recommends using Terraform Cloud Syntax instead)",
+          "data": null
+        },
+        {
+          "path": "/terraform/cli/cloud/settings#the-cloud-block",
+          "id": "documentation.backends.terraform_cloud",
+          "title": "Terraform Cloud",
+          "description": "special backend. (Use Terraform Cloud instead)",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/settings/backends/pg",
+          "id": "documentation.backends.pg",
+          "title": "Postgres SQL",
+          "description": "stores the state in a Postgres database version 10 or newer.",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/settings/backends/consul",
+          "id": "documentation.backends.consul",
+          "title": "Hashicorp Consul",
+          "description": "stores the state in the Consul KV store at a given path.",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/settings/backends/azurerm",
+          "id": "documentation.backends.azurerm",
+          "title": "Azure Storage Account",
+          "description": "stores state in a azure storage account.",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/settings/backends/cos",
+          "id": "documentation.backends.cos",
+          "title": "Tencent Cloud Object Storage",
+          "description": "stores the state as an object in Tencent Cloud Object Storage (COS).",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/settings/backends/gcs",
+          "id": "documentation.backends.gcs",
+          "title": "Google Cloud Storage",
+          "description": "stores the state as an object in a bucket on Google Cloud Storage (GCS).",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/settings/backends/s3",
+          "id": "documentation.backends.s3",
+          "title": "Amazon S3",
+          "description": "stores the state as a given key in a given bucket on Amazon S3.",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/settings/backends/kubernetes",
+          "id": "documentation.backends.kubernetes",
+          "title": "Kubernetes Secret",
+          "description": "stores the state in a Kubernetes secret.",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/settings/backends/http",
+          "id": "documentation.backends.http",
+          "title": "HTTP REST API",
+          "description": "stores the state using a simple REST client. State will be fetched via GET, updated via POST, and purged with DELETE. The method used for updating is configurable.",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/settings/backends/oss",
+          "id": "documentation.backends.oss",
+          "title": "Alibaba OSS",
+          "description": "stores the state as a given key in a given bucket on Stores Alibaba Cloud OSS.",
+          "data": null
+        }
+      ]
+    },
+    {
+      "baseUrl": "https://developer.hashicorp.com",
       "path": "/language/resources/provisioners",
       "id": "documentation.provisioners",
       "title": "Provisioners",
@@ -1787,92 +1880,6 @@
           "id": "documentation.provisioners.provisioner_without_a_resource",
           "title": "Provisioner without a Resource",
           "description": "execute provisioners without deploying a resource",
-          "data": null
-        }
-      ]
-    },
-    {
-      "baseUrl": "https://developer.hashicorp.com",
-      "path": "/terraform/language/settings/backends/configuration",
-      "id": "documentation.backends",
-      "title": "Backends",
-      "description": "available terraform state backends",
-      "data": [
-        {
-          "path": "/terraform/language/settings/backends/local",
-          "id": "documentation.backends.local",
-          "title": "local",
-          "description": "the local backend stores state on the local filesystem, locks that state using system APIs, and performs operations locally.",
-          "data": null
-        },
-        {
-          "path": "/terraform/language/settings/backends/remote",
-          "id": "documentation.backends.remote",
-          "title": "remote",
-          "description": "the remote backend is unique among all other Terraform backends because it can both store state snapshots and execute operations for Terraform Cloud's CLI-driven run workflow. It used to be called an \"enhanced\" backend.",
-          "data": null
-        },
-        {
-          "path": "/terraform/language/settings/backends/azurerm",
-          "id": "documentation.backends.azurerm",
-          "title": "azurerm",
-          "description": "stores the state as a Blob with the given Key within the Blob Container within the Blob Storage Account.",
-          "data": null
-        },
-        {
-          "path": "/terraform/language/settings/backends/consul",
-          "id": "documentation.backends.consul",
-          "title": "consul",
-          "description": "stores the state in the Consul KV store at a given path.",
-          "data": null
-        },
-        {
-          "path": "/terraform/language/settings/backends/cos",
-          "id": "documentation.backends.cos",
-          "title": "cos",
-          "description": "stores the state as an object in a configurable prefix in a given bucket on Tencent Cloud Object Storage (COS).",
-          "data": null
-        },
-        {
-          "path": "/terraform/language/settings/backends/gcs",
-          "id": "documentation.backends.gcs",
-          "title": "gcs",
-          "description": "stores the state as an object in a configurable prefix in a pre-existing bucket on Google Cloud Storage (GCS). The bucket must exist prior to configuring the backend.",
-          "data": null
-        },
-        {
-          "path": "/terraform/language/settings/backends/http",
-          "id": "documentation.backends.http",
-          "title": "http",
-          "description": "stores the state using a simple REST client. State will be fetched via GET, updated via POST, and purged with DELETE. The method used for updating is configurable.",
-          "data": null
-        },
-        {
-          "path": "/terraform/language/settings/backends/kubernetes",
-          "id": "documentation.backends.kubernetes",
-          "title": "Kubernetes",
-          "description": "stores the state in a Kubernetes secret.",
-          "data": null
-        },
-        {
-          "path": "/terraform/language/settings/backends/oss",
-          "id": "documentation.backends.oss",
-          "title": "oss",
-          "description": "stores the state as a given key in a given bucket on Stores Alibaba Cloud OSS.",
-          "data": null
-        },
-        {
-          "path": "/terraform/language/settings/backends/pg",
-          "id": "documentation.backends.pg",
-          "title": "pg",
-          "description": "stores the state in a Postgres database version 10 or newer.",
-          "data": null
-        },
-        {
-          "path": "/terraform/language/settings/backends/s3",
-          "id": "documentation.backends.s3",
-          "title": "s3",
-          "description": "stores the state as a given key in a given bucket on Amazon S3.",
           "data": null
         }
       ]
