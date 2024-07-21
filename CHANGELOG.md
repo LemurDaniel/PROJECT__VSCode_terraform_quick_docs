@@ -1,3 +1,13 @@
+## [0.0.84]
+
+### Update
+
+- Add new partner-provider [authsignal/authsignal](https://github.com/authsignal/terraform-provider-authsignal)
+- Add new partner-provider [Files-com/files](https://github.com/Files-com/terraform-provider-files)
+- Add new partner-provider [render-oss/render](https://github.com/render-oss/terraform-provider-render)
+- Deleted partner-provider [mariadb-corporation/skysql](https://github.com/mariadb-corporation/terraform-provider-skysql)
+- Deleted partner-provider [mariadb-corporation/skysql-beta](https://github.com/mariadb-corporation/terraform-provider-skysql-beta)
+
 ## [0.0.83]
 
 ### Fix
