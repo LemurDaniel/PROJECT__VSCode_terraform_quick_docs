@@ -1,3 +1,11 @@
+## [0.0.85]
+
+### Update
+
+- Add new partner-provider [catchpoint/catchpoint](https://github.com/catchpoint/terraform-provider-catchpoint)
+- Add new partner-provider [skysqlinc/skysql](https://github.com/skysqlinc/terraform-provider-skysql)
+- Add new partner-provider [skysqlinc/skysql-beta](https://github.com/skysqlinc/terraform-provider-skysql-beta)
+
 ## [0.0.84]
 
 ### Update
