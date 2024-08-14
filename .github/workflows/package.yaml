@@ -2,13 +2,13 @@ name: Package or Publish to Marketplace
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - master
-    paths:
-      - "server/**"
-      - "client/**"
-      - "package.json"
+  # push:
+  #   branches:
+  #     - master
+  #   paths:
+  #     - "server/**"
+  #     - "client/**"
+  #     - "package.json"
   pull_request:
     branches:
       - master

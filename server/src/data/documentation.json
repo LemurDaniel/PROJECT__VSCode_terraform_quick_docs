@@ -1097,9 +1097,19 @@
               "id": "documentation.functions.filesystem_functions.templatefile",
               "title": "templatefile",
               "syntax": [
-                "templatefile(path)"
+                "templatefile(path, object)"
               ],
               "description": "reads a terraform template file.",
+              "full": []
+            },
+            {
+              "path": "/terraform/language/functions/templatestring",
+              "id": "documentation.functions.filesystem_functions.templatestring",
+              "title": "templatestring",
+              "syntax": [
+                "templatestring(string, object)"
+              ],
+              "description": "reads a terraform template string.",
               "full": []
             }
           ]
