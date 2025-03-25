@@ -1,3 +1,40 @@
+## [0.0.86]
+
+### Update
+
+- Add new official-provider [hashicorp/assert](https://github.com/hashicorp/terraform-provider-assert)
+- Add new official-provider [hashicorp/tfmigrate](https://github.com/hashicorp/terraform-provider-tfmigrate)
+- Add new partner-provider [Aembit/aembit](https://github.com/Aembit/terraform-provider-aembit)
+- Add new partner-provider [nullstone-io/awsex](https://github.com/nullstone-io/terraform-provider-awsex)
+- Add new partner-provider [cisco-en-programmability/catalystcenter](https://github.com/cisco-en-programmability/terraform-provider-catalystcenter)
+- Add new partner-provider [coder/coderd](https://github.com/coder/terraform-provider-coderd)
+- Add new partner-provider [conduktor/conduktor](https://github.com/conduktor/terraform-provider-conduktor)
+- Add new partner-provider [CrowdStrike/crowdstrike](https://github.com/CrowdStrike/terraform-provider-crowdstrike)
+- Add new partner-provider [jfrog/distribution](https://github.com/jfrog/terraform-provider-distribution)
+- Add new partner-provider [cisco-en-programmability/dnacenter](https://github.com/cisco-en-programmability/terraform-provider-dnacenter)
+- Add new partner-provider [coder/envbuilder](https://github.com/coder/terraform-provider-envbuilder)
+- Add new partner-provider [microsoft/fabric](https://github.com/microsoft/terraform-provider-fabric)
+- Add new partner-provider [fortinetdev/fmgdevice](https://github.com/fortinetdev/terraform-provider-fmgdevice)
+- Add new partner-provider [fortinetdev/fortipam](https://github.com/fortinetdev/terraform-provider-fortipam)
+- Add new partner-provider [fortinetdev/fortitokencloud](https://github.com/fortinetdev/terraform-provider-fortitokencloud)
+- Add new partner-provider [vmware/hcx](https://github.com/vmware/terraform-provider-hcx)
+- Add new partner-provider [illumio/illumio-cloudsecure](https://github.com/illumio/terraform-provider-illumio-cloudsecure)
+- Add new partner-provider [intel/intelcloud](https://github.com/intel/terraform-provider-intelcloud)
+- Add new partner-provider [CiscoDevNet/meraki](https://github.com/CiscoDevNet/terraform-provider-meraki)
+- Add new partner-provider [MagaluCloud/mgc](https://github.com/MagaluCloud/terraform-provider-mgc)
+- Add new partner-provider [jfrog/mission-control](https://github.com/jfrog/terraform-provider-mission-control)
+- Add new partner-provider [Juniper/mist](https://github.com/Juniper/terraform-provider-mist)
+- Add new partner-provider [jfrog/myjfrog](https://github.com/jfrog/terraform-provider-myjfrog)
+- Add new partner-provider [netlify/netlify](https://github.com/netlify/terraform-provider-netlify)
+- Add new partner-provider [UpCloudLtd/objsto](https://github.com/UpCloudLtd/terraform-provider-objsto)
+- Add new partner-provider [SolaceProducts/solacebroker](https://github.com/SolaceProducts/terraform-provider-solacebroker)
+- Add new partner-provider [SolaceProducts/solacebrokerappliance](https://github.com/SolaceProducts/terraform-provider-solacebrokerappliance)
+- Add new partner-provider [uptime-com/uptime](https://github.com/uptime-com/terraform-provider-uptime)
+- Add new partner-provider [verge-io/vergeio](https://github.com/verge-io/terraform-provider-vergeio)
+- Deleted partner-provider [couchbasecloud/couchbasecapella](https://github.com/couchbasecloud/terraform-provider-couchbasecapella)
+- Deleted partner-provider [PureStorage-OpenConnect/fusion](https://github.com/PureStorage-OpenConnect/terraform-provider-fusion)
+- Deleted partner-provider [harness/harness](https://github.com/harness/terraform-provider-harness)
+
 ## [0.0.85]
 
 ### Update
