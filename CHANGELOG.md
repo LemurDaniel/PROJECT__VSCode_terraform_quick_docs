@@ -1,3 +1,12 @@
+## [0.0.87]
+
+### Update
+
+- Add documentation for:
+    - [ephemeralasnull(value)](https://developer.hashicorp.com/terraform/language/functions/ephemeralasnull)
+    - [terraform-applying](https://developer.hashicorp.com/terraform/language/functions/terraform-applying)
+    - [ephemeral](https://developer.hashicorp.com/terraform/language/resources/ephemeral)
+
 ## [0.0.86]
 
 ### Update

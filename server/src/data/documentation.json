@@ -181,6 +181,16 @@
               ],
               "description": "produces a string containing Terraform language expression syntax.",
               "full": []
+            },
+            {
+              "path": "/terraform/language/functions/terraform-applying",
+              "id": "documentation.functions.core_provider_functions.applying",
+              "title": "applying",
+              "syntax": [
+                "terraform.applying"
+              ],
+              "description": "returns true during terraform apply.",
+              "full": []
             }
           ]
         },
@@ -1438,6 +1448,16 @@
               "full": []
             },
             {
+              "path": "/terraform/language/functions/ephemeralasnull",
+              "id": "documentation.functions.type_conversion_functions.ephemeralasnull",
+              "title": "ephemeralasnull",
+              "syntax": [
+                "ephemeralasnull(ephemeral value)"
+              ],
+              "description": "Nullifies any ephemeral value in an object.",
+              "full": []
+            },
+            {
               "seperator": "Sensitive Data"
             },
             {
@@ -1653,6 +1673,13 @@
           "id": "documentation.configuration.import.for_each",
           "title": "Import-Blocks - For Each",
           "description": "import existing infrastructure with for each loops",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/resources/ephemeral/reference#complete-configuration",
+          "id": "documentation.configuration.ephemeral_blocks",
+          "title": "Ephemeral-Blocks",
+          "description": "reference for ephemeral blocks in Terraform",
           "data": null
         },
         {
