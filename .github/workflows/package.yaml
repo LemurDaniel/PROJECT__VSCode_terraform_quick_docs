@@ -41,7 +41,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: '16.x'
+          node-version: '18.x'
   
       - name: Install dependencies
         run: | 
@@ -53,13 +53,13 @@ jobs:
           npm rebuild --prefix ./server --platform=darwin --arch=arm64 sharp
 
       - name: Package extension
-        if: github.event_name == 'pull_request'
+        if: inputs.skip_publish == true || github.event_name == 'pull_request'
         run: |
           npm install -g @vscode/vsce
           vsce package
 
       - uses: actions/upload-artifact@v4
-        if: github.event_name == 'pull_request'
+        if: inputs.skip_publish == true || github.event_name == 'pull_request'
         with:
           name: Upload Extension package
           path: |
