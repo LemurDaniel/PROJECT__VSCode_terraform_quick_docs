@@ -2,6 +2,13 @@ name: Package or Publish to Marketplace
 
 on:
   workflow_dispatch:
+    inputs:
+      skip_publish:
+        description: 'Skip publishing to the Marketplace'
+        required: false
+        type: boolean
+        default: true
+
   # push:
   #   branches:
   #     - master
@@ -48,7 +55,7 @@ jobs:
       - name: Package extension
         if: github.event_name == 'pull_request'
         run: |
-          npm install -g vsce
+          npm install -g @vscode/vsce
           vsce package
 
       - uses: actions/upload-artifact@v4
@@ -59,8 +66,8 @@ jobs:
             ./*.vsix
           
       - name: Publish extension to Marketplace
-        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
+        if: inputs.skip_publish == false && github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
         run: |
-          npm install -g vsce
+          npm install -g @vscode/vsce
           vsce publish --pat ${{ env.PAT }}
     
