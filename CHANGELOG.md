@@ -1,3 +1,9 @@
+## [0.0.88]
+
+### Update
+
+- Add new partner-provider [snowflakedb/snowflake](https://github.com/snowflakedb/terraform-provider-snowflake)
+
 ## [0.0.87]
 
 ### Update
