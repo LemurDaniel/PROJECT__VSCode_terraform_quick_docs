@@ -1,3 +1,10 @@
+## [0.0.89]
+
+### Update
+
+- Add new partner-provider [artie-labs/artie](https://github.com/artie-labs/terraform-provider-artie)
+- Deleted partner-provider [Snowflake-Labs/snowflake](https://github.com/Snowflake-Labs/terraform-provider-snowflake)
+
 ## [0.0.88]
 
 ### Update
