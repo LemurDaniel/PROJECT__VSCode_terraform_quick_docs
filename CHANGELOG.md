@@ -1,3 +1,9 @@
+## [0.0.90]
+
+### Update
+
+- Add new partner-provider [infobloxopen/bloxone](https://github.com/infobloxopen/terraform-provider-bloxone)
+
 ## [0.0.89]
 
 ### Update
