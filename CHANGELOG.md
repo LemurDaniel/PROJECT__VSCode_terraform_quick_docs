@@ -1,3 +1,10 @@
+## [0.0.91]
+
+### Update
+
+- Add new partner-provider [CiscoDevNet/sccfm](https://github.com/CiscoDevNet/terraform-provider-sccfm)
+- Deleted partner-provider [CiscoDevNet/cdo](https://github.com/CiscoDevNet/terraform-provider-cdo)
+
 ## [0.0.90]
 
 ### Update
