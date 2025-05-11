@@ -1,3 +1,11 @@
+## [0.0.92]
+
+### Update
+
+- Add new partner-provider [ansible/aap](https://github.com/ansible/terraform-provider-aap)
+- Add new partner-provider [ansible/ansible](https://github.com/ansible/terraform-provider-ansible)
+- Add new partner-provider [ubikasec/ubika](https://github.com/ubikasec/terraform-provider-ubika)
+
 ## [0.0.91]
 
 ### Update
