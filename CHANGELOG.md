@@ -1,3 +1,12 @@
+## [0.0.93]
+
+### Update
+
+- Add new partner-provider [vmware/vsphere](https://github.com/vmware/terraform-provider-vsphere)
+- Deleted partner-provider [ansible/aap](https://github.com/ansible/terraform-provider-aap)
+- Deleted partner-provider [ansible/ansible](https://github.com/ansible/terraform-provider-ansible)
+- Deleted partner-provider [hashicorp/vsphere](https://github.com/hashicorp/terraform-provider-vsphere)
+
 ## [0.0.92]
 
 ### Update
