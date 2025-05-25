@@ -2976,6 +2976,18 @@
     }
   },
   {
+    "name": "ndfc",
+    "namespace": "CiscoDevNet",
+    "identifier": "CiscoDevNet/ndfc",
+    "tier": "partner",
+    "source": "https://github.com/CiscoDevNet/terraform-provider-ndfc",
+    "logoData": {
+      "url": "https://avatars3.githubusercontent.com/CiscoDevNet",
+      "encoding": "data:image/png;base64,",
+      "base64": "iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAACXBIWXMAAAsTAAALEwEAmpwYAAAHIUlEQVR4nO1X+1NTdxbPfeTm5t6bx83r5iY3D/K4oQgJb8NLFFAhvOQhKCIkBnlIIChgSLDqoHaqUG1pp93dWapFW8QuhZl2LbNdV7u2Y1mqrstu63Tb2V/3z9h7bwKtrnWmM8zYH/KZz9y558z3e87ne8753kxEoiSSSCKJJJJIYlMAAM8zXwwAkH9wUgQ1QMLknoI4EHxBqgQdhuIajGI2TL13N8HYX4wgDjBGECanpfKAvbGXKWvWF3BqHOadrVZfh60+qM0qkQpaN6GtgAh8gsA6wR8BrKdBZEpVWh5hcpgqWrgXhT2de+K01bi9QeMp4iSSbOZPZIEJAgJFz+ImzSUfBaOt8pSXEDkpYxwwisnMLKqiSFcWhGKbkkMEAQiNe2g8M06T3GNj3E7WzbJul8udmupOfSnDnZ6t09Ki9TGSag2egQu63DLbnsPu0Kts62Bq+4ixtD5n7B3Owy8DoURw3AERWRDuESs4ZoqJJ4l7EEUOTFifcW4JJCsyDBYbhngah3axA3VFoaamIy2tR9oODHR0DHT4+/u7I3nZxXwaEOZaC4kRU8VejbtQnZZjKW/WZZcy2xuVTre9oZtkswRZsNA1EaJvRs0jKBPGXIOEawgzDeGmMG4+mqApLHNEpMbqDTG/egAiqDClqzb3hC8rUu2JFKa2Kggt5yekZEN5ONAVC3SNHe2LdfgndPbiAuf+/pYxSq8WplWUX1IWPvmKycbiTCEsIbgrIrQPUGwJythekUgsyQ7iu05j22LSoihWdhZxVEnMXrLynLIsFqdq1xnEmCfoAH8iie+L+HDl3ET72ql99ydaHr0e+ibmX1ArGBxVnO289c6ZB5dn7y3MrUyc+0+up7PC4V8M/7emuJHbiMDimWvXr376BUFI2dq3bOUnhZAcoJS6BdOeTwAxxvRep8a/VR17QPavkuEf0MIRWVarOfq9cWiVOfaACf9Nf/IxmtfCb1wfx4QsEIT8viu9dQsWKteizdm3+9RvYo8PVJ5BxNKJwHJP1bRardNRZrXchoGYCqcnmu6Eqq/xpcrP+/abtZ7QIPeeUT+5I/q9uWhAODZMNc8qD94QwagtfDUzcgMkzRBphMgUAFWBUiVE6GRZ7czImjS9FlBQAKb4vwYKsgL17x+qnePGmTOlqOzE4SWOWtJ0KrDcXvG6cLFQEQjHP12t7RdeubBmMbHR0ZF//uNRRkY658xuvrh77OGO4YdUXic/AP45ou8jEYLiXXPM4DyKYZAYBWHJRlXQ9CrdxcdiNl/wPP1jFR9+qK3m/a6m6zCExO9/oPH86b7PaHVqZ8VHwcq/dgUW63puyTwj8d3p7tLZq3+fPn/p1tLy5bd/Hw+Ut++N0uMr1oGbspcfgfkdRHCWGFoCEIwIXCGOr6Qc/yT/7OfWlik+JcQfHi30UX94LE7Lf6p9T8hiLR94M+fFsAQQPPt2TPf5/qSRs+2lS4GG5YaWSzX7Z8i0QHw1IsF+9/b8gzsrDz//uqmuMR6lZnC6fOoW5PBax5YyLn6tePku1ncDkODEoffkI3fxlmlX/4yldnhDltRbxVz9AU0v/llZ3ISaqDlKMy8CxJypV24ZrP6ibdssjqi7qj/z+SaFdYmPCiSEOOzrvvfxww8vf6xRaeP+qYtTy1/eVapURlp/bHZxy8Ka7Og1rlp4cI4IfrB+y4QgkNDEbVWGRU5WyXNkwQx1xcrcqS241FEx3V36aaT2Xx5rEwyinW0393fO53kD3pKgt+iIncmNb7MSpntvfjUaPiFk4YO+Njl5+/ZtrV7Pp6TNrneXLNMLIkSq6H9PHl6WFHSjBV3SkgHMtT0eAS2p1N/8TpL5vGrBZv1MoHLlQnD11UP3w9V/zDHxY4thmva2xVDvvaEjq+Gelan+7/Z6Q5wfhviiTje+VpqxfcOcnJy6+ee/aHRUPChqdZhj5yEFqT0xo//tffW5+8rRVXL834TvXEJWcRUvK0eoFgyLngkI1GjkBgVOKXBdPI0gF5ThegVukOM0gdMqwigRExuHkUkIGPwxHKlS0bQhXrk4QEQCQBCo0MI6I6yjQTkNEEYAVSaCoxhEmwAEfbYg4biwUWPTkzaDiiejcVp0aVoZq5XZNcoUNWlTkykGhc2osDGkw0iyBhXrpFgX6bSrnRTtoPR2A+O02ey01YZZWTTFyVHqSEVtLq5mqMUuNthg2gYbeYoZu9jMQpRTonOIOdPikDhTEYp+qoX8uXFU3l4WOVg+drA82s6xbIzjzrTIzvThyq2R8qLYrsKYPz/m3xo7sDXWujXa6I2GysfGs4aHcobra0Z9e4brW0eGR6MtR2OWnpihP/oEQzF1cFzZOa70C+yMKf0x2d6oumqMDMbUoQgVOa2q3hPvzs9W7tcG4Bcxgbgp/NFYd/yyOBvbX/Txk0giiSSSSCKJJDYf/wNXd6RhWBhI2QAAAABJRU5ErkJggg=="
+    }
+  },
+  {
     "name": "netactuate",
     "namespace": "netactuate",
     "identifier": "netactuate/netactuate",

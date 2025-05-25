@@ -1,3 +1,9 @@
+## [0.0.94]
+
+### Update
+
+- Add new partner-provider [CiscoDevNet/ndfc](https://github.com/CiscoDevNet/terraform-provider-ndfc)
+
 ## [0.0.93]
 
 ### Update
