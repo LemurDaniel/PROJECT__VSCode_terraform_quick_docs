@@ -1,3 +1,9 @@
+## [0.0.95]
+
+### Update
+
+- Deleted partner-provider [UpCloudLtd/upcloud](https://github.com/UpCloudLtd/terraform-provider-upcloud)
+
 ## [0.0.94]
 
 ### Update
