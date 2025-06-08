@@ -1,3 +1,12 @@
+## [0.0.96]
+
+### Update
+
+- Add new partner-provider [ansible/aap](https://github.com/ansible/terraform-provider-aap)
+- Add new partner-provider [UpCloudLtd/upcloud](https://github.com/UpCloudLtd/terraform-provider-upcloud)
+- Deleted official-provider [hashicorp/opc](https://github.com/hashicorp/terraform-provider-opc)
+- Deleted official-provider [hashicorp/oraclepaas](https://github.com/hashicorp/terraform-provider-oraclepaas)
+
 ## [0.0.95]
 
 ### Update
