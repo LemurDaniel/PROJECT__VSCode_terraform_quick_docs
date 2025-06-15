@@ -1,3 +1,9 @@
+## [0.0.97]
+
+### Update
+
+- Deleted official-provider [hashicorp/assert](https://github.com/hashicorp/terraform-provider-assert)
+
 ## [0.0.96]
 
 ### Update
