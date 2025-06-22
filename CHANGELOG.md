@@ -1,3 +1,10 @@
+## [0.0.98]
+
+### Update
+
+- Add new official-provider [IBM/ode](https://github.com/IBM/terraform-provider-ode)
+- Add new partner-provider [vmware/vcfa](https://github.com/vmware/terraform-provider-vcfa)
+
 ## [0.0.97]
 
 ### Update
