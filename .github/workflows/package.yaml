@@ -41,7 +41,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: '18.x'
+          node-version: '20.x'
   
       # - name: Install dependencies
       #   run: | 
@@ -55,8 +55,8 @@ jobs:
       - name: Package extension
         if: inputs.skip_publish == true || github.event_name == 'pull_request'
         run: |
-          npm install -g @vscode/vsce@2.15.0
-          vsce package
+          npm install -g @vscode/vsce@3.5.0
+          npx vsce package
 
       - uses: actions/upload-artifact@v4
         if: inputs.skip_publish == true || github.event_name == 'pull_request'
@@ -68,6 +68,6 @@ jobs:
       - name: Publish extension to Marketplace
         if: inputs.skip_publish == false && github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
         run: |
-          npm install -g @vscode/vsce@2.15.0
-          vsce publish --pat ${{ env.PAT }}
+          npm install -g @vscode/vsce@3.5.0
+          npx vsce publish --pat ${{ env.PAT }}
     
