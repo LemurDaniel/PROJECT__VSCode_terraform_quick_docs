@@ -45,9 +45,13 @@ jobs:
   
 
       - name: Install vsce
+        shell: pwsh
         run: |
           npm install -g @vscode/vsce@3.5.0
-          npm explore -g @vscode/vsce -- npm install css-select@5.2.0
+
+          # Workaround for css-select@5.2.1 issue:
+          npm install css-select@5.2.0 --prefix "$(npm root -g)/@vscode/vsce"
+          
           npx vsce --version
 
       - name: Install dependencies
