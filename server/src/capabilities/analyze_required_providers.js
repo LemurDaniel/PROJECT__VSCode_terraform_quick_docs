@@ -11,9 +11,6 @@ function* readDirectory(fspath, recursive, recursiondepth = 0) {
     if (recursiondepth >= MAX_RECURSION_DEPTH) return
 
     fspath = fspath.replace(/[\/\\]+/g, '/')
-    //Testing long execution blocking main thread
-    //let num = 0
-    //while (num <= 1000000000) { num++ }
 
     const directoryQueue = []
     for (const filename of fs.readdirSync(fspath)) {
