@@ -56,8 +56,8 @@ jobs:
         if: inputs.skip_publish == true || github.event_name == 'pull_request'
         run: |
           npm install -g @vscode/vsce@3.5.0
-          npm explore -g @vscode/vsce -- npm install cheerio@1.0.0-rc.1
-          npx vsce package
+          npm explore -g @vscode/vsce@3.5.0 -- npm install cheerio@1.0.0-rc.1
+          // npx vsce package
 
       - uses: actions/upload-artifact@v4
         if: inputs.skip_publish == true || github.event_name == 'pull_request'
@@ -70,6 +70,6 @@ jobs:
         if: inputs.skip_publish == false && github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
         run: |
           npm install -g @vscode/vsce@3.5.0
-          npm explore -g @vscode/vsce -- npm install cheerio@1.0.0-rc.1
+          npm explore -g @vscode/vsce@3.5.0 -- npm install cheerio@1.0.0-rc.1
           npx vsce publish --pat ${{ env.PAT }}
     
