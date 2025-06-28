@@ -227,7 +227,7 @@ class Registry {
         }
 
         if (null == logoUrl || !Registry.#enableSharp) {
-            return logoData
+            return this.getTerraformLogoData()
         }
 
         if (null != Settings.clientConnection) {
