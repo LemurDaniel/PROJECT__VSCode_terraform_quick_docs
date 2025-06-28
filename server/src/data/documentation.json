@@ -47,6 +47,12 @@
           "title": "terraform plan",
           "description": "plan infrastructure with terraform"
         },
+                {
+          "path": "/terraform/cli/commands/plan#planning-options",
+          "id": "documentation.cli.plan.deferral",
+          "title": "terraform plan -allow-deferral",
+          "description": "allow defered actions in the plan"
+        },
         {
           "path": "/terraform/cli/commands/apply",
           "id": "documentation.cli.apply",

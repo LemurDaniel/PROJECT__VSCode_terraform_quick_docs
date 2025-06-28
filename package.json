@@ -4,13 +4,13 @@
     "description": "Access Terraform Provider and Function Documentations by hovering over Resources.",
     "author": "LemurDaniel",
     "publisher": "LemurDaniel",
-    "license": "GPL-3.0",
+    "license": "MIT",
     "icon": ".resources/simple_logo.png",
     "repository": {
         "type": "git",
         "url": "https://github.com/LemurDaniel/PROJECT__VSCode_terraform_quick_docs"
     },
-    "version": "0.0.98",
+    "version": "0.0.99",
     "engines": {
         "vscode": "^1.70.0"
     },
