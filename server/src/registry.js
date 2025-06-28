@@ -269,10 +269,7 @@ class Registry {
 
         } catch (err) {
             if (err.message.includes('Cannot find module')) {
-                console.log('######################################')
-                console.log("### Sharp didn't install correctly ###")
-                console.log("###  Setting enableSharp to false  ###")
-                console.log('######################################')
+                console.log("###  Setting enableSharp to false")
                 Registry.#enableSharp = false
             }
             console.log(err)

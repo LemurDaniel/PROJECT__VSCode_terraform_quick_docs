@@ -46,7 +46,8 @@ jobs:
 
       - name: Install vsce
         run: |
-          npm install --save-dev @vscode/vsce
+          npm install -g @vscode/vsce@3.5.0
+          npm explore -g @vscode/vsce -- npm install cheerio@1.0.0
           npx vsce --version
 
       - name: Install dependencies
