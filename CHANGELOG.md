@@ -1,3 +1,9 @@
+## [0.0.100]
+
+### Update
+
+- Add new partner-provider [IBM/turbonomic](https://github.com/IBM/terraform-provider-turbonomic)
+
 ## [0.0.99]
 
 - Add --allow-deferal to documentation fo terraform cli
