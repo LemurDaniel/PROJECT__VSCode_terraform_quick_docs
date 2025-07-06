@@ -1,3 +1,11 @@
+## [0.0.101]
+
+### Update
+
+- Add new partner-provider [coreweave/coreweave](https://github.com/coreweave/terraform-provider-coreweave)
+- Deleted official-provider [hashicorp/googleworkspace](https://github.com/hashicorp/terraform-provider-googleworkspace)
+- Deleted official-provider [hashicorp/salesforce](https://github.com/hashicorp/terraform-provider-salesforce)
+
 ## [0.0.100]
 
 ### Update
