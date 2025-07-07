@@ -1,3 +1,9 @@
+## [0.0.102]
+
+### Fix
+
+- Fix for builtin providers not found
+
 ## [0.0.101]
 
 ### Update
@@ -13,6 +19,8 @@
 - Add new partner-provider [IBM/turbonomic](https://github.com/IBM/terraform-provider-turbonomic)
 
 ## [0.0.99]
+
+### Update
 
 - Add --allow-deferal to documentation fo terraform cli
 
