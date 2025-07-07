@@ -347,7 +347,7 @@ class Registry {
         const endpoint = null != version && !Settings.ignoreVersion ? `v1/providers/${identifier}/${version}` : `v1/providers/${identifier}`
         const providerInfo = await this.get(endpoint, 'provider', 12 * 60 * 60)
 
-        if (null == providerInfo || providerInfo.errors?.at(0)?.toLowerCase() == 'not found') {
+        if (null == providerInfo || providerInfo.errors?.at(0)?.includes('not found')) {
             throw new Registry.ProviderNotFoundError({
                 identifier: identifier,
                 namespace: identifier.split(/[\/]+/)[0],

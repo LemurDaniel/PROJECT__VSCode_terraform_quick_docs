@@ -117,6 +117,7 @@ async function analyzeRequiredProviders(fsPath, recursive = true) {
                 if (requiredProviders) {
                     for (const [provider, value] of Object.entries(requiredProviders.attributes)) {
                         if (!value.attributes?.source?.value) continue
+                        if (value.attributes.source.value.includes('builtin')) continue // skip builtin providers
                         const requiredDefinition = {
                             source: value.attributes?.source?.value,
                             version: value.attributes?.version?.value
