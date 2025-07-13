@@ -1,3 +1,11 @@
+## [0.0.103]
+
+### Update
+
+- Add new official-provider [IBM-Cloud/ibm](https://github.com/IBM-Cloud/terraform-provider-ibm)
+- Add new partner-provider [mittwald/mittwald](https://github.com/mittwald/terraform-provider-mittwald)
+- Add new partner-provider [saviynt/saviynt](https://github.com/saviynt/terraform-provider-saviynt)
+
 ## [0.0.102]
 
 ### Fix
