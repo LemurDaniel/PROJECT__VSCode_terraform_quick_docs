@@ -1,3 +1,9 @@
+## [0.0.104]
+
+### Update
+
+- Add new partner-provider [PaloAltoNetworks/prismasase-vmware](https://github.com/PaloAltoNetworks/terraform-provider-prismasase-vmware)
+
 ## [0.0.103]
 
 ### Update
