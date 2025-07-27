@@ -312,6 +312,18 @@
     }
   },
   {
+    "name": "ode",
+    "namespace": "IBM",
+    "identifier": "IBM/ode",
+    "tier": "official",
+    "source": "https://github.com/IBM/terraform-provider-ode",
+    "logoData": {
+      "url": "https://registry.terraform.io//images/providers/terraform.svg",
+      "encoding": "data:image/png;base64,",
+      "base64": "iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAACqklEQVR4nO2ZT2jTUBzHMx2CitPD2EFRcEg1GQxEJu3eSyOi6GE3CQiT2ialJ2FH8bQdhzePg50KLiEnYd48eHIeBP8dFE/SvMQi1IuCQ8HG31uWLWr/JEvkJfA+8OihIe/7afp+7/daQeBwOBxOVtGwc7Mut0+zzpEYDZNVkPmhIefB/MXOGOs8e2ZbxKOjhpxPNUwai4K3j3Wu2IRFdoSw80LHLmKdLRa9RPxBuiBkNZB7inXGSPQXCb5u5FsVkXuLijfKOutAhokE41apPVEt2TNpzasoT0fL4tr5tO4XSwSezge4/kkdtaaSzClLa5eRZLzFkrmalsceRLaKwU94XWko7nicuYqSdQbCWzC87cFWJFTdvmiILKiqt3/QHFenm4eRaCwhydwMSWRHJFQQ3lVl+9q/d/dG0DmzAhLtvwTSF6khV4ddfTOJyM5AZL2GW5P0vqUpcwZLxkYfgfRFKFXZOQm7ejOxiL//vFcKD8dBojtEIn2RAB2RSxDmdRIRek1pujkRQeL/iVBonwVhKvDJfs61SMBt5eMxqErLGu2M8ywSUMdOAdbP49yL7OKNwBN6nqYI7Cv3GYgIwtwF9xCsnbtwZvmaUMSFqtaAFcnm3OPvE86cNts6TlsUEPoVT8T4jkVzefbsoyNMBAJ214jfONJuGOSeRRFBorkuF6xs/DYQXuxbjSOc82l107GjgpDdSwTWwUtZNMuss/9B76pFOrRxnL/eGYP3l6DCvfFFjA70WAuqYA1sKJkwuPySV5psl2mZliTrwJVJ6yjrvH2J1ms5K6xzDiXqhsg651C4SNbgIllDk8kNaEtauRehqEX74KDGMTciAZWifcI/55NurkUCaOMIT2cj9yI+cOii53zktHMu4kP/8dKRe4d1Dg6Hw+Gkwm8o6I37BCc6WAAAAABJRU5ErkJggg=="
+    }
+  },
+  {
     "name": "random",
     "namespace": "hashicorp",
     "identifier": "hashicorp/random",
@@ -377,6 +389,18 @@
     "identifier": "hashicorp/tls",
     "tier": "official",
     "source": "https://github.com/hashicorp/terraform-provider-tls",
+    "logoData": {
+      "url": "https://registry.terraform.io//images/providers/terraform.svg",
+      "encoding": "data:image/png;base64,",
+      "base64": "iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAACqklEQVR4nO2ZT2jTUBzHMx2CitPD2EFRcEg1GQxEJu3eSyOi6GE3CQiT2ialJ2FH8bQdhzePg50KLiEnYd48eHIeBP8dFE/SvMQi1IuCQ8HG31uWLWr/JEvkJfA+8OihIe/7afp+7/daQeBwOBxOVtGwc7Mut0+zzpEYDZNVkPmhIefB/MXOGOs8e2ZbxKOjhpxPNUwai4K3j3Wu2IRFdoSw80LHLmKdLRa9RPxBuiBkNZB7inXGSPQXCb5u5FsVkXuLijfKOutAhokE41apPVEt2TNpzasoT0fL4tr5tO4XSwSezge4/kkdtaaSzClLa5eRZLzFkrmalsceRLaKwU94XWko7nicuYqSdQbCWzC87cFWJFTdvmiILKiqt3/QHFenm4eRaCwhydwMSWRHJFQQ3lVl+9q/d/dG0DmzAhLtvwTSF6khV4ddfTOJyM5AZL2GW5P0vqUpcwZLxkYfgfRFKFXZOQm7ejOxiL//vFcKD8dBojtEIn2RAB2RSxDmdRIRek1pujkRQeL/iVBonwVhKvDJfs61SMBt5eMxqErLGu2M8ywSUMdOAdbP49yL7OKNwBN6nqYI7Cv3GYgIwtwF9xCsnbtwZvmaUMSFqtaAFcnm3OPvE86cNts6TlsUEPoVT8T4jkVzefbsoyNMBAJ214jfONJuGOSeRRFBorkuF6xs/DYQXuxbjSOc82l107GjgpDdSwTWwUtZNMuss/9B76pFOrRxnL/eGYP3l6DCvfFFjA70WAuqYA1sKJkwuPySV5psl2mZliTrwJVJ6yjrvH2J1ms5K6xzDiXqhsg651C4SNbgIllDk8kNaEtauRehqEX74KDGMTciAZWifcI/55NurkUCaOMIT2cj9yI+cOii53zktHMu4kP/8dKRe4d1Dg6Hw+Gkwm8o6I37BCc6WAAAAABJRU5ErkJggg=="
+    }
+  },
+  {
+    "name": "turbonomic",
+    "namespace": "IBM",
+    "identifier": "IBM/turbonomic",
+    "tier": "official",
+    "source": "https://github.com/IBM/terraform-provider-turbonomic",
     "logoData": {
       "url": "https://registry.terraform.io//images/providers/terraform.svg",
       "encoding": "data:image/png;base64,",
@@ -1205,6 +1229,18 @@
     "identifier": "ClickHouse/clickhouse",
     "tier": "partner",
     "source": "https://github.com/ClickHouse/terraform-provider-clickhouse",
+    "logoData": {
+      "url": "https://registry.terraform.io//images/providers/terraform.svg",
+      "encoding": "data:image/png;base64,",
+      "base64": "iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAACqklEQVR4nO2ZT2jTUBzHMx2CitPD2EFRcEg1GQxEJu3eSyOi6GE3CQiT2ialJ2FH8bQdhzePg50KLiEnYd48eHIeBP8dFE/SvMQi1IuCQ8HG31uWLWr/JEvkJfA+8OihIe/7afp+7/daQeBwOBxOVtGwc7Mut0+zzpEYDZNVkPmhIefB/MXOGOs8e2ZbxKOjhpxPNUwai4K3j3Wu2IRFdoSw80LHLmKdLRa9RPxBuiBkNZB7inXGSPQXCb5u5FsVkXuLijfKOutAhokE41apPVEt2TNpzasoT0fL4tr5tO4XSwSezge4/kkdtaaSzClLa5eRZLzFkrmalsceRLaKwU94XWko7nicuYqSdQbCWzC87cFWJFTdvmiILKiqt3/QHFenm4eRaCwhydwMSWRHJFQQ3lVl+9q/d/dG0DmzAhLtvwTSF6khV4ddfTOJyM5AZL2GW5P0vqUpcwZLxkYfgfRFKFXZOQm7ejOxiL//vFcKD8dBojtEIn2RAB2RSxDmdRIRek1pujkRQeL/iVBonwVhKvDJfs61SMBt5eMxqErLGu2M8ywSUMdOAdbP49yL7OKNwBN6nqYI7Cv3GYgIwtwF9xCsnbtwZvmaUMSFqtaAFcnm3OPvE86cNts6TlsUEPoVT8T4jkVzefbsoyNMBAJ214jfONJuGOSeRRFBorkuF6xs/DYQXuxbjSOc82l107GjgpDdSwTWwUtZNMuss/9B76pFOrRxnL/eGYP3l6DCvfFFjA70WAuqYA1sKJkwuPySV5psl2mZliTrwJVJ6yjrvH2J1ms5K6xzDiXqhsg651C4SNbgIllDk8kNaEtauRehqEX74KDGMTciAZWifcI/55NurkUCaOMIT2cj9yI+cOii53zktHMu4kP/8dKRe4d1Dg6Hw+Gkwm8o6I37BCc6WAAAAABJRU5ErkJggg=="
+    }
+  },
+  {
+    "name": "clickhousedbops",
+    "namespace": "ClickHouse",
+    "identifier": "ClickHouse/clickhousedbops",
+    "tier": "partner",
+    "source": "https://github.com/ClickHouse/terraform-provider-clickhousedbops",
     "logoData": {
       "url": "https://registry.terraform.io//images/providers/terraform.svg",
       "encoding": "data:image/png;base64,",
@@ -3312,18 +3348,6 @@
     }
   },
   {
-    "name": "ode",
-    "namespace": "IBM",
-    "identifier": "IBM/ode",
-    "tier": "partner",
-    "source": "https://github.com/IBM/terraform-provider-ode",
-    "logoData": {
-      "url": "https://registry.terraform.io//images/providers/terraform.svg",
-      "encoding": "data:image/png;base64,",
-      "base64": "iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAACqklEQVR4nO2ZT2jTUBzHMx2CitPD2EFRcEg1GQxEJu3eSyOi6GE3CQiT2ialJ2FH8bQdhzePg50KLiEnYd48eHIeBP8dFE/SvMQi1IuCQ8HG31uWLWr/JEvkJfA+8OihIe/7afp+7/daQeBwOBxOVtGwc7Mut0+zzpEYDZNVkPmhIefB/MXOGOs8e2ZbxKOjhpxPNUwai4K3j3Wu2IRFdoSw80LHLmKdLRa9RPxBuiBkNZB7inXGSPQXCb5u5FsVkXuLijfKOutAhokE41apPVEt2TNpzasoT0fL4tr5tO4XSwSezge4/kkdtaaSzClLa5eRZLzFkrmalsceRLaKwU94XWko7nicuYqSdQbCWzC87cFWJFTdvmiILKiqt3/QHFenm4eRaCwhydwMSWRHJFQQ3lVl+9q/d/dG0DmzAhLtvwTSF6khV4ddfTOJyM5AZL2GW5P0vqUpcwZLxkYfgfRFKFXZOQm7ejOxiL//vFcKD8dBojtEIn2RAB2RSxDmdRIRek1pujkRQeL/iVBonwVhKvDJfs61SMBt5eMxqErLGu2M8ywSUMdOAdbP49yL7OKNwBN6nqYI7Cv3GYgIwtwF9xCsnbtwZvmaUMSFqtaAFcnm3OPvE86cNts6TlsUEPoVT8T4jkVzefbsoyNMBAJ214jfONJuGOSeRRFBorkuF6xs/DYQXuxbjSOc82l107GjgpDdSwTWwUtZNMuss/9B76pFOrRxnL/eGYP3l6DCvfFFjA70WAuqYA1sKJkwuPySV5psl2mZliTrwJVJ6yjrvH2J1ms5K6xzDiXqhsg651C4SNbgIllDk8kNaEtauRehqEX74KDGMTciAZWifcI/55NurkUCaOMIT2cj9yI+cOii53zktHMu4kP/8dKRe4d1Dg6Hw+Gkwm8o6I37BCc6WAAAAABJRU5ErkJggg=="
-    }
-  },
-  {
     "name": "okta",
     "namespace": "okta",
     "identifier": "okta/okta",
@@ -4637,18 +4661,6 @@
     "identifier": "joyent/triton",
     "tier": "partner",
     "source": "https://github.com/joyent/terraform-provider-triton",
-    "logoData": {
-      "url": "https://registry.terraform.io//images/providers/terraform.svg",
-      "encoding": "data:image/png;base64,",
-      "base64": "iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAACqklEQVR4nO2ZT2jTUBzHMx2CitPD2EFRcEg1GQxEJu3eSyOi6GE3CQiT2ialJ2FH8bQdhzePg50KLiEnYd48eHIeBP8dFE/SvMQi1IuCQ8HG31uWLWr/JEvkJfA+8OihIe/7afp+7/daQeBwOBxOVtGwc7Mut0+zzpEYDZNVkPmhIefB/MXOGOs8e2ZbxKOjhpxPNUwai4K3j3Wu2IRFdoSw80LHLmKdLRa9RPxBuiBkNZB7inXGSPQXCb5u5FsVkXuLijfKOutAhokE41apPVEt2TNpzasoT0fL4tr5tO4XSwSezge4/kkdtaaSzClLa5eRZLzFkrmalsceRLaKwU94XWko7nicuYqSdQbCWzC87cFWJFTdvmiILKiqt3/QHFenm4eRaCwhydwMSWRHJFQQ3lVl+9q/d/dG0DmzAhLtvwTSF6khV4ddfTOJyM5AZL2GW5P0vqUpcwZLxkYfgfRFKFXZOQm7ejOxiL//vFcKD8dBojtEIn2RAB2RSxDmdRIRek1pujkRQeL/iVBonwVhKvDJfs61SMBt5eMxqErLGu2M8ywSUMdOAdbP49yL7OKNwBN6nqYI7Cv3GYgIwtwF9xCsnbtwZvmaUMSFqtaAFcnm3OPvE86cNts6TlsUEPoVT8T4jkVzefbsoyNMBAJ214jfONJuGOSeRRFBorkuF6xs/DYQXuxbjSOc82l107GjgpDdSwTWwUtZNMuss/9B76pFOrRxnL/eGYP3l6DCvfFFjA70WAuqYA1sKJkwuPySV5psl2mZliTrwJVJ6yjrvH2J1ms5K6xzDiXqhsg651C4SNbgIllDk8kNaEtauRehqEX74KDGMTciAZWifcI/55NurkUCaOMIT2cj9yI+cOii53zktHMu4kP/8dKRe4d1Dg6Hw+Gkwm8o6I37BCc6WAAAAABJRU5ErkJggg=="
-    }
-  },
-  {
-    "name": "turbonomic",
-    "namespace": "IBM",
-    "identifier": "IBM/turbonomic",
-    "tier": "partner",
-    "source": "https://github.com/IBM/terraform-provider-turbonomic",
     "logoData": {
       "url": "https://registry.terraform.io//images/providers/terraform.svg",
       "encoding": "data:image/png;base64,",

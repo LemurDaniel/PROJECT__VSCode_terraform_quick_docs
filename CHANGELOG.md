@@ -1,3 +1,9 @@
+## [0.0.105]
+
+### Update
+
+- Add new partner-provider [ClickHouse/clickhousedbops](https://github.com/ClickHouse/terraform-provider-clickhousedbops)
+
 ## [0.0.104]
 
 ### Update
