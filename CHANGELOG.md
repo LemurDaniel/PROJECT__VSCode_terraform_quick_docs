@@ -1,3 +1,9 @@
+## [0.0.106]
+
+### Update
+
+- Add new partner-provider [microsoft/msgraph](https://github.com/microsoft/terraform-provider-msgraph)
+
 ## [0.0.105]
 
 ### Update
