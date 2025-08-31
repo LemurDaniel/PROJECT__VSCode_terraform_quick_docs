@@ -1,3 +1,9 @@
+## [0.0.107]
+
+### Update
+
+- Add new partner-provider [rancher/file](https://github.com/rancher/terraform-provider-file)
+
 ## [0.0.106]
 
 ### Update
