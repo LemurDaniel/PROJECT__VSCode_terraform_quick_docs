@@ -1,3 +1,9 @@
+## [0.0.108]
+
+### Update
+
+- Add new partner-provider [StackExchange/stackoverflow](https://github.com/StackExchange/terraform-provider-stackoverflow)
+
 ## [0.0.107]
 
 ### Update
