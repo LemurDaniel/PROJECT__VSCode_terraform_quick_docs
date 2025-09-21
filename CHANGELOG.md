@@ -1,3 +1,9 @@
+## [0.0.109]
+
+### Update
+
+- Add new partner-provider [groundcover-com/groundcover](https://github.com/groundcover-com/terraform-provider-groundcover)
+
 ## [0.0.108]
 
 ### Update
