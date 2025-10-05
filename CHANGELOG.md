@@ -1,3 +1,9 @@
+## [0.0.110]
+
+### Update
+
+- Add new partner-provider [fortinetdev/fortisase](https://github.com/fortinetdev/terraform-provider-fortisase)
+
 ## [0.0.109]
 
 ### Update
