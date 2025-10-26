@@ -1,3 +1,10 @@
+## [0.0.111]
+
+### Update
+
+- Add new partner-provider [criblio/criblio](https://github.com/criblio/terraform-provider-criblio)
+- Deleted partner-provider [cisco-open/meraki](https://github.com/cisco-open/terraform-provider-meraki)
+
 ## [0.0.110]
 
 ### Update
