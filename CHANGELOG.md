@@ -1,3 +1,9 @@
+## [0.0.112]
+
+### Update
+
+- Add new partner-provider [infobloxopen/nios](https://github.com/infobloxopen/terraform-provider-nios)
+
 ## [0.0.111]
 
 ### Update
