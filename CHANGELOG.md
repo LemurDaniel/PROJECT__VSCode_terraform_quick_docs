@@ -1,3 +1,10 @@
+## [0.0.113]
+
+### Update
+
+- Add new partner-provider [OctopusDeploy/octopusdeploy](https://github.com/OctopusDeploy/terraform-provider-octopusdeploy)
+- Deleted partner-provider [OctopusDeployLabs/octopusdeploy](https://github.com/OctopusDeployLabs/terraform-provider-octopusdeploy)
+
 ## [0.0.112]
 
 ### Update

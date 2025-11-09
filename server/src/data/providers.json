@@ -3397,10 +3397,10 @@
   },
   {
     "name": "octopusdeploy",
-    "namespace": "OctopusDeployLabs",
-    "identifier": "OctopusDeployLabs/octopusdeploy",
+    "namespace": "OctopusDeploy",
+    "identifier": "OctopusDeploy/octopusdeploy",
     "tier": "partner",
-    "source": "https://github.com/OctopusDeployLabs/terraform-provider-octopusdeploy",
+    "source": "https://github.com/OctopusDeploy/terraform-provider-octopusdeploy",
     "logoData": {
       "url": "https://registry.terraform.io//images/providers/terraform.svg",
       "encoding": "data:image/png;base64,",
