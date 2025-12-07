@@ -1,3 +1,9 @@
+## [0.0.114]
+
+### Update
+
+- Add new official-provider [instana/instana](https://github.com/instana/terraform-provider-instana)
+
 ## [0.0.113]
 
 ### Update
