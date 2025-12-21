@@ -1,3 +1,9 @@
+## [0.0.115]
+
+### Update
+
+- Add new partner-provider [PaloAltoNetworks/cortexcloud](https://github.com/PaloAltoNetworks/terraform-provider-cortexcloud)
+
 ## [0.0.114]
 
 ### Update
