@@ -1,3 +1,10 @@
+## [0.0.116]
+
+### Update
+
+- Add new partner-provider [dell/objectscale](https://github.com/dell/terraform-provider-objectscale)
+- Deleted partner-provider [aliyun/alicloud](https://github.com/aliyun/terraform-provider-alicloud)
+
 ## [0.0.115]
 
 ### Update
