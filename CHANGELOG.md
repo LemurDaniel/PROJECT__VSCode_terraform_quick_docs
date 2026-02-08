@@ -1,3 +1,10 @@
+## [0.0.117]
+
+### Update
+
+- Add new partner-provider [aliyun/alicloud](https://github.com/aliyun/terraform-provider-alicloud)
+- Add new partner-provider [fortinetdev/fortiweb](https://github.com/fortinetdev/terraform-provider-fortiweb)
+
 ## [0.0.116]
 
 ### Update
