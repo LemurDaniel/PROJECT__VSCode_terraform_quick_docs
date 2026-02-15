@@ -1,3 +1,9 @@
+## [0.0.118]
+
+### Update
+
+- Add new partner-provider [tines/tines](https://github.com/tines/terraform-provider-tines)
+
 ## [0.0.117]
 
 ### Update
