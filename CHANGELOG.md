@@ -1,3 +1,10 @@
+## [0.0.119]
+
+### Update
+
+- Add new partner-provider [ansible/ansible](https://github.com/ansible/terraform-provider-ansible)
+- Deleted partner-provider [cisco-en-programmability/dnacenter](https://github.com/cisco-en-programmability/terraform-provider-dnacenter)
+
 ## [0.0.118]
 
 ### Update
