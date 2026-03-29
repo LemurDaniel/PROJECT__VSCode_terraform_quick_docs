@@ -1,3 +1,9 @@
+## [0.0.120]
+
+### Update
+
+- Add new partner-provider [Keeper-Security/commander](https://github.com/Keeper-Security/terraform-provider-commander)
+
 ## [0.0.119]
 
 ### Update
