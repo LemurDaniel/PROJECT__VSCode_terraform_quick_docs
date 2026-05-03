@@ -1,3 +1,22 @@
+## [0.0.121]
+
+### Update
+
+- Add new partner-provider [CheckPointSW/checkpoint-workforce-ai](https://github.com/CheckPointSW/terraform-provider-checkpoint-workforce-ai)
+- Deleted partner-provider [ionos-cloud/ionoscloud](https://github.com/ionos-cloud/terraform-provider-ionoscloud)
+- Deleted partner-provider [CiscoDevNet/iosxe](https://github.com/CiscoDevNet/terraform-provider-iosxe)
+- Deleted partner-provider [mittwald/mittwald](https://github.com/mittwald/terraform-provider-mittwald)
+- Deleted partner-provider [mongodb/mongodbatlas](https://github.com/mongodb/terraform-provider-mongodbatlas)
+- Deleted partner-provider [infobloxopen/nios](https://github.com/infobloxopen/terraform-provider-nios)
+- Deleted partner-provider [CiscoDevNet/nxos](https://github.com/CiscoDevNet/terraform-provider-nxos)
+- Deleted partner-provider [1Password/onepassword](https://github.com/1Password/terraform-provider-onepassword)
+- Deleted partner-provider [outscale/outscale](https://github.com/outscale/terraform-provider-outscale)
+- Deleted partner-provider [PaloAltoNetworks/panos](https://github.com/PaloAltoNetworks/terraform-provider-panos)
+- Deleted partner-provider [rubrikinc/polaris](https://github.com/rubrikinc/terraform-provider-polaris)
+- Deleted partner-provider [saviynt/saviynt](https://github.com/saviynt/terraform-provider-saviynt)
+- Deleted partner-provider [scaleway/scaleway](https://github.com/scaleway/terraform-provider-scaleway)
+- Deleted partner-provider [siderolabs/talos](https://github.com/siderolabs/terraform-provider-talos)
+
 ## [0.0.120]
 
 ### Update
