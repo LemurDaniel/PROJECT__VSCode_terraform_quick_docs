@@ -1069,10 +1069,10 @@
   },
   {
     "name": "catalystcenter",
-    "namespace": "cisco-en-programmability",
-    "identifier": "cisco-en-programmability/catalystcenter",
+    "namespace": "CiscoDevNet",
+    "identifier": "CiscoDevNet/catalystcenter",
     "tier": "partner",
-    "source": "https://github.com/cisco-en-programmability/terraform-provider-catalystcenter",
+    "source": "https://github.com/CiscoDevNet/terraform-provider-catalystcenter",
     "logoData": {
       "url": "https://registry.terraform.io//images/providers/terraform.svg",
       "encoding": "data:image/png;base64,",
@@ -1081,10 +1081,10 @@
   },
   {
     "name": "catalystcenter",
-    "namespace": "CiscoDevNet",
-    "identifier": "CiscoDevNet/catalystcenter",
+    "namespace": "cisco-en-programmability",
+    "identifier": "cisco-en-programmability/catalystcenter",
     "tier": "partner",
-    "source": "https://github.com/CiscoDevNet/terraform-provider-catalystcenter",
+    "source": "https://github.com/cisco-en-programmability/terraform-provider-catalystcenter",
     "logoData": {
       "url": "https://registry.terraform.io//images/providers/terraform.svg",
       "encoding": "data:image/png;base64,",
@@ -1157,6 +1157,18 @@
     "identifier": "CheckPointSW/checkpoint",
     "tier": "partner",
     "source": "https://github.com/CheckPointSW/terraform-provider-checkpoint",
+    "logoData": {
+      "url": "https://registry.terraform.io//images/providers/terraform.svg",
+      "encoding": "data:image/png;base64,",
+      "base64": "iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAACqklEQVR4nO2ZT2jTUBzHMx2CitPD2EFRcEg1GQxEJu3eSyOi6GE3CQiT2ialJ2FH8bQdhzePg50KLiEnYd48eHIeBP8dFE/SvMQi1IuCQ8HG31uWLWr/JEvkJfA+8OihIe/7afp+7/daQeBwOBxOVtGwc7Mut0+zzpEYDZNVkPmhIefB/MXOGOs8e2ZbxKOjhpxPNUwai4K3j3Wu2IRFdoSw80LHLmKdLRa9RPxBuiBkNZB7inXGSPQXCb5u5FsVkXuLijfKOutAhokE41apPVEt2TNpzasoT0fL4tr5tO4XSwSezge4/kkdtaaSzClLa5eRZLzFkrmalsceRLaKwU94XWko7nicuYqSdQbCWzC87cFWJFTdvmiILKiqt3/QHFenm4eRaCwhydwMSWRHJFQQ3lVl+9q/d/dG0DmzAhLtvwTSF6khV4ddfTOJyM5AZL2GW5P0vqUpcwZLxkYfgfRFKFXZOQm7ejOxiL//vFcKD8dBojtEIn2RAB2RSxDmdRIRek1pujkRQeL/iVBonwVhKvDJfs61SMBt5eMxqErLGu2M8ywSUMdOAdbP49yL7OKNwBN6nqYI7Cv3GYgIwtwF9xCsnbtwZvmaUMSFqtaAFcnm3OPvE86cNts6TlsUEPoVT8T4jkVzefbsoyNMBAJ214jfONJuGOSeRRFBorkuF6xs/DYQXuxbjSOc82l107GjgpDdSwTWwUtZNMuss/9B76pFOrRxnL/eGYP3l6DCvfFFjA70WAuqYA1sKJkwuPySV5psl2mZliTrwJVJ6yjrvH2J1ms5K6xzDiXqhsg651C4SNbgIllDk8kNaEtauRehqEX74KDGMTciAZWifcI/55NurkUCaOMIT2cj9yI+cOii53zktHMu4kP/8dKRe4d1Dg6Hw+Gkwm8o6I37BCc6WAAAAABJRU5ErkJggg=="
+    }
+  },
+  {
+    "name": "checkpoint-workforce-ai",
+    "namespace": "CheckPointSW",
+    "identifier": "CheckPointSW/checkpoint-workforce-ai",
+    "tier": "partner",
+    "source": "https://github.com/CheckPointSW/terraform-provider-checkpoint-workforce-ai",
     "logoData": {
       "url": "https://registry.terraform.io//images/providers/terraform.svg",
       "encoding": "data:image/png;base64,",
@@ -2556,35 +2568,11 @@
     }
   },
   {
-    "name": "ionoscloud",
-    "namespace": "ionos-cloud",
-    "identifier": "ionos-cloud/ionoscloud",
-    "tier": "partner",
-    "source": "https://github.com/ionos-cloud/terraform-provider-ionoscloud",
-    "logoData": {
-      "url": "https://registry.terraform.io//images/providers/terraform.svg",
-      "encoding": "data:image/png;base64,",
-      "base64": "iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAACqklEQVR4nO2ZT2jTUBzHMx2CitPD2EFRcEg1GQxEJu3eSyOi6GE3CQiT2ialJ2FH8bQdhzePg50KLiEnYd48eHIeBP8dFE/SvMQi1IuCQ8HG31uWLWr/JEvkJfA+8OihIe/7afp+7/daQeBwOBxOVtGwc7Mut0+zzpEYDZNVkPmhIefB/MXOGOs8e2ZbxKOjhpxPNUwai4K3j3Wu2IRFdoSw80LHLmKdLRa9RPxBuiBkNZB7inXGSPQXCb5u5FsVkXuLijfKOutAhokE41apPVEt2TNpzasoT0fL4tr5tO4XSwSezge4/kkdtaaSzClLa5eRZLzFkrmalsceRLaKwU94XWko7nicuYqSdQbCWzC87cFWJFTdvmiILKiqt3/QHFenm4eRaCwhydwMSWRHJFQQ3lVl+9q/d/dG0DmzAhLtvwTSF6khV4ddfTOJyM5AZL2GW5P0vqUpcwZLxkYfgfRFKFXZOQm7ejOxiL//vFcKD8dBojtEIn2RAB2RSxDmdRIRek1pujkRQeL/iVBonwVhKvDJfs61SMBt5eMxqErLGu2M8ywSUMdOAdbP49yL7OKNwBN6nqYI7Cv3GYgIwtwF9xCsnbtwZvmaUMSFqtaAFcnm3OPvE86cNts6TlsUEPoVT8T4jkVzefbsoyNMBAJ214jfONJuGOSeRRFBorkuF6xs/DYQXuxbjSOc82l107GjgpDdSwTWwUtZNMuss/9B76pFOrRxnL/eGYP3l6DCvfFFjA70WAuqYA1sKJkwuPySV5psl2mZliTrwJVJ6yjrvH2J1ms5K6xzDiXqhsg651C4SNbgIllDk8kNaEtauRehqEX74KDGMTciAZWifcI/55NurkUCaOMIT2cj9yI+cOii53zktHMu4kP/8dKRe4d1Dg6Hw+Gkwm8o6I37BCc6WAAAAABJRU5ErkJggg=="
-    }
-  },
-  {
     "name": "ionosdeveloper",
     "namespace": "ionos-developer",
     "identifier": "ionos-developer/ionosdeveloper",
     "tier": "partner",
     "source": "https://github.com/ionos-developer/terraform-provider-ionosdeveloper",
-    "logoData": {
-      "url": "https://registry.terraform.io//images/providers/terraform.svg",
-      "encoding": "data:image/png;base64,",
-      "base64": "iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAACqklEQVR4nO2ZT2jTUBzHMx2CitPD2EFRcEg1GQxEJu3eSyOi6GE3CQiT2ialJ2FH8bQdhzePg50KLiEnYd48eHIeBP8dFE/SvMQi1IuCQ8HG31uWLWr/JEvkJfA+8OihIe/7afp+7/daQeBwOBxOVtGwc7Mut0+zzpEYDZNVkPmhIefB/MXOGOs8e2ZbxKOjhpxPNUwai4K3j3Wu2IRFdoSw80LHLmKdLRa9RPxBuiBkNZB7inXGSPQXCb5u5FsVkXuLijfKOutAhokE41apPVEt2TNpzasoT0fL4tr5tO4XSwSezge4/kkdtaaSzClLa5eRZLzFkrmalsceRLaKwU94XWko7nicuYqSdQbCWzC87cFWJFTdvmiILKiqt3/QHFenm4eRaCwhydwMSWRHJFQQ3lVl+9q/d/dG0DmzAhLtvwTSF6khV4ddfTOJyM5AZL2GW5P0vqUpcwZLxkYfgfRFKFXZOQm7ejOxiL//vFcKD8dBojtEIn2RAB2RSxDmdRIRek1pujkRQeL/iVBonwVhKvDJfs61SMBt5eMxqErLGu2M8ywSUMdOAdbP49yL7OKNwBN6nqYI7Cv3GYgIwtwF9xCsnbtwZvmaUMSFqtaAFcnm3OPvE86cNts6TlsUEPoVT8T4jkVzefbsoyNMBAJ214jfONJuGOSeRRFBorkuF6xs/DYQXuxbjSOc82l107GjgpDdSwTWwUtZNMuss/9B76pFOrRxnL/eGYP3l6DCvfFFjA70WAuqYA1sKJkwuPySV5psl2mZliTrwJVJ6yjrvH2J1ms5K6xzDiXqhsg651C4SNbgIllDk8kNaEtauRehqEX74KDGMTciAZWifcI/55NurkUCaOMIT2cj9yI+cOii53zktHMu4kP/8dKRe4d1Dg6Hw+Gkwm8o6I37BCc6WAAAAABJRU5ErkJggg=="
-    }
-  },
-  {
-    "name": "iosxe",
-    "namespace": "CiscoDevNet",
-    "identifier": "CiscoDevNet/iosxe",
-    "tier": "partner",
-    "source": "https://github.com/CiscoDevNet/terraform-provider-iosxe",
     "logoData": {
       "url": "https://registry.terraform.io//images/providers/terraform.svg",
       "encoding": "data:image/png;base64,",
@@ -2988,18 +2976,6 @@
     }
   },
   {
-    "name": "mittwald",
-    "namespace": "mittwald",
-    "identifier": "mittwald/mittwald",
-    "tier": "partner",
-    "source": "https://github.com/mittwald/terraform-provider-mittwald",
-    "logoData": {
-      "url": "https://registry.terraform.io//images/providers/terraform.svg",
-      "encoding": "data:image/png;base64,",
-      "base64": "iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAACqklEQVR4nO2ZT2jTUBzHMx2CitPD2EFRcEg1GQxEJu3eSyOi6GE3CQiT2ialJ2FH8bQdhzePg50KLiEnYd48eHIeBP8dFE/SvMQi1IuCQ8HG31uWLWr/JEvkJfA+8OihIe/7afp+7/daQeBwOBxOVtGwc7Mut0+zzpEYDZNVkPmhIefB/MXOGOs8e2ZbxKOjhpxPNUwai4K3j3Wu2IRFdoSw80LHLmKdLRa9RPxBuiBkNZB7inXGSPQXCb5u5FsVkXuLijfKOutAhokE41apPVEt2TNpzasoT0fL4tr5tO4XSwSezge4/kkdtaaSzClLa5eRZLzFkrmalsceRLaKwU94XWko7nicuYqSdQbCWzC87cFWJFTdvmiILKiqt3/QHFenm4eRaCwhydwMSWRHJFQQ3lVl+9q/d/dG0DmzAhLtvwTSF6khV4ddfTOJyM5AZL2GW5P0vqUpcwZLxkYfgfRFKFXZOQm7ejOxiL//vFcKD8dBojtEIn2RAB2RSxDmdRIRek1pujkRQeL/iVBonwVhKvDJfs61SMBt5eMxqErLGu2M8ywSUMdOAdbP49yL7OKNwBN6nqYI7Cv3GYgIwtwF9xCsnbtwZvmaUMSFqtaAFcnm3OPvE86cNts6TlsUEPoVT8T4jkVzefbsoyNMBAJ214jfONJuGOSeRRFBorkuF6xs/DYQXuxbjSOc82l107GjgpDdSwTWwUtZNMuss/9B76pFOrRxnL/eGYP3l6DCvfFFjA70WAuqYA1sKJkwuPySV5psl2mZliTrwJVJ6yjrvH2J1ms5K6xzDiXqhsg651C4SNbgIllDk8kNaEtauRehqEX74KDGMTciAZWifcI/55NurkUCaOMIT2cj9yI+cOii53zktHMu4kP/8dKRe4d1Dg6Hw+Gkwm8o6I37BCc6WAAAAABJRU5ErkJggg=="
-    }
-  },
-  {
     "name": "modtm",
     "namespace": "Azure",
     "identifier": "Azure/modtm",
@@ -3017,18 +2993,6 @@
     "identifier": "mondoohq/mondoo",
     "tier": "partner",
     "source": "https://github.com/mondoohq/terraform-provider-mondoo",
-    "logoData": {
-      "url": "https://registry.terraform.io//images/providers/terraform.svg",
-      "encoding": "data:image/png;base64,",
-      "base64": "iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAACqklEQVR4nO2ZT2jTUBzHMx2CitPD2EFRcEg1GQxEJu3eSyOi6GE3CQiT2ialJ2FH8bQdhzePg50KLiEnYd48eHIeBP8dFE/SvMQi1IuCQ8HG31uWLWr/JEvkJfA+8OihIe/7afp+7/daQeBwOBxOVtGwc7Mut0+zzpEYDZNVkPmhIefB/MXOGOs8e2ZbxKOjhpxPNUwai4K3j3Wu2IRFdoSw80LHLmKdLRa9RPxBuiBkNZB7inXGSPQXCb5u5FsVkXuLijfKOutAhokE41apPVEt2TNpzasoT0fL4tr5tO4XSwSezge4/kkdtaaSzClLa5eRZLzFkrmalsceRLaKwU94XWko7nicuYqSdQbCWzC87cFWJFTdvmiILKiqt3/QHFenm4eRaCwhydwMSWRHJFQQ3lVl+9q/d/dG0DmzAhLtvwTSF6khV4ddfTOJyM5AZL2GW5P0vqUpcwZLxkYfgfRFKFXZOQm7ejOxiL//vFcKD8dBojtEIn2RAB2RSxDmdRIRek1pujkRQeL/iVBonwVhKvDJfs61SMBt5eMxqErLGu2M8ywSUMdOAdbP49yL7OKNwBN6nqYI7Cv3GYgIwtwF9xCsnbtwZvmaUMSFqtaAFcnm3OPvE86cNts6TlsUEPoVT8T4jkVzefbsoyNMBAJ214jfONJuGOSeRRFBorkuF6xs/DYQXuxbjSOc82l107GjgpDdSwTWwUtZNMuss/9B76pFOrRxnL/eGYP3l6DCvfFFjA70WAuqYA1sKJkwuPySV5psl2mZliTrwJVJ6yjrvH2J1ms5K6xzDiXqhsg651C4SNbgIllDk8kNaEtauRehqEX74KDGMTciAZWifcI/55NurkUCaOMIT2cj9yI+cOii53zktHMu4kP/8dKRe4d1Dg6Hw+Gkwm8o6I37BCc6WAAAAABJRU5ErkJggg=="
-    }
-  },
-  {
-    "name": "mongodbatlas",
-    "namespace": "mongodb",
-    "identifier": "mongodb/mongodbatlas",
-    "tier": "partner",
-    "source": "https://github.com/mongodb/terraform-provider-mongodbatlas",
     "logoData": {
       "url": "https://registry.terraform.io//images/providers/terraform.svg",
       "encoding": "data:image/png;base64,",
@@ -3276,18 +3240,6 @@
     }
   },
   {
-    "name": "nios",
-    "namespace": "infobloxopen",
-    "identifier": "infobloxopen/nios",
-    "tier": "partner",
-    "source": "https://github.com/infobloxopen/terraform-provider-nios",
-    "logoData": {
-      "url": "https://registry.terraform.io//images/providers/terraform.svg",
-      "encoding": "data:image/png;base64,",
-      "base64": "iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAACqklEQVR4nO2ZT2jTUBzHMx2CitPD2EFRcEg1GQxEJu3eSyOi6GE3CQiT2ialJ2FH8bQdhzePg50KLiEnYd48eHIeBP8dFE/SvMQi1IuCQ8HG31uWLWr/JEvkJfA+8OihIe/7afp+7/daQeBwOBxOVtGwc7Mut0+zzpEYDZNVkPmhIefB/MXOGOs8e2ZbxKOjhpxPNUwai4K3j3Wu2IRFdoSw80LHLmKdLRa9RPxBuiBkNZB7inXGSPQXCb5u5FsVkXuLijfKOutAhokE41apPVEt2TNpzasoT0fL4tr5tO4XSwSezge4/kkdtaaSzClLa5eRZLzFkrmalsceRLaKwU94XWko7nicuYqSdQbCWzC87cFWJFTdvmiILKiqt3/QHFenm4eRaCwhydwMSWRHJFQQ3lVl+9q/d/dG0DmzAhLtvwTSF6khV4ddfTOJyM5AZL2GW5P0vqUpcwZLxkYfgfRFKFXZOQm7ejOxiL//vFcKD8dBojtEIn2RAB2RSxDmdRIRek1pujkRQeL/iVBonwVhKvDJfs61SMBt5eMxqErLGu2M8ywSUMdOAdbP49yL7OKNwBN6nqYI7Cv3GYgIwtwF9xCsnbtwZvmaUMSFqtaAFcnm3OPvE86cNts6TlsUEPoVT8T4jkVzefbsoyNMBAJ214jfONJuGOSeRRFBorkuF6xs/DYQXuxbjSOc82l107GjgpDdSwTWwUtZNMuss/9B76pFOrRxnL/eGYP3l6DCvfFFjA70WAuqYA1sKJkwuPySV5psl2mZliTrwJVJ6yjrvH2J1ms5K6xzDiXqhsg651C4SNbgIllDk8kNaEtauRehqEX74KDGMTciAZWifcI/55NurkUCaOMIT2cj9yI+cOii53zktHMu4kP/8dKRe4d1Dg6Hw+Gkwm8o6I37BCc6WAAAAABJRU5ErkJggg=="
-    }
-  },
-  {
     "name": "nirmata",
     "namespace": "nirmata",
     "identifier": "nirmata/nirmata",
@@ -3389,18 +3341,6 @@
     "identifier": "nutanix/nutanixkps",
     "tier": "partner",
     "source": "https://github.com/nutanix/terraform-provider-nutanixkps",
-    "logoData": {
-      "url": "https://registry.terraform.io//images/providers/terraform.svg",
-      "encoding": "data:image/png;base64,",
-      "base64": "iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAACqklEQVR4nO2ZT2jTUBzHMx2CitPD2EFRcEg1GQxEJu3eSyOi6GE3CQiT2ialJ2FH8bQdhzePg50KLiEnYd48eHIeBP8dFE/SvMQi1IuCQ8HG31uWLWr/JEvkJfA+8OihIe/7afp+7/daQeBwOBxOVtGwc7Mut0+zzpEYDZNVkPmhIefB/MXOGOs8e2ZbxKOjhpxPNUwai4K3j3Wu2IRFdoSw80LHLmKdLRa9RPxBuiBkNZB7inXGSPQXCb5u5FsVkXuLijfKOutAhokE41apPVEt2TNpzasoT0fL4tr5tO4XSwSezge4/kkdtaaSzClLa5eRZLzFkrmalsceRLaKwU94XWko7nicuYqSdQbCWzC87cFWJFTdvmiILKiqt3/QHFenm4eRaCwhydwMSWRHJFQQ3lVl+9q/d/dG0DmzAhLtvwTSF6khV4ddfTOJyM5AZL2GW5P0vqUpcwZLxkYfgfRFKFXZOQm7ejOxiL//vFcKD8dBojtEIn2RAB2RSxDmdRIRek1pujkRQeL/iVBonwVhKvDJfs61SMBt5eMxqErLGu2M8ywSUMdOAdbP49yL7OKNwBN6nqYI7Cv3GYgIwtwF9xCsnbtwZvmaUMSFqtaAFcnm3OPvE86cNts6TlsUEPoVT8T4jkVzefbsoyNMBAJ214jfONJuGOSeRRFBorkuF6xs/DYQXuxbjSOc82l107GjgpDdSwTWwUtZNMuss/9B76pFOrRxnL/eGYP3l6DCvfFFjA70WAuqYA1sKJkwuPySV5psl2mZliTrwJVJ6yjrvH2J1ms5K6xzDiXqhsg651C4SNbgIllDk8kNaEtauRehqEX74KDGMTciAZWifcI/55NurkUCaOMIT2cj9yI+cOii53zktHMu4kP/8dKRe4d1Dg6Hw+Gkwm8o6I37BCc6WAAAAABJRU5ErkJggg=="
-    }
-  },
-  {
-    "name": "nxos",
-    "namespace": "CiscoDevNet",
-    "identifier": "CiscoDevNet/nxos",
-    "tier": "partner",
-    "source": "https://github.com/CiscoDevNet/terraform-provider-nxos",
     "logoData": {
       "url": "https://registry.terraform.io//images/providers/terraform.svg",
       "encoding": "data:image/png;base64,",
@@ -3516,18 +3456,6 @@
     }
   },
   {
-    "name": "onepassword",
-    "namespace": "1Password",
-    "identifier": "1Password/onepassword",
-    "tier": "partner",
-    "source": "https://github.com/1Password/terraform-provider-onepassword",
-    "logoData": {
-      "url": "https://registry.terraform.io//images/providers/terraform.svg",
-      "encoding": "data:image/png;base64,",
-      "base64": "iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAACqklEQVR4nO2ZT2jTUBzHMx2CitPD2EFRcEg1GQxEJu3eSyOi6GE3CQiT2ialJ2FH8bQdhzePg50KLiEnYd48eHIeBP8dFE/SvMQi1IuCQ8HG31uWLWr/JEvkJfA+8OihIe/7afp+7/daQeBwOBxOVtGwc7Mut0+zzpEYDZNVkPmhIefB/MXOGOs8e2ZbxKOjhpxPNUwai4K3j3Wu2IRFdoSw80LHLmKdLRa9RPxBuiBkNZB7inXGSPQXCb5u5FsVkXuLijfKOutAhokE41apPVEt2TNpzasoT0fL4tr5tO4XSwSezge4/kkdtaaSzClLa5eRZLzFkrmalsceRLaKwU94XWko7nicuYqSdQbCWzC87cFWJFTdvmiILKiqt3/QHFenm4eRaCwhydwMSWRHJFQQ3lVl+9q/d/dG0DmzAhLtvwTSF6khV4ddfTOJyM5AZL2GW5P0vqUpcwZLxkYfgfRFKFXZOQm7ejOxiL//vFcKD8dBojtEIn2RAB2RSxDmdRIRek1pujkRQeL/iVBonwVhKvDJfs61SMBt5eMxqErLGu2M8ywSUMdOAdbP49yL7OKNwBN6nqYI7Cv3GYgIwtwF9xCsnbtwZvmaUMSFqtaAFcnm3OPvE86cNts6TlsUEPoVT8T4jkVzefbsoyNMBAJ214jfONJuGOSeRRFBorkuF6xs/DYQXuxbjSOc82l107GjgpDdSwTWwUtZNMuss/9B76pFOrRxnL/eGYP3l6DCvfFFjA70WAuqYA1sKJkwuPySV5psl2mZliTrwJVJ6yjrvH2J1ms5K6xzDiXqhsg651C4SNbgIllDk8kNaEtauRehqEX74KDGMTciAZWifcI/55NurkUCaOMIT2cj9yI+cOii53zktHMu4kP/8dKRe4d1Dg6Hw+Gkwm8o6I37BCc6WAAAAABJRU5ErkJggg=="
-    }
-  },
-  {
     "name": "oneview",
     "namespace": "HewlettPackard",
     "identifier": "HewlettPackard/oneview",
@@ -3588,18 +3516,6 @@
     }
   },
   {
-    "name": "outscale",
-    "namespace": "outscale",
-    "identifier": "outscale/outscale",
-    "tier": "partner",
-    "source": "https://github.com/outscale/terraform-provider-outscale",
-    "logoData": {
-      "url": "https://registry.terraform.io//images/providers/terraform.svg",
-      "encoding": "data:image/png;base64,",
-      "base64": "iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAACqklEQVR4nO2ZT2jTUBzHMx2CitPD2EFRcEg1GQxEJu3eSyOi6GE3CQiT2ialJ2FH8bQdhzePg50KLiEnYd48eHIeBP8dFE/SvMQi1IuCQ8HG31uWLWr/JEvkJfA+8OihIe/7afp+7/daQeBwOBxOVtGwc7Mut0+zzpEYDZNVkPmhIefB/MXOGOs8e2ZbxKOjhpxPNUwai4K3j3Wu2IRFdoSw80LHLmKdLRa9RPxBuiBkNZB7inXGSPQXCb5u5FsVkXuLijfKOutAhokE41apPVEt2TNpzasoT0fL4tr5tO4XSwSezge4/kkdtaaSzClLa5eRZLzFkrmalsceRLaKwU94XWko7nicuYqSdQbCWzC87cFWJFTdvmiILKiqt3/QHFenm4eRaCwhydwMSWRHJFQQ3lVl+9q/d/dG0DmzAhLtvwTSF6khV4ddfTOJyM5AZL2GW5P0vqUpcwZLxkYfgfRFKFXZOQm7ejOxiL//vFcKD8dBojtEIn2RAB2RSxDmdRIRek1pujkRQeL/iVBonwVhKvDJfs61SMBt5eMxqErLGu2M8ywSUMdOAdbP49yL7OKNwBN6nqYI7Cv3GYgIwtwF9xCsnbtwZvmaUMSFqtaAFcnm3OPvE86cNts6TlsUEPoVT8T4jkVzefbsoyNMBAJ214jfONJuGOSeRRFBorkuF6xs/DYQXuxbjSOc82l107GjgpDdSwTWwUtZNMuss/9B76pFOrRxnL/eGYP3l6DCvfFFjA70WAuqYA1sKJkwuPySV5psl2mZliTrwJVJ6yjrvH2J1ms5K6xzDiXqhsg651C4SNbgIllDk8kNaEtauRehqEX74KDGMTciAZWifcI/55NurkUCaOMIT2cj9yI+cOii53zktHMu4kP/8dKRe4d1Dg6Hw+Gkwm8o6I37BCc6WAAAAABJRU5ErkJggg=="
-    }
-  },
-  {
     "name": "ovh",
     "namespace": "ovh",
     "identifier": "ovh/ovh",
@@ -3629,18 +3545,6 @@
     "identifier": "PagerDuty/pagerduty",
     "tier": "partner",
     "source": "https://github.com/PagerDuty/terraform-provider-pagerduty",
-    "logoData": {
-      "url": "https://registry.terraform.io//images/providers/terraform.svg",
-      "encoding": "data:image/png;base64,",
-      "base64": "iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAACqklEQVR4nO2ZT2jTUBzHMx2CitPD2EFRcEg1GQxEJu3eSyOi6GE3CQiT2ialJ2FH8bQdhzePg50KLiEnYd48eHIeBP8dFE/SvMQi1IuCQ8HG31uWLWr/JEvkJfA+8OihIe/7afp+7/daQeBwOBxOVtGwc7Mut0+zzpEYDZNVkPmhIefB/MXOGOs8e2ZbxKOjhpxPNUwai4K3j3Wu2IRFdoSw80LHLmKdLRa9RPxBuiBkNZB7inXGSPQXCb5u5FsVkXuLijfKOutAhokE41apPVEt2TNpzasoT0fL4tr5tO4XSwSezge4/kkdtaaSzClLa5eRZLzFkrmalsceRLaKwU94XWko7nicuYqSdQbCWzC87cFWJFTdvmiILKiqt3/QHFenm4eRaCwhydwMSWRHJFQQ3lVl+9q/d/dG0DmzAhLtvwTSF6khV4ddfTOJyM5AZL2GW5P0vqUpcwZLxkYfgfRFKFXZOQm7ejOxiL//vFcKD8dBojtEIn2RAB2RSxDmdRIRek1pujkRQeL/iVBonwVhKvDJfs61SMBt5eMxqErLGu2M8ywSUMdOAdbP49yL7OKNwBN6nqYI7Cv3GYgIwtwF9xCsnbtwZvmaUMSFqtaAFcnm3OPvE86cNts6TlsUEPoVT8T4jkVzefbsoyNMBAJ214jfONJuGOSeRRFBorkuF6xs/DYQXuxbjSOc82l107GjgpDdSwTWwUtZNMuss/9B76pFOrRxnL/eGYP3l6DCvfFFjA70WAuqYA1sKJkwuPySV5psl2mZliTrwJVJ6yjrvH2J1ms5K6xzDiXqhsg651C4SNbgIllDk8kNaEtauRehqEX74KDGMTciAZWifcI/55NurkUCaOMIT2cj9yI+cOii53zktHMu4kP/8dKRe4d1Dg6Hw+Gkwm8o6I37BCc6WAAAAABJRU5ErkJggg=="
-    }
-  },
-  {
-    "name": "panos",
-    "namespace": "PaloAltoNetworks",
-    "identifier": "PaloAltoNetworks/panos",
-    "tier": "partner",
-    "source": "https://github.com/PaloAltoNetworks/terraform-provider-panos",
     "logoData": {
       "url": "https://registry.terraform.io//images/providers/terraform.svg",
       "encoding": "data:image/png;base64,",
@@ -3749,18 +3653,6 @@
     "identifier": "phoenixnap/pnap",
     "tier": "partner",
     "source": "https://github.com/phoenixnap/terraform-provider-pnap",
-    "logoData": {
-      "url": "https://registry.terraform.io//images/providers/terraform.svg",
-      "encoding": "data:image/png;base64,",
-      "base64": "iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAACqklEQVR4nO2ZT2jTUBzHMx2CitPD2EFRcEg1GQxEJu3eSyOi6GE3CQiT2ialJ2FH8bQdhzePg50KLiEnYd48eHIeBP8dFE/SvMQi1IuCQ8HG31uWLWr/JEvkJfA+8OihIe/7afp+7/daQeBwOBxOVtGwc7Mut0+zzpEYDZNVkPmhIefB/MXOGOs8e2ZbxKOjhpxPNUwai4K3j3Wu2IRFdoSw80LHLmKdLRa9RPxBuiBkNZB7inXGSPQXCb5u5FsVkXuLijfKOutAhokE41apPVEt2TNpzasoT0fL4tr5tO4XSwSezge4/kkdtaaSzClLa5eRZLzFkrmalsceRLaKwU94XWko7nicuYqSdQbCWzC87cFWJFTdvmiILKiqt3/QHFenm4eRaCwhydwMSWRHJFQQ3lVl+9q/d/dG0DmzAhLtvwTSF6khV4ddfTOJyM5AZL2GW5P0vqUpcwZLxkYfgfRFKFXZOQm7ejOxiL//vFcKD8dBojtEIn2RAB2RSxDmdRIRek1pujkRQeL/iVBonwVhKvDJfs61SMBt5eMxqErLGu2M8ywSUMdOAdbP49yL7OKNwBN6nqYI7Cv3GYgIwtwF9xCsnbtwZvmaUMSFqtaAFcnm3OPvE86cNts6TlsUEPoVT8T4jkVzefbsoyNMBAJ214jfONJuGOSeRRFBorkuF6xs/DYQXuxbjSOc82l107GjgpDdSwTWwUtZNMuss/9B76pFOrRxnL/eGYP3l6DCvfFFjA70WAuqYA1sKJkwuPySV5psl2mZliTrwJVJ6yjrvH2J1ms5K6xzDiXqhsg651C4SNbgIllDk8kNaEtauRehqEX74KDGMTciAZWifcI/55NurkUCaOMIT2cj9yI+cOii53zktHMu4kP/8dKRe4d1Dg6Hw+Gkwm8o6I37BCc6WAAAAABJRU5ErkJggg=="
-    }
-  },
-  {
-    "name": "polaris",
-    "namespace": "rubrikinc",
-    "identifier": "rubrikinc/polaris",
-    "tier": "partner",
-    "source": "https://github.com/rubrikinc/terraform-provider-polaris",
     "logoData": {
       "url": "https://registry.terraform.io//images/providers/terraform.svg",
       "encoding": "data:image/png;base64,",
@@ -4097,30 +3989,6 @@
     "identifier": "SatoriCyber/satori",
     "tier": "partner",
     "source": "https://github.com/SatoriCyber/terraform-provider-satori",
-    "logoData": {
-      "url": "https://registry.terraform.io//images/providers/terraform.svg",
-      "encoding": "data:image/png;base64,",
-      "base64": "iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAACqklEQVR4nO2ZT2jTUBzHMx2CitPD2EFRcEg1GQxEJu3eSyOi6GE3CQiT2ialJ2FH8bQdhzePg50KLiEnYd48eHIeBP8dFE/SvMQi1IuCQ8HG31uWLWr/JEvkJfA+8OihIe/7afp+7/daQeBwOBxOVtGwc7Mut0+zzpEYDZNVkPmhIefB/MXOGOs8e2ZbxKOjhpxPNUwai4K3j3Wu2IRFdoSw80LHLmKdLRa9RPxBuiBkNZB7inXGSPQXCb5u5FsVkXuLijfKOutAhokE41apPVEt2TNpzasoT0fL4tr5tO4XSwSezge4/kkdtaaSzClLa5eRZLzFkrmalsceRLaKwU94XWko7nicuYqSdQbCWzC87cFWJFTdvmiILKiqt3/QHFenm4eRaCwhydwMSWRHJFQQ3lVl+9q/d/dG0DmzAhLtvwTSF6khV4ddfTOJyM5AZL2GW5P0vqUpcwZLxkYfgfRFKFXZOQm7ejOxiL//vFcKD8dBojtEIn2RAB2RSxDmdRIRek1pujkRQeL/iVBonwVhKvDJfs61SMBt5eMxqErLGu2M8ywSUMdOAdbP49yL7OKNwBN6nqYI7Cv3GYgIwtwF9xCsnbtwZvmaUMSFqtaAFcnm3OPvE86cNts6TlsUEPoVT8T4jkVzefbsoyNMBAJ214jfONJuGOSeRRFBorkuF6xs/DYQXuxbjSOc82l107GjgpDdSwTWwUtZNMuss/9B76pFOrRxnL/eGYP3l6DCvfFFjA70WAuqYA1sKJkwuPySV5psl2mZliTrwJVJ6yjrvH2J1ms5K6xzDiXqhsg651C4SNbgIllDk8kNaEtauRehqEX74KDGMTciAZWifcI/55NurkUCaOMIT2cj9yI+cOii53zktHMu4kP/8dKRe4d1Dg6Hw+Gkwm8o6I37BCc6WAAAAABJRU5ErkJggg=="
-    }
-  },
-  {
-    "name": "saviynt",
-    "namespace": "saviynt",
-    "identifier": "saviynt/saviynt",
-    "tier": "partner",
-    "source": "https://github.com/saviynt/terraform-provider-saviynt",
-    "logoData": {
-      "url": "https://registry.terraform.io//images/providers/terraform.svg",
-      "encoding": "data:image/png;base64,",
-      "base64": "iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAACqklEQVR4nO2ZT2jTUBzHMx2CitPD2EFRcEg1GQxEJu3eSyOi6GE3CQiT2ialJ2FH8bQdhzePg50KLiEnYd48eHIeBP8dFE/SvMQi1IuCQ8HG31uWLWr/JEvkJfA+8OihIe/7afp+7/daQeBwOBxOVtGwc7Mut0+zzpEYDZNVkPmhIefB/MXOGOs8e2ZbxKOjhpxPNUwai4K3j3Wu2IRFdoSw80LHLmKdLRa9RPxBuiBkNZB7inXGSPQXCb5u5FsVkXuLijfKOutAhokE41apPVEt2TNpzasoT0fL4tr5tO4XSwSezge4/kkdtaaSzClLa5eRZLzFkrmalsceRLaKwU94XWko7nicuYqSdQbCWzC87cFWJFTdvmiILKiqt3/QHFenm4eRaCwhydwMSWRHJFQQ3lVl+9q/d/dG0DmzAhLtvwTSF6khV4ddfTOJyM5AZL2GW5P0vqUpcwZLxkYfgfRFKFXZOQm7ejOxiL//vFcKD8dBojtEIn2RAB2RSxDmdRIRek1pujkRQeL/iVBonwVhKvDJfs61SMBt5eMxqErLGu2M8ywSUMdOAdbP49yL7OKNwBN6nqYI7Cv3GYgIwtwF9xCsnbtwZvmaUMSFqtaAFcnm3OPvE86cNts6TlsUEPoVT8T4jkVzefbsoyNMBAJ214jfONJuGOSeRRFBorkuF6xs/DYQXuxbjSOc82l107GjgpDdSwTWwUtZNMuss/9B76pFOrRxnL/eGYP3l6DCvfFFjA70WAuqYA1sKJkwuPySV5psl2mZliTrwJVJ6yjrvH2J1ms5K6xzDiXqhsg651C4SNbgIllDk8kNaEtauRehqEX74KDGMTciAZWifcI/55NurkUCaOMIT2cj9yI+cOii53zktHMu4kP/8dKRe4d1Dg6Hw+Gkwm8o6I37BCc6WAAAAABJRU5ErkJggg=="
-    }
-  },
-  {
-    "name": "scaleway",
-    "namespace": "scaleway",
-    "identifier": "scaleway/scaleway",
-    "tier": "partner",
-    "source": "https://github.com/scaleway/terraform-provider-scaleway",
     "logoData": {
       "url": "https://registry.terraform.io//images/providers/terraform.svg",
       "encoding": "data:image/png;base64,",
@@ -4625,18 +4493,6 @@
     "identifier": "sysdiglabs/sysdig",
     "tier": "partner",
     "source": "https://github.com/sysdiglabs/terraform-provider-sysdig",
-    "logoData": {
-      "url": "https://registry.terraform.io//images/providers/terraform.svg",
-      "encoding": "data:image/png;base64,",
-      "base64": "iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAACqklEQVR4nO2ZT2jTUBzHMx2CitPD2EFRcEg1GQxEJu3eSyOi6GE3CQiT2ialJ2FH8bQdhzePg50KLiEnYd48eHIeBP8dFE/SvMQi1IuCQ8HG31uWLWr/JEvkJfA+8OihIe/7afp+7/daQeBwOBxOVtGwc7Mut0+zzpEYDZNVkPmhIefB/MXOGOs8e2ZbxKOjhpxPNUwai4K3j3Wu2IRFdoSw80LHLmKdLRa9RPxBuiBkNZB7inXGSPQXCb5u5FsVkXuLijfKOutAhokE41apPVEt2TNpzasoT0fL4tr5tO4XSwSezge4/kkdtaaSzClLa5eRZLzFkrmalsceRLaKwU94XWko7nicuYqSdQbCWzC87cFWJFTdvmiILKiqt3/QHFenm4eRaCwhydwMSWRHJFQQ3lVl+9q/d/dG0DmzAhLtvwTSF6khV4ddfTOJyM5AZL2GW5P0vqUpcwZLxkYfgfRFKFXZOQm7ejOxiL//vFcKD8dBojtEIn2RAB2RSxDmdRIRek1pujkRQeL/iVBonwVhKvDJfs61SMBt5eMxqErLGu2M8ywSUMdOAdbP49yL7OKNwBN6nqYI7Cv3GYgIwtwF9xCsnbtwZvmaUMSFqtaAFcnm3OPvE86cNts6TlsUEPoVT8T4jkVzefbsoyNMBAJ214jfONJuGOSeRRFBorkuF6xs/DYQXuxbjSOc82l107GjgpDdSwTWwUtZNMuss/9B76pFOrRxnL/eGYP3l6DCvfFFjA70WAuqYA1sKJkwuPySV5psl2mZliTrwJVJ6yjrvH2J1ms5K6xzDiXqhsg651C4SNbgIllDk8kNaEtauRehqEX74KDGMTciAZWifcI/55NurkUCaOMIT2cj9yI+cOii53zktHMu4kP/8dKRe4d1Dg6Hw+Gkwm8o6I37BCc6WAAAAABJRU5ErkJggg=="
-    }
-  },
-  {
-    "name": "talos",
-    "namespace": "siderolabs",
-    "identifier": "siderolabs/talos",
-    "tier": "partner",
-    "source": "https://github.com/siderolabs/terraform-provider-talos",
     "logoData": {
       "url": "https://registry.terraform.io//images/providers/terraform.svg",
       "encoding": "data:image/png;base64,",
