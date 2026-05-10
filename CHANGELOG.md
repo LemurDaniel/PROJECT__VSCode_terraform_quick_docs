@@ -1,3 +1,9 @@
+## [0.0.122]
+
+### Update
+
+- Deleted partner-provider [cisco-en-programmability/catalystcenter](https://github.com/cisco-en-programmability/terraform-provider-catalystcenter)
+
 ## [0.0.121]
 
 ### Update
