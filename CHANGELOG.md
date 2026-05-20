@@ -1,3 +1,22 @@
+## [1.0.0]
+
+### Update
+
+- Bump minimum required VS Code version to `1.82.0`
+- Update `vscode-languageclient` from `^8.1.0` to `^9.0.1`
+- Update `vscode-languageserver` from `^8.1.0` to `^9.0.1`
+- Update `vscode-languageserver-textdocument` from `^1.0.8` to `^1.0.12`
+- Update `@types/vscode` from `^1.75.1` to `^1.82.0`
+- Update `@vscode/test-electron` from `^2.2.3` to `^2.5.2`
+- Update `@types/mocha` from `^9.1.0` to `^10.0.10`
+- Update `@types/node` from `^16.11.7` to `^22.10.0`
+- Update `@typescript-eslint/eslint-plugin` from `^5.54.0` to `^8.59.4`
+- Update `@typescript-eslint/parser` from `^5.54.0` to `^8.59.4`
+- Update `eslint` from `^8.35.0` to `^9.0.0` and migrate to flat config (`eslint.config.js`)
+- Update `mocha` from `^9.2.1` to `^11.7.5`
+- Update `webpack` from `^5.81.0` to `^5.107.0`
+- Update `webpack-cli` from `^5.0.2` to `^7.0.2`
+
 ## [0.0.122]
 
 ### Update
