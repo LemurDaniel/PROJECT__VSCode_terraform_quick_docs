@@ -1,3 +1,9 @@
+## [0.0.1]
+
+### Update
+
+- Add new partner-provider [mulesoft/anypoint](https://github.com/mulesoft/terraform-provider-anypoint)
+
 ## [1.0.0]
 
 ### Update
