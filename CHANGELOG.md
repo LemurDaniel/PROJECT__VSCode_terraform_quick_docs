@@ -1,3 +1,9 @@
+## [0.0.2]
+
+### Update
+
+- Add new partner-provider [okta/oktapam](https://github.com/okta/terraform-provider-oktapam)
+
 ## [0.0.1]
 
 ### Update
