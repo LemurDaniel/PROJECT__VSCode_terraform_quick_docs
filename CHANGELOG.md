@@ -1,3 +1,9 @@
+## [0.0.3]
+
+### Update
+
+- Add new partner-provider [SamsungSDSCloud/samsungcloudplatformv2](https://github.com/SamsungSDSCloud/terraform-provider-samsungcloudplatformv2)
+
 ## [0.0.2]
 
 ### Update
