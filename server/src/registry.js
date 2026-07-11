@@ -1,62 +1,20 @@
 const pathUtility = require('path')
-const nodeUrl = require('node:url')
-const https = require('https')
 const fs = require('fs')
 
 const Settings = require('./settings')
+const HttpClient = require('./registry/httpClient')
+const Cache = require('./registry/cache')
+const LogoService = require('./registry/logo')
+const { ProviderNotFoundError, ResourceNotFoundError } = require('./registry/errors')
+const { builtinResource, builtInProviderFunctions } = require('./registry/builtins')
 
 class Registry {
 
-    static ProviderNotFoundError = class ProviderNotFoundError extends Error {
-        constructor(data) {
-            super(`Provider '${data.identifier}' was not Found!`)
-            this.providerData = {
-                ...data,
-                error: {
-                    providerNotFound: true
-                }
-            }
-        }
-    }
-
-    static ResourceNotFoundError = class ResourceNotFoundError extends Error {
-        constructor(message, data) {
-            super(message)
-            this.data = data
-        }
-    }
-
-    static #builtinResource = {
-        "terraform_data": {
-            isBuiltin: true,
-            docsUrl: "https://developer.hashicorp.com/terraform/language/resources/terraform-data"
-        },
-        "terraform_remote_state": {
-            isBuiltin: true,
-            docsUrl: "https://developer.hashicorp.com/terraform/language/state/remote-state-data"
-        }
-    }
-
-    static #builtInProviderFunctions = {
-        "terraform::encode_tfvars": {
-            isBuiltin: true,
-            docsUrl: "https://developer.hashicorp.com/terraform/language/functions/terraform-encode_tfvars"
-        },
-        "terraform::decode_tfvars": {
-            isBuiltin: true,
-            docsUrl: "https://developer.hashicorp.com/terraform/language/functions/terraform-decode_tfvars"
-        },
-        "terraform::encode_expr": {
-            isBuiltin: true,
-            docsUrl: "https://developer.hashicorp.com/terraform/language/functions/terraform-encode_expr"
-        }
-    }
-
-
+    static ProviderNotFoundError = ProviderNotFoundError
+    static ResourceNotFoundError = ResourceNotFoundError
 
     static #instance = null
     static #endpoint = "registry.terraform.io"
-    static #enableSharp = true
 
     static get instance() {
         if (null == Registry.#instance) {
@@ -79,30 +37,7 @@ class Registry {
     }
 
     request(options) {
-
-        const urlData = new nodeUrl.URL(options.url)
-        return new Promise((resolve, reject) => {
-            try {
-                const request = https.request({
-                    method: options.method ?? 'GET',
-                    port: 443,
-                    protocol: 'https:',
-                    host: urlData.host,
-                    path: urlData.pathname,
-                    headers: options.headers ?? {}
-                }, response => {
-                    let content = ''
-                    response.setEncoding(options.encoding ?? 'UTF-8')
-                        .on('data', e => content += e.toString())
-                        .on('end', e => resolve(content))
-                        .on('error', reject)
-                })
-                request.end()
-            } catch (exception) {
-                reject(exception)
-            }
-        })
-
+        return HttpClient.requestUrl(options)
     }
 
     async get(api, additionalCacheInfo = '', ttl = Number.MAX_SAFE_INTEGER) {
@@ -110,39 +45,12 @@ class Registry {
         const path = `/${api}`.replace(/[\/]+/g, '/')
         const cachePath = `${path}/${additionalCacheInfo}`
 
-        if (null != Settings.clientConnection) {
-            const cache = await Settings.clientConnection.sendRequest('cache.fetch', cachePath)
-            if (null != cache) return cache
-        }
+        const cached = await Cache.fetch(Settings.clientConnection, cachePath)
+        if (null != cached) return cached
 
-        const response = await new Promise((resolve, reject) => {
-            try {
-                const request = https.get({
-                    protocol: 'https:',
-                    port: 443,
-                    hostname: Registry.#endpoint,
-                    path: path,
-                    headers: {}
-                }, response => {
-                    let content = ''
-                    response.setEncoding('utf-8')
-                        .on('data', e => content += e.toString())
-                        .on('end', e => resolve(JSON.parse(content)))
-                        .on('error', reject)
-                })
-                request.end()
-            } catch (exception) {
-                reject(exception)
-            }
-        })
+        const response = await HttpClient.requestPath({ hostname: Registry.#endpoint, path })
 
-        if (null != Settings.clientConnection) {
-            Settings.clientConnection.sendRequest('cache.set', {
-                cachePath: cachePath,
-                data: response,
-                ttl: ttl
-            })
-        }
+        Cache.set(Settings.clientConnection, cachePath, response, ttl)
 
         return response
     }
@@ -152,12 +60,11 @@ class Registry {
     // Read official and partner providers from json
     async getProvidersFromJson(path = pathUtility.join(__dirname, 'data', 'providers.json')) {
 
-        if (path in this.#cache)
-            return this.#cache[path]
+        if (!(path in this.#cache)) {
+            this.#cache[path] = JSON.parse(fs.readFileSync(path))
+        }
 
-        this.#cache[path] = JSON.parse(fs.readFileSync(path))
-
-        return await this.getProvidersFromJson(path)
+        return this.#cache[path]
 
     }
 
@@ -219,63 +126,7 @@ class Registry {
     }
 
     async getBase64Logo(logoUrl, size = 50) {
-
-        const logoData = {
-            url: logoUrl,
-            encoding: null,
-            base64: null
-        }
-
-        if (null == logoUrl || !Registry.#enableSharp) {
-            return this.getTerraformLogoData()
-        }
-
-        if (null != Settings.clientConnection) {
-            const cache = await Settings.clientConnection.sendRequest('cache.fetch', logoUrl)
-            if (null != cache) return cache
-        }
-
-        try {
-            const sharp = require('sharp')
-
-            logoData.url = logoData.url.replace('?3', '')
-            if (logoData.url.includes('azure.svg')) {
-                logoData.url = '/images/providers/azure.png'
-            }
-            logoData.url = logoData.url.includes('http') ? logoData.url : `https://${Registry.#endpoint}/${logoData.url}`
-
-            logoData.base64 = await this.request({
-                url: logoData.url,
-                encoding: 'base64'
-            })
-
-            const buffer = Buffer.from(logoData.base64, 'base64')
-            const compressed = await sharp(buffer).resize(size, size).png().toBuffer()
-            logoData.base64 = compressed.toString('base64')
-            logoData.encoding = "data:image/png;base64,"
-
-            //if (logoData.url.includes('svg'))
-            //    logoData.logoEncoding = `data:image/svg+xml;base64,`
-            //else
-            //    logoData.logoEncoding = `data:image/png;base64,`
-
-            if (null != Settings.clientConnection) {
-                Settings.clientConnection.sendRequest('cache.set', {
-                    cachePath: logoUrl,
-                    data: logoData,
-                    ttl: Number.MAX_SAFE_INTEGER
-                })
-            }
-
-        } catch (err) {
-            if (err.message.includes('Cannot find module')) {
-                console.log("###  Setting enableSharp to false")
-                Registry.#enableSharp = false
-            }
-            console.log(err)
-        }
-
-        return logoData
+        return await LogoService.getBase64Logo(logoUrl, Registry.#endpoint, Settings.clientConnection, size)
     }
 
     async getProvidersFromApi(downloadLogo = true) {
@@ -413,14 +264,14 @@ class Registry {
     // finds provider resource based on a resource identifier 'azurerm_bla_bla' and a category
     async findProviderResource(resourceIdentifier, resourceCategory) {
 
-        if (resourceIdentifier in Registry.#builtinResource) {
+        if (resourceIdentifier in builtinResource) {
             return {
-                resourceInfo: Registry.#builtinResource[resourceIdentifier],
+                resourceInfo: builtinResource[resourceIdentifier],
                 providerInfo: null
             }
-        } else if (resourceIdentifier in Registry.#builtInProviderFunctions) {
+        } else if (resourceIdentifier in builtInProviderFunctions) {
             return {
-                resourceInfo: Registry.#builtInProviderFunctions[resourceIdentifier],
+                resourceInfo: builtInProviderFunctions[resourceIdentifier],
                 providerInfo: null
             }
         }
@@ -456,7 +307,7 @@ class Registry {
 
 
     getTerraformLogoData() {
-        return JSON.parse(fs.readFileSync(`${__dirname}/data/terraform.logo.json`))
+        return LogoService.getTerraformLogoData()
     }
     getFunctionsFlat() {
         return this.getFunctionsData().data.map(category => category.data).flat()
@@ -465,9 +316,10 @@ class Registry {
         return this.getAllDocumentationData().data.filter(docs => docs.title?.toLowerCase() == 'functions')[0]
     }
     getAllDocumentationData() {
-        if ("documentation" in this.#cache) return this.#cache["documentation"]
-        this.#cache["documentation"] = JSON.parse(fs.readFileSync(`${__dirname}/data/documentation.json`))
-        return this.getAllDocumentationData()
+        if (!("documentation" in this.#cache)) {
+            this.#cache["documentation"] = JSON.parse(fs.readFileSync(`${__dirname}/data/documentation.json`))
+        }
+        return this.#cache["documentation"]
     }
 }
 
