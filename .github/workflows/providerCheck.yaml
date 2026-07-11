@@ -38,9 +38,8 @@ jobs:
       
       - name: Install dependencies
         if: steps.provider_check.outputs.result != ''
-        run: | 
+        run: |
           npm install
-          npm install sharp --no-save
           
       - uses: actions/github-script@v6
         name: Update provider.json

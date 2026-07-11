@@ -55,13 +55,8 @@ jobs:
           npx vsce --version
 
       - name: Install dependencies
-        run: | 
-          npm install 
-      #    npm rebuild --prefix ./server --platform=win32  --arch=x64   sharp
-      #    npm rebuild --prefix ./server --platform=linux  --arch=x64   sharp
-      #    npm rebuild --prefix ./server --platform=linux  --arch=arm64 sharp
-      #    npm rebuild --prefix ./server --platform=darwin --arch=x64   sharp
-      #    npm rebuild --prefix ./server --platform=darwin --arch=arm64 sharp
+        run: |
+          npm install
 
       - name: Package extension
         if: inputs.skip_publish == true || github.event_name == 'pull_request'
