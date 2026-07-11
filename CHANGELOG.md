@@ -1,3 +1,9 @@
+## [1.0.5]
+
+### Update
+
+- Add new partner-provider [fortinetdev/fortiproxy](https://github.com/fortinetdev/terraform-provider-fortiproxy)
+
 ## [1.0.4]
 
 ### Update
