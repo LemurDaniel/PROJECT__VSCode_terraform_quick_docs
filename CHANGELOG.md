@@ -1,3 +1,14 @@
+## [1.0.4]
+
+### Update
+
+- Add documentation for new Terraform 1.14/1.15 features:
+    - [Action-blocks](https://developer.hashicorp.com/terraform/language/block/action) and [Invoke an Action](https://developer.hashicorp.com/terraform/language/invoke-actions)
+    - `action_trigger` in the [lifecycle-block](https://developer.hashicorp.com/terraform/language/block/resource#action_trigger)
+    - [Query Files (.tfquery.hcl)](https://developer.hashicorp.com/terraform/language/files/tfquery), the [list-block](https://developer.hashicorp.com/terraform/language/block/tfquery/list) and the [terraform query](https://developer.hashicorp.com/terraform/cli/commands/query) command
+    - variable [const](https://developer.hashicorp.com/terraform/language/block/variable#const) and [deprecated](https://developer.hashicorp.com/terraform/language/block/variable#deprecated) arguments
+    - dynamic module [source/version attributes](https://developer.hashicorp.com/terraform/language/block/module#source)
+
 ## [0.0.3]
 
 ### Update

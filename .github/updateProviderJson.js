@@ -27,7 +27,7 @@ module.exports = async (github, context, core) => {
     fs.readFileSync(filePaths.packageJson, 'UTF-8')
   )
   const count = parseInt(packageJson.version.split('.')[2]) + 1
-  packageJson.version = `0.0.${count}`
+  packageJson.version = `1.0.${count}`
   fs.writeFileSync(filePaths.packageJson, JSON.stringify(packageJson, null, 4), 'UTF-8')
 
 

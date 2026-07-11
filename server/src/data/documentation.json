@@ -123,6 +123,15 @@
           "description": "pull the terraform remote state"
         },
         {
+          "seperator": "Querying & Importing"
+        },
+        {
+          "path": "/terraform/cli/commands/query",
+          "id": "documentation.cli.query",
+          "title": "terraform query",
+          "description": "query existing infrastructure via .tfquery.hcl list-blocks for import"
+        },
+        {
           "seperator": "Other Commands"
         },
         {
@@ -1565,6 +1574,36 @@
     },
     {
       "baseUrl": "https://developer.hashicorp.com",
+      "path": "/terraform/language/files/tfquery",
+      "id": "documentation.query",
+      "title": "Query Files",
+      "description": "query existing infrastructure for resources to import (.tfquery.hcl)",
+      "data": [
+        {
+          "path": "/terraform/language/files/tfquery",
+          "id": "documentation.query.overview",
+          "title": "Query Files Overview",
+          "description": "introduction to .tfquery.hcl files",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/block/tfquery/list",
+          "id": "documentation.query.list_block",
+          "title": "list-block",
+          "description": "declare a query to find infrastructure resources matching criteria",
+          "data": null
+        },
+        {
+          "path": "/terraform/cli/commands/query",
+          "id": "documentation.query.command",
+          "title": "terraform query",
+          "description": "run a query and optionally generate import/resource-blocks with -generate-config-out",
+          "data": null
+        }
+      ]
+    },
+    {
+      "baseUrl": "https://developer.hashicorp.com",
       "path": "/language/meta-arguments",
       "id": "documentation.configuration",
       "title": "Configuration",
@@ -1602,6 +1641,20 @@
           "data": null
         },
         {
+          "path": "/terraform/language/block/action",
+          "id": "documentation.configuration.action-blocks",
+          "title": "Action-blocks",
+          "description": "declare a provider-defined action to invoke, e.g. Lambda-jobs or Ansible-playbooks",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/invoke-actions",
+          "id": "documentation.configuration.invoke_actions",
+          "title": "Invoke an Action",
+          "description": "invoke actions manually via the CLI or during terraform apply",
+          "data": null
+        },
+        {
           "path": "/terraform/language/modules/syntax",
           "id": "documentation.configuration.module-blocks",
           "title": "Module-blocks",
@@ -1609,10 +1662,31 @@
           "data": null
         },
         {
+          "path": "/terraform/language/block/module#source",
+          "id": "documentation.configuration.module_dynamic_source",
+          "title": "Module: dynamic source/version",
+          "description": "use const-variables and locals in module source and version attributes",
+          "data": null
+        },
+        {
           "path": "/terraform/language/values/variables",
           "id": "documentation.configuration.variable-blocks",
           "title": "Variable-blocks",
           "description": "parameterize configurations and modules",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/block/variable#const",
+          "id": "documentation.configuration.variable_const",
+          "title": "Variable: const",
+          "description": "declare a constant variable, usable in module source/version attributes",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/block/variable#deprecated",
+          "id": "documentation.configuration.variable_deprecated",
+          "title": "Variable: deprecated",
+          "description": "mark a variable as deprecated with a custom warning message",
           "data": null
         },
         {
@@ -1738,6 +1812,13 @@
           "id": "documentation.meta_arguments.lifecycle",
           "title": "Lifecycle: prevent_destroy",
           "description": "prevent destruction in any case",
+          "data": null
+        },
+        {
+          "path": "/terraform/language/block/resource#action_trigger",
+          "id": "documentation.meta_arguments.action_trigger",
+          "title": "Lifecycle: action_trigger",
+          "description": "invoke provider actions on resource lifecycle events",
           "data": null
         },
         {
