@@ -1,4 +1,5 @@
 const vscode = require('vscode')
+const { toQuickPickOptions } = require('./utility/quickPick')
 
 async function command(client) {
 
@@ -7,20 +8,9 @@ async function command(client) {
         const documentationData = await client.sendRequest('documentation.data')
         let documentationResource = documentationData
         do {
-            const documentationOptions = documentationResource.data.map(
-                category => {
-                    if (category.seperator) {
-                        return {
-                            label: category.seperator,
-                            kind: vscode.QuickPickItemKind.Separator
-                        }
-                    } else {
-                        return {
-                            label: category.title,
-                            ...category
-                        }
-                    }
-                })
+            const documentationOptions = toQuickPickOptions(documentationResource.data,
+                category => ({ label: category.title, ...category })
+            )
             documentationResource = await vscode.window.showQuickPick(documentationOptions)
 
             if (null == documentationResource) return

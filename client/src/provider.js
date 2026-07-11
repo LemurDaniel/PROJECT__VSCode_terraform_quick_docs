@@ -10,6 +10,22 @@ class Provider {
             return this.category?.toLowerCase() == Provider.Categories.Resource
         }
 
+        get isEphemeral() {
+            return this.category?.toLowerCase() == Provider.Categories.Ephemeral
+        }
+
+        get isAction() {
+            return this.category?.toLowerCase() == Provider.Categories.Action
+        }
+
+        get isListResource() {
+            return this.category?.toLowerCase() == Provider.Categories.ListResource
+        }
+
+        get isFunction() {
+            return this.category?.toLowerCase() == Provider.Categories.Function
+        }
+
         get isGuide() {
             return this.category?.toLowerCase() == Provider.Categories.Guide
         }
@@ -20,9 +36,6 @@ class Provider {
 
         constructor(data, provider) {
             this.provider = provider
-
-            this.fulltitle = this.title
-            this.baretitle = this.title?.toLowerCase().replace(provider.name, '')
 
             this.id = data.id
             this.title = data.title
@@ -36,11 +49,10 @@ class Provider {
 
             this.resourceInfo = data
 
-            if (!data.title?.includes(provider.name)) {
-                this.fulltitle = `${provider.name}_${data.title}`
-            }
+            this.fulltitle = data.title?.includes(provider.name) ? data.title : `${provider.name}_${data.title}`
+            this.baretitle = this.fulltitle?.toLowerCase().replace(provider.name, '')
 
-            if (!this.isDataRead && !this.isResource) {
+            if (!this.isDataRead && !this.isResource && !this.isEphemeral && !this.isAction && !this.isListResource) {
                 this.fulltitle = data.title
                 this.baretitle = data.title
             }
@@ -49,9 +61,13 @@ class Provider {
     }
 
     static Categories = {
-        Guide: "guide",
-        Data: "data-source",
-        Resource: "resource",
+        Guide: "guides",
+        Data: "data-sources",
+        Resource: "resources",
+        Ephemeral: "ephemeral-resources",
+        Action: "actions",
+        ListResource: "list-resources",
+        Function: "functions",
         Overview: "overview"
     }
 

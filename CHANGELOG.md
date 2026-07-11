@@ -1,3 +1,11 @@
+## [1.0.7]
+
+### Update
+
+- Use replace sharp with resvg to avoid multiple plattfrom specific binaries 
+- add missing resource types (provide functions, actions, ephemeral, list resources)
+- fix oudated code and general refactoring
+
 ## [1.0.5]
 
 ### Update

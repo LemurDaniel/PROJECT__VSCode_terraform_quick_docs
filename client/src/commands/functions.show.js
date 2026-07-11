@@ -1,4 +1,5 @@
 const vscode = require('vscode')
+const { toQuickPickOptions } = require('./utility/quickPick')
 
 async function command(client) {
 
@@ -13,22 +14,13 @@ async function command(client) {
         ))
         if (null == category) return
 
-        const functionInfo = await vscode.window.showQuickPick(category.data.map(
-            functionInfo => {
-                if (functionInfo.seperator) {
-                    return {
-                        label: functionInfo.seperator,
-                        kind: vscode.QuickPickItemKind.Separator
-                    }
-                } else {
-                    return {
-                        ...functionInfo,
-                        label: functionInfo.syntax[0],
-                        description: functionInfo.description?.replace(/`[^`]+`/, '')
-                    }
-                }
-            }
-        ))
+        const functionInfo = await vscode.window.showQuickPick(
+            toQuickPickOptions(category.data, functionInfo => ({
+                ...functionInfo,
+                label: functionInfo.syntax[0],
+                description: functionInfo.description?.replace(/`[^`]+`/, '')
+            }))
+        )
         if (null == functionInfo) return
 
 
