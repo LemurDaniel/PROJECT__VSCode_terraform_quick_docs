@@ -40,7 +40,7 @@ jobs:
         if: steps.provider_check.outputs.result != ''
         run: | 
           npm install
-          npm install -g sharp
+          npm install sharp --no-save
           
       - uses: actions/github-script@v6
         name: Update provider.json
