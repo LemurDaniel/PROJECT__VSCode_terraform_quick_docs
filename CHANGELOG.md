@@ -1,3 +1,9 @@
+## [1.0.8]
+
+### Update
+
+- Add new partner-provider [citrix/citrixspa](https://github.com/citrix/terraform-provider-citrixspa)
+
 ## [1.0.7]
 
 ### Update
