@@ -1,3 +1,9 @@
+## [1.0.9]
+
+### Update
+
+- Add new partner-provider [appwrite/appwrite](https://github.com/appwrite/terraform-provider-appwrite)
+
 ## [1.0.8]
 
 ### Update
