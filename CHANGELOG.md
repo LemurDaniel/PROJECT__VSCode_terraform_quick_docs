@@ -1,3 +1,10 @@
+## [1.0.10]
+
+### Update
+
+- Deleted partner-provider [appwrite/appwrite](https://github.com/appwrite/terraform-provider-appwrite)
+- Deleted partner-provider [aristanetworks/cloudvision](https://github.com/aristanetworks/terraform-provider-cloudvision)
+
 ## [1.0.9]
 
 ### Update
