@@ -1,3 +1,9 @@
+## [1.0.11]
+
+### Update
+
+- Add new partner-provider [stripe/stripe](https://github.com/stripe/terraform-provider-stripe)
+
 ## [1.0.10]
 
 ### Update
